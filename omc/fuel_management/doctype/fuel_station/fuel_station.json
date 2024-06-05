@@ -1,0 +1,175 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-05-08 09:09:20.068351",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "station_section",
+  "fuel_station_name",
+  "column_break_xfjg",
+  "geolocation",
+  "station_detail_section",
+  "station_manager",
+  "column_break_ywmq",
+  "station_manager_name",
+  "contact",
+  "address_and_contact_section",
+  "phone_no",
+  "mobile_no",
+  "email_address",
+  "column_break_ghgl",
+  "address_line_1",
+  "address_line_2",
+  "city",
+  "region",
+  "gps_code",
+  "attendants_section",
+  "table_ohvo",
+  "assets_section",
+  "table_multiselect_vaju"
+ ],
+ "fields": [
+  {
+   "fieldname": "station_section",
+   "fieldtype": "Section Break",
+   "label": "Station"
+  },
+  {
+   "fieldname": "fuel_station_name",
+   "fieldtype": "Data",
+   "label": "Fuel Station Name"
+  },
+  {
+   "fieldname": "column_break_xfjg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "geolocation",
+   "fieldtype": "Geolocation",
+   "label": "Geolocation"
+  },
+  {
+   "fieldname": "station_detail_section",
+   "fieldtype": "Section Break",
+   "label": "Station Detail"
+  },
+  {
+   "fieldname": "station_manager",
+   "fieldtype": "Link",
+   "label": "Station Manager",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "column_break_ywmq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "station_manager.employee_name",
+   "fieldname": "station_manager_name",
+   "fieldtype": "Read Only",
+   "label": "Station Manager Name"
+  },
+  {
+   "fetch_from": "station_manager.cell_number",
+   "fieldname": "contact",
+   "fieldtype": "Read Only",
+   "label": "Contact"
+  },
+  {
+   "fieldname": "address_and_contact_section",
+   "fieldtype": "Section Break",
+   "label": "Address and Contact"
+  },
+  {
+   "fieldname": "phone_no",
+   "fieldtype": "Data",
+   "label": "Phone No",
+   "options": "Phone"
+  },
+  {
+   "fieldname": "mobile_no",
+   "fieldtype": "Data",
+   "label": "Mobile No",
+   "options": "Phone"
+  },
+  {
+   "fieldname": "email_address",
+   "fieldtype": "Data",
+   "label": "Email Address"
+  },
+  {
+   "fieldname": "column_break_ghgl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "address_line_1",
+   "fieldtype": "Data",
+   "label": "Address Line 1"
+  },
+  {
+   "fieldname": "address_line_2",
+   "fieldtype": "Data",
+   "label": "Address Line 2"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "region",
+   "fieldtype": "Data",
+   "label": "Region"
+  },
+  {
+   "fieldname": "gps_code",
+   "fieldtype": "Data",
+   "label": "GPS Code"
+  },
+  {
+   "fieldname": "attendants_section",
+   "fieldtype": "Section Break",
+   "label": "Attendants"
+  },
+  {
+   "fieldname": "table_ohvo",
+   "fieldtype": "Table",
+   "options": "Attendants Detials"
+  },
+  {
+   "fieldname": "assets_section",
+   "fieldtype": "Section Break",
+   "label": "Assets"
+  },
+  {
+   "fieldname": "table_multiselect_vaju",
+   "fieldtype": "Table MultiSelect",
+   "options": "Station Asset"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-05-08 09:27:31.699385",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Fuel Station",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

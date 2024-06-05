@@ -1,0 +1,232 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-05-07 16:42:10.123026",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "station_details_section",
+  "fuel_station",
+  "date",
+  "column_break_yerj",
+  "station_manager",
+  "attendant",
+  "diesel_section",
+  "nozzle_1_column",
+  "reading_image",
+  "reading",
+  "nozzle_2_column",
+  "reading_image_2",
+  "reading2",
+  "nozzle_3_column",
+  "reading_image_3",
+  "reading_3",
+  "petrol_section",
+  "p_1",
+  "reading_p_1",
+  "column_break_xwvg",
+  "p_2",
+  "reading_p_2",
+  "column_break_pzcx",
+  "p_3",
+  "reading_p_3",
+  "totals_section",
+  "petrol_column",
+  "petrol_sold",
+  "petrol_sales",
+  "diesel_column",
+  "diesel_sold",
+  "diesel_sales"
+ ],
+ "fields": [
+  {
+   "fieldname": "station_details_section",
+   "fieldtype": "Section Break",
+   "label": "Station Details"
+  },
+  {
+   "fieldname": "fuel_station",
+   "fieldtype": "Link",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Fuel Station",
+   "options": "Fuel Station"
+  },
+  {
+   "fieldname": "column_break_yerj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "fetch_from": "fuel_station.station_manager_name",
+   "fieldname": "station_manager",
+   "fieldtype": "Read Only",
+   "label": "Station Manager"
+  },
+  {
+   "fieldname": "attendant",
+   "fieldtype": "Link",
+   "label": "Attendant",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "diesel_section",
+   "fieldtype": "Section Break",
+   "label": "Diesel"
+  },
+  {
+   "fieldname": "nozzle_1_column",
+   "fieldtype": "Column Break",
+   "label": "Nozzle 1"
+  },
+  {
+   "fieldname": "reading_image",
+   "fieldtype": "Attach Image",
+   "label": "Reading Image"
+  },
+  {
+   "fieldname": "reading",
+   "fieldtype": "Int",
+   "label": "Reading"
+  },
+  {
+   "fieldname": "nozzle_2_column",
+   "fieldtype": "Column Break",
+   "label": "Nozzle 2"
+  },
+  {
+   "fieldname": "reading_image_2",
+   "fieldtype": "Attach Image",
+   "label": "Reading Image "
+  },
+  {
+   "fieldname": "reading2",
+   "fieldtype": "Int",
+   "label": "Reading"
+  },
+  {
+   "fieldname": "nozzle_3_column",
+   "fieldtype": "Column Break",
+   "label": "Nozzle 3"
+  },
+  {
+   "fieldname": "reading_image_3",
+   "fieldtype": "Attach Image",
+   "label": "Reading Image "
+  },
+  {
+   "fieldname": "reading_3",
+   "fieldtype": "Int",
+   "label": "Reading "
+  },
+  {
+   "fieldname": "petrol_section",
+   "fieldtype": "Section Break",
+   "label": "Petrol"
+  },
+  {
+   "fieldname": "p_1",
+   "fieldtype": "Attach Image",
+   "label": "Reading Image"
+  },
+  {
+   "fieldname": "reading_p_1",
+   "fieldtype": "Int",
+   "label": "Reading "
+  },
+  {
+   "fieldname": "column_break_xwvg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "p_2",
+   "fieldtype": "Attach Image",
+   "label": "Reading Image "
+  },
+  {
+   "fieldname": "reading_p_2",
+   "fieldtype": "Int",
+   "label": "Reading "
+  },
+  {
+   "fieldname": "column_break_pzcx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "p_3",
+   "fieldtype": "Attach Image",
+   "label": "Reading Image "
+  },
+  {
+   "fieldname": "reading_p_3",
+   "fieldtype": "Int",
+   "label": "Reading "
+  },
+  {
+   "fieldname": "totals_section",
+   "fieldtype": "Section Break",
+   "label": "Totals"
+  },
+  {
+   "fieldname": "petrol_column",
+   "fieldtype": "Column Break",
+   "label": "Petrol"
+  },
+  {
+   "description": "Total Quantity of Petrol Sold In Litres",
+   "fieldname": "petrol_sold",
+   "fieldtype": "Int",
+   "label": "Petrol Sold  "
+  },
+  {
+   "fieldname": "petrol_sales",
+   "fieldtype": "Currency",
+   "label": "Petrol Sales"
+  },
+  {
+   "fieldname": "diesel_column",
+   "fieldtype": "Column Break",
+   "label": "Diesel"
+  },
+  {
+   "description": "Total Quantity of Diesel Sold In Litres",
+   "fieldname": "diesel_sold",
+   "fieldtype": "Int",
+   "label": "Diesel Sold  "
+  },
+  {
+   "fieldname": "diesel_sales",
+   "fieldtype": "Currency",
+   "label": "Diesel Sales"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-05-25 15:45:48.546019",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Fuel Meter Reading",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
