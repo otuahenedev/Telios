@@ -1,0 +1,90 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-06-20 21:30:06.562380",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "fuel_type",
+  "column_break_jjbr",
+  "product_group",
+  "pricing_section",
+  "buying_column",
+  "buying_price",
+  "selling_column",
+  "selling_price"
+ ],
+ "fields": [
+  {
+   "fieldname": "fuel_type",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Product (Fuel Type)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "pricing_section",
+   "fieldtype": "Section Break",
+   "label": "Pricing"
+  },
+  {
+   "fieldname": "buying_column",
+   "fieldtype": "Column Break",
+   "label": "Buying"
+  },
+  {
+   "fieldname": "buying_price",
+   "fieldtype": "Currency",
+   "label": "Buying Price",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "selling_column",
+   "fieldtype": "Column Break",
+   "label": "Selling"
+  },
+  {
+   "fieldname": "selling_price",
+   "fieldtype": "Currency",
+   "label": "Selling Price ",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_jjbr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "product_group",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Product Group",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-06-21 21:42:27.232526",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Fuel Pricing",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

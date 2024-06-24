@@ -124,12 +124,12 @@
    "fieldname": "default_tanker",
    "fieldtype": "Link",
    "label": "Default Tanker",
-   "options": "Tanker"
+   "options": "Automobile"
   }
  ],
  "icon": "fa fa-user",
  "links": [],
- "modified": "2024-04-23 12:27:22.661742",
+ "modified": "2024-06-21 22:05:26.237139",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Driver",
