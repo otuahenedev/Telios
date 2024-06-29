@@ -1,0 +1,56 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-06-20 20:42:30.150999",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "fuel_station",
+  "outlet_code",
+  "volume_l"
+ ],
+ "fields": [
+  {
+   "description": "Fuel Station",
+   "fieldname": "fuel_station",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Outlet Name",
+   "options": "Fuel Station"
+  },
+  {
+   "fetch_from": "fuel_station.outlet_code",
+   "fieldname": "outlet_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Outlet Code",
+   "read_only": 1
+  },
+  {
+   "fieldname": "volume_l",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Volume (L)",
+   "options": "Tank Compartment"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-06-28 14:19:35.554296",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Request Fuel Details",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

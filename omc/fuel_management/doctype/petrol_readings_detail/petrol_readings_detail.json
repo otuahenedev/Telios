@@ -1,0 +1,54 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-06-26 10:20:01.140330",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "fuel_pump",
+  "opening_reading",
+  "closing_reading",
+  "total_liters_sold"
+ ],
+ "fields": [
+  {
+   "fieldname": "fuel_pump",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Fuel Pump",
+   "options": "\nPump 1\nPump 2\nPump 3\nPump 4\nPump 5\nPump 6\nPump 7\nPump 8\nPump 9"
+  },
+  {
+   "fieldname": "opening_reading",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Opening Reading",
+   "precision": "0"
+  },
+  {
+   "fieldname": "closing_reading",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Closing Reading ",
+   "precision": "0"
+  },
+  {
+   "fieldname": "total_liters_sold",
+   "fieldtype": "Float",
+   "label": "Total liters Sold"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-06-27 20:18:30.722255",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Petrol Readings Detail",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,314 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2024-06-28 17:09:36.920325",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "request_approval_form",
+  "section_break_knps",
+  "order_date",
+  "column_break_ecig",
+  "deliver_to",
+  "third_party_delivery_details_section",
+  "company",
+  "address",
+  "contact",
+  "column_break_gqst",
+  "thirdparty_product",
+  "thirdparty_product_group",
+  "fuel_liters",
+  "third_party_buy_price",
+  "order_details_section",
+  "fuel_type",
+  "product_group",
+  "buy_price",
+  "column_break_mnsk",
+  "depot",
+  "bdc",
+  "delivery_details_section",
+  "mode_of_transport",
+  "brv",
+  "nominal_volume_l",
+  "set_off_date",
+  "column_break_iwix",
+  "driver",
+  "drivers_contact",
+  "mate",
+  "mates_contact",
+  "section_break_ilbx",
+  "table_mxlk",
+  "section_break_psyi",
+  "status",
+  "upload_documents_tab",
+  "table_oboh",
+  "payments_tab",
+  "dispatch_tab"
+ ],
+ "fields": [
+  {
+   "default": "Now",
+   "fieldname": "order_date",
+   "fieldtype": "Datetime",
+   "label": "Order Date"
+  },
+  {
+   "fieldname": "column_break_ecig",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "deliver_to",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Deliver To",
+   "options": "Delivery Type"
+  },
+  {
+   "depends_on": "eval:doc.deliver_to == 'Third Party'",
+   "fieldname": "third_party_delivery_details_section",
+   "fieldtype": "Section Break",
+   "label": "Third Party Delivery Details"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Customer"
+  },
+  {
+   "fetch_from": "company.primary_address",
+   "fieldname": "address",
+   "fieldtype": "Read Only",
+   "label": "Address"
+  },
+  {
+   "fetch_from": "company.mobile_no",
+   "fieldname": "contact",
+   "fieldtype": "Read Only",
+   "label": "Contact"
+  },
+  {
+   "fieldname": "column_break_gqst",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "thirdparty_product",
+   "fieldtype": "Link",
+   "label": "Product ",
+   "options": "Fuel Pricing"
+  },
+  {
+   "fetch_from": "fuel_type.product_group",
+   "fieldname": "thirdparty_product_group",
+   "fieldtype": "Read Only",
+   "label": "Product Group"
+  },
+  {
+   "description": "Amount of fuel being purchased in liters",
+   "fieldname": "fuel_liters",
+   "fieldtype": "Int",
+   "label": "Fuel Liters"
+  },
+  {
+   "fetch_from": "fuel_type.buying_price",
+   "fieldname": "third_party_buy_price",
+   "fieldtype": "Int",
+   "label": "Ex-Ref Price(GHS/LT)"
+  },
+  {
+   "depends_on": "eval:doc.deliver_to == 'Fuel Station'",
+   "fieldname": "order_details_section",
+   "fieldtype": "Section Break",
+   "hide_border": 1,
+   "label": "Fuel Station Order Details"
+  },
+  {
+   "fieldname": "fuel_type",
+   "fieldtype": "Link",
+   "label": "Product",
+   "options": "Fuel Pricing"
+  },
+  {
+   "fetch_from": "fuel_type.product_group",
+   "fieldname": "product_group",
+   "fieldtype": "Read Only",
+   "label": "Product Group",
+   "options": "Fuel Pricing"
+  },
+  {
+   "fetch_from": "fuel_type.buying_price",
+   "fieldname": "buy_price",
+   "fieldtype": "Int",
+   "label": "Ex-Ref Price(GHS/LT)"
+  },
+  {
+   "fieldname": "column_break_mnsk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "depot",
+   "fieldtype": "Link",
+   "label": "Depot",
+   "options": "Supplier"
+  },
+  {
+   "depends_on": "depot",
+   "fetch_from": "depot.supplier_group",
+   "fieldname": "bdc",
+   "fieldtype": "Data",
+   "label": "BDC"
+  },
+  {
+   "fieldname": "delivery_details_section",
+   "fieldtype": "Section Break",
+   "label": "Delivery Details"
+  },
+  {
+   "fetch_from": "fuel_delivery_request_approval_form.mode_of_transport",
+   "fieldname": "mode_of_transport",
+   "fieldtype": "Select",
+   "label": "Mode of Transport",
+   "options": "\nBRV\nTricycle"
+  },
+  {
+   "fieldname": "brv",
+   "fieldtype": "Link",
+   "label": "BRV #",
+   "mandatory_depends_on": "eval:doc.brv == 'BRV'",
+   "options": "Automobile"
+  },
+  {
+   "fetch_from": "brv.volume_l",
+   "fieldname": "nominal_volume_l",
+   "fieldtype": "Int",
+   "label": "Nominal Volume (L)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "set_off_date",
+   "fieldtype": "Date",
+   "label": "Set Off Date"
+  },
+  {
+   "fieldname": "column_break_iwix",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "driver",
+   "fieldtype": "Link",
+   "label": "Driver",
+   "options": "Driver"
+  },
+  {
+   "fetch_from": "driver.cell_number",
+   "fieldname": "drivers_contact",
+   "fieldtype": "Read Only",
+   "label": "Driver's Contact"
+  },
+  {
+   "fieldname": "mate",
+   "fieldtype": "Link",
+   "label": "Mate",
+   "options": "Mate"
+  },
+  {
+   "fetch_from": "mate.contact_number",
+   "fieldname": "mates_contact",
+   "fieldtype": "Read Only",
+   "label": "Mate's Contact "
+  },
+  {
+   "fieldname": "section_break_ilbx",
+   "fieldtype": "Section Break",
+   "mandatory_depends_on": "eval:doc.deliver_to == 'Station'"
+  },
+  {
+   "depends_on": "eval:doc.deliver_to == 'Fuel Station'",
+   "fieldname": "table_mxlk",
+   "fieldtype": "Table",
+   "options": "Request Fuel Details"
+  },
+  {
+   "fieldname": "section_break_psyi",
+   "fieldtype": "Section Break",
+   "hidden": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Read Only",
+   "hidden": 1,
+   "label": "Status"
+  },
+  {
+   "fieldname": "section_break_knps",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "upload_documents_tab",
+   "fieldtype": "Tab Break",
+   "label": "Upload Documents"
+  },
+  {
+   "fieldname": "table_oboh",
+   "fieldtype": "Table",
+   "options": "Docs"
+  },
+  {
+   "fieldname": "payments_tab",
+   "fieldtype": "Tab Break",
+   "label": "Payments"
+  },
+  {
+   "fieldname": "dispatch_tab",
+   "fieldtype": "Tab Break",
+   "label": "Dispatch"
+  },
+  {
+   "bold": 1,
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "TELIOS-FDP-.YYYY.-",
+   "print_hide": 1,
+   "reqd": 1,
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "request_approval_form",
+   "fieldtype": "Link",
+   "label": "Request Approval Form",
+   "options": "Fuel Delivery Request Approval"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-06-29 00:18:18.449215",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Fuel Delivery Process",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

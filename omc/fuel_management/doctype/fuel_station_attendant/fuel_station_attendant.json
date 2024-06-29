@@ -1,67 +1,64 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:name1",
- "creation": "2024-06-21 21:17:14.044136",
+ "autoname": "field:full_name",
+ "creation": "2024-06-28 13:53:03.999220",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "employee",
-  "name1",
-  "default_vehicle",
-  "column_break_rznk",
-  "contact_number",
+  "full_name",
+  "fuel_station",
+  "column_break_zrkz",
+  "contact",
   "address"
  ],
  "fields": [
   {
-   "allow_in_quick_entry": 1,
    "fieldname": "employee",
    "fieldtype": "Link",
    "label": "Employee",
    "options": "Employee"
   },
   {
-   "allow_in_quick_entry": 1,
    "fetch_from": "employee.employee_name",
-   "fieldname": "name1",
+   "fetch_if_empty": 1,
+   "fieldname": "full_name",
    "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Name",
-   "reqd": 1,
+   "label": "Full Name",
    "unique": 1
   },
   {
-   "fieldname": "default_vehicle",
+   "fieldname": "fuel_station",
    "fieldtype": "Link",
-   "label": "Default Vehicle",
-   "options": "Vehicle"
+   "label": "Fuel Station",
+   "options": "Fuel Station"
   },
   {
-   "fieldname": "column_break_rznk",
+   "fieldname": "column_break_zrkz",
    "fieldtype": "Column Break"
   },
   {
-   "allow_in_quick_entry": 1,
    "fetch_from": "employee.cell_number",
-   "fieldname": "contact_number",
-   "fieldtype": "Data",
-   "label": "Contact Number"
+   "fetch_if_empty": 1,
+   "fieldname": "contact",
+   "fieldtype": "Read Only",
+   "label": "Contact"
   },
   {
-   "allow_in_quick_entry": 1,
    "fetch_from": "employee.permanent_address",
+   "fetch_if_empty": 1,
    "fieldname": "address",
-   "fieldtype": "Small Text",
+   "fieldtype": "Read Only",
    "label": "Address"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-06-28 10:24:43.000659",
+ "modified": "2024-06-28 14:00:50.009328",
  "modified_by": "Administrator",
  "module": "Fuel Management",
- "name": "Mate",
+ "name": "Fuel Station Attendant",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
@@ -78,7 +75,6 @@
    "write": 1
   }
  ],
- "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

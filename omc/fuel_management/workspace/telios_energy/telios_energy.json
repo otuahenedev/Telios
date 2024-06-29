@@ -1,0 +1,137 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"PYj7s5say2\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Telios</span>\",\"col\":12}},{\"id\":\"SeNbaVxIQO\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Fuel Stations\",\"col\":3}},{\"id\":\"DDOpV-wbDo\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Fuel Request Approval\",\"col\":3}},{\"id\":\"22Lak0YnBO\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"Ki9BiEjznx\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}}]",
+ "creation": "2024-06-26 22:57:55.270811",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "color-energy-points",
+ "idx": 0,
+ "indicator_color": "",
+ "is_hidden": 0,
+ "label": "Telios Energy",
+ "links": [
+  {
+   "description": " vxvxc ",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Masters",
+   "link_count": 8,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Fuel Pricing",
+   "link_count": 0,
+   "link_to": "Fuel Pricing",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Fuel Delivery Request Approval",
+   "link_count": 0,
+   "link_to": "Fuel Delivery Request Approval",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Fuel Delivery Process",
+   "link_count": 0,
+   "link_to": "Fuel Delivery Process",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Vehicles",
+   "link_count": 0,
+   "link_to": "Automobile",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Drivers",
+   "link_count": 0,
+   "link_to": "Driver",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Mates",
+   "link_count": 0,
+   "link_to": "Mate",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Deliveries",
+   "link_count": 0,
+   "link_to": "Delivery",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Fuel Meter Reading",
+   "link_count": 0,
+   "link_to": "Fuel Meter Reading",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2024-06-28 00:10:42.168340",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Telios Energy",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 1.0,
+ "shortcuts": [
+  {
+   "color": "Orange",
+   "doc_view": "List",
+   "label": "Fuel Stations",
+   "link_to": "Fuel Station",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "Fuel Request Approval",
+   "link_to": "Fuel Delivery Request Approval",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "title": "Telios Energy"
+}

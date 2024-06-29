@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:TELIOS-{fuel_station}-{YYYY}-{###}",
  "creation": "2024-05-07 16:42:10.123026",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -8,28 +9,57 @@
   "station_details_section",
   "fuel_station",
   "date",
+  "petrol_station_capacity",
+  "diesel_station_capacity",
   "column_break_yerj",
   "station_manager",
   "attendant",
+  "section_break_gdrr",
+  "table_mtto",
+  "petrol_pricing",
+  "total_liters_of_petrol_sold",
+  "petrol_rate",
+  "total_sales_for_petrol",
   "diesel_section",
+  "table_yvwr",
+  "diesel_pricing",
+  "diesel_rate",
+  "total_liters_of_diesel_sold",
+  "total_sales_for_diesel",
+  "pump_1_section",
   "nozzle_1_column",
-  "reading_image",
-  "reading",
+  "op_pet_pump1_img",
+  "op_rd_pet_p1",
+  "clo_pet_pump1_img",
+  "cl_rd_pet_p1",
   "nozzle_2_column",
-  "reading_image_2",
-  "reading2",
-  "nozzle_3_column",
-  "reading_image_3",
-  "reading_3",
-  "petrol_section",
-  "p_1",
-  "reading_p_1",
-  "column_break_xwvg",
-  "p_2",
-  "reading_p_2",
-  "column_break_pzcx",
-  "p_3",
-  "reading_p_3",
+  "op_rd_img_die_p1",
+  "op_rd_die_p1",
+  "cl_rd_img_die_p1",
+  "cl_rd_die_p1",
+  "section_break_pdeh",
+  "total_liters_of_petrol_sold_pump_1",
+  "total_petrol_sales_pump_1",
+  "column_break_vvfn",
+  "total_liters_of_diesel_sold_pump_1",
+  "total_diesel_sales_pump_1",
+  "pump_2_section",
+  "pet_p2",
+  "op_rd_img_pet_p2",
+  "op_reading_pet_p2",
+  "cl_rd_img_pet_p2",
+  "cl_rd_pet_p2",
+  "die_p2",
+  "op_rd_img_die_p2",
+  "op_reading_diep2",
+  "cl_rd_img_die_p2",
+  "cl_rd_die_p2",
+  "section_break_tqui",
+  "total_liters_of_petrol_sold_pump_2",
+  "total_petrol_sales_pump_2",
+  "column_break_mwwb",
+  "total_liters_of_diesel_sold_pump_2",
+  "total_diesel_sales_pump_2",
   "totals_section",
   "petrol_column",
   "petrol_sold",
@@ -49,127 +79,55 @@
    "fieldtype": "Link",
    "in_filter": 1,
    "in_list_view": 1,
+   "in_preview": 1,
    "in_standard_filter": 1,
    "label": "Fuel Station",
-   "options": "Fuel Station"
+   "options": "Fuel Station",
+   "reqd": 1,
+   "search_index": 1
   },
   {
    "fieldname": "column_break_yerj",
    "fieldtype": "Column Break"
   },
   {
+   "default": "Now",
    "fieldname": "date",
    "fieldtype": "Date",
-   "label": "Date"
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Date",
+   "reqd": 1
   },
   {
    "fetch_from": "fuel_station.station_manager_name",
    "fieldname": "station_manager",
    "fieldtype": "Read Only",
-   "label": "Station Manager"
+   "label": "Station Manager",
+   "reqd": 1
   },
   {
    "fieldname": "attendant",
    "fieldtype": "Link",
    "label": "Attendant",
-   "options": "Employee"
-  },
-  {
-   "fieldname": "diesel_section",
-   "fieldtype": "Section Break",
-   "label": "Diesel"
+   "options": "Employee",
+   "reqd": 1
   },
   {
    "fieldname": "nozzle_1_column",
    "fieldtype": "Column Break",
-   "label": "Nozzle 1"
-  },
-  {
-   "fieldname": "reading_image",
-   "fieldtype": "Attach Image",
-   "label": "Reading Image"
-  },
-  {
-   "fieldname": "reading",
-   "fieldtype": "Int",
-   "label": "Reading"
+   "label": "Petrol"
   },
   {
    "fieldname": "nozzle_2_column",
    "fieldtype": "Column Break",
-   "label": "Nozzle 2"
-  },
-  {
-   "fieldname": "reading_image_2",
-   "fieldtype": "Attach Image",
-   "label": "Reading Image "
-  },
-  {
-   "fieldname": "reading2",
-   "fieldtype": "Int",
-   "label": "Reading"
-  },
-  {
-   "fieldname": "nozzle_3_column",
-   "fieldtype": "Column Break",
-   "label": "Nozzle 3"
-  },
-  {
-   "fieldname": "reading_image_3",
-   "fieldtype": "Attach Image",
-   "label": "Reading Image "
-  },
-  {
-   "fieldname": "reading_3",
-   "fieldtype": "Int",
-   "label": "Reading "
-  },
-  {
-   "fieldname": "petrol_section",
-   "fieldtype": "Section Break",
-   "label": "Petrol"
-  },
-  {
-   "fieldname": "p_1",
-   "fieldtype": "Attach Image",
-   "label": "Reading Image"
-  },
-  {
-   "fieldname": "reading_p_1",
-   "fieldtype": "Int",
-   "label": "Reading "
-  },
-  {
-   "fieldname": "column_break_xwvg",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "p_2",
-   "fieldtype": "Attach Image",
-   "label": "Reading Image "
-  },
-  {
-   "fieldname": "reading_p_2",
-   "fieldtype": "Int",
-   "label": "Reading "
-  },
-  {
-   "fieldname": "column_break_pzcx",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "p_3",
-   "fieldtype": "Attach Image",
-   "label": "Reading Image "
-  },
-  {
-   "fieldname": "reading_p_3",
-   "fieldtype": "Int",
-   "label": "Reading "
+   "label": "Diesel"
   },
   {
    "fieldname": "totals_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Totals"
   },
   {
@@ -181,7 +139,7 @@
    "description": "Total Quantity of Petrol Sold In Litres",
    "fieldname": "petrol_sold",
    "fieldtype": "Int",
-   "label": "Petrol Sold  "
+   "label": "Petrol Sold  (L)"
   },
   {
    "fieldname": "petrol_sales",
@@ -197,20 +155,285 @@
    "description": "Total Quantity of Diesel Sold In Litres",
    "fieldname": "diesel_sold",
    "fieldtype": "Int",
-   "label": "Diesel Sold  "
+   "label": "Diesel Sold  (L)"
   },
   {
    "fieldname": "diesel_sales",
    "fieldtype": "Currency",
    "label": "Diesel Sales"
+  },
+  {
+   "fieldname": "pump_1_section",
+   "fieldtype": "Section Break",
+   "hidden": 1,
+   "label": "Pump 1",
+   "print_hide": 1,
+   "report_hide": 1
+  },
+  {
+   "fieldname": "op_pet_pump1_img",
+   "fieldtype": "Attach Image",
+   "label": "Opening Reading Image"
+  },
+  {
+   "fieldname": "op_rd_pet_p1",
+   "fieldtype": "Int",
+   "label": "Opening Reading"
+  },
+  {
+   "fieldname": "clo_pet_pump1_img",
+   "fieldtype": "Attach Image",
+   "label": "Closing Reading Image "
+  },
+  {
+   "fieldname": "cl_rd_pet_p1",
+   "fieldtype": "Int",
+   "label": "Closing Reading  "
+  },
+  {
+   "fieldname": "op_rd_img_die_p1",
+   "fieldtype": "Attach Image",
+   "label": "Opening Reading Image Copy"
+  },
+  {
+   "fieldname": "op_rd_die_p1",
+   "fieldtype": "Int",
+   "label": "Opening Reading "
+  },
+  {
+   "fieldname": "cl_rd_img_die_p1",
+   "fieldtype": "Attach Image",
+   "label": "Closing Reading Image  "
+  },
+  {
+   "fieldname": "cl_rd_die_p1",
+   "fieldtype": "Int",
+   "label": "Closing Reading "
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "pump_2_section",
+   "fieldtype": "Section Break",
+   "hidden": 1,
+   "label": "Pump 2",
+   "print_hide": 1,
+   "report_hide": 1
+  },
+  {
+   "fieldname": "pet_p2",
+   "fieldtype": "Column Break",
+   "label": "Petrol"
+  },
+  {
+   "fieldname": "op_rd_img_pet_p2",
+   "fieldtype": "Attach Image",
+   "label": "Opening Reading Image"
+  },
+  {
+   "fieldname": "op_reading_pet_p2",
+   "fieldtype": "Int",
+   "label": "Opening Reading "
+  },
+  {
+   "fieldname": "cl_rd_img_pet_p2",
+   "fieldtype": "Attach Image",
+   "label": "Closing Reading Image "
+  },
+  {
+   "fieldname": "cl_rd_pet_p2",
+   "fieldtype": "Int",
+   "label": "Closing Reading  "
+  },
+  {
+   "fieldname": "die_p2",
+   "fieldtype": "Column Break",
+   "label": "Diesel"
+  },
+  {
+   "fieldname": "op_rd_img_die_p2",
+   "fieldtype": "Attach Image",
+   "label": "Opening Reading Image "
+  },
+  {
+   "fieldname": "op_reading_diep2",
+   "fieldtype": "Int",
+   "label": "Opening Reading "
+  },
+  {
+   "fieldname": "cl_rd_img_die_p2",
+   "fieldtype": "Attach Image",
+   "label": "Closing Reading Image  "
+  },
+  {
+   "fieldname": "cl_rd_die_p2",
+   "fieldtype": "Int",
+   "label": "Closing Opening Reading  "
+  },
+  {
+   "fetch_from": "fuel_station.total_capacity_for_petrol",
+   "fetch_if_empty": 1,
+   "fieldname": "petrol_station_capacity",
+   "fieldtype": "Read Only",
+   "hidden": 1,
+   "label": "Petrol Station Capacity"
+  },
+  {
+   "fetch_from": "fuel_station.total_capacity_for_diesel",
+   "fetch_if_empty": 1,
+   "fieldname": "diesel_station_capacity",
+   "fieldtype": "Read Only",
+   "hidden": 1,
+   "label": "Diesel Station Capacity "
+  },
+  {
+   "fieldname": "section_break_gdrr",
+   "fieldtype": "Section Break",
+   "label": "Petrol "
+  },
+  {
+   "fieldname": "table_mtto",
+   "fieldtype": "Table",
+   "label": "Petrol Readings",
+   "options": "Petrol Readings Detail"
+  },
+  {
+   "fieldname": "table_yvwr",
+   "fieldtype": "Table",
+   "label": "Diesel Readings",
+   "options": "Petrol Readings Detail"
+  },
+  {
+   "fieldname": "total_petrol_sales_pump_1",
+   "fieldtype": "Int",
+   "label": "Total Petrol Sales Pump 1"
+  },
+  {
+   "fieldname": "total_liters_of_diesel_sold_pump_1",
+   "fieldtype": "Int",
+   "label": "Total Liters of Diesel Sold Pump 1 (L)"
+  },
+  {
+   "fieldname": "total_diesel_sales_pump_1",
+   "fieldtype": "Int",
+   "label": "Total Diesel Sales Pump 1 "
+  },
+  {
+   "fieldname": "section_break_pdeh",
+   "fieldtype": "Section Break",
+   "hidden": 1,
+   "hide_border": 1,
+   "print_hide": 1,
+   "report_hide": 1
+  },
+  {
+   "fieldname": "total_liters_of_petrol_sold_pump_1",
+   "fieldtype": "Int",
+   "label": "Total Liters of Petrol Sold Pump 1 (L)"
+  },
+  {
+   "fieldname": "column_break_vvfn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_tqui",
+   "fieldtype": "Section Break",
+   "hidden": 1,
+   "hide_border": 1,
+   "print_hide": 1,
+   "report_hide": 1
+  },
+  {
+   "fieldname": "total_liters_of_petrol_sold_pump_2",
+   "fieldtype": "Int",
+   "label": "Total Liters of Petrol Sold Pump 2 (L)"
+  },
+  {
+   "fieldname": "total_petrol_sales_pump_2",
+   "fieldtype": "Int",
+   "label": "Total Petrol Sales Pump 2"
+  },
+  {
+   "fieldname": "column_break_mwwb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_liters_of_diesel_sold_pump_2",
+   "fieldtype": "Int",
+   "label": "Total Liters of Diesel Sold Pump 2 (L)"
+  },
+  {
+   "fieldname": "total_diesel_sales_pump_2",
+   "fieldtype": "Int",
+   "label": "Total Diesel Sales Pump 2"
+  },
+  {
+   "fetch_from": "petrol_pricing.selling_price",
+   "fieldname": "petrol_rate",
+   "fieldtype": "Currency",
+   "label": "Petrol Rate"
+  },
+  {
+   "fetch_from": "petrol_pricing.selling_price",
+   "fieldname": "diesel_rate",
+   "fieldtype": "Currency",
+   "label": "Diesel Rate",
+   "report_hide": 1
+  },
+  {
+   "fieldname": "diesel_section",
+   "fieldtype": "Section Break",
+   "label": "Diesel "
+  },
+  {
+   "fieldname": "total_liters_of_petrol_sold",
+   "fieldtype": "Int",
+   "label": "Total Liters of Petrol Sold"
+  },
+  {
+   "fieldname": "total_sales_for_petrol",
+   "fieldtype": "Currency",
+   "label": "Total Sales for Petrol "
+  },
+  {
+   "fieldname": "total_liters_of_diesel_sold",
+   "fieldtype": "Int",
+   "label": "Total Liters of Diesel Sold "
+  },
+  {
+   "fieldname": "total_sales_for_diesel",
+   "fieldtype": "Float",
+   "label": "Total Sales for Diesel  "
+  },
+  {
+   "default": "PETROL",
+   "fetch_from": "fuel_pricing.diesel_selling_price",
+   "fieldname": "petrol_pricing",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Petrol pricing ",
+   "options": "Fuel Pricing",
+   "print_hide": 1,
+   "report_hide": 1
+  },
+  {
+   "default": "AGO(Retail Outlets)",
+   "fetch_from": "fuel_pricing.diesel_selling_price",
+   "fieldname": "diesel_pricing",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Diesel pricing",
+   "options": "Fuel Pricing",
+   "print_hide": 1,
+   "report_hide": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-25 15:45:48.546019",
+ "modified": "2024-06-28 19:51:30.021390",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Fuel Meter Reading",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

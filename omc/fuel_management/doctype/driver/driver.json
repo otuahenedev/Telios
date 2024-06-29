@@ -2,7 +2,7 @@
  "actions": [],
  "allow_import": 1,
  "allow_rename": 1,
- "autoname": "naming_series:",
+ "autoname": "field:full_name",
  "creation": "2017-10-17 08:21:50.489773",
  "doctype": "DocType",
  "document_type": "Setup",
@@ -35,11 +35,14 @@
    "options": "HR-DRI-.YYYY.-"
   },
   {
+   "fetch_from": "employee.employee_name",
+   "fetch_if_empty": 1,
    "fieldname": "full_name",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Full Name",
-   "reqd": 1
+   "reqd": 1,
+   "unique": 1
   },
   {
    "fieldname": "status",
@@ -62,6 +65,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_in_quick_entry": 1,
    "fieldname": "employee",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -69,6 +73,8 @@
    "options": "Employee"
   },
   {
+   "allow_in_quick_entry": 1,
+   "fetch_from": "employee.cell_number",
    "fieldname": "cell_number",
    "fieldtype": "Data",
    "label": "Cellphone Number",
@@ -76,6 +82,7 @@
    "options": "Phone"
   },
   {
+   "fetch_from": "employee.permanent_address",
    "fieldname": "address",
    "fieldtype": "Link",
    "label": "Address",
@@ -129,11 +136,11 @@
  ],
  "icon": "fa fa-user",
  "links": [],
- "modified": "2024-06-21 22:05:26.237139",
+ "modified": "2024-06-28 10:34:35.878112",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Driver",
- "naming_rule": "By \"Naming Series\" field",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

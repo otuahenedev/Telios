@@ -1,0 +1,52 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-05-07 16:28:56.323286",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "full_name",
+  "contact",
+  "address"
+ ],
+ "fields": [
+  {
+   "fetch_from": "full_name.contact",
+   "fieldname": "contact",
+   "fieldtype": "Read Only",
+   "in_list_view": 1,
+   "label": "Contact"
+  },
+  {
+   "fetch_from": "full_name.address",
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Address",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "full_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Full Name",
+   "options": "Fuel Station Attendant"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-06-28 14:02:55.402579",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Attendants Details",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

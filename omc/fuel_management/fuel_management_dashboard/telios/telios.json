@@ -1,0 +1,27 @@
+{
+ "cards": [
+  {
+   "card": "Total Liters of Diesel Sold"
+  },
+  {
+   "card": "Total Liters of Petrol Sold"
+  }
+ ],
+ "charts": [
+  {
+   "width": "Half"
+  }
+ ],
+ "creation": "2024-06-28 15:02:21.407990",
+ "dashboard_name": "Telios",
+ "docstatus": 0,
+ "doctype": "Dashboard",
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "modified": "2024-06-28 15:02:21.407990",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Telios",
+ "owner": "Administrator"
+}
