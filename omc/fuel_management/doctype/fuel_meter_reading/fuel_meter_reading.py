@@ -7,6 +7,10 @@ from frappe.model.document import Document
 
 class FuelMeterReading(Document):
 	
+	#def before_save(self):
+	#	for pump in self.table_mtto:
+	#		int(pump.total_liters_sold) = pump.closing_reading - pump.opening_reading
+
 
 	def validate(self):
 		#if not self.petrol_rate or self.diesel_rate :
@@ -20,7 +24,7 @@ class FuelMeterReading(Document):
 		self.total_liters_of_petrol_sold = petrol_liters_sold
 
 		#total sales for petrol
-		self.total_sales_for_petrol = 	self.petrol_rate * petrol_liters_sold
+		self.total_sales_for_petrol = 	self.petrol_rate * float(petrol_liters_sold)
 		
 		# sum for all diesel pumps
 		diesel_liters_sold = 0

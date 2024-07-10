@@ -7,7 +7,9 @@
  "engine": "InnoDB",
  "field_order": [
   "fuel_pump",
+  "capture_opening_reading",
   "opening_reading",
+  "capture_closing_reading_copy",
   "closing_reading",
   "total_liters_sold"
  ],
@@ -36,16 +38,27 @@
   {
    "fieldname": "total_liters_sold",
    "fieldtype": "Float",
-   "hidden": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Total Liters Sold",
    "non_negative": 1,
    "precision": "0"
+  },
+  {
+   "fieldname": "capture_opening_reading",
+   "fieldtype": "Attach Image",
+   "label": "Capture Opening Reading"
+  },
+  {
+   "fieldname": "capture_closing_reading_copy",
+   "fieldtype": "Attach Image",
+   "label": "Capture Closing Reading Copy"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-06-27 20:25:29.154373",
+ "modified": "2024-06-30 11:11:19.035158",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Diesel Readings Detail",

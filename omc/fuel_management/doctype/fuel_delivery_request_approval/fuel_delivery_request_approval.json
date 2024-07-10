@@ -230,8 +230,8 @@
   {
    "fetch_from": "fuel_type.buying_price",
    "fieldname": "third_party_buy_price",
-   "fieldtype": "Int",
-   "label": "Ex-Ref Price(GHS/LT)"
+   "fieldtype": "Currency",
+   "label": " Price (GHS/LT)"
   },
   {
    "description": "Amount of fuel being purchased in liters",
@@ -242,7 +242,7 @@
   {
    "fetch_from": "fuel_type.buying_price",
    "fieldname": "buy_price",
-   "fieldtype": "Int",
+   "fieldtype": "Currency",
    "label": "Ex-Ref Price(GHS/LT)"
   }
  ],
@@ -254,7 +254,7 @@
    "link_fieldname": "request_approval_form"
   }
  ],
- "modified": "2024-06-28 18:47:31.519511",
+ "modified": "2024-06-29 21:46:05.313429",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Fuel Delivery Request Approval",
