@@ -46,7 +46,8 @@
    "fetch_from": "employee.cell_number",
    "fieldname": "contact_number",
    "fieldtype": "Data",
-   "label": "Contact Number"
+   "label": "Contact Number",
+   "reqd": 1
   },
   {
    "allow_in_quick_entry": 1,
@@ -58,7 +59,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-06-28 10:24:43.000659",
+ "modified": "2024-07-29 15:45:30.127159",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Mate",
@@ -81,5 +82,6 @@
  "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "name1"
 }

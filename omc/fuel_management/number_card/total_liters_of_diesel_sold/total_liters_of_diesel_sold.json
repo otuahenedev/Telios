@@ -1,6 +1,6 @@
 {
  "aggregate_function_based_on": "total_liters_of_diesel_sold",
- "color": "#CB2929",
+ "color": "#29CD42",
  "creation": "2024-06-28 00:06:12.187835",
  "docstatus": 0,
  "doctype": "Number Card",
@@ -11,7 +11,7 @@
  "is_public": 1,
  "is_standard": 1,
  "label": "Total Liters of Diesel Sold",
- "modified": "2024-06-28 20:00:45.762190",
+ "modified": "2024-07-22 12:59:53.543652",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Total Liters of Diesel Sold",

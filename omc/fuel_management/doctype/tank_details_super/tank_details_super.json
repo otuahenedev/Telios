@@ -7,7 +7,7 @@
  "engine": "InnoDB",
  "field_order": [
   "tank",
-  "volume_l"
+  "volume"
  ],
  "fields": [
   {
@@ -19,7 +19,7 @@
    "options": "\nTank 1\nTank 2\nTank 3\nTank 4\nTank 5\nTank 6"
   },
   {
-   "fieldname": "volume_l",
+   "fieldname": "volume",
    "fieldtype": "Int",
    "in_list_view": 1,
    "in_standard_filter": 1,
@@ -29,7 +29,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-07-02 07:55:11.844695",
+ "modified": "2024-07-10 14:51:10.638025",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Tank Details Super",

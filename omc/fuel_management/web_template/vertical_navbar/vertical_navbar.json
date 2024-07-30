@@ -1,0 +1,17 @@
+{
+ "__islocal": true,
+ "__unsaved": 1,
+ "creation": "2024-07-29 05:59:16.539962",
+ "docstatus": 0,
+ "doctype": "Web Template",
+ "fields": [],
+ "idx": 0,
+ "modified": "2024-07-29 05:59:16.539962",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Vertical Navbar",
+ "owner": "Administrator",
+ "standard": 1,
+ "template": "",
+ "type": "Navbar"
+}

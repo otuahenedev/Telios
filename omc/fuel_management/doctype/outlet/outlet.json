@@ -1,30 +1,42 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:fuel_station_name",
+ "autoname": "prompt",
  "creation": "2024-07-08 13:33:59.963227",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "outlet_details_section",
   "outlet_code",
   "outlet_type",
+  "state",
+  "reason",
   "column_break_qovw",
+  "petrol_selling_price",
+  "diesel_selling_price",
   "total_capacity_for_petrol",
   "total_capacity_for_diesel",
+  "current_stock_level__petrol_l",
+  "current_stock_level_diesel_l",
+  "petrol_total_sales",
+  "diesel_total_sales",
   "station_section",
   "fuel_station_name",
+  "outlet_profile_picture",
+  "reorder_level_l",
   "column_break_xfjg",
   "station_manager",
   "station_manager_name",
   "contact",
+  "fuel_attendant",
+  "table_multiselect_vaju",
   "section_break_ybex",
   "outlet",
   "column_break_sehc",
-  "name1",
+  "point_of_contact",
   "contact_2",
-  "section_break_oysz",
-  "super_tanks",
-  "diesel_storage_tanks",
+  "address",
+  "client_location",
   "address_and_contact_section",
   "column_break_ghgl",
   "address_line_1",
@@ -34,31 +46,35 @@
   "column_break_hmpe",
   "email_address",
   "phone_no",
+  "alternate_fixed_line_no",
   "mobile_no",
+  "alternate_mobile_no",
   "column_break_lwsl",
-  "location",
+  "fuel_station_location",
   "latitude",
   "longitude",
   "show_map",
   "section_break_sjkp",
   "geolocation_dbpz",
-  "attendants_section",
-  "fuel_attendant",
-  "assets_section",
-  "table_multiselect_vaju"
+  "section_break_oysz",
+  "super_tanks",
+  "diesel_storage_tanks"
  ],
  "fields": [
   {
+   "depends_on": "eval:doc.outlet_type==\"Fuel Station\"",
    "fieldname": "station_section",
    "fieldtype": "Section Break",
-   "label": "Station"
+   "label": "Fuel Station"
   },
   {
    "fieldname": "fuel_station_name",
    "fieldtype": "Data",
+   "hidden": 1,
    "in_list_view": 1,
    "label": "Fuel Station Name",
-   "reqd": 1,
+   "print_hide": 1,
+   "report_hide": 1,
    "unique": 1
   },
   {
@@ -66,18 +82,21 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Outlet Code",
-   "reqd": 1,
-   "unique": 1
+   "mandatory_depends_on": "eval:doc.state == \"Active\""
   },
   {
    "fieldname": "total_capacity_for_petrol",
    "fieldtype": "Int",
-   "label": "Total Capacity For Petrol (L)"
+   "in_list_view": 1,
+   "label": "Total Capacity For Petrol (L)",
+   "read_only": 1
   },
   {
    "fieldname": "total_capacity_for_diesel",
    "fieldtype": "Int",
-   "label": "Total Capacity For Diesel (L)"
+   "in_list_view": 1,
+   "label": "Total Capacity For Diesel (L)",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_xfjg",
@@ -88,8 +107,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Station Manager",
-   "options": "Employee",
-   "reqd": 1
+   "options": "Employee"
   },
   {
    "depends_on": "station_manager",
@@ -104,7 +122,7 @@
    "fetch_from": "station_manager.cell_number",
    "fieldname": "contact",
    "fieldtype": "Read Only",
-   "label": "Contact",
+   "label": "Contact No.",
    "read_only": 1
   },
   {
@@ -165,24 +183,18 @@
   {
    "fieldname": "phone_no",
    "fieldtype": "Phone",
-   "label": "Fixed Line #",
+   "label": "Fixed Line No.",
    "options": "Phone"
   },
   {
    "fieldname": "mobile_no",
    "fieldtype": "Phone",
-   "label": "Mobile #",
+   "label": "Mobile No.",
    "options": "Phone"
   },
   {
    "fieldname": "column_break_lwsl",
    "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "location",
-   "fieldtype": "Link",
-   "label": "Location",
-   "options": "Location"
   },
   {
    "fetch_from": "location.latitude",
@@ -216,45 +228,43 @@
    "report_hide": 1
   },
   {
-   "fieldname": "attendants_section",
-   "fieldtype": "Section Break",
-   "label": "Attendants"
-  },
-  {
    "fieldname": "fuel_attendant",
    "fieldtype": "Table MultiSelect",
-   "options": "Attendants Details"
-  },
-  {
-   "fieldname": "assets_section",
-   "fieldtype": "Section Break",
-   "label": "Assets"
+   "label": "Fuel Station Attendants",
+   "options": "Attendants Details",
+   "reqd": 1
   },
   {
    "fieldname": "table_multiselect_vaju",
    "fieldtype": "Table MultiSelect",
+   "label": "Station Asserts",
    "options": "Station Asset"
   },
   {
    "fieldname": "outlet_type",
    "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Outlet Type",
-   "options": "\nFuel Station\nThird Party"
+   "options": "\nFuel Station\nThird-Party",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_qovw",
    "fieldtype": "Column Break"
   },
   {
+   "depends_on": "eval:doc.outlet_type==\"Third-Party\"",
    "fieldname": "section_break_ybex",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Clients"
   },
   {
    "fieldname": "outlet",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Outlet",
-   "reqd": 1,
+   "mandatory_depends_on": "eval:doc.outlet_type==\"Third-Party\"",
    "unique": 1
   },
   {
@@ -262,15 +272,112 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "name1",
-   "fieldtype": "Data",
-   "label": "Name",
-   "options": "Name"
-  },
-  {
+   "fetch_from": "point_of_contact.phone",
    "fieldname": "contact_2",
    "fieldtype": "Phone",
    "label": "Contact"
+  },
+  {
+   "fieldname": "outlet_details_section",
+   "fieldtype": "Section Break",
+   "label": "Outlet Details"
+  },
+  {
+   "fieldname": "point_of_contact",
+   "fieldtype": "Link",
+   "label": "Point of Contact",
+   "mandatory_depends_on": "eval:doc.outlet_type==\"Third-Party\"",
+   "options": "Contact"
+  },
+  {
+   "fetch_from": "point_of_contact.address",
+   "fieldname": "address",
+   "fieldtype": "Link",
+   "label": "Address",
+   "options": "Address"
+  },
+  {
+   "fetch_from": "point_of_contact.location",
+   "fieldname": "client_location",
+   "fieldtype": "Link",
+   "label": " Location",
+   "options": "Location"
+  },
+  {
+   "fieldname": "fuel_station_location",
+   "fieldtype": "Link",
+   "label": "Location",
+   "options": "Location"
+  },
+  {
+   "fieldname": "reorder_level_l",
+   "fieldtype": "Int",
+   "label": "Reorder Level (L)"
+  },
+  {
+   "fieldname": "petrol_selling_price",
+   "fieldtype": "Currency",
+   "in_standard_filter": 1,
+   "label": "Petrol Selling Price"
+  },
+  {
+   "fieldname": "diesel_selling_price",
+   "fieldtype": "Currency",
+   "in_standard_filter": 1,
+   "label": "Diesel Selling Price "
+  },
+  {
+   "depends_on": "eval:doc.state != \"Active\"",
+   "fieldname": "reason",
+   "fieldtype": "Small Text",
+   "label": "Reason"
+  },
+  {
+   "fieldname": "current_stock_level__petrol_l",
+   "fieldtype": "Int",
+   "label": "Current Stock Level - Petrol (L) "
+  },
+  {
+   "fieldname": "current_stock_level_diesel_l",
+   "fieldtype": "Int",
+   "label": "Current Stock Level - Diesel (L) "
+  },
+  {
+   "fieldname": "petrol_total_sales",
+   "fieldtype": "Read Only",
+   "label": "Petrol Total Sales"
+  },
+  {
+   "fieldname": "diesel_total_sales",
+   "fieldtype": "Read Only",
+   "label": "Diesel Total Sales"
+  },
+  {
+   "fieldname": "outlet_profile_picture",
+   "fieldtype": "Attach Image",
+   "label": "Outlet Profile Picture"
+  },
+  {
+   "fieldname": "alternate_fixed_line_no",
+   "fieldtype": "Phone",
+   "label": "Alternate Fixed Line No",
+   "options": "Phone"
+  },
+  {
+   "fieldname": "alternate_mobile_no",
+   "fieldtype": "Phone",
+   "label": "Alternate Mobile No.",
+   "options": "Phone"
+  },
+  {
+   "bold": 1,
+   "fieldname": "state",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Active\nInactive\nClosed"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -278,14 +385,14 @@
   {
    "group": "Readings",
    "link_doctype": "Fuel Meter Reading",
-   "link_fieldname": "fuel_station"
+   "link_fieldname": "outlet"
   }
  ],
- "modified": "2024-07-08 13:45:43.212361",
+ "modified": "2024-07-24 11:43:56.533049",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Outlet",
- "naming_rule": "By fieldname",
+ "naming_rule": "Set by user",
  "owner": "Administrator",
  "permissions": [
   {
@@ -303,5 +410,18 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [
+  {
+   "color": "Green",
+   "title": "Active"
+  },
+  {
+   "color": "Gray",
+   "title": "Closed"
+  },
+  {
+   "color": "Red",
+   "title": "Inactive"
+  }
+ ]
 }

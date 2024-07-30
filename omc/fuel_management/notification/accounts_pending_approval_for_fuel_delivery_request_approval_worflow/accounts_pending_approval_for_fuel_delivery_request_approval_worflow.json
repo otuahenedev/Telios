@@ -1,0 +1,30 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "condition": "doc.workflow_state == \"Accounts Approval Pending\"",
+ "creation": "2024-07-30 08:17:38.470270",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Fuel Delivery Request Approval",
+ "enabled": 1,
+ "event": "Custom",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "Add your message here",
+ "message_type": "Markdown",
+ "modified": "2024-07-30 08:21:02.877474",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Accounts Pending Approval For Fuel Delivery Request Approval Worflow",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "receiver_by_role": "Accounts Manager"
+  }
+ ],
+ "send_system_notification": 1,
+ "send_to_all_assignees": 0,
+ "subject": "Awaiting Approval on Fuel Delivery Request Approval Form {{doc.name}}",
+ "value_changed": "workflow_state"
+}

@@ -1,0 +1,198 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:certificate_id",
+ "creation": "2024-07-29 21:21:18.377926",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "certificate_details_section",
+  "certificate_id",
+  "certificate_number",
+  "outlet",
+  "issuing_authority",
+  "issue_date",
+  "column_break_jmot",
+  "certificate_name",
+  "certificate_type",
+  "attach_certificate",
+  "expiry_date",
+  "additional_information_section",
+  "location",
+  "status",
+  "column_break_rmfy",
+  "responsible_party",
+  "department_responsible_party"
+ ],
+ "fields": [
+  {
+   "fieldname": "certificate_details_section",
+   "fieldtype": "Section Break",
+   "label": "Certificate Details"
+  },
+  {
+   "fieldname": "certificate_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Certificate ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "certificate_number",
+   "fieldtype": "Int",
+   "label": "Certificate Number"
+  },
+  {
+   "fieldname": "issuing_authority",
+   "fieldtype": "Link",
+   "label": "Issuing Authority",
+   "options": "Company"
+  },
+  {
+   "fieldname": "issue_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Issue Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_jmot",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "e.g., \"EPA Fuel Station Permit\"",
+   "fieldname": "certificate_name",
+   "fieldtype": "Data",
+   "label": "Certificate Name"
+  },
+  {
+   "fieldname": "certificate_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Certificate Type",
+   "options": "\nEPA\nFire Service\nHealth",
+   "reqd": 1
+  },
+  {
+   "fieldname": "attach_certificate",
+   "fieldtype": "Attach",
+   "in_list_view": 1,
+   "label": "Attach Certificate",
+   "reqd": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "expiry_date",
+   "fieldtype": "Date",
+   "label": "Expiry Date "
+  },
+  {
+   "fieldname": "additional_information_section",
+   "fieldtype": "Section Break",
+   "label": "Additional Information"
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Link",
+   "label": "Location",
+   "options": "Location"
+  },
+  {
+   "fieldname": "column_break_rmfy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Employee responsible for managing certificate",
+   "fieldname": "responsible_party",
+   "fieldtype": "Link",
+   "label": "Responsible Party",
+   "options": "Employee"
+  },
+  {
+   "description": "Department responsible for managing certificate",
+   "fieldname": "department_responsible_party",
+   "fieldtype": "Link",
+   "label": "Department Responsible Party ",
+   "options": "Department"
+  },
+  {
+   "default": "Active",
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "label": "Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "outlet",
+   "fieldtype": "Link",
+   "label": "Outlet",
+   "options": "Outlet"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-07-30 08:02:21.922613",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Station Certificate",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Operations Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Operations Officer",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [
+  {
+   "color": "Green",
+   "title": "Unexpired"
+  },
+  {
+   "color": "Yellow",
+   "title": "About to Expire"
+  },
+  {
+   "color": "Red",
+   "title": "Expired"
+  }
+ ],
+ "title_field": "certificate_id"
+}

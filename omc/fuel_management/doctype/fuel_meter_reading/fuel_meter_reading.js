@@ -26,7 +26,7 @@ frappe.ui.form.on('Diesel Readings Detail', {
 		// your code here
 	},
     total_liters_sold(frm, cdt, cdn){
-        console.log(cdt, cdn);
-        console.log("changes");
+        //console.log(cdt, cdn);
+       // console.log("changes");
     },
 });

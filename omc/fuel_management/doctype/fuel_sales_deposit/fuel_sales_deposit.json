@@ -1,0 +1,100 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-07-25 12:37:52.033564",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "deposit_datetime",
+  "outlet",
+  "station_supervisor",
+  "column_break_tfwo",
+  "amount_deposited",
+  "attach_deposit_slip",
+  "signature",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "outlet",
+   "fieldtype": "Link",
+   "label": "Outlet",
+   "options": "Outlet",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_tfwo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Now",
+   "fieldname": "deposit_datetime",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Deposit Datetime ",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amount_deposited",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Amount Deposited",
+   "reqd": 1
+  },
+  {
+   "fieldname": "attach_deposit_slip",
+   "fieldtype": "Attach Image",
+   "label": "Attach Deposit Slip"
+  },
+  {
+   "fetch_from": "outlet.station_manager_name",
+   "fetch_if_empty": 1,
+   "fieldname": "station_supervisor",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Station Supervisor",
+   "read_only": 1
+  },
+  {
+   "fieldname": "signature",
+   "fieldtype": "Signature",
+   "label": "Signature"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Fuel Sales Deposit",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-07-26 08:54:43.378588",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Fuel Sales Deposit",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

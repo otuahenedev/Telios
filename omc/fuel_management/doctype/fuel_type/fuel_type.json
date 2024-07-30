@@ -1,0 +1,67 @@
+{
+ "actions": [],
+ "autoname": "field:fuel_type",
+ "creation": "2024-06-20 21:30:06.562380",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "fuel_type",
+  "column_break_jjbr",
+  "product_group",
+  "fuel_name"
+ ],
+ "fields": [
+  {
+   "fieldname": "fuel_type",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Product (Fuel Type)",
+   "unique": 1
+  },
+  {
+   "fieldname": "column_break_jjbr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "product_group",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Product Group",
+   "options": "WHITE PRODUCT"
+  },
+  {
+   "fieldname": "fuel_name",
+   "fieldtype": "Read Only",
+   "hidden": 1,
+   "label": "fuel_name",
+   "options": "petrol\ndiesel",
+   "print_hide": 1,
+   "report_hide": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-07-22 08:02:40.901629",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Fuel Type",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

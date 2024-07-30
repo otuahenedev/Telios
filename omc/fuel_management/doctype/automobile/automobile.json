@@ -1,4 +1,5 @@
 {
+ "_comments": "[{\"comment\": \"Action Failed<br><br>Delivery: Fieldname amended_from appears multiple times in rows 23, 24\", \"by\": \"Administrator\", \"name\": \"fcrv6f9rqg\"}, {\"comment\": \"Action Failed<br><br>Delivery: Fieldname amended_from appears multiple times in rows 23, 24\", \"by\": \"Administrator\", \"name\": \"fjuetibakq\"}, {\"comment\": \"Action Failed<br><br>Delivery: Fieldname amended_from appears multiple times in rows 23, 24\", \"by\": \"Administrator\", \"name\": \"ftti4dn575\"}]",
  "actions": [],
  "allow_rename": 1,
  "autoname": "field:license_plate",
@@ -90,7 +91,8 @@
    "description": "Tanker Volume Capacity",
    "fieldname": "volume_l",
    "fieldtype": "Int",
-   "label": "Volume (L)"
+   "label": "Volume (L)",
+   "read_only": 1
   },
   {
    "depends_on": "eval:doc.type_of_vehicle=='Tanker'",
@@ -100,7 +102,7 @@
   },
   {
    "fieldname": "table_qaot",
-   "fieldtype": "Table",
+   "fieldtype": "Table MultiSelect",
    "options": "Tanker Compartments"
   },
   {
@@ -235,7 +237,7 @@
   }
  ],
  "links": [],
- "modified": "2024-06-28 13:30:33.006426",
+ "modified": "2024-07-28 06:04:22.174339",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Automobile",

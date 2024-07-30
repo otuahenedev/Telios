@@ -1,0 +1,32 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "creation": "2024-07-30 08:07:39.497135",
+ "date_changed": "expiry_date",
+ "days_in_advance": 60,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Station Certificate",
+ "enabled": 1,
+ "event": "Days Before",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "Add your message here",
+ "message_type": "Markdown",
+ "modified": "2024-07-30 08:07:39.497135",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "60 Days Permit Expiry Reminder",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "receiver_by_role": "Operations Manager"
+  },
+  {
+   "receiver_by_role": "Operations Officer"
+  }
+ ],
+ "send_system_notification": 1,
+ "send_to_all_assignees": 0,
+ "subject": "Permit {{doc.certificate_type}} for {{doc.outlet}} expiring in 60 days!"
+}

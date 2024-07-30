@@ -1,0 +1,31 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "creation": "2024-07-30 08:10:54.710663",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Fuel Delivery Request Approval",
+ "enabled": 1,
+ "event": "New",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<p>Add your message here</p>\n",
+ "message_type": "Markdown",
+ "modified": "2024-07-30 08:24:21.040643",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Fuel Request Approval Initiated",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "receiver_by_role": "Accounts Manager"
+  },
+  {
+   "receiver_by_role": "M. Director"
+  }
+ ],
+ "send_system_notification": 1,
+ "send_to_all_assignees": 0,
+ "subject": "Fuel Delivery Request Approval  Form {{doc.name}} initiated."
+}

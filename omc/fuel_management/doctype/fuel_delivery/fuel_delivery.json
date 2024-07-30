@@ -1,0 +1,432 @@
+{
+ "actions": [],
+ "allow_events_in_timeline": 1,
+ "allow_rename": 1,
+ "autoname": "format:TEL-FD-{YY}{MM}{####}",
+ "creation": "2024-07-21 21:04:15.997344",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "order_date",
+  "fdrar",
+  "column_break_ecig",
+  "mode_of_transport",
+  "order_details_section",
+  "bdc",
+  "product_group",
+  "driver",
+  "drivers_contact",
+  "column_break_mnsk",
+  "depot",
+  "fuel_type",
+  "mate",
+  "mates_contact",
+  "column_break_wbqf",
+  "brv",
+  "buy_price",
+  "diesel_buy_price",
+  "nominal_volume_l",
+  "section_break_plux",
+  "petrol_trends",
+  "diesel_trends",
+  "section_break_ilbx",
+  "fdp_tab",
+  "section_break_psyi",
+  "status",
+  "amended_from",
+  "payment_tab",
+  "type_of_payment_section",
+  "payment_posting_date",
+  "column_break_hcgi",
+  "mode_of_payment",
+  "payment_to_section",
+  "party",
+  "contact",
+  "email",
+  "column_break_amkt",
+  "party_bank_account_no",
+  "party_bank",
+  "transaction_id_section",
+  "paid_amount",
+  "account_paid_from",
+  "column_break_lniz",
+  "chequereference_no",
+  "chequereference_date",
+  "scanned_copy_of_cheque",
+  "scanned_copy_of_cash_deposit_slip",
+  "documents_tab",
+  "documents",
+  "delivery_tab",
+  "delivery_status_section",
+  "proofd"
+ ],
+ "fields": [
+  {
+   "fetch_from": "fdrar.order_date",
+   "fetch_if_empty": 1,
+   "fieldname": "order_date",
+   "fieldtype": "Datetime",
+   "label": "Order Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_ecig",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "fdrar.mode_of_transport",
+   "fetch_if_empty": 1,
+   "fieldname": "mode_of_transport",
+   "fieldtype": "Select",
+   "label": "Mode of Transport",
+   "options": "\nBRV\nTricycle",
+   "read_only": 1
+  },
+  {
+   "fieldname": "order_details_section",
+   "fieldtype": "Section Break",
+   "hide_border": 1,
+   "label": "Order Details"
+  },
+  {
+   "fetch_from": "fdrar.bdc",
+   "fetch_if_empty": 1,
+   "fieldname": "bdc",
+   "fieldtype": "Data",
+   "label": "BDC",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "fdrar.product_group",
+   "fetch_if_empty": 1,
+   "fieldname": "product_group",
+   "fieldtype": "Read Only",
+   "label": "Product Group",
+   "options": "Fuel Type",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "fdrar.petrol_buy_price",
+   "fetch_if_empty": 1,
+   "fieldname": "buy_price",
+   "fieldtype": "Currency",
+   "label": "Ex-Ref Price(GHS/LT)",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "fdrar.mate",
+   "fetch_if_empty": 1,
+   "fieldname": "mate",
+   "fieldtype": "Link",
+   "label": "Mate",
+   "options": "Mate",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_mnsk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "fdrar.depot",
+   "fetch_if_empty": 1,
+   "fieldname": "depot",
+   "fieldtype": "Link",
+   "label": "Depot",
+   "options": "Depot",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "fdrar.fuel_type",
+   "fetch_if_empty": 1,
+   "fieldname": "fuel_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Product",
+   "options": "\nPetrol\nDiesel",
+   "read_only": 1,
+   "reqd": 1,
+   "sort_options": 1
+  },
+  {
+   "fetch_from": "fdrar.driver",
+   "fetch_if_empty": 1,
+   "fieldname": "driver",
+   "fieldtype": "Link",
+   "label": "Driver",
+   "options": "Driver",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "fdrar.mates_contact",
+   "fieldname": "mates_contact",
+   "fieldtype": "Read Only",
+   "label": "Mate's Contact ",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_wbqf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.mode_of_transport == \"BRV\"",
+   "fetch_from": "fdrar.brv",
+   "fetch_if_empty": 1,
+   "fieldname": "brv",
+   "fieldtype": "Link",
+   "label": "BRV #",
+   "mandatory_depends_on": "eval:doc.brv == 'BRV'",
+   "options": "Fuel Truck",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "fdrar.nominal_volume_l",
+   "fieldname": "nominal_volume_l",
+   "fieldtype": "Int",
+   "label": "Nominal Volume (L)",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "fdrar.drivers_contact",
+   "fieldname": "drivers_contact",
+   "fieldtype": "Read Only",
+   "label": "Driver's Contact"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_plux",
+   "fieldtype": "Section Break",
+   "label": "Justification"
+  },
+  {
+   "fieldname": "section_break_ilbx",
+   "fieldtype": "Section Break",
+   "label": "Outlets",
+   "mandatory_depends_on": "eval:doc.deliver_to == 'Station'"
+  },
+  {
+   "fieldname": "section_break_psyi",
+   "fieldtype": "Section Break",
+   "hidden": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Read Only",
+   "hidden": 1,
+   "label": "Status"
+  },
+  {
+   "fieldname": "fdrar",
+   "fieldtype": "Link",
+   "label": "Fuel Delivery Request Approval Reference",
+   "options": "Fuel Delivery Request Approval"
+  },
+  {
+   "fetch_from": "fdrar.diesel_buy_price",
+   "fetch_if_empty": 1,
+   "fieldname": "diesel_buy_price",
+   "fieldtype": "Currency",
+   "label": "Ex-Ref Price(GHS/LT)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Fuel Delivery",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "columns": 9,
+   "depends_on": "eval:doc.fuel_type == \"Diesel\"",
+   "fieldname": "diesel_trends",
+   "fieldtype": "Table",
+   "label": "Diesel Trends",
+   "options": "Justification",
+   "read_only": 1
+  },
+  {
+   "columns": 9,
+   "depends_on": "eval:doc.fuel_type == \"Petrol\"",
+   "fieldname": "petrol_trends",
+   "fieldtype": "Table",
+   "label": "Petrol Trends ",
+   "options": "Justification",
+   "read_only": 1
+  },
+  {
+   "fieldname": "fdp_tab",
+   "fieldtype": "Table",
+   "options": "Request Fuel Details"
+  },
+  {
+   "fieldname": "payment_tab",
+   "fieldtype": "Tab Break",
+   "label": "Payment"
+  },
+  {
+   "fieldname": "documents_tab",
+   "fieldtype": "Tab Break",
+   "label": "Documents"
+  },
+  {
+   "fieldname": "delivery_tab",
+   "fieldtype": "Tab Break",
+   "label": "Delivery"
+  },
+  {
+   "fieldname": "documents",
+   "fieldtype": "Table",
+   "label": "Documents",
+   "options": "Docs"
+  },
+  {
+   "fieldname": "type_of_payment_section",
+   "fieldtype": "Section Break",
+   "label": "Type of Payment"
+  },
+  {
+   "default": "Now",
+   "fieldname": "payment_posting_date",
+   "fieldtype": "Datetime",
+   "label": "Payment Posting Date"
+  },
+  {
+   "fieldname": "column_break_hcgi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "mode_of_payment",
+   "fieldtype": "Link",
+   "label": "Mode of Payment",
+   "options": "Mode of Payment"
+  },
+  {
+   "fieldname": "payment_to_section",
+   "fieldtype": "Section Break",
+   "label": "Payment To"
+  },
+  {
+   "fieldname": "party",
+   "fieldtype": "Link",
+   "label": "Party",
+   "options": "Bulk Distribution Company"
+  },
+  {
+   "fieldname": "contact",
+   "fieldtype": "Phone",
+   "label": "Contact "
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email"
+  },
+  {
+   "fieldname": "column_break_amkt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "party_bank_account_no",
+   "fieldtype": "Int",
+   "label": "Party Bank Account No"
+  },
+  {
+   "fieldname": "party_bank",
+   "fieldtype": "Data",
+   "label": "Party Bank "
+  },
+  {
+   "fieldname": "transaction_id_section",
+   "fieldtype": "Section Break",
+   "label": "Transaction ID"
+  },
+  {
+   "bold": 1,
+   "fieldname": "paid_amount",
+   "fieldtype": "Currency",
+   "label": "Paid Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "account_paid_from",
+   "fieldtype": "Int",
+   "label": "Account Paid From"
+  },
+  {
+   "depends_on": "eval:doc.mode_of_payment == 'Cheque'",
+   "fieldname": "column_break_lniz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.mode_of_payment == 'Cheque'",
+   "fieldname": "chequereference_no",
+   "fieldtype": "Data",
+   "label": "Cheque/Reference No",
+   "mandatory_depends_on": "eval:doc.mode_of_payment == 'Cheque'"
+  },
+  {
+   "depends_on": "eval:doc.mode_of_payment == 'Cheque'",
+   "fieldname": "chequereference_date",
+   "fieldtype": "Date",
+   "label": "Cheque/Reference Date",
+   "mandatory_depends_on": "eval:doc.mode_of_payment == 'Cheque'"
+  },
+  {
+   "depends_on": "eval:doc.mode_of_payment == 'Cheque'",
+   "fieldname": "scanned_copy_of_cheque",
+   "fieldtype": "Attach Image",
+   "label": "Scanned Copy of Cheque",
+   "mandatory_depends_on": "eval:doc.mode_of_payment == 'Cheque'"
+  },
+  {
+   "depends_on": "eval:doc.mode_of_payment == 'Cash'",
+   "fieldname": "scanned_copy_of_cash_deposit_slip",
+   "fieldtype": "Attach Image",
+   "label": "Scanned Copy of Cash Deposit Slip",
+   "mandatory_depends_on": "eval:doc.mode_of_payment == 'Cash'"
+  },
+  {
+   "fieldname": "delivery_status_section",
+   "fieldtype": "Section Break",
+   "label": "Delivery Status"
+  },
+  {
+   "fieldname": "proofd",
+   "fieldtype": "Table",
+   "options": "Delivery Status Proof"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_calendar_and_gantt": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-07-30 15:38:02.172030",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Fuel Delivery",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

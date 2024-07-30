@@ -33,18 +33,15 @@
   },
   {
    "fieldname": "volume_l",
-   "fieldtype": "Link",
+   "fieldtype": "Select",
    "in_list_view": 1,
-   "in_preview": 1,
-   "in_standard_filter": 1,
-   "label": "Volume (L)",
-   "options": "Tank Compartment"
+   "label": "Volume (L)"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-06-28 14:19:35.554296",
+ "modified": "2024-07-30 15:22:22.561147",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Request Fuel Details",

@@ -1,0 +1,27 @@
+{
+ "add_total_row": 0,
+ "columns": [],
+ "creation": "2024-07-20 00:44:16.000872",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letterhead": null,
+ "modified": "2024-07-22 12:50:06.184936",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "telios",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "Select outlet as \"Fuel Station\",SUM(total_liters_of_petrol_sold) AS \"Petrol Liters Sold\", SUM(total_liters_of_diesel_sold) AS \"Diesel Liters Sold\", SUM(total_sales_for_diesel) as \"Diesel Total Sales\", Sum(total_sales_for_petrol) as \"Petrol Total Sales \"\nfrom `tabFuel Meter Reading`\ngroup by outlet;",
+ "ref_doctype": "Fuel Meter Reading",
+ "report_name": "telios",
+ "report_type": "Query Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  }
+ ]
+}

@@ -10,13 +10,15 @@
  "engine": "InnoDB",
  "field_order": [
   "naming_series",
+  "employee",
   "full_name",
-  "status",
   "transporter",
   "default_tanker",
   "column_break_2",
-  "employee",
+  "type",
+  "status",
   "cell_number",
+  "alternate_contact_no",
   "address",
   "license_details",
   "license_number",
@@ -49,15 +51,17 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status",
-   "options": "Active\nSuspended\nLeft",
+   "options": "Active\nInactive",
    "reqd": 1
   },
   {
    "allow_in_quick_entry": 1,
+   "depends_on": "eval:doc.type == \"External Driver\"",
    "description": "Applicable for external driver",
    "fieldname": "transporter",
    "fieldtype": "Link",
-   "label": "Transporter",
+   "label": "Transporter Company",
+   "mandatory_depends_on": "eval:doc.type == \"External Driver\"",
    "options": "Supplier"
   },
   {
@@ -66,20 +70,22 @@
   },
   {
    "allow_in_quick_entry": 1,
+   "depends_on": "eval:doc.type == \"Internal Driver\"",
    "fieldname": "employee",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "label": "Employee",
+   "mandatory_depends_on": "eval:doc.type == \"Internal Driver\"",
    "options": "Employee"
   },
   {
    "allow_in_quick_entry": 1,
    "fetch_from": "employee.cell_number",
    "fieldname": "cell_number",
-   "fieldtype": "Data",
-   "label": "Cellphone Number",
+   "fieldtype": "Phone",
+   "label": "Contact No.",
    "non_negative": 1,
-   "options": "Phone"
+   "options": "Phone",
+   "reqd": 1
   },
   {
    "fetch_from": "employee.permanent_address",
@@ -130,13 +136,30 @@
   {
    "fieldname": "default_tanker",
    "fieldtype": "Link",
-   "label": "Default Tanker",
-   "options": "Automobile"
+   "label": "Default Truck",
+   "options": "Fuel Truck"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fetch_from": "employee.cell_number",
+   "fieldname": "alternate_contact_no",
+   "fieldtype": "Phone",
+   "label": "Alternate Contact No.",
+   "non_negative": 1,
+   "options": "Phone"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Type",
+   "options": "Internal Driver\nExternal Driver",
+   "reqd": 1
   }
  ],
  "icon": "fa fa-user",
  "links": [],
- "modified": "2024-06-28 10:34:35.878112",
+ "modified": "2024-07-24 13:56:39.032680",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Driver",
@@ -198,7 +221,16 @@
  "show_name_in_global_search": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": [],
+ "states": [
+  {
+   "color": "Green",
+   "title": "Active"
+  },
+  {
+   "color": "Red",
+   "title": "Inactive"
+  }
+ ],
  "title_field": "full_name",
  "track_changes": 1
 }

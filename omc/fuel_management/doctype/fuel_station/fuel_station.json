@@ -11,6 +11,7 @@
   "outlet_code",
   "total_capacity_for_petrol",
   "total_capacity_for_diesel",
+  "reorder_level_l",
   "column_break_xfjg",
   "station_manager",
   "station_manager_name",
@@ -28,6 +29,7 @@
   "email_address",
   "phone_no",
   "mobile_no",
+  "alternate_mobile",
   "column_break_lwsl",
   "location",
   "latitude",
@@ -71,7 +73,7 @@
    "fetch_from": "station_manager.employee_name",
    "fieldname": "station_manager_name",
    "fieldtype": "Read Only",
-   "label": "Station Manager Fullname",
+   "label": "Station Manager's Name",
    "read_only": 1
   },
   {
@@ -141,6 +143,7 @@
   {
    "fieldname": "table_multiselect_vaju",
    "fieldtype": "Table MultiSelect",
+   "label": "Fuel Station Assets",
    "options": "Station Asset"
   },
   {
@@ -168,6 +171,7 @@
   {
    "fieldname": "fuel_attendant",
    "fieldtype": "Table MultiSelect",
+   "label": "Fuel Station Attendants",
    "options": "Attendants Details"
   },
   {
@@ -227,6 +231,17 @@
    "fieldtype": "Table",
    "label": "Diesel Storage Tanks ",
    "options": "Tank Details Diesel"
+  },
+  {
+   "fieldname": "reorder_level_l",
+   "fieldtype": "Int",
+   "label": "Reorder Level (L)"
+  },
+  {
+   "fieldname": "alternate_mobile",
+   "fieldtype": "Phone",
+   "label": "Alternate Mobile #",
+   "options": "Phone"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -237,7 +252,7 @@
    "link_fieldname": "fuel_station"
   }
  ],
- "modified": "2024-07-02 07:59:14.818201",
+ "modified": "2024-07-15 18:46:58.895806",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Fuel Station",
