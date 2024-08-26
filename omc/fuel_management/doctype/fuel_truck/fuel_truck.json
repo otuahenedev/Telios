@@ -12,11 +12,16 @@
   "type_of_vehicle",
   "license_plate",
   "truck_profile_image",
+  "external_truck",
   "column_break_3",
   "status",
   "make",
   "model",
   "volume_l",
+  "external_truck_details_section",
+  "point_of_contact",
+  "column_break_lxgf",
+  "address",
   "section_break_sqep",
   "table_qaot",
   "vehicle_details",
@@ -228,11 +233,41 @@
   {
    "fieldname": "section_break_sqep",
    "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "description": "if the fuel truck does or does not belong to the company.",
+   "fieldname": "external_truck",
+   "fieldtype": "Check",
+   "label": "External Transporter"
+  },
+  {
+   "depends_on": "external_truck",
+   "fieldname": "external_truck_details_section",
+   "fieldtype": "Section Break",
+   "label": "External Truck Details"
+  },
+  {
+   "fieldname": "point_of_contact",
+   "fieldtype": "Link",
+   "label": "Point of Contact",
+   "mandatory_depends_on": "external_truck",
+   "options": "Contact"
+  },
+  {
+   "fieldname": "column_break_lxgf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Link",
+   "label": "Address",
+   "options": "Address"
   }
  ],
  "image_field": "truck_profile_image",
  "links": [],
- "modified": "2024-07-28 08:08:12.356470",
+ "modified": "2024-08-14 12:28:03.834348",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Fuel Truck",
@@ -264,6 +299,19 @@
    "read": 1,
    "report": 1,
    "role": "Delivery Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Logistics Officer",
+   "select": 1,
    "share": 1,
    "write": 1
   }

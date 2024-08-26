@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestStationCertificate(FrappeTestCase):
+class TestPermit(FrappeTestCase):
 	pass

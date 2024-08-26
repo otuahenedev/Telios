@@ -17,5 +17,25 @@ def truckdetails(truckid):
 
 
 
+
+
 class FuelDeliveryRequestApproval(Document):
-	pass
+	def validate(self):
+		# Validate if set volumes listed on the request fuel details amount to the total storage capacity of the truck 
+		try:
+			total_set_volume = 0
+			for tank in self.table_mxlk:
+				tank_vol = int(tank.volume_l)
+				total_set_volume += tank_vol
+			if total_set_volume != self.nominal_volume_l:
+				frappe.throw(
+				title="Error - Volume set exceed Fuel Truck Starage Capacity ",
+				msg=  f"Current Total {type(tank_vol)} for all outlets - {type(total_set_volume)} {total_set_volume} litres must not exceed BRV's storage of  {self.nominal_volume_l} litres ",)
+
+
+		except Exception as e:
+		# Log the error to the Frappe error log document
+			frappe.log_error(f"An error occurred: {str(e)}")
+		
+
+

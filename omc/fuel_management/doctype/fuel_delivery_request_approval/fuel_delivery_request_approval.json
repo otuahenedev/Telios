@@ -8,16 +8,19 @@
  "document_type": "Document",
  "engine": "InnoDB",
  "field_order": [
+  "order_rejected_section",
+  "reasons_for_rejections",
+  "section_break_lddd",
   "order_date",
   "column_break_ecig",
   "mode_of_transport",
   "order_details_section",
-  "depot",
+  "bdc",
   "fuel_type",
   "driver",
   "drivers_contact",
   "column_break_mnsk",
-  "bdc",
+  "depot",
   "product_group",
   "mate",
   "mates_contact",
@@ -104,7 +107,6 @@
    "reqd": 1
   },
   {
-   "fetch_from": "depot.bdc",
    "fieldname": "bdc",
    "fieldtype": "Link",
    "label": "BDC",
@@ -138,6 +140,7 @@
    "label": "Mate's Contact "
   },
   {
+   "depends_on": "brv",
    "fieldname": "section_break_ilbx",
    "fieldtype": "Section Break",
    "label": "Outlets"
@@ -145,7 +148,8 @@
   {
    "fieldname": "table_mxlk",
    "fieldtype": "Table",
-   "options": "Request Fuel Details"
+   "options": "Request Fuel Details",
+   "reqd": 1
   },
   {
    "fieldname": "section_break_psyi",
@@ -197,7 +201,8 @@
    "fetch_if_empty": 1,
    "fieldname": "petrol_buy_price",
    "fieldtype": "Currency",
-   "label": "Ex-Ref Price(GHS/LT)"
+   "label": "Ex-Ref Price(GHS/LT)",
+   "reqd": 1
   },
   {
    "depends_on": "eval:doc.fuel_type == \"Diesel\"",
@@ -216,12 +221,30 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "collapsible": 1,
+   "depends_on": "eval:doc.workflow_state == \"Rejected\"",
+   "fieldname": "order_rejected_section",
+   "fieldtype": "Section Break",
+   "label": "Order Rejected"
+  },
+  {
+   "fieldname": "reasons_for_rejections",
+   "fieldtype": "Small Text",
+   "label": "Reasons For Rejections",
+   "mandatory_depends_on": "eval:doc.workflow_state == \"Rejected\""
+  },
+  {
+   "fieldname": "section_break_lddd",
+   "fieldtype": "Section Break",
+   "hide_border": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-07-30 15:37:53.211144",
+ "modified": "2024-08-25 12:44:50.816903",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Fuel Delivery Request Approval",
@@ -236,11 +259,11 @@
    "read": 1,
    "report": 1,
    "role": "Logistics Officer",
+   "select": 1,
    "share": 1,
    "write": 1
   },
   {
-   "create": 1,
    "email": 1,
    "export": 1,
    "print": 1,
@@ -258,7 +281,6 @@
    "report": 1,
    "role": "M. Director",
    "share": 1,
-   "submit": 1,
    "write": 1
   },
   {
@@ -273,6 +295,15 @@
    "select": 1,
    "share": 1,
    "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Auditor",
+   "share": 1
   }
  ],
  "sort_field": "modified",

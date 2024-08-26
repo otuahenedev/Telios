@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class FuelDeliveryProof(Document):
+class FuelDeliveryVerification(Document):
 	pass

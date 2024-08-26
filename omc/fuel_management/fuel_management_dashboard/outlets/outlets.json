@@ -1,0 +1,25 @@
+{
+ "cards": [],
+ "charts": [
+  {
+   "chart": "Outlet",
+   "width": "Full"
+  },
+  {
+   "chart": "Outlet - Storage",
+   "width": "Half"
+  }
+ ],
+ "creation": "2024-08-01 13:17:15.976382",
+ "dashboard_name": "Outlets",
+ "docstatus": 0,
+ "doctype": "Dashboard",
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "modified": "2024-08-01 14:02:18.303187",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Outlets",
+ "owner": "Administrator"
+}

@@ -19,7 +19,7 @@
    "in_preview": 1,
    "in_standard_filter": 1,
    "label": "Outlet Name",
-   "options": "Fuel Station"
+   "options": "Outlet"
   },
   {
    "fetch_from": "fuel_station.outlet_code",
@@ -35,13 +35,14 @@
    "fieldname": "volume_l",
    "fieldtype": "Select",
    "in_list_view": 1,
-   "label": "Volume (L)"
+   "label": "Volume (L)",
+   "non_negative": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-07-30 15:22:22.561147",
+ "modified": "2024-08-14 13:46:58.023301",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Request Fuel Details",

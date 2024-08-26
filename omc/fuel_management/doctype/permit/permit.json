@@ -85,7 +85,8 @@
    "allow_in_quick_entry": 1,
    "fieldname": "expiry_date",
    "fieldtype": "Date",
-   "label": "Expiry Date "
+   "label": "Expiry Date ",
+   "reqd": 1
   },
   {
    "fieldname": "additional_information_section",
@@ -124,6 +125,7 @@
    "read_only": 1
   },
   {
+   "allow_in_quick_entry": 1,
    "fieldname": "outlet",
    "fieldtype": "Link",
    "label": "Outlet",
@@ -132,10 +134,10 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-07-30 08:02:21.922613",
+ "modified": "2024-08-08 09:16:38.812333",
  "modified_by": "Administrator",
  "module": "Fuel Management",
- "name": "Station Certificate",
+ "name": "Permit",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [

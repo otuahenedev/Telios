@@ -12,7 +12,7 @@
  "is_standard": 1,
  "message": "<p>Add your message here</p>\n",
  "message_type": "Markdown",
- "modified": "2024-07-30 08:24:21.040643",
+ "modified": "2024-08-14 13:27:53.925071",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Fuel Request Approval Initiated",
@@ -23,6 +23,12 @@
   },
   {
    "receiver_by_role": "M. Director"
+  },
+  {
+   "receiver_by_role": "Station Supervisor"
+  },
+  {
+   "receiver_by_role": "Accounts User"
   }
  ],
  "send_system_notification": 1,

@@ -11,13 +11,10 @@
  "document_type": "Setup",
  "engine": "InnoDB",
  "field_order": [
-  "naming_series",
   "supplier_name",
   "column_break0",
   "supplier_type",
-  "is_transporter",
   "image",
-  "supplier_group",
   "defaults_section",
   "default_currency",
   "default_bank_account",
@@ -32,7 +29,6 @@
   "column_break2",
   "supplier_details",
   "column_break_30",
-  "website",
   "language",
   "dashboard_tab",
   "tax_tab",
@@ -41,18 +37,20 @@
   "tax_category",
   "tax_withholding_category",
   "contact_and_address_tab",
-  "address_contacts",
-  "address_html",
-  "column_break1",
-  "contact_html",
   "primary_address_and_contact_detail_section",
   "column_break_44",
-  "supplier_primary_address",
-  "primary_address",
+  "address_line_1",
+  "address_line_2",
+  "digital_address",
+  "citytown",
+  "region",
+  "country",
   "column_break_mglr",
-  "supplier_primary_contact",
   "mobile_no",
+  "phone",
   "email_id",
+  "other_email_address",
+  "website",
   "accounting_tab",
   "payment_terms",
   "default_accounts_section",
@@ -78,20 +76,11 @@
  ],
  "fields": [
   {
-   "fieldname": "naming_series",
-   "fieldtype": "Select",
-   "label": "Series",
-   "no_copy": 1,
-   "oldfieldname": "naming_series",
-   "oldfieldtype": "Select",
-   "options": "SUP-.YYYY.-",
-   "set_only_once": 1
-  },
-  {
    "bold": 1,
    "fieldname": "supplier_name",
    "fieldtype": "Data",
    "in_global_search": 1,
+   "in_list_view": 1,
    "label": "BDC Name",
    "no_copy": 1,
    "oldfieldname": "supplier_name",
@@ -106,29 +95,13 @@
   },
   {
    "allow_in_quick_entry": 1,
-   "fieldname": "supplier_group",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
-   "label": "Depots",
-   "oldfieldname": "supplier_type",
-   "oldfieldtype": "Link",
-   "options": "Depot"
-  },
-  {
-   "allow_in_quick_entry": 1,
    "default": "Company",
    "fieldname": "supplier_type",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "BDC Type",
    "options": "Company\nIndividual\nProprietorship\nPartnership",
    "reqd": 1
-  },
-  {
-   "default": "0",
-   "fieldname": "is_transporter",
-   "fieldtype": "Check",
-   "label": "Is Transporter"
   },
   {
    "fieldname": "image",
@@ -213,11 +186,10 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_in_quick_entry": 1,
    "fieldname": "website",
    "fieldtype": "Data",
-   "label": "Website",
-   "oldfieldname": "website",
-   "oldfieldtype": "Data"
+   "label": "Website"
   },
   {
    "fieldname": "language",
@@ -234,6 +206,7 @@
   {
    "fieldname": "tax_tab",
    "fieldtype": "Tab Break",
+   "hidden": 1,
    "label": "Tax"
   },
   {
@@ -263,31 +236,6 @@
    "label": "Address & Contact"
   },
   {
-   "depends_on": "eval:!doc.__islocal",
-   "fieldname": "address_contacts",
-   "fieldtype": "Section Break",
-   "label": "Address and Contacts",
-   "oldfieldtype": "Column Break",
-   "options": "fa fa-map-marker"
-  },
-  {
-   "fieldname": "address_html",
-   "fieldtype": "HTML",
-   "label": "Address HTML",
-   "read_only": 1
-  },
-  {
-   "fieldname": "column_break1",
-   "fieldtype": "Column Break",
-   "width": "50%"
-  },
-  {
-   "fieldname": "contact_html",
-   "fieldtype": "HTML",
-   "label": "Contact HTML",
-   "read_only": 1
-  },
-  {
    "fieldname": "primary_address_and_contact_detail_section",
    "fieldtype": "Section Break",
    "label": "Primary Address and Contact"
@@ -297,44 +245,29 @@
    "fieldtype": "Column Break"
   },
   {
-   "description": "Reselect, if the chosen address is edited after save",
-   "fieldname": "supplier_primary_address",
-   "fieldtype": "Link",
-   "label": "BDC Primary Address",
-   "options": "Address"
-  },
-  {
-   "fieldname": "primary_address",
-   "fieldtype": "Text",
-   "label": "Primary Address",
-   "read_only": 1
-  },
-  {
    "fieldname": "column_break_mglr",
    "fieldtype": "Column Break"
   },
   {
-   "description": "Reselect, if the chosen contact is edited after save",
-   "fieldname": "supplier_primary_contact",
-   "fieldtype": "Link",
-   "label": "BDC Primary Contact",
-   "options": "Contact"
-  },
-  {
+   "allow_in_quick_entry": 1,
    "fetch_from": "supplier_primary_contact.mobile_no",
    "fieldname": "mobile_no",
-   "fieldtype": "Read Only",
-   "label": "Mobile No"
+   "fieldtype": "Data",
+   "label": "Primary Contact No.",
+   "options": "Phone"
   },
   {
+   "allow_in_quick_entry": 1,
    "fetch_from": "supplier_primary_contact.email_id",
    "fieldname": "email_id",
-   "fieldtype": "Read Only",
-   "label": "Email Id"
+   "fieldtype": "Data",
+   "label": "Primary Email Address",
+   "options": "Email"
   },
   {
    "fieldname": "accounting_tab",
    "fieldtype": "Tab Break",
+   "hidden": 1,
    "label": "Accounting"
   },
   {
@@ -358,6 +291,7 @@
   {
    "fieldname": "settings_tab",
    "fieldtype": "Tab Break",
+   "hidden": 1,
    "label": "Settings"
   },
   {
@@ -453,6 +387,7 @@
   {
    "fieldname": "portal_users_tab",
    "fieldtype": "Tab Break",
+   "hidden": 1,
    "label": "Portal Users"
   },
   {
@@ -468,6 +403,7 @@
   {
    "fieldname": "petrol_price_rate",
    "fieldtype": "Currency",
+   "in_list_view": 1,
    "label": "Petrol Price Rate",
    "non_negative": 1,
    "reqd": 1
@@ -475,15 +411,65 @@
   {
    "fieldname": "diesel_price_rate",
    "fieldtype": "Currency",
+   "in_list_view": 1,
    "label": "Diesel Price Rate ",
    "non_negative": 1,
    "reqd": 1
+  },
+  {
+   "fetch_from": "supplier_primary_contact.phone",
+   "fieldname": "phone",
+   "fieldtype": "Small Text",
+   "label": "Other Contact No."
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "address_line_1",
+   "fieldtype": "Data",
+   "label": "Address Line 1"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "address_line_2",
+   "fieldtype": "Data",
+   "label": "Address Line 2"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "citytown",
+   "fieldtype": "Data",
+   "in_standard_filter": 1,
+   "label": "City/Town"
+  },
+  {
+   "fieldname": "country",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Country",
+   "options": "Country"
+  },
+  {
+   "fetch_from": "supplier_primary_contact.email_id",
+   "fieldname": "other_email_address",
+   "fieldtype": "Small Text",
+   "label": "Other Email Address "
+  },
+  {
+   "fieldname": "digital_address",
+   "fieldtype": "Data",
+   "label": "Digital Address"
+  },
+  {
+   "fieldname": "region",
+   "fieldtype": "Link",
+   "label": "Region",
+   "options": "Province - Region - States"
   }
  ],
  "icon": "fa fa-user",
  "image_field": "image",
  "links": [],
- "modified": "2024-07-21 23:21:43.156552",
+ "modified": "2024-08-23 12:59:29.152649",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Bulk Distribution Company",
@@ -542,7 +528,6 @@
   }
  ],
  "quick_entry": 1,
- "search_fields": "supplier_group",
  "show_name_in_global_search": 1,
  "show_title_field_in_link": 1,
  "sort_field": "modified",

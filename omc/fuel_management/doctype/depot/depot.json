@@ -14,14 +14,17 @@
   "bdc_name",
   "section_break_wbjf",
   "representative",
-  "registered_office_address",
-  "column_break_wobv",
   "location",
   "primary_contact_no",
+  "other_contacts",
   "primary_email",
-  "contact_details_section",
-  "emails",
-  "contact_numbers",
+  "other_email_address",
+  "column_break_wobv",
+  "address_line_1",
+  "address_line_2",
+  "citytown",
+  "reg",
+  "country",
   "section_credit_limit",
   "payment_terms",
   "default_payable_account",
@@ -49,18 +52,12 @@
    "allow_in_quick_entry": 1,
    "fieldname": "representative",
    "fieldtype": "Data",
-   "label": "Representative",
+   "label": "Primary Contact",
    "options": "Name"
   },
   {
    "fieldname": "section_break_wbjf",
    "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "registered_office_address",
-   "fieldtype": "Link",
-   "label": "Registered Office Address",
-   "options": "Address"
   },
   {
    "fieldname": "column_break_wobv",
@@ -73,26 +70,10 @@
    "options": "Location"
   },
   {
-   "fieldname": "contact_details_section",
-   "fieldtype": "Section Break",
-   "label": "Contact Details"
-  },
-  {
-   "fieldname": "emails",
-   "fieldtype": "Table",
-   "label": "Emails",
-   "options": "Contact Email"
-  },
-  {
-   "fieldname": "contact_numbers",
-   "fieldtype": "Table",
-   "label": "Contact Numbers",
-   "options": "Contact Phone"
-  },
-  {
    "collapsible": 1,
    "fieldname": "section_credit_limit",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Credit Limit"
   },
   {
@@ -168,7 +149,7 @@
    "fieldname": "primary_email",
    "fieldtype": "Data",
    "hidden": 1,
-   "label": "Primary Email",
+   "label": "Primary Email Address",
    "options": "Email",
    "print_hide": 1,
    "report_hide": 1
@@ -181,11 +162,48 @@
    "label": "bdc_name",
    "print_hide": 1,
    "report_hide": 1
+  },
+  {
+   "fieldname": "other_contacts",
+   "fieldtype": "Small Text",
+   "label": "Other Contacts"
+  },
+  {
+   "fieldname": "other_email_address",
+   "fieldtype": "Small Text",
+   "label": "Other Email Address"
+  },
+  {
+   "fieldname": "address_line_1",
+   "fieldtype": "Data",
+   "label": "Address Line 1"
+  },
+  {
+   "fieldname": "address_line_2",
+   "fieldtype": "Data",
+   "label": "Address Line 2"
+  },
+  {
+   "fieldname": "citytown",
+   "fieldtype": "Data",
+   "label": "City/Town"
+  },
+  {
+   "fieldname": "reg",
+   "fieldtype": "Link",
+   "label": "Region",
+   "options": "Province - Region - States"
+  },
+  {
+   "fieldname": "country",
+   "fieldtype": "Link",
+   "label": "Country",
+   "options": "Country"
   }
  ],
  "icon": "fa fa-flag",
  "links": [],
- "modified": "2024-07-29 15:41:53.593222",
+ "modified": "2024-08-23 12:57:25.156937",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Depot",

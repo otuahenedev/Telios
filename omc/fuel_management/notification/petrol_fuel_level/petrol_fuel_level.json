@@ -1,0 +1,29 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "condition": "doc.current_stock_level_diesel_l <= doc.reorder_level_l",
+ "creation": "2024-08-25 17:05:15.773205",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Outlet",
+ "enabled": 1,
+ "event": "Custom",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "---\r\n\r\n### \ud83d\udea8 Low Fuel Alert\r\n\r\nAttention Staff:\r\n\r\nFuel levels at  {{doc.name}} are critically low. Please take immediate action to replenish the following fuel types:\r\n\r\n- Petrol: {{doc.current_stock_level_diesel_l}} liters remaining\r\n- Diesel: **{{doc.current_stock_level__petrol_l}} liters** remaining\r\n\r\nEnsure orders are placed and deliveries are coordinated promptly to avoid disruptions in service.\r\n\r\nThank you.\r\n\r\n---",
+ "message_type": "Markdown",
+ "modified": "2024-08-25 17:05:15.773205",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Petrol Fuel Level",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "receiver_by_role": "All"
+  }
+ ],
+ "send_system_notification": 1,
+ "send_to_all_assignees": 0,
+ "subject": "Low Diesel Fuel Alert"
+}

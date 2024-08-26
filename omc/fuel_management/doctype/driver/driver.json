@@ -61,7 +61,7 @@
    "fieldname": "transporter",
    "fieldtype": "Link",
    "label": "Transporter Company",
-   "mandatory_depends_on": "eval:doc.type == \"External Driver\"",
+   "mandatory_depends_on": "//eval:doc.type == \"External Driver\"",
    "options": "Supplier"
   },
   {
@@ -159,7 +159,7 @@
  ],
  "icon": "fa fa-user",
  "links": [],
- "modified": "2024-07-24 13:56:39.032680",
+ "modified": "2024-08-08 11:30:54.761919",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Driver",

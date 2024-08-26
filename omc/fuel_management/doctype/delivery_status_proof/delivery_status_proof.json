@@ -6,19 +6,12 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "outlet",
-  "delivery_status",
-  "fuel_delivery_proof"
+  "fuel_delivery_proof",
+  "outlet"
  ],
  "fields": [
   {
-   "fieldname": "delivery_status",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Delivery Status",
-   "options": "Delivery Status"
-  },
-  {
+   "fetch_from": "fuel_delivery_proof.outlet",
    "fieldname": "outlet",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -30,14 +23,15 @@
    "fieldname": "fuel_delivery_proof",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Fuel Delivery Proof",
-   "options": "Fuel Delivery Proof"
+   "label": "Fuel Delivery Verification",
+   "options": "Fuel Delivery Verification",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-07-29 16:50:36.382804",
+ "modified": "2024-08-25 23:18:24.643601",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Delivery Status Proof",

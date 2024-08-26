@@ -1,0 +1,58 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-08-05 21:44:06.670293",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "outlet",
+  "diesel_price",
+  "petrol_price",
+  "datetime"
+ ],
+ "fields": [
+  {
+   "fieldname": "outlet",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Outlet",
+   "options": "Outlet",
+   "reqd": 1
+  },
+  {
+   "fieldname": "diesel_price",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Diesel Price",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "petrol_price",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Petrol Price",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "default": "Now",
+   "fieldname": "datetime",
+   "fieldtype": "Datetime",
+   "label": "Datetime "
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-08-24 22:09:11.230301",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Outlet Pricing Table",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

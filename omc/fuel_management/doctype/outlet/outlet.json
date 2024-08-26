@@ -9,17 +9,23 @@
   "outlet_details_section",
   "outlet_code",
   "outlet_type",
+  "column_break_dabi",
   "state",
   "reason",
-  "column_break_qovw",
-  "petrol_selling_price",
-  "diesel_selling_price",
-  "total_capacity_for_petrol",
-  "total_capacity_for_diesel",
-  "current_stock_level__petrol_l",
+  "summary_section",
+  "column_break_rcne",
   "current_stock_level_diesel_l",
-  "petrol_total_sales",
+  "current_stock_level__petrol_l",
+  "total_capacity_for_diesel",
+  "total_capacity_for_petrol",
+  "column_break_voaz",
   "diesel_total_sales",
+  "petrol_total_sales",
+  "outlet_pricing_section",
+  "diesel_selling_price",
+  "petrol_selling_price",
+  "column_break_ljom",
+  "price_change_datetime",
   "station_section",
   "fuel_station_name",
   "outlet_profile_picture",
@@ -30,13 +36,13 @@
   "contact",
   "fuel_attendant",
   "table_multiselect_vaju",
+  "fuel_dispensers_section",
+  "table_ghhq",
   "section_break_ybex",
-  "outlet",
+  "company",
   "column_break_sehc",
   "point_of_contact",
-  "contact_2",
-  "address",
-  "client_location",
+  "designation",
   "address_and_contact_section",
   "column_break_ghgl",
   "address_line_1",
@@ -58,7 +64,8 @@
   "geolocation_dbpz",
   "section_break_oysz",
   "super_tanks",
-  "diesel_storage_tanks"
+  "diesel_storage_tanks",
+  "amended_from"
  ],
  "fields": [
   {
@@ -87,15 +94,15 @@
   {
    "fieldname": "total_capacity_for_petrol",
    "fieldtype": "Int",
-   "in_list_view": 1,
    "label": "Total Capacity For Petrol (L)",
+   "non_negative": 1,
    "read_only": 1
   },
   {
    "fieldname": "total_capacity_for_diesel",
    "fieldtype": "Int",
-   "in_list_view": 1,
    "label": "Total Capacity For Diesel (L)",
+   "non_negative": 1,
    "read_only": 1
   },
   {
@@ -103,18 +110,11 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "station_manager",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Station Manager",
-   "options": "Employee"
-  },
-  {
    "depends_on": "station_manager",
    "fetch_from": "station_manager.employee_name",
    "fieldname": "station_manager_name",
    "fieldtype": "Read Only",
-   "label": "Station Manager Fullname",
+   "label": "Station Supervisor Fullname",
    "read_only": 1
   },
   {
@@ -246,36 +246,18 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Outlet Type",
-   "options": "\nFuel Station\nThird-Party",
+   "options": "\nFuel Station\nBulk User Location",
    "reqd": 1
   },
   {
-   "fieldname": "column_break_qovw",
-   "fieldtype": "Column Break"
-  },
-  {
-   "depends_on": "eval:doc.outlet_type==\"Third-Party\"",
+   "depends_on": "eval:doc.outlet_type==\"Bulk User Location\"",
    "fieldname": "section_break_ybex",
    "fieldtype": "Section Break",
-   "label": "Clients"
-  },
-  {
-   "fieldname": "outlet",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Outlet",
-   "mandatory_depends_on": "eval:doc.outlet_type==\"Third-Party\"",
-   "unique": 1
+   "label": "Bulk User Location"
   },
   {
    "fieldname": "column_break_sehc",
    "fieldtype": "Column Break"
-  },
-  {
-   "fetch_from": "point_of_contact.phone",
-   "fieldname": "contact_2",
-   "fieldtype": "Phone",
-   "label": "Contact"
   },
   {
    "fieldname": "outlet_details_section",
@@ -284,24 +266,10 @@
   },
   {
    "fieldname": "point_of_contact",
-   "fieldtype": "Link",
-   "label": "Point of Contact",
+   "fieldtype": "Data",
+   "label": "Primary Contact",
    "mandatory_depends_on": "eval:doc.outlet_type==\"Third-Party\"",
-   "options": "Contact"
-  },
-  {
-   "fetch_from": "point_of_contact.address",
-   "fieldname": "address",
-   "fieldtype": "Link",
-   "label": "Address",
-   "options": "Address"
-  },
-  {
-   "fetch_from": "point_of_contact.location",
-   "fieldname": "client_location",
-   "fieldtype": "Link",
-   "label": " Location",
-   "options": "Location"
+   "options": "Name"
   },
   {
    "fieldname": "fuel_station_location",
@@ -318,13 +286,15 @@
    "fieldname": "petrol_selling_price",
    "fieldtype": "Currency",
    "in_standard_filter": 1,
-   "label": "Petrol Selling Price"
+   "label": "Petrol Selling Price",
+   "read_only": 1
   },
   {
    "fieldname": "diesel_selling_price",
    "fieldtype": "Currency",
    "in_standard_filter": 1,
-   "label": "Diesel Selling Price "
+   "label": "Diesel Selling Price ",
+   "read_only": 1
   },
   {
    "depends_on": "eval:doc.state != \"Active\"",
@@ -335,22 +305,28 @@
   {
    "fieldname": "current_stock_level__petrol_l",
    "fieldtype": "Int",
-   "label": "Current Stock Level - Petrol (L) "
+   "label": "Current Stock Level - Petrol (L) ",
+   "non_negative": 1,
+   "read_only": 1
   },
   {
    "fieldname": "current_stock_level_diesel_l",
    "fieldtype": "Int",
-   "label": "Current Stock Level - Diesel (L) "
+   "label": "Current Stock Level - Diesel (L) ",
+   "non_negative": 1,
+   "read_only": 1
   },
   {
    "fieldname": "petrol_total_sales",
-   "fieldtype": "Read Only",
-   "label": "Petrol Total Sales"
+   "fieldtype": "Currency",
+   "label": "Petrol Total Sales",
+   "read_only": 1
   },
   {
    "fieldname": "diesel_total_sales",
-   "fieldtype": "Read Only",
-   "label": "Diesel Total Sales"
+   "fieldtype": "Currency",
+   "label": "Diesel Total Sales",
+   "read_only": 1
   },
   {
    "fieldname": "outlet_profile_picture",
@@ -378,8 +354,79 @@
    "in_standard_filter": 1,
    "label": "Status",
    "options": "Active\nInactive\nClosed"
+  },
+  {
+   "fieldname": "column_break_rcne",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Data",
+   "label": "Company"
+  },
+  {
+   "fieldname": "designation",
+   "fieldtype": "Data",
+   "label": "Designation"
+  },
+  {
+   "fieldname": "column_break_dabi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "summary_section",
+   "fieldtype": "Section Break",
+   "hidden": 1,
+   "label": "Summary"
+  },
+  {
+   "fieldname": "column_break_voaz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "outlet_pricing_section",
+   "fieldtype": "Section Break",
+   "label": "Outlet Pricing"
+  },
+  {
+   "fieldname": "column_break_ljom",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "price_change_datetime",
+   "fieldtype": "Datetime",
+   "label": "Price Change Datetime"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Outlet",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "station_manager",
+   "fieldtype": "Data",
+   "label": "Station Supervisor",
+   "options": "Name"
+  },
+  {
+   "fieldname": "fuel_dispensers_section",
+   "fieldtype": "Section Break",
+   "hide_border": 1,
+   "label": "Fuel Dispensers"
+  },
+  {
+   "fieldname": "table_ghhq",
+   "fieldtype": "Table",
+   "options": "Fuel Dispenser"
   }
  ],
+ "image_field": "outlet_profile_picture",
  "index_web_pages_for_search": 1,
  "links": [
   {
@@ -388,7 +435,7 @@
    "link_fieldname": "outlet"
   }
  ],
- "modified": "2024-07-24 11:43:56.533049",
+ "modified": "2024-08-26 08:24:34.767308",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Outlet",
@@ -406,6 +453,10 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
+  },
+  {
+   "read": 1,
+   "role": "General"
   }
  ],
  "sort_field": "modified",
@@ -422,6 +473,15 @@
   {
    "color": "Red",
    "title": "Inactive"
+  },
+  {
+   "color": "Purple",
+   "title": "Bulk User Location"
+  },
+  {
+   "color": "Yellow",
+   "title": "Fuel Station"
   }
- ]
+ ],
+ "track_changes": 1
 }

@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class Region(Document):
+class ProvinceRegionStates(Document):
 	pass

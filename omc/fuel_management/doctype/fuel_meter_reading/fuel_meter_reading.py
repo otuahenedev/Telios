@@ -2,7 +2,15 @@
 # For license information, please see license.txt
 
 import frappe
+from frappe.utils import nowdate
 from frappe.model.document import Document
+
+@frappe.whitelist()
+def attendetails(dispense):
+	items = frappe.get_all("Fuel Dispenser", fields=["dispenser"], filters={ "parent": dispense, "parenttype": "Outlet","status":"Active"}, order_by="idx")
+	data = [list(d.values())[0] for d in items]	
+	return data
+
 
 
 class FuelMeterReading(Document):
@@ -10,6 +18,8 @@ class FuelMeterReading(Document):
 	#def before_save(self):
 	#	for pump in self.table_mtto:
 	#		int(pump.total_liters_sold) = pump.closing_reading - pump.opening_reading
+
+	
 
 
 	def validate(self):
@@ -33,7 +43,7 @@ class FuelMeterReading(Document):
 		#total sales for petrol
 		total_pet = self.petrol_rate * float(petrol_liters_sold)
 		self.total_sales_for_petrol = total_pet
-		
+	
 		# sum for all diesel pumps
 		diesel_liters_sold = 0
 		for litter in self.table_yvwr:
@@ -68,4 +78,29 @@ class FuelMeterReading(Document):
 		self.total_amount = self.total_sales_for_diesel + self.total_sales_for_petrol
 
 		#discrepancies
-		self.discrepancies = self.total_amount - self.amount_paid
+		amount_paid = float(self.amount_paid)
+		if amount_paid != 0:
+			self.discrepancies = self.total_amount - amount_paid
+"""
+		try:
+			if self.workflow_state == "Complete":
+				# Create the journal entries
+				jv = frappe.new_doc('Journal Entry')
+				jv.voucher_type = 'Journal Entry'
+				jv.naming_series = 'ACC-JV-.YYYY.-'
+				jv.posting_date = nowdate()
+				jv.company = "Telios Energy"
+				jv.remark = f"Payment received for Outlet - {self.outlet}"
+
+				# Entry to the Credit Side
+				jv.append('accounts', {
+					'account': expense_report.paying_account,
+					'credit': float(expense_total),
+					'debit': float(0),
+					'debit_in_account_currency': float(0),
+					'credit_in_account_currency': float(expense_total),
+				})
+		except Exception as e:
+		# Log the error to the Frappe error log document
+			frappe.log_error(f"An error occurred: {str(e)}")
+			"""

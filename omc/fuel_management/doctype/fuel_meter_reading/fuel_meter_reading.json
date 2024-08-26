@@ -13,7 +13,6 @@
   "diesel_station_capacity",
   "column_break_yerj",
   "station_manager",
-  "attendant",
   "rtt",
   "rtf_section_section",
   "rtt_fuel_type",
@@ -43,7 +42,10 @@
   "column_break_uqtr",
   "deposit_date",
   "amount_paid",
-  "deposit_slip"
+  "deposit_slip",
+  "section_break_bucx",
+  "status",
+  "amended_from"
  ],
  "fields": [
   {
@@ -68,18 +70,9 @@
   {
    "fetch_from": "outlet.station_manager_name",
    "fieldname": "station_manager",
-   "fieldtype": "Read Only",
-   "label": "Station Manager",
+   "fieldtype": "Data",
+   "label": "Station Supervisor",
    "reqd": 1
-  },
-  {
-   "fieldname": "attendant",
-   "fieldtype": "Link",
-   "hidden": 1,
-   "label": "Attendant",
-   "options": "Employee",
-   "print_hide": 1,
-   "report_hide": 1
   },
   {
    "fetch_from": "outlet.total_capacity_for_petrol",
@@ -118,13 +111,15 @@
    "fetch_from": "outlet.petrol_selling_price",
    "fieldname": "petrol_rate",
    "fieldtype": "Currency",
-   "label": "Petrol Rate"
+   "label": "Petrol Rate",
+   "read_only": 1
   },
   {
    "fetch_from": "outlet.diesel_selling_price",
    "fieldname": "diesel_rate",
    "fieldtype": "Currency",
    "label": "Diesel Rate",
+   "read_only": 1,
    "report_hide": 1
   },
   {
@@ -135,22 +130,26 @@
   {
    "fieldname": "total_liters_of_petrol_sold",
    "fieldtype": "Int",
-   "label": "Total Liters of Petrol Sold"
+   "label": "Total Liters of Petrol Sold",
+   "read_only": 1
   },
   {
    "fieldname": "total_sales_for_petrol",
    "fieldtype": "Currency",
-   "label": "Total Sales for Petrol "
+   "label": "Total Sales for Petrol ",
+   "read_only": 1
   },
   {
    "fieldname": "total_liters_of_diesel_sold",
    "fieldtype": "Int",
-   "label": "Total Liters of Diesel Sold "
+   "label": "Total Liters of Diesel Sold ",
+   "read_only": 1
   },
   {
    "fieldname": "total_sales_for_diesel",
    "fieldtype": "Currency",
-   "label": "Total Sales for Diesel  "
+   "label": "Total Sales for Diesel  ",
+   "read_only": 1
   },
   {
    "default": "PETROL",
@@ -161,6 +160,7 @@
    "label": "Petrol pricing ",
    "options": "Fuel Type",
    "print_hide": 1,
+   "read_only": 1,
    "report_hide": 1
   },
   {
@@ -172,6 +172,7 @@
    "label": "Diesel pricing",
    "options": "Fuel Type",
    "print_hide": 1,
+   "read_only": 1,
    "report_hide": 1
   },
   {
@@ -221,6 +222,7 @@
    "options": "\nPetrol\nDiesel\nBoth"
   },
   {
+   "default": "0",
    "depends_on": "eval:in_list([\"Petrol\", \"Both\"], doc.rtt_fuel_type)",
    "fieldname": "rtt_petrol_liters_used",
    "fieldtype": "Int",
@@ -228,9 +230,12 @@
    "mandatory_depends_on": "eval:in_list([\"Petrol\", \"Both\"], doc.rtt_fuel_type)"
   },
   {
+   "default": "0",
+   "depends_on": "eval:in_list([\"Diesel\", \"Both\"], doc.rtt_fuel_type)",
    "fieldname": "rtt_diesel_liters_used",
    "fieldtype": "Int",
-   "label": "Diesel Liters Used"
+   "label": "Diesel Liters Used",
+   "mandatory_depends_on": "eval:in_list([\"Diesel\", \"Both\"], doc.rtt_fuel_type)"
   },
   {
    "fieldname": "verification_section",
@@ -241,7 +246,8 @@
   {
    "fieldname": "total_amount",
    "fieldtype": "Currency",
-   "label": "Total Amount"
+   "label": "Total Amount",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_kuyk",
@@ -250,7 +256,8 @@
   {
    "fieldname": "discrepancies",
    "fieldtype": "Currency",
-   "label": "Discrepancies"
+   "label": "Discrepancies",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_ayak",
@@ -262,6 +269,7 @@
    "fieldtype": "Link",
    "label": "Fuel Sales Deposit Ref.",
    "options": "Fuel Sales Deposit",
+   "permlevel": 1,
    "unique": 1
   },
   {
@@ -274,26 +282,54 @@
    "fieldname": "deposit_date",
    "fieldtype": "Read Only",
    "label": "Deposit Date",
+   "permlevel": 1,
    "read_only": 1
   },
   {
+   "default": "0",
    "fetch_from": "fuel_sales_deposit_ref.amount_deposited",
    "fetch_if_empty": 1,
    "fieldname": "amount_paid",
    "fieldtype": "Currency",
    "label": "Amount Paid",
+   "permlevel": 1,
    "read_only": 1
   },
   {
    "fetch_from": "fuel_sales_deposit_ref.attach_deposit_slip",
    "fieldname": "deposit_slip",
    "fieldtype": "Attach Image",
-   "label": "Deposit Slip"
+   "label": "Deposit Slip",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "section_break_bucx",
+   "fieldtype": "Section Break"
+  },
+  {
+   "bold": 1,
+   "default": "Opening Reading",
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "label": "Status",
+   "print_hide": 1,
+   "report_hide": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Fuel Meter Reading",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2024-07-26 09:54:45.743032",
+ "modified": "2024-08-26 12:40:06.303429",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Fuel Meter Reading",
@@ -311,9 +347,52 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
+  },
+  {
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Station Supervisor",
+   "write": 1
+  },
+  {
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts User",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts User",
+   "share": 1,
+   "submit": 1,
+   "write": 1
   }
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "track_changes": 1,
+ "track_views": 1
 }

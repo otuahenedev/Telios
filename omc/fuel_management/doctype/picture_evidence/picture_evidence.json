@@ -13,9 +13,10 @@
   {
    "fieldname": "name1",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "in_preview": 1,
-   "in_standard_filter": 1,
-   "label": "Name"
+   "label": "Name",
+   "mandatory_depends_on": "attach_picture_evidence"
   },
   {
    "fieldname": "attach_picture_evidence",
@@ -27,7 +28,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-07-26 10:24:12.425992",
+ "modified": "2024-07-31 15:32:05.749714",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Picture Evidence",

@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class StationCertificate(Document):
+class OutletPricingTable(Document):
 	pass

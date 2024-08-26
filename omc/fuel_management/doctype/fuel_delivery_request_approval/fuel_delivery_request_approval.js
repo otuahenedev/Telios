@@ -1,6 +1,13 @@
 // Copyright (c) 2024, Kelvin and contributors
 // For license information, please see license.txt
 
+// Add Seletize cdn lib
+//$.getScript("https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js",function(){
+
+    //rest code
+    
+   // });
+
 //fetch volume of trucks into a dropdown for the volume field under request fuel detail child table
 /* frappe.ui.form.on("Tanker Compartments", {
     refresh(frm){
@@ -12,11 +19,11 @@
     }
  },*/
 
- frappe.ui.form.on("Request Fuel Details", {
-   
-   
-   
 
+ frappe.ui.form.on("Request Fuel Details", {
+    table_mxlk_add(frm, cdt, cdn){
+                       
+}
 });
 
 frappe.ui.form.on('Fuel Delivery Request Approval', {
@@ -62,6 +69,22 @@ frappe.ui.form.on('Fuel Delivery Request Approval', {
         
     },
 
+    /*validate: function(frm){
+        total = 0; 
+		tank_volume = frm.doc.nominal_volume_l;
+		frm.doc.table_mxlk.forEach(function(d) { total += d.volume_l; });
+        if (total == tank_volume){
+            frappe.validated = true; 
+            console.log(total,tank_volume);
+         
+        }
+        else{
+            frappe.throw(__('Total Volume Listed for Outlets Must Be Equal to the Total Capacity of the Fuel Truck Selected.  '))
+            frappe.validated = false;
+        }
+    },/*
+
+    */
     brv: function(frm){
         let truckid = frm.doc.brv;
         if(truckid){
@@ -69,24 +92,61 @@ frappe.ui.form.on('Fuel Delivery Request Approval', {
                 method:"omc.fuel_management.doctype.fuel_delivery_request_approval.fuel_delivery_request_approval.truckdetails",
                 args: {truckid:truckid}
             }).done((r) => {
-                console.log(r.message)
-                $.each(r.message, function(_i, j){
+                console.log(typeof r.message, r.message)
+                const mrss = r.message
+                console.log(mrss)
+                function listAndSumPairs(obj) {
+                    let result = [];
+                
+                    // Extract values from the object and convert them to integers
+                    let values = [];
+                    for (let key in mrss) {
+                        if (mrss.hasOwnProperty(key)) {
+                            values.push(parseInt(mrss[key], 10));
+                        }
+                    }
+                
+                    // Add original values to the result array
+                    result.push(...values);
+                
+                    // Loop through the array to calculate sums of each pair
+                    let length = values.length;
+                    for (let i = 0; i < length; i++) {
+                        let sum = 0;
+                        for (let j = 0; j < length; j++) {
+                            sum += values[j];
+                            result.push(sum);
+                        }
+                    }
+                
+                    // Remove duplicates and sort the result
+                    result = [...new Set(result)].sort((a, b) => a - b);
+                
+                    return result;
+                }
+                result = listAndSumPairs(r.message)
+                $.each(result, function(_i, j){
                     // select options for outlets based on fuel truck on request fuel details
-                    frm.fields_dict.table_mxlk.grid.update_docfield_property("volume_l","options", r.message)
+                    frm.fields_dict.table_mxlk.grid.update_docfield_property("volume_l","options", result)
 
                 })
                 
                 
             })
         }
+        else{
+            frappe.throw("Select BRV first")
+        }
+         frm.refresh_field('table_mxlk')
 
     },
+   
     
 
     
 
     refresh: function(frm) {
-        if (frm.doc.docstatus == 1) {
+        if (frm.doc.workflow_state == "Approved") {
             frm.add_custom_button("Create Fuel Delivery Process", () => {
                // frappe.msgprint("clicked")
                frappe.new_doc("Fuel Delivery",{}, fdp => {
@@ -130,11 +190,6 @@ frappe.ui.form.on('Fuel Delivery Request Approval', {
     }
 });
 
-frappe.ui.form.on('Request Fuel Details', {
-	refresh(frm) {
-        frm.fields_dict.items.grid.update_docfield_property("volume_l","options",["Loan Approved","Loan Appealing"]);
-	}
-})
 
  
 
