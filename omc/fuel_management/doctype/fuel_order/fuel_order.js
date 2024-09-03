@@ -26,12 +26,12 @@
 }
 });
 
-frappe.ui.form.on('Fuel Delivery Request Approval', {
+frappe.ui.form.on('Fuel Order', {
     fuel_type: function(frm){
         let fuel_type = frm.doc.fuel_type
         if(fuel_type == 'Diesel'){
             frappe.call({
-                method: "omc.fuel_management.doctype.fuel_delivery_request_approval.fuel_delivery_request_approval.justification",
+                method: "omc.fuel_management.doctype.fuel_order.fuel_order.justification",
                 args:{fuel_type:fuel_type}
             }).done((r) => {
                 frm.doc.just = []
@@ -48,7 +48,7 @@ frappe.ui.form.on('Fuel Delivery Request Approval', {
         } 
         if(fuel_type){
             frappe.call({
-                method: "omc.fuel_management.doctype.fuel_delivery_request_approval.fuel_delivery_request_approval.justification",
+                method: "omc.fuel_management.doctype.fuel_order.fuel_order.justification",
                 args:{fuel_type:fuel_type}
             }).done((r) => {
                 frm.doc.justp = []
@@ -89,7 +89,7 @@ frappe.ui.form.on('Fuel Delivery Request Approval', {
         let truckid = frm.doc.brv;
         if(truckid){
             frappe.call({
-                method:"omc.fuel_management.doctype.fuel_delivery_request_approval.fuel_delivery_request_approval.truckdetails",
+                method:"omc.fuel_management.doctype.fuel_order.fuel_order.truckdetails",
                 args: {truckid:truckid}
             }).done((r) => {
                 console.log(typeof r.message, r.message)
@@ -146,8 +146,8 @@ frappe.ui.form.on('Fuel Delivery Request Approval', {
     
 
     refresh: function(frm) {
-        if (frm.doc.workflow_state == "Approved") {
-            frm.add_custom_button("Create Fuel Delivery Process", () => {
+        if (frm.doc.workflow_state == "Placed Orders") {
+            frm.add_custom_button("Place Order", () => {
                // frappe.msgprint("clicked")
                frappe.new_doc("Fuel Delivery",{}, fdp => {
                 fdp.fdrar = frm.doc.name;
@@ -185,12 +185,28 @@ frappe.ui.form.on('Fuel Delivery Request Approval', {
                 
                 
                });
-            }).css({'background-color':'gold','color':'black','font-weight': 'bold'});;
+            }).css({'background-color':'#f5a914','color':'black','font-weight': 'bold'});;
         }
     }
 });
 
+frappe.ui.form.on('Fuel Order', {
+    before_workflow_action: async (frm) => {
+    	let promise = new Promise((resolve, reject) => {
+            frappe.dom.unfreeze()
+    		frappe.confirm(
+    		"<b>Are all fields correctly entered ? Please review the information carefully.</b>",
+    		() => resolve(),
+    		() => reject() 
+    		);
+    
+    	});
+    	await promise.catch(() => frappe.throw());
+    }  
+});
 
+
+    
  
 
 

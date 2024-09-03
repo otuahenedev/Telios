@@ -1,7 +1,7 @@
 {
  "attach_print": 0,
  "channel": "Email",
- "condition": "doc.workflow_state == \"Upload Documents Stage\"",
+ "condition": "doc.workflow_state == \"Placed Order\"",
  "creation": "2024-08-01 12:45:42.310113",
  "days_in_advance": 0,
  "docstatus": 0,
@@ -13,7 +13,7 @@
  "is_standard": 1,
  "message": "<p>Add your message here</p>\n",
  "message_type": "Markdown",
- "modified": "2024-08-01 12:45:42.310113",
+ "modified": "2024-08-28 08:55:01.344292",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Notify Liaison Officer for fuel delivery",
@@ -24,10 +24,13 @@
   },
   {
    "receiver_by_role": "Driver"
+  },
+  {
+   "receiver_by_role": "All"
   }
  ],
  "send_system_notification": 1,
  "send_to_all_assignees": 0,
- "subject": "Impending Fuel Lift @ {{doc.depot}} - {{doc.name}}",
+ "subject": "Impending Fuel Lift at {{doc.depot}} - {{doc.name}}",
  "value_changed": "workflow_state"
 }

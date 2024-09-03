@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestFuelDeliveryRequestApproval(FrappeTestCase):
+class TestFuelOrder(FrappeTestCase):
 	pass

@@ -1,31 +1,29 @@
 {
  "attach_print": 0,
  "channel": "Email",
- "creation": "2024-07-30 08:10:54.710663",
+ "condition": "doc.workflow_state == \"Submitted To Finance Director For Approval\"",
+ "creation": "2024-08-28 09:10:44.776516",
  "days_in_advance": 0,
  "docstatus": 0,
  "doctype": "Notification",
  "document_type": "Fuel Order",
  "enabled": 1,
- "event": "New",
+ "event": "Custom",
  "idx": 0,
  "is_standard": 1,
- "message": "<p>Add your message here</p>\n",
- "message_type": "Markdown",
- "modified": "2024-08-28 09:05:11.413047",
+ "message": "<p><H5> Fuel order {{doc.name}} awaiting your approval </H5></p>\n",
+ "message_type": "HTML",
+ "modified": "2024-08-28 09:12:59.285600",
  "modified_by": "Administrator",
  "module": "Fuel Management",
- "name": "Fuel Request Approval Initiated",
+ "name": "FD alert of fuel order",
  "owner": "Administrator",
  "recipients": [
   {
    "receiver_by_role": "Accounts Manager"
-  },
-  {
-   "receiver_by_role": "M. Director"
   }
  ],
  "send_system_notification": 1,
  "send_to_all_assignees": 0,
- "subject": "Fuel Order {{doc.name}} initiated."
+ "subject": "Fuel Order {{doc.name}} Submitted For Approval."
 }

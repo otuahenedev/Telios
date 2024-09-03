@@ -19,7 +19,7 @@ def truckdetails(truckid):
 
 
 
-class FuelDeliveryRequestApproval(Document):
+class FuelOrder(Document):
 	def validate(self):
 		# Validate if set volumes listed on the request fuel details amount to the total storage capacity of the truck 
 		try:
