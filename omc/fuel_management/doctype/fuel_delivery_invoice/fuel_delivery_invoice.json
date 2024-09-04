@@ -1,0 +1,239 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:Telios-FDI-{MM}{YYYY}-{####}",
+ "creation": "2024-09-04 14:41:15.760186",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "outlet",
+  "outlet_code",
+  "location",
+  "fuel_order_ref",
+  "delivery_note",
+  "column_break_pmei",
+  "invoice_postime",
+  "fuel_truck",
+  "transporter",
+  "origindepot",
+  "fuel_order_items_section",
+  "fuel_order_items",
+  "liaison_officer_section",
+  "bvr_sealed",
+  "type_of_seal",
+  "column_break_iaza",
+  "liaison_officer",
+  "liaison_officer_s_signature",
+  "section_break_rpiv",
+  "driver",
+  "column_break_bshx",
+  "drivers_signature",
+  "outlet_section",
+  "station_superviser",
+  "above_merchandise_received_in_good_condition",
+  "received_with_seal_tag_on",
+  "column_break_kitj",
+  "invoice_total_ghs",
+  "station_supervisers_signature",
+  "datetime",
+  "section_break_jxlp",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_jxlp",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Fuel Delivery Invoice",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "outlet",
+   "fieldtype": "Link",
+   "label": "Outlet",
+   "options": "Outlet"
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Read Only",
+   "label": "Location"
+  },
+  {
+   "fieldname": "column_break_pmei",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "invoice_postime",
+   "fieldtype": "Datetime",
+   "label": "Invoice Postime"
+  },
+  {
+   "fieldname": "outlet_code",
+   "fieldtype": "Read Only",
+   "label": "Outlet Code"
+  },
+  {
+   "fieldname": "fuel_order_items_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "fuel_order_ref",
+   "fieldtype": "Link",
+   "label": "Fuel Order Ref",
+   "options": "Fuel Order"
+  },
+  {
+   "fieldname": "fuel_truck",
+   "fieldtype": "Link",
+   "label": "Fuel Truck",
+   "options": "Fuel Truck"
+  },
+  {
+   "fieldname": "origindepot",
+   "fieldtype": "Link",
+   "label": "Origin/Depot",
+   "options": "Depot"
+  },
+  {
+   "fieldname": "fuel_order_items",
+   "fieldtype": "Table",
+   "label": "Fuel Order Items",
+   "options": "Fuel Delivery Items"
+  },
+  {
+   "fieldname": "transporter",
+   "fieldtype": "Data",
+   "label": "Transporter"
+  },
+  {
+   "fieldname": "delivery_note",
+   "fieldtype": "Small Text",
+   "label": "Delivery Note"
+  },
+  {
+   "fieldname": "liaison_officer_section",
+   "fieldtype": "Section Break",
+   "label": "Liaison "
+  },
+  {
+   "default": "0",
+   "fieldname": "bvr_sealed",
+   "fieldtype": "Check",
+   "label": "BVR sealed"
+  },
+  {
+   "fieldname": "type_of_seal",
+   "fieldtype": "Select",
+   "label": "Type of Seal",
+   "options": "\nElectronic Seal\nPlastic Strap Seals"
+  },
+  {
+   "fieldname": "column_break_iaza",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "liaison_officer",
+   "fieldtype": "Data",
+   "label": "Liaison Officer "
+  },
+  {
+   "fieldname": "liaison_officer_s_signature",
+   "fieldtype": "Signature",
+   "label": "Liaison Officer 's Signature"
+  },
+  {
+   "fieldname": "section_break_rpiv",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "driver",
+   "fieldtype": "Data",
+   "label": "Driver"
+  },
+  {
+   "fieldname": "column_break_bshx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "drivers_signature",
+   "fieldtype": "Signature",
+   "label": "Driver's Signature"
+  },
+  {
+   "fieldname": "outlet_section",
+   "fieldtype": "Section Break",
+   "label": "Outlet"
+  },
+  {
+   "fieldname": "station_superviser",
+   "fieldtype": "Data",
+   "label": "Station Superviser"
+  },
+  {
+   "default": "0",
+   "fieldname": "above_merchandise_received_in_good_condition",
+   "fieldtype": "Check",
+   "label": "Above merchandise received in good condition"
+  },
+  {
+   "default": "0",
+   "fieldname": "received_with_seal_tag_on",
+   "fieldtype": "Check",
+   "label": "Received with seal tag on"
+  },
+  {
+   "fieldname": "column_break_kitj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Value of Product",
+   "fieldname": "invoice_total_ghs",
+   "fieldtype": "Currency",
+   "label": "Invoice Total (GHS)"
+  },
+  {
+   "fieldname": "station_supervisers_signature",
+   "fieldtype": "Signature",
+   "label": "Station Superviser's Signature"
+  },
+  {
+   "fieldname": "datetime",
+   "fieldtype": "Datetime",
+   "label": "Datetime"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-09-04 16:05:47.098550",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Fuel Delivery Invoice",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

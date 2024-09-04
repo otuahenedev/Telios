@@ -1,0 +1,291 @@
+{
+ "actions": [],
+ "allow_events_in_timeline": 1,
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "field:transporter",
+ "creation": "2024-09-04 17:12:57.849750",
+ "default_view": "List",
+ "doctype": "DocType",
+ "document_type": "Setup",
+ "engine": "InnoDB",
+ "field_order": [
+  "transporter",
+  "column_break0",
+  "supplier_type",
+  "image",
+  "defaults_section",
+  "default_bank_account",
+  "column_break_10",
+  "bank_account_no",
+  "dashboard_tab",
+  "tax_tab",
+  "tax_id",
+  "column_break_27",
+  "tax_category",
+  "tax_withholding_category",
+  "contact_and_address_tab",
+  "primary_address_and_contact_detail_section",
+  "column_break_44",
+  "address_line_1",
+  "address_line_2",
+  "digital_address",
+  "citytown",
+  "region",
+  "country",
+  "column_break_mglr",
+  "mobile_no",
+  "phone",
+  "email_id",
+  "other_email_address",
+  "website"
+ ],
+ "fields": [
+  {
+   "fieldname": "column_break0",
+   "fieldtype": "Column Break",
+   "width": "50%"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "default": "Company",
+   "fieldname": "supplier_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "BDC Type",
+   "options": "Company\nIndividual\nProprietorship\nPartnership"
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "hidden": 1,
+   "label": "Image",
+   "no_copy": 1,
+   "print_hide": 1
+  },
+  {
+   "fieldname": "defaults_section",
+   "fieldtype": "Section Break",
+   "label": "Defaults"
+  },
+  {
+   "fieldname": "default_bank_account",
+   "fieldtype": "Link",
+   "label": "Bank",
+   "options": "Bank Account"
+  },
+  {
+   "fieldname": "bank_account_no",
+   "fieldtype": "Int",
+   "label": "Bank Account No."
+  },
+  {
+   "fieldname": "column_break_10",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "dashboard_tab",
+   "fieldtype": "Tab Break",
+   "label": "Dashboard",
+   "show_dashboard": 1
+  },
+  {
+   "fieldname": "tax_tab",
+   "fieldtype": "Tab Break",
+   "hidden": 1,
+   "label": "Tax"
+  },
+  {
+   "fieldname": "tax_id",
+   "fieldtype": "Data",
+   "label": "Tax ID"
+  },
+  {
+   "fieldname": "column_break_27",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tax_category",
+   "fieldtype": "Link",
+   "label": "Tax Category",
+   "options": "Tax Category"
+  },
+  {
+   "fieldname": "tax_withholding_category",
+   "fieldtype": "Link",
+   "label": "Tax Withholding Category",
+   "options": "Tax Withholding Category"
+  },
+  {
+   "fieldname": "contact_and_address_tab",
+   "fieldtype": "Tab Break",
+   "label": "Address & Contact"
+  },
+  {
+   "fieldname": "primary_address_and_contact_detail_section",
+   "fieldtype": "Section Break",
+   "label": "Primary Address and Contact"
+  },
+  {
+   "fieldname": "column_break_44",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "address_line_1",
+   "fieldtype": "Data",
+   "label": "Address Line 1"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "address_line_2",
+   "fieldtype": "Data",
+   "label": "Address Line 2"
+  },
+  {
+   "fieldname": "digital_address",
+   "fieldtype": "Data",
+   "label": "Digital Address"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "citytown",
+   "fieldtype": "Data",
+   "in_standard_filter": 1,
+   "label": "City/Town"
+  },
+  {
+   "fieldname": "region",
+   "fieldtype": "Link",
+   "label": "Region",
+   "options": "Province - Region - States"
+  },
+  {
+   "fieldname": "country",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Country",
+   "options": "Country"
+  },
+  {
+   "fieldname": "column_break_mglr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fetch_from": "supplier_primary_contact.mobile_no",
+   "fieldname": "mobile_no",
+   "fieldtype": "Data",
+   "label": "Primary Contact No.",
+   "options": "Phone"
+  },
+  {
+   "fetch_from": "supplier_primary_contact.phone",
+   "fieldname": "phone",
+   "fieldtype": "Small Text",
+   "label": "Other Contact No."
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fetch_from": "supplier_primary_contact.email_id",
+   "fieldname": "email_id",
+   "fieldtype": "Data",
+   "label": "Primary Email Address",
+   "options": "Email"
+  },
+  {
+   "fetch_from": "supplier_primary_contact.email_id",
+   "fieldname": "other_email_address",
+   "fieldtype": "Small Text",
+   "label": "Other Email Address "
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "website",
+   "fieldtype": "Data",
+   "label": "Website"
+  },
+  {
+   "bold": 1,
+   "fieldname": "transporter",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "label": "Transporter",
+   "no_copy": 1,
+   "oldfieldname": "supplier_name",
+   "oldfieldtype": "Data",
+   "reqd": 1,
+   "unique": 1
+  }
+ ],
+ "icon": "fa fa-user",
+ "image_field": "image",
+ "links": [],
+ "modified": "2024-09-04 17:17:51.360268",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Transporter",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Purchase User"
+  },
+  {
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Purchase Manager",
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Purchase Master Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Stock User"
+  },
+  {
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Stock Manager"
+  },
+  {
+   "read": 1,
+   "role": "Accounts User"
+  },
+  {
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts Manager"
+  }
+ ],
+ "quick_entry": 1,
+ "show_name_in_global_search": 1,
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "ASC",
+ "states": [],
+ "title_field": "transporter",
+ "track_changes": 1
+}
