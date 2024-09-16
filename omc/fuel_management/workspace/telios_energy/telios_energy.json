@@ -1,254 +1,34 @@
 {
  "charts": [],
- "content": "[{\"id\":\"PYj7s5say2\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Telios Energy</span>\",\"col\":12}},{\"id\":\"Rfwb3Z6nzc\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Fuel Order Request \",\"col\":4}},{\"id\":\"Oo62EAGw5i\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Approved Fuel Order  List\",\"col\":3}},{\"id\":\"22Lak0YnBO\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"yFPaVauys_\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Diesel Sales (GH\u20b5)\",\"col\":3}},{\"id\":\"-7_7wnPUfc\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Liters of Diesel Sold\",\"col\":3}},{\"id\":\"owiP6IXtDi\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Liters of Petrol Sold\",\"col\":3}},{\"id\":\"mHMJPOcmii\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Petrol Sales (GH\u20b5)\",\"col\":3}},{\"id\":\"B8x3UgVbZE\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"L1rg9gmbvg\",\"type\":\"card\",\"data\":{\"card_name\":\"Profile\",\"col\":3}},{\"id\":\"Ki9BiEjznx\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":3}},{\"id\":\"rG-pTyiglI\",\"type\":\"card\",\"data\":{\"card_name\":\"Outlets\",\"col\":3}}]",
+ "content": "[{\"id\":\"PYj7s5say2\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Telios Energy</span>\",\"col\":12}},{\"id\":\"22Lak0YnBO\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"tk3aMP5zcw\",\"type\":\"custom_block\",\"data\":{\"custom_block_name\":\"map\",\"col\":12}},{\"id\":\"B8x3UgVbZE\",\"type\":\"spacer\",\"data\":{\"col\":12}}]",
  "creation": "2024-06-26 22:57:55.270811",
- "custom_blocks": [],
+ "custom_blocks": [
+  {
+   "custom_block_name": "map",
+   "label": "map"
+  }
+ ],
  "docstatus": 0,
  "doctype": "Workspace",
  "for_user": "",
  "hide_custom": 0,
  "icon": "color-energy-points",
- "idx": 10,
+ "idx": 11,
  "indicator_color": "",
  "is_hidden": 0,
  "label": "Telios Energy",
- "links": [
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Profile",
-   "link_count": 5,
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "User",
-   "link_count": 0,
-   "link_to": "User",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Event",
-   "link_count": 0,
-   "link_to": "Event",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Note",
-   "link_count": 0,
-   "link_to": "Note",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "File",
-   "link_count": 0,
-   "link_to": "File",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "ToDo",
-   "link_count": 0,
-   "link_to": "ToDo",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "description": "Forms relating to Outlets",
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Outlets",
-   "link_count": 4,
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Outlet",
-   "link_count": 0,
-   "link_to": "Outlet",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Pump Meter Reading",
-   "link_count": 0,
-   "link_to": "Fuel Meter Reading",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Delivery Verification",
-   "link_count": 0,
-   "link_to": "Fuel Delivery Verification",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Sales Deposit",
-   "link_count": 0,
-   "link_to": "Fuel Sales Deposit",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "description": " vxvxc ",
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Masters",
-   "link_count": 7,
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Fuel Orders",
-   "link_count": 0,
-   "link_to": "Fuel Order",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Fuel Trucks",
-   "link_count": 0,
-   "link_to": "Fuel Truck",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Drivers",
-   "link_count": 0,
-   "link_to": "Driver",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Mates",
-   "link_count": 0,
-   "link_to": "Mate",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Depots",
-   "link_count": 0,
-   "link_to": "Depot",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "BDCs",
-   "link_count": 0,
-   "link_to": "Bulk Distribution Company",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Permits",
-   "link_count": 0,
-   "link_to": "Permit",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  }
- ],
- "modified": "2024-08-27 14:51:03.035674",
+ "links": [],
+ "modified": "2024-09-12 07:35:27.801016",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Telios Energy",
- "number_cards": [
-  {
-   "label": "Liters of Diesel Sold",
-   "number_card_name": "Total Liters of Diesel Sold"
-  },
-  {
-   "label": "Diesel Sales (GH\u20b5)",
-   "number_card_name": "Total Diesel Sales"
-  },
-  {
-   "label": "Liters of Petrol Sold",
-   "number_card_name": "Total Liters of Petrol Sold"
-  },
-  {
-   "label": "Petrol Sales (GH\u20b5)",
-   "number_card_name": "Total Petrol Sales - Yearly"
-  }
- ],
+ "number_cards": [],
  "owner": "Administrator",
  "parent_page": "",
  "public": 1,
  "quick_lists": [],
  "roles": [],
- "sequence_id": 1.0,
- "shortcuts": [
-  {
-   "color": "Blue",
-   "doc_view": "New",
-   "label": "New Fuel Order Request ",
-   "link_to": "Fuel Order",
-   "stats_filter": "[]",
-   "type": "DocType"
-  },
-  {
-   "color": "Green",
-   "doc_view": "List",
-   "format": "{}",
-   "label": "Approved Fuel Order  List",
-   "link_to": "Fuel Delivery",
-   "stats_filter": "[]",
-   "type": "DocType"
-  }
- ],
+ "sequence_id": 2.0,
+ "shortcuts": [],
  "title": "Telios Energy"
 }

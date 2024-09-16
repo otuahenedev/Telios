@@ -9,6 +9,7 @@
   "outlet_details_section",
   "outlet_code",
   "outlet_type",
+  "storage_tanks",
   "column_break_dabi",
   "state",
   "reason",
@@ -16,56 +17,53 @@
   "column_break_rcne",
   "current_stock_level_diesel_l",
   "current_stock_level__petrol_l",
-  "total_capacity_for_diesel",
-  "total_capacity_for_petrol",
   "column_break_voaz",
   "diesel_total_sales",
   "petrol_total_sales",
   "outlet_pricing_section",
   "diesel_selling_price",
-  "petrol_selling_price",
   "column_break_ljom",
-  "price_change_datetime",
+  "petrol_selling_price",
   "station_section",
   "fuel_station_name",
   "outlet_profile_picture",
   "reorder_level_l",
+  "total_capacity_for_diesel",
+  "total_capacity_for_petrol",
   "column_break_xfjg",
   "station_manager",
   "station_manager_name",
   "contact",
   "fuel_attendant",
   "table_multiselect_vaju",
-  "fuel_dispensers_section",
-  "table_ghhq",
   "section_break_ybex",
   "company",
   "column_break_sehc",
   "point_of_contact",
-  "designation",
+  "fuel_dispensers_section",
+  "table_ghhq",
+  "section_break_oysz",
+  "super_tanks",
+  "diesel_storage_tanks",
+  "amended_from",
   "address_and_contact_section",
   "column_break_ghgl",
+  "address",
   "address_line_1",
-  "address_line_2",
   "city",
   "region",
   "column_break_hmpe",
+  "contacts",
   "email_address",
-  "phone_no",
-  "alternate_fixed_line_no",
+  "fixed_line_no",
   "mobile_no",
-  "alternate_mobile_no",
   "column_break_lwsl",
   "fuel_station_location",
   "latitude",
   "longitude",
   "show_map",
   "section_break_sjkp",
-  "geolocation_dbpz",
-  "section_break_oysz",
-  "super_tanks",
-  "diesel_storage_tanks",
-  "amended_from"
+  "geolocation_dbpz"
  ],
  "fields": [
   {
@@ -94,14 +92,14 @@
   {
    "fieldname": "total_capacity_for_petrol",
    "fieldtype": "Int",
-   "label": "Total Capacity For Petrol (L)",
+   "label": "Total Petrol Storage Capacity (Litre))",
    "non_negative": 1,
    "read_only": 1
   },
   {
    "fieldname": "total_capacity_for_diesel",
    "fieldtype": "Int",
-   "label": "Total Capacity For Diesel (L)",
+   "label": "Total Diesel Storage Capacity (Litre))",
    "non_negative": 1,
    "read_only": 1
   },
@@ -133,7 +131,7 @@
   {
    "fieldname": "super_tanks",
    "fieldtype": "Table",
-   "label": "Super Storage Tanks",
+   "label": "Petrol Storage Tanks",
    "options": "Tank Details Super"
   },
   {
@@ -152,16 +150,13 @@
    "fieldtype": "Column Break"
   },
   {
+   "fetch_from": "address.address_line1",
    "fieldname": "address_line_1",
    "fieldtype": "Data",
    "label": "Address Line 1"
   },
   {
-   "fieldname": "address_line_2",
-   "fieldtype": "Data",
-   "label": "Address Line 2"
-  },
-  {
+   "fetch_from": "address.city",
    "fieldname": "city",
    "fieldtype": "Data",
    "label": "City"
@@ -176,19 +171,14 @@
    "fieldtype": "Column Break"
   },
   {
+   "fetch_from": "contacts.email_id",
    "fieldname": "email_address",
    "fieldtype": "Data",
    "label": "Email Address"
   },
   {
-   "fieldname": "phone_no",
-   "fieldtype": "Phone",
-   "label": "Fixed Line No.",
-   "options": "Phone"
-  },
-  {
    "fieldname": "mobile_no",
-   "fieldtype": "Phone",
+   "fieldtype": "Read Only",
    "label": "Mobile No.",
    "options": "Phone"
   },
@@ -197,13 +187,13 @@
    "fieldtype": "Column Break"
   },
   {
-   "fetch_from": "location.latitude",
+   "fetch_from": "fuel_station_location.latitude",
    "fieldname": "latitude",
    "fieldtype": "Data",
    "label": "Latitude"
   },
   {
-   "fetch_from": "location.longitude",
+   "fetch_from": "fuel_station_location.longitude",
    "fieldname": "longitude",
    "fieldtype": "Data",
    "label": "Longitude"
@@ -228,11 +218,12 @@
    "report_hide": 1
   },
   {
+   "depends_on": "eval:doc.state == \"Active\" && doc.outlet_type == \"Fuel Station\"",
    "fieldname": "fuel_attendant",
    "fieldtype": "Table MultiSelect",
    "label": "Fuel Station Attendants",
-   "options": "Attendants Details",
-   "reqd": 1
+   "mandatory_depends_on": "eval:doc.state == \"Active\" && doc.outlet_type == \"Fuel Station\"",
+   "options": "Attendants Details"
   },
   {
    "fieldname": "table_multiselect_vaju",
@@ -278,11 +269,13 @@
    "options": "Location"
   },
   {
+   "default": "0",
    "fieldname": "reorder_level_l",
    "fieldtype": "Int",
    "label": "Reorder Level (L)"
   },
   {
+   "default": "0",
    "fieldname": "petrol_selling_price",
    "fieldtype": "Currency",
    "in_standard_filter": 1,
@@ -290,6 +283,7 @@
    "read_only": 1
   },
   {
+   "default": "0",
    "fieldname": "diesel_selling_price",
    "fieldtype": "Currency",
    "in_standard_filter": 1,
@@ -334,18 +328,6 @@
    "label": "Outlet Profile Picture"
   },
   {
-   "fieldname": "alternate_fixed_line_no",
-   "fieldtype": "Phone",
-   "label": "Alternate Fixed Line No",
-   "options": "Phone"
-  },
-  {
-   "fieldname": "alternate_mobile_no",
-   "fieldtype": "Phone",
-   "label": "Alternate Mobile No.",
-   "options": "Phone"
-  },
-  {
    "bold": 1,
    "fieldname": "state",
    "fieldtype": "Select",
@@ -365,11 +347,6 @@
    "label": "Company"
   },
   {
-   "fieldname": "designation",
-   "fieldtype": "Data",
-   "label": "Designation"
-  },
-  {
    "fieldname": "column_break_dabi",
    "fieldtype": "Column Break"
   },
@@ -377,7 +354,6 @@
    "collapsible": 1,
    "fieldname": "summary_section",
    "fieldtype": "Section Break",
-   "hidden": 1,
    "label": "Summary"
   },
   {
@@ -394,11 +370,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "price_change_datetime",
-   "fieldtype": "Datetime",
-   "label": "Price Change Datetime"
-  },
-  {
    "fieldname": "amended_from",
    "fieldtype": "Link",
    "label": "Amended From",
@@ -409,10 +380,12 @@
    "search_index": 1
   },
   {
+   "depends_on": "eval:doc.state == \"Active\" && doc.outlet_type == \"Fuel Station\"",
    "fieldname": "station_manager",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "label": "Station Supervisor",
-   "options": "Name"
+   "mandatory_depends_on": "eval:doc.state == \"Active\" && doc.outlet_type == \"Fuel Station\"",
+   "options": "Employee"
   },
   {
    "fieldname": "fuel_dispensers_section",
@@ -424,6 +397,30 @@
    "fieldname": "table_ghhq",
    "fieldtype": "Table",
    "options": "Fuel Dispenser"
+  },
+  {
+   "fieldname": "storage_tanks",
+   "fieldtype": "Link",
+   "label": "Storage Tanks",
+   "options": "Warehouse"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Link",
+   "label": "Address",
+   "options": "Address"
+  },
+  {
+   "fieldname": "contacts",
+   "fieldtype": "Link",
+   "label": "Contact",
+   "options": "Contact"
+  },
+  {
+   "fieldname": "fixed_line_no",
+   "fieldtype": "Read Only",
+   "label": "Fixed Line No",
+   "options": "Phone"
   }
  ],
  "image_field": "outlet_profile_picture",
@@ -435,7 +432,7 @@
    "link_fieldname": "outlet"
   }
  ],
- "modified": "2024-08-26 08:24:34.767308",
+ "modified": "2024-09-16 09:03:40.683200",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Outlet",

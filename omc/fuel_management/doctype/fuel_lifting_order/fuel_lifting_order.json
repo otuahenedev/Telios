@@ -1,0 +1,248 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:TELIOS-FPO-{MM}-{#####}",
+ "creation": "2024-09-04 11:50:39.178525",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_dwxd",
+  "fuel_order_ref",
+  "product",
+  "column_break_wlvy",
+  "datetime",
+  "amended_from",
+  "section_break_myjc",
+  "outlet_fuel_distribution",
+  "transportation_cost_section",
+  "transporter",
+  "bvr",
+  "column_break_ebpm",
+  "transport_mod",
+  "transporters_bank",
+  "transporters_bank_account_no",
+  "attach_receipt",
+  "supply_cost_section",
+  "bdc",
+  "depot",
+  "supplier_mod",
+  "column_break_mene",
+  "bdcs_bank",
+  "bdcs_bank_account_no_copy",
+  "attach_bank_receipt",
+  "totals_section",
+  "column_break_ubkm",
+  "column_break_sxje",
+  "transportation_cost",
+  "total_fuel_distribution_ghs",
+  "grand_total_ghs"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_dwxd",
+   "fieldtype": "Section Break"
+  },
+  {
+   "description": "Fuel Supplier",
+   "fieldname": "bdc",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "BDC",
+   "options": "Bulk Distribution Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_wlvy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "datetime",
+   "fieldtype": "Datetime",
+   "label": "Datetime"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Fuel Lifting Order",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "depot",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Depot",
+   "options": "Fuel Depot",
+   "reqd": 1
+  },
+  {
+   "fieldname": "fuel_order_ref",
+   "fieldtype": "Link",
+   "label": "Fuel Order Ref.",
+   "options": "Fuel Lifting Request"
+  },
+  {
+   "fieldname": "section_break_myjc",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "outlet_fuel_distribution",
+   "fieldtype": "Table",
+   "label": "Outlet Fuel Distribution",
+   "options": "Fuel Purchase Distribution"
+  },
+  {
+   "fieldname": "transportation_cost_section",
+   "fieldtype": "Section Break",
+   "label": "Transportation Cost"
+  },
+  {
+   "fieldname": "transporter",
+   "fieldtype": "Link",
+   "label": "Transporter",
+   "options": "Supplier"
+  },
+  {
+   "description": "Fuel Truck",
+   "fieldname": "bvr",
+   "fieldtype": "Link",
+   "label": "BVR ",
+   "options": "Fuel Truck"
+  },
+  {
+   "fieldname": "column_break_ebpm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "fieldname": "transportation_cost",
+   "fieldtype": "Currency",
+   "label": "Transportation Cost (GHS)"
+  },
+  {
+   "fieldname": "totals_section",
+   "fieldtype": "Section Break",
+   "label": "Totals"
+  },
+  {
+   "fieldname": "column_break_ubkm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_sxje",
+   "fieldtype": "Column Break"
+  },
+  {
+   "bold": 1,
+   "fieldname": "grand_total_ghs",
+   "fieldtype": "Currency",
+   "label": "Grand Total (GHS)"
+  },
+  {
+   "default": "Wire Transfer",
+   "fieldname": "transport_mod",
+   "fieldtype": "Link",
+   "label": "Mode of Payment ",
+   "options": "Mode of Payment",
+   "reqd": 1
+  },
+  {
+   "fieldname": "transporters_bank",
+   "fieldtype": "Link",
+   "label": "Transporter's Bank",
+   "options": "Bank",
+   "reqd": 1
+  },
+  {
+   "fieldname": "transporters_bank_account_no",
+   "fieldtype": "Link",
+   "label": "Transporter's Bank Account No",
+   "options": "Bank",
+   "reqd": 1
+  },
+  {
+   "fieldname": "attach_receipt",
+   "fieldtype": "Attach Image",
+   "label": "Attach Receipt "
+  },
+  {
+   "fieldname": "supply_cost_section",
+   "fieldtype": "Section Break",
+   "label": "Supply Cost"
+  },
+  {
+   "default": "Wire Transfer",
+   "fieldname": "supplier_mod",
+   "fieldtype": "Link",
+   "label": "Mode of Payment",
+   "options": "Mode of Payment"
+  },
+  {
+   "fieldname": "column_break_mene",
+   "fieldtype": "Column Break"
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "fieldname": "total_fuel_distribution_ghs",
+   "fieldtype": "Currency",
+   "label": "Total Fuel Distribution (GHS)"
+  },
+  {
+   "fieldname": "bdcs_bank",
+   "fieldtype": "Link",
+   "label": "BDC's Bank",
+   "options": "Bank"
+  },
+  {
+   "fieldname": "bdcs_bank_account_no_copy",
+   "fieldtype": "Link",
+   "label": "BDC's Bank Account No Copy",
+   "options": "Bank"
+  },
+  {
+   "fieldname": "attach_bank_receipt",
+   "fieldtype": "Attach Image",
+   "label": "Attach Bank Receipt"
+  },
+  {
+   "fieldname": "product",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Product",
+   "options": "\nDiesel\nPetrol",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-09-11 15:17:57.273073",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Fuel Lifting Order",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

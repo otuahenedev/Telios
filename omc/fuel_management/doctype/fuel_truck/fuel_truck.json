@@ -12,12 +12,14 @@
   "type_of_vehicle",
   "license_plate",
   "truck_profile_image",
-  "external_truck",
+  "type",
   "column_break_3",
   "status",
   "make",
   "model",
   "volume_l",
+  "fuel_type",
+  "fuel_consumption_litres",
   "external_truck_details_section",
   "point_of_contact",
   "column_break_lxgf",
@@ -25,13 +27,13 @@
   "section_break_sqep",
   "table_qaot",
   "vehicle_details",
+  "dr",
   "last_odometer",
   "acquisition_date",
   "location",
   "column_break_8",
   "chassis_no",
   "vehicle_value",
-  "dr",
   "insurance_details",
   "insurance_company",
   "policy_no",
@@ -39,7 +41,6 @@
   "start_date",
   "end_date",
   "additional_details",
-  "fuel_type",
   "uom",
   "carbon_check_date",
   "column_break_21",
@@ -63,8 +64,7 @@
   {
    "fieldname": "make",
    "fieldtype": "Data",
-   "label": "Make",
-   "reqd": 1
+   "label": "Make"
   },
   {
    "fieldname": "model",
@@ -79,8 +79,7 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Type of Vehicle",
-   "options": "\nTanker\nTricycle\nMotocycle\nCar",
-   "reqd": 1
+   "options": "\nTanker\nTricycle\nMotocycle\nCar"
   },
   {
    "description": "Tanker Volume Capacity",
@@ -93,7 +92,7 @@
    "fieldname": "table_qaot",
    "fieldtype": "Table",
    "label": "Tank Compartment",
-   "options": "Tanker Compartments",
+   "options": "Tanker Compartment",
    "reqd": 1
   },
   {
@@ -212,7 +211,7 @@
    "fieldname": "dr",
    "fieldtype": "Link",
    "in_standard_filter": 1,
-   "label": "Driver",
+   "label": "Default Driver",
    "options": "Employee"
   },
   {
@@ -235,14 +234,7 @@
    "fieldtype": "Section Break"
   },
   {
-   "default": "0",
-   "description": "if the fuel truck does or does not belong to the company.",
-   "fieldname": "external_truck",
-   "fieldtype": "Check",
-   "label": "External Transporter"
-  },
-  {
-   "depends_on": "external_truck",
+   "depends_on": "eval:doc.type == \"External\"",
    "fieldname": "external_truck_details_section",
    "fieldtype": "Section Break",
    "label": "External Truck Details"
@@ -263,11 +255,28 @@
    "fieldtype": "Link",
    "label": "Address",
    "options": "Address"
+  },
+  {
+   "description": "Fuel consumption per 1km",
+   "fieldname": "fuel_consumption_litres",
+   "fieldtype": "Int",
+   "label": "Fuel Consumption (Litres)",
+   "mandatory_depends_on": "eval:doc.type == \"Internal\""
+  },
+  {
+   "default": "Internal",
+   "description": "if the fuel truck does or does not belong to the company.",
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Transporter",
+   "options": "External\nInternal"
   }
  ],
  "image_field": "truck_profile_image",
  "links": [],
- "modified": "2024-08-14 12:28:03.834348",
+ "modified": "2024-09-11 17:17:36.228267",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Fuel Truck",

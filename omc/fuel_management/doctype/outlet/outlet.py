@@ -16,11 +16,10 @@ class Outlet(Document):
 		self.total_capacity_for_petrol = total_pet_tank
 
 		# calculate total storage for diesel tanks under one fuel station.
-		total_die_tank = 7
+		total_die_tank = 0
 		for store in self.diesel_storage_tanks:
 			total_die_tank += store.volume
 
 		#placing it in the right field
 		self.total_capacity_for_diesel = total_die_tank
-
 

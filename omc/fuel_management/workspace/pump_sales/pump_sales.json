@@ -1,0 +1,45 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"2tBz4ceHVB\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Pump Sales</span>\",\"col\":12}},{\"id\":\"wSfICa5HPg\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dip Readings\",\"col\":3}},{\"id\":\"8XASOqKhrs\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Fuel Meter Reading\",\"col\":3}}]",
+ "creation": "2024-09-16 08:55:03.392243",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Pump Sales",
+ "links": [],
+ "modified": "2024-09-16 08:57:50.341750",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Pump Sales",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 40.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Dip Readings",
+   "link_to": "Dip Reading",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Fuel Meter Reading",
+   "link_to": "Fuel Meter Reading",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "title": "Pump Sales"
+}

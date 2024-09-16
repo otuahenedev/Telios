@@ -131,7 +131,7 @@
    "fieldname": "depot",
    "fieldtype": "Link",
    "label": "Depot",
-   "options": "Depot",
+   "options": "Fuel Depot",
    "read_only": 1
   },
   {
@@ -217,7 +217,7 @@
    "fieldname": "fdrar",
    "fieldtype": "Link",
    "label": "Fuel Delivery Request Approval Reference",
-   "options": "Fuel Order"
+   "options": "Fuel Lifting Request"
   },
   {
    "depends_on": "eval:doc.fuel_type == \"Diesel\"",
@@ -411,7 +411,7 @@
  "is_calendar_and_gantt": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-08-27 15:23:04.991066",
+ "modified": "2024-09-11 15:17:56.751995",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Fuel Delivery",

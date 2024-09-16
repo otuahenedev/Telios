@@ -1,0 +1,55 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:UPPF Rate - {distancekm}",
+ "creation": "2024-09-11 12:56:47.211187",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "distancekm",
+  "column_break_lrdk",
+  "frt_rate_per_litre"
+ ],
+ "fields": [
+  {
+   "fieldname": "distancekm",
+   "fieldtype": "Int",
+   "label": "Distance(km)"
+  },
+  {
+   "fieldname": "column_break_lrdk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "frt_rate_per_litre",
+   "fieldtype": "Currency",
+   "label": "Frt Rate (per litre)",
+   "precision": "7"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-09-12 10:33:11.513703",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "UPPF Rates",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

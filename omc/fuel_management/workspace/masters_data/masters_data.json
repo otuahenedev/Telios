@@ -1,0 +1,126 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"4XsV9B-Jly\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Masters Data</span>\",\"col\":12}},{\"id\":\"ytcAQUO7zr\",\"type\":\"card\",\"data\":{\"card_name\":\"Logistics & Distributions Masters\",\"col\":4}},{\"id\":\"QwlS6FVJaA\",\"type\":\"card\",\"data\":{\"card_name\":\"Compliance Masters\",\"col\":4}},{\"id\":\"UfZy7Xqgfh\",\"type\":\"card\",\"data\":{\"card_name\":\"Accounts Masters \",\"col\":4}}]",
+ "creation": "2024-09-10 15:21:32.860777",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "external-link",
+ "idx": 0,
+ "indicator_color": "",
+ "is_hidden": 0,
+ "label": "Masters Data",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Financials ",
+   "link_count": 1,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Bank Account",
+   "link_count": 0,
+   "link_to": "Bank Account",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Logistics & Distributions Masters",
+   "link_count": 3,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Driver",
+   "link_count": 0,
+   "link_to": "Driver",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Mate",
+   "link_count": 0,
+   "link_to": "Mate",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Fuel Truck",
+   "link_count": 0,
+   "link_to": "Fuel Truck",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Compliance Masters",
+   "link_count": 1,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Compliance Ceritficate",
+   "link_count": 0,
+   "link_to": "Compliance Ceritficate",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Accounts Masters ",
+   "link_count": 1,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Bank Account",
+   "link_count": 0,
+   "link_to": "Bank Account",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2024-09-16 08:07:53.039326",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Masters Data",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 3.0,
+ "shortcuts": [],
+ "title": "Masters Data"
+}

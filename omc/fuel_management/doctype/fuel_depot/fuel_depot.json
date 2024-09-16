@@ -1,0 +1,272 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "format:{depot} - {bdc_name}",
+ "creation": "2024-07-21 22:38:55.096191",
+ "doctype": "DocType",
+ "document_type": "Setup",
+ "engine": "InnoDB",
+ "field_order": [
+  "depot",
+  "column_break_mwkg",
+  "bdc",
+  "bdc_name",
+  "section_break_wbjf",
+  "representative",
+  "location",
+  "primary_contact_no",
+  "other_contacts",
+  "primary_email",
+  "other_email_address",
+  "column_break_wobv",
+  "address_line_1",
+  "address_line_2",
+  "citytown",
+  "reg",
+  "country",
+  "section_credit_limit",
+  "payment_terms",
+  "default_payable_account",
+  "accounts",
+  "lft",
+  "rgt",
+  "old_parent"
+ ],
+ "fields": [
+  {
+   "fieldname": "depot",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Depot",
+   "oldfieldname": "supplier_type",
+   "oldfieldtype": "Data",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "column_break_mwkg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "representative",
+   "fieldtype": "Data",
+   "label": "Primary Contact",
+   "options": "Name"
+  },
+  {
+   "fieldname": "section_break_wbjf",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_wobv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Link",
+   "label": "Location",
+   "options": "Location"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_credit_limit",
+   "fieldtype": "Section Break",
+   "hidden": 1,
+   "label": "Credit Limit"
+  },
+  {
+   "fieldname": "payment_terms",
+   "fieldtype": "Link",
+   "label": "Default Payment Terms Template",
+   "options": "Payment Terms Template"
+  },
+  {
+   "fieldname": "default_payable_account",
+   "fieldtype": "Section Break",
+   "label": "Default Payable Account"
+  },
+  {
+   "depends_on": "eval:!doc.__islocal",
+   "description": "Mention if non-standard receivable account applicable",
+   "fieldname": "accounts",
+   "fieldtype": "Table",
+   "label": "Accounts",
+   "options": "Party Account"
+  },
+  {
+   "fieldname": "lft",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "lft",
+   "no_copy": 1,
+   "print_hide": 1,
+   "report_hide": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "rgt",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "rgt",
+   "no_copy": 1,
+   "print_hide": 1,
+   "report_hide": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "old_parent",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "ignore_user_permissions": 1,
+   "label": "Old Parent",
+   "no_copy": 1,
+   "options": "Supplier Group",
+   "print_hide": 1,
+   "report_hide": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "bold": 1,
+   "fieldname": "bdc",
+   "fieldtype": "Link",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "BDC",
+   "link_filters": "[[\"Supplier\",\"supplier_group\",\"=\",\"White Products\"]]",
+   "options": "Supplier",
+   "reqd": 1
+  },
+  {
+   "fieldname": "primary_contact_no",
+   "fieldtype": "Phone",
+   "label": "Primary Contact No.",
+   "report_hide": 1
+  },
+  {
+   "fieldname": "primary_email",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Primary Email Address",
+   "options": "Email",
+   "print_hide": 1,
+   "report_hide": 1
+  },
+  {
+   "fetch_from": "bdc.supplier_name",
+   "fieldname": "bdc_name",
+   "fieldtype": "Read Only",
+   "hidden": 1,
+   "label": "bdc_name",
+   "print_hide": 1,
+   "report_hide": 1
+  },
+  {
+   "fieldname": "other_contacts",
+   "fieldtype": "Small Text",
+   "label": "Other Contacts"
+  },
+  {
+   "fieldname": "other_email_address",
+   "fieldtype": "Small Text",
+   "label": "Other Email Address"
+  },
+  {
+   "fieldname": "address_line_1",
+   "fieldtype": "Data",
+   "label": "Address Line 1"
+  },
+  {
+   "fieldname": "address_line_2",
+   "fieldtype": "Data",
+   "label": "Address Line 2"
+  },
+  {
+   "fieldname": "citytown",
+   "fieldtype": "Data",
+   "label": "City/Town"
+  },
+  {
+   "fieldname": "reg",
+   "fieldtype": "Link",
+   "label": "Region",
+   "options": "Province - Region - States"
+  },
+  {
+   "fieldname": "country",
+   "fieldtype": "Link",
+   "label": "Country",
+   "options": "Country"
+  }
+ ],
+ "icon": "fa fa-flag",
+ "links": [],
+ "modified": "2024-09-11 15:17:22.013300",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Fuel Depot",
+ "naming_rule": "Expression",
+ "nsm_parent_field": "parent_supplier_group",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Purchase Manager"
+  },
+  {
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Purchase User"
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Purchase Master Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "permlevel": 1,
+   "read": 1,
+   "role": "Purchase Master Manager",
+   "write": 1
+  },
+  {
+   "permlevel": 1,
+   "read": 1,
+   "role": "Purchase Manager"
+  },
+  {
+   "permlevel": 1,
+   "read": 1,
+   "role": "Purchase User"
+  },
+  {
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts User",
+   "share": 1
+  }
+ ],
+ "quick_entry": 1,
+ "show_name_in_global_search": 1,
+ "sort_field": "modified",
+ "sort_order": "ASC",
+ "states": []
+}

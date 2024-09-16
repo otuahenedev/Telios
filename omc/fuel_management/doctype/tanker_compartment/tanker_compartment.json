@@ -1,6 +1,6 @@
 {
  "actions": [],
- "creation": "2024-06-28 13:19:22.516309",
+ "creation": "2024-09-11 16:45:30.527561",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
@@ -9,7 +9,6 @@
  ],
  "fields": [
   {
-   "default": "0",
    "fieldname": "volume_l",
    "fieldtype": "Int",
    "in_list_view": 1,
@@ -22,10 +21,10 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-09-11 17:02:04.387731",
+ "modified": "2024-09-11 16:45:30.527561",
  "modified_by": "Administrator",
  "module": "Fuel Management",
- "name": "Tank Compartment",
+ "name": "Tanker Compartment",
  "owner": "Administrator",
  "permissions": [],
  "sort_field": "modified",
