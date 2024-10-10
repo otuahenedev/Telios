@@ -22,12 +22,13 @@
   "petrol_total_sales",
   "outlet_pricing_section",
   "diesel_selling_price",
+  "diesel_reorder_level_l",
   "column_break_ljom",
   "petrol_selling_price",
+  "petrol_reorder_level_l",
   "station_section",
   "fuel_station_name",
   "outlet_profile_picture",
-  "reorder_level_l",
   "total_capacity_for_diesel",
   "total_capacity_for_petrol",
   "column_break_xfjg",
@@ -228,7 +229,7 @@
   {
    "fieldname": "table_multiselect_vaju",
    "fieldtype": "Table MultiSelect",
-   "label": "Station Asserts",
+   "label": "Station Assets",
    "options": "Station Asset"
   },
   {
@@ -270,25 +271,17 @@
   },
   {
    "default": "0",
-   "fieldname": "reorder_level_l",
-   "fieldtype": "Int",
-   "label": "Reorder Level (L)"
-  },
-  {
-   "default": "0",
    "fieldname": "petrol_selling_price",
    "fieldtype": "Currency",
    "in_standard_filter": 1,
-   "label": "Petrol Selling Price",
-   "read_only": 1
+   "label": "Petrol Selling Price"
   },
   {
    "default": "0",
    "fieldname": "diesel_selling_price",
    "fieldtype": "Currency",
    "in_standard_filter": 1,
-   "label": "Diesel Selling Price ",
-   "read_only": 1
+   "label": "Diesel Selling Price "
   },
   {
    "depends_on": "eval:doc.state != \"Active\"",
@@ -335,7 +328,8 @@
    "in_preview": 1,
    "in_standard_filter": 1,
    "label": "Status",
-   "options": "Active\nInactive\nClosed"
+   "options": "Active\nMaintenance\nInactive\nOut of Service\nPlanned\nUnder Construction",
+   "sort_options": 1
   },
   {
    "fieldname": "column_break_rcne",
@@ -363,7 +357,7 @@
   {
    "fieldname": "outlet_pricing_section",
    "fieldtype": "Section Break",
-   "label": "Outlet Pricing"
+   "label": "Outlet Pricing & Reordering Level"
   },
   {
    "fieldname": "column_break_ljom",
@@ -421,18 +415,35 @@
    "fieldtype": "Read Only",
    "label": "Fixed Line No",
    "options": "Phone"
+  },
+  {
+   "default": "0",
+   "fieldname": "diesel_reorder_level_l",
+   "fieldtype": "Int",
+   "label": "AGO Reorder Level (L)"
+  },
+  {
+   "default": "0",
+   "fieldname": "petrol_reorder_level_l",
+   "fieldtype": "Int",
+   "label": "PMS Reorder Level (L) "
   }
  ],
  "image_field": "outlet_profile_picture",
  "index_web_pages_for_search": 1,
  "links": [
   {
-   "group": "Readings",
-   "link_doctype": "Fuel Meter Reading",
+   "group": "Pump Readings",
+   "link_doctype": "Fuel Pump Reading",
+   "link_fieldname": "outlet"
+  },
+  {
+   "group": "Dip Readings",
+   "link_doctype": "Dip Reading",
    "link_fieldname": "outlet"
   }
  ],
- "modified": "2024-09-16 09:03:40.683200",
+ "modified": "2024-10-03 07:55:36.372550",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Outlet",
@@ -454,6 +465,52 @@
   {
    "read": 1,
    "role": "General"
+  },
+  {
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Operations Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Operations Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "General",
+   "share": 1
   }
  ],
  "sort_field": "modified",
@@ -476,8 +533,24 @@
    "title": "Bulk User Location"
   },
   {
-   "color": "Yellow",
+   "color": "Light Blue",
    "title": "Fuel Station"
+  },
+  {
+   "color": "Cyan",
+   "title": "Maintenance"
+  },
+  {
+   "color": "Orange",
+   "title": "Out of Service"
+  },
+  {
+   "color": "Blue",
+   "title": "Planned"
+  },
+  {
+   "color": "Yellow",
+   "title": "Under Construction"
   }
  ],
  "track_changes": 1

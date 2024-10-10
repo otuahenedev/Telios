@@ -7,12 +7,12 @@
  "doctype": "Workspace",
  "for_user": "",
  "hide_custom": 0,
- "idx": 0,
+ "idx": 1,
  "indicator_color": "green",
  "is_hidden": 0,
  "label": "Pump Sales",
  "links": [],
- "modified": "2024-09-16 08:57:50.341750",
+ "modified": "2024-10-05 12:40:31.667985",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Pump Sales",
@@ -27,16 +27,16 @@
   {
    "color": "Grey",
    "doc_view": "List",
-   "label": "Dip Readings",
-   "link_to": "Dip Reading",
+   "label": "Fuel Meter Reading",
+   "link_to": "Fuel Dispenser Reading",
    "stats_filter": "[]",
    "type": "DocType"
   },
   {
    "color": "Grey",
    "doc_view": "List",
-   "label": "Fuel Meter Reading",
-   "link_to": "Fuel Meter Reading",
+   "label": "Dip Readings",
+   "link_to": "Station Tank Reading",
    "stats_filter": "[]",
    "type": "DocType"
   }

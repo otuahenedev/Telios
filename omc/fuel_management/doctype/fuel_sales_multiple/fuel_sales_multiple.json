@@ -16,7 +16,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Outlet",
-   "options": "Fuel Meter Reading",
+   "options": "Fuel Pump Reading",
    "reqd": 1
   },
   {
@@ -39,7 +39,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-07-25 13:10:08.415390",
+ "modified": "2024-09-16 10:52:50.397856",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Fuel Sales Multiple",

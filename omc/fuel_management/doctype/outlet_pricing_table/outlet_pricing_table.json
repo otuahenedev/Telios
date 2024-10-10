@@ -6,47 +6,42 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "outlet",
-  "diesel_price",
-  "petrol_price",
+  "product",
+  "rate",
   "datetime"
  ],
  "fields": [
   {
-   "fieldname": "outlet",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Outlet",
-   "options": "Outlet",
-   "reqd": 1
-  },
-  {
-   "fieldname": "diesel_price",
-   "fieldtype": "Currency",
-   "in_list_view": 1,
-   "label": "Diesel Price",
-   "non_negative": 1,
-   "reqd": 1
-  },
-  {
-   "fieldname": "petrol_price",
-   "fieldtype": "Currency",
-   "in_list_view": 1,
-   "label": "Petrol Price",
-   "non_negative": 1,
-   "reqd": 1
-  },
-  {
    "default": "Now",
+   "depends_on": "rate",
    "fieldname": "datetime",
    "fieldtype": "Datetime",
-   "label": "Datetime "
+   "label": "Datetime ",
+   "read_only": 1
+  },
+  {
+   "fieldname": "product",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Product",
+   "link_filters": "[[\"Item\",\"item_group\",\"=\",\"White Products\"]]",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "depends_on": "rate",
+   "fieldname": "rate",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Rate",
+   "non_negative": 1,
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-08-24 22:09:11.230301",
+ "modified": "2024-10-03 19:58:37.080052",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Outlet Pricing Table",

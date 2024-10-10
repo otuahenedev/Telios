@@ -1,0 +1,56 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-10-04 18:23:48.610341",
+ "description": "Return To Tank Details",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "fuel_type",
+  "litres_used",
+  "attach_video_evidence",
+  "attach_image_evidence"
+ ],
+ "fields": [
+  {
+   "fieldname": "fuel_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Fuel Type",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "litres_used",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Litres Used",
+   "reqd": 1
+  },
+  {
+   "fieldname": "attach_video_evidence",
+   "fieldtype": "Attach",
+   "in_list_view": 1,
+   "label": "Attach Video Evidence ",
+   "reqd": 1
+  },
+  {
+   "fieldname": "attach_image_evidence",
+   "fieldtype": "Attach Image",
+   "label": "Attach Image Evidence "
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-10-04 18:36:01.792749",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "RTT Details",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

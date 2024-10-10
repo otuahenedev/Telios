@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"4XsV9B-Jly\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Masters Data</span>\",\"col\":12}},{\"id\":\"ytcAQUO7zr\",\"type\":\"card\",\"data\":{\"card_name\":\"Logistics & Distributions Masters\",\"col\":4}},{\"id\":\"QwlS6FVJaA\",\"type\":\"card\",\"data\":{\"card_name\":\"Compliance Masters\",\"col\":4}},{\"id\":\"UfZy7Xqgfh\",\"type\":\"card\",\"data\":{\"card_name\":\"Accounts Masters \",\"col\":4}}]",
+ "content": "[{\"id\":\"4XsV9B-Jly\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Masters Data</span>\",\"col\":12}},{\"id\":\"ytcAQUO7zr\",\"type\":\"card\",\"data\":{\"card_name\":\"Logistics & Distributions Masters\",\"col\":4}},{\"id\":\"2DvuURDq4a\",\"type\":\"card\",\"data\":{\"card_name\":\"Station\",\"col\":4}},{\"id\":\"QwlS6FVJaA\",\"type\":\"card\",\"data\":{\"card_name\":\"Compliance Masters\",\"col\":4}},{\"id\":\"UfZy7Xqgfh\",\"type\":\"card\",\"data\":{\"card_name\":\"Accounts Masters \",\"col\":4}}]",
  "creation": "2024-09-10 15:21:32.860777",
  "custom_blocks": [],
  "docstatus": 0,
@@ -13,25 +13,6 @@
  "is_hidden": 0,
  "label": "Masters Data",
  "links": [
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Financials ",
-   "link_count": 1,
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Bank Account",
-   "link_count": 0,
-   "link_to": "Bank Account",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
   {
    "hidden": 0,
    "is_query_report": 0,
@@ -108,9 +89,38 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Station",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Outlet",
+   "link_count": 0,
+   "link_to": "Outlet",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Fuel Station Pricing",
+   "link_count": 0,
+   "link_to": "Fuel Station Pricing",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2024-09-16 08:07:53.039326",
+ "modified": "2024-09-16 13:35:32.090985",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Masters Data",

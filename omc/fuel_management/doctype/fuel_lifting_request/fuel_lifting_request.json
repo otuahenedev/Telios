@@ -39,6 +39,8 @@
   "column_break_rwre",
   "internal_cost_of_transport",
   "external_cost_of_transport",
+  "cost_of_supplied_fuel",
+  "total_cost",
   "audit_tab",
   "audit_section",
   "fjfskfsgk",
@@ -120,6 +122,7 @@
    "description": "Supplier",
    "fieldname": "bdc",
    "fieldtype": "Link",
+   "in_preview": 1,
    "label": "BDC",
    "link_filters": "[[\"Supplier\",\"supplier_group\",\"=\",\"White Products\"]]",
    "options": "Supplier",
@@ -128,6 +131,7 @@
   {
    "fieldname": "driver",
    "fieldtype": "Link",
+   "in_preview": 1,
    "label": "Driver",
    "options": "Driver",
    "reqd": 1
@@ -343,6 +347,7 @@
    "description": "Fuel Truck",
    "fieldname": "brv_internal",
    "fieldtype": "Link",
+   "in_preview": 1,
    "label": "BRV #",
    "link_filters": "[[\"Fuel Truck\",\"type\",\"=\",\"Internal\"]]",
    "mandatory_depends_on": "eval:doc.mode_of_transport == \"Internal Transport\"\n",
@@ -353,6 +358,7 @@
    "description": "Fuel Truck",
    "fieldname": "brv_external",
    "fieldtype": "Link",
+   "in_preview": 1,
    "label": "BRV #",
    "link_filters": "[[\"Fuel Truck\",\"type\",\"=\",\"External\"]]",
    "mandatory_depends_on": "eval:doc.mode_of_transport == \"Internal Transport\"",
@@ -362,12 +368,13 @@
    "bold": 1,
    "fieldname": "transportation_cost_section",
    "fieldtype": "Section Break",
-   "label": "Transportation Cost"
+   "label": "Cost"
   },
   {
    "depends_on": "eval:doc.mode_of_transport == \"External Transport\"",
    "fieldname": "transporter_quotation",
    "fieldtype": "Link",
+   "in_preview": 1,
    "label": "Transporter Quotation",
    "options": "Supplier Quotation"
   },
@@ -393,11 +400,24 @@
    "fieldname": "distance",
    "fieldtype": "Int",
    "label": "Route Distance"
+  },
+  {
+   "fieldname": "cost_of_supplied_fuel",
+   "fieldtype": "Currency",
+   "label": "Cost of Supplied Fuel",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "fieldname": "total_cost",
+   "fieldtype": "Currency",
+   "label": "Total Cost",
+   "read_only": 1
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2024-09-16 08:49:51.851550",
+ "modified": "2024-09-26 14:30:54.296550",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Fuel Lifting Request",

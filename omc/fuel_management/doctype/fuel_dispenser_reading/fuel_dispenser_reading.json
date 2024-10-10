@@ -1,0 +1,399 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:TELIOS-{outlet}-{YYYY}-{###}",
+ "creation": "2024-10-04 18:07:35.814250",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_wkbk",
+  "amended_from",
+  "status",
+  "outlet",
+  "st",
+  "station_supervisor",
+  "column_break_gawm",
+  "date",
+  "datetime",
+  "ago_rate",
+  "pms_rate",
+  "rtt",
+  "incurred_expenses",
+  "returned_to_tank_section",
+  "ago_diesel_column",
+  "ago_litres_used",
+  "attached_video_evidence_ago",
+  "pms_petrol_column",
+  "pms_litres_used",
+  "attached_video_evidence_pms",
+  "section_break_rsvd",
+  "table_wchy",
+  "r",
+  "column_break_sjpv",
+  "ago_readings",
+  "ago__pump_readings_diesel",
+  "ago_litres_sold",
+  "ago_sales",
+  "ago_product",
+  "pms_readings",
+  "pms_pump_readings_petrol",
+  "pms_litres_sold",
+  "pms_sales",
+  "pms_product",
+  "summary_section",
+  "total_litres_sold",
+  "rttc",
+  "column_break_mkpv",
+  "total_sales",
+  "section_break_edrk",
+  "fuel_sales_deposit_ref",
+  "column_break_hqle",
+  "deposit_date",
+  "paid_amount",
+  "deposit_slipreceipt",
+  "signature"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_wkbk",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Fuel Dispenser Reading",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fetch_from": "st.custom_outlet",
+   "fieldname": "outlet",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Outlet",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "st",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Station Manager",
+   "options": "Employee"
+  },
+  {
+   "fetch_from": "st.employee_name",
+   "fieldname": "station_supervisor",
+   "fieldtype": "Data",
+   "label": "Station Supervisor",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_gawm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Now",
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date",
+   "print_hide": 1,
+   "report_hide": 1
+  },
+  {
+   "default": "Now",
+   "fieldname": "datetime",
+   "fieldtype": "Datetime",
+   "hidden": 1,
+   "label": "Datetime"
+  },
+  {
+   "default": "0",
+   "fieldname": "rtt",
+   "fieldtype": "Check",
+   "label": "Returned To Tank Conducted "
+  },
+  {
+   "default": "0",
+   "fieldname": "incurred_expenses",
+   "fieldtype": "Check",
+   "label": "Incurred Expenses "
+  },
+  {
+   "depends_on": "eval:doc.rtt == 1",
+   "fieldname": "returned_to_tank_section",
+   "fieldtype": "Section Break",
+   "label": "Returned To Tank"
+  },
+  {
+   "depends_on": "eval:doc.rtt == 1",
+   "fieldname": "table_wchy",
+   "fieldtype": "Table",
+   "hidden": 1,
+   "options": "RTT Details"
+  },
+  {
+   "fetch_from": "outlet.custom_ago_price",
+   "fieldname": "ago_rate",
+   "fieldtype": "Currency",
+   "label": "AGO Rate"
+  },
+  {
+   "fetch_from": "outlet.custom_pms_price_",
+   "fieldname": "pms_rate",
+   "fieldtype": "Currency",
+   "label": "PMS Rate"
+  },
+  {
+   "fieldname": "r",
+   "fieldtype": "Section Break",
+   "label": "Pump Readings"
+  },
+  {
+   "bold": 1,
+   "fieldname": "ago__pump_readings_diesel",
+   "fieldtype": "Table",
+   "label": "AGO  Pump Readings (Diesel)",
+   "options": "Pump Readings"
+  },
+  {
+   "bold": 1,
+   "fieldname": "pms_pump_readings_petrol",
+   "fieldtype": "Table",
+   "label": "PMS Pump Readings (Petrol)",
+   "options": "Pump Readings"
+  },
+  {
+   "bold": 1,
+   "fieldname": "column_break_sjpv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ago_readings",
+   "fieldtype": "Heading",
+   "label": "AGO Readings"
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "fieldname": "ago_litres_sold",
+   "fieldtype": "Float",
+   "label": "AGO Litres Sold ",
+   "precision": "0",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "fieldname": "ago_sales",
+   "fieldtype": "Currency",
+   "label": "AGO Sales  ",
+   "read_only": 1
+  },
+  {
+   "fieldname": "pms_readings",
+   "fieldtype": "Heading",
+   "label": "PMS Readings"
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "fieldname": "pms_litres_sold",
+   "fieldtype": "Float",
+   "label": "PMS Litres Sold ",
+   "precision": "0",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "fieldname": "pms_sales",
+   "fieldtype": "Currency",
+   "label": "PMS Sales ",
+   "read_only": 1
+  },
+  {
+   "default": "AGO",
+   "fieldname": "ago_product",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "AGO Product",
+   "options": "Item"
+  },
+  {
+   "default": "PMS",
+   "fieldname": "pms_product",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "PMS Product",
+   "options": "Item"
+  },
+  {
+   "fieldname": "summary_section",
+   "fieldtype": "Section Break",
+   "label": "Summary"
+  },
+  {
+   "fieldname": "total_litres_sold",
+   "fieldtype": "Float",
+   "label": "Total Litres Sold",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_mkpv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_sales",
+   "fieldtype": "Currency",
+   "label": "Total Sales",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_edrk",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "fuel_sales_deposit_ref",
+   "fieldtype": "Link",
+   "label": "Fuel Sales Deposit Ref.",
+   "options": "Sales Deposit"
+  },
+  {
+   "fieldname": "column_break_hqle",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "fuel_sales_deposit_ref.deposit_datetime",
+   "fieldname": "deposit_date",
+   "fieldtype": "Datetime",
+   "label": "Deposit Date",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "fuel_sales_deposit_ref.amount_deposited",
+   "fieldname": "paid_amount",
+   "fieldtype": "Currency",
+   "label": "Paid Amount",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "fuel_sales_deposit_ref.attach_deposit_slip",
+   "fieldname": "deposit_slipreceipt",
+   "fieldtype": "Attach",
+   "label": "Deposit Slip/Receipt",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "fuel_sales_deposit_ref.signature",
+   "fieldname": "signature",
+   "fieldtype": "Signature",
+   "label": "Signature",
+   "read_only": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Status",
+   "no_copy": 1,
+   "print_hide": 1,
+   "read_only": 1,
+   "report_hide": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "ago_diesel_column",
+   "fieldtype": "Column Break",
+   "label": "AGO (Diesel)"
+  },
+  {
+   "fieldname": "ago_litres_used",
+   "fieldtype": "Float",
+   "label": "Litres Used"
+  },
+  {
+   "fieldname": "pms_petrol_column",
+   "fieldtype": "Column Break",
+   "label": "PMS (Petrol)"
+  },
+  {
+   "fieldname": "pms_litres_used",
+   "fieldtype": "Float",
+   "label": "Litres Used"
+  },
+  {
+   "fieldname": "section_break_rsvd",
+   "fieldtype": "Section Break",
+   "hidden": 1
+  },
+  {
+   "fieldname": "attached_video_evidence_ago",
+   "fieldtype": "Attach",
+   "label": "Attached Video Evidence "
+  },
+  {
+   "fieldname": "attached_video_evidence_pms",
+   "fieldtype": "Attach",
+   "label": "Attached Video Evidence"
+  },
+  {
+   "default": "0",
+   "fieldname": "rttc",
+   "fieldtype": "Check",
+   "label": "Return To Tank Conducted",
+   "print_hide": 1,
+   "read_only": 1,
+   "report_hide": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_calendar_and_gantt": 1,
+ "is_submittable": 1,
+ "links": [
+  {
+   "group": "Receivables",
+   "link_doctype": "Payment Entry",
+   "link_fieldname": "custom_fuel_pump_reading"
+  }
+ ],
+ "modified": "2024-10-07 15:07:32.162226",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Fuel Dispenser Reading",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Station Supervisor",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

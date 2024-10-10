@@ -13,9 +13,10 @@
  "fields": [
   {
    "fieldname": "dispenser",
-   "fieldtype": "Data",
+   "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Dispenser",
+   "options": "Fuel Pump 1\nFuel Pump 2\nFuel Pump 3\nFuel Pump 4\nFuel Pump 5\nFuel Pump 6\nFuel Pump 7",
    "reqd": 1
   },
   {
@@ -37,7 +38,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-08-26 08:29:34.418775",
+ "modified": "2024-10-03 20:09:32.832720",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Fuel Dispenser",

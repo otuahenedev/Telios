@@ -146,10 +146,27 @@ frappe.ui.form.on('Fuel Lifting Request', {
     
 
     refresh: function(frm) {
-        if (frm.doc.workflow_state == "Placed Orders") {
-            frm.add_custom_button("Place Order", () => {
+        if((frm.doc.docstatus == 1 ) && (frappe.user.has_role('Accounts User'))) {
+            frm.add_custom_button("Create Payment Entry ", () => {
                // frappe.msgprint("clicked")
-               frappe.new_doc("Fuel Delivery",{}, fdp => {
+               frappe.new_doc("Payment Entry",{}, fdp => {
+                fdp.custom_reference_link = frm.doc.name;
+                fdp.payment_type = "Receive"
+                fdp.party_type = "Supplier"
+                fdp.party = frm.doc.bdc
+                fdp.paid_amount = frm.doc.total_cost
+                
+                
+                
+               });
+            }).css({'background-color':'#f8c516','color':'black','font-weight': 'bold'});;
+        }
+    }
+    /* 
+    if (frm.doc.workflow_state == "Placed Orders") {
+            frm.add_custom_button("Make Payment", () => {
+               // frappe.msgprint("clicked")
+               frappe.new_doc("Payment Entry",{}, fdp => {
                 fdp.fdrar = frm.doc.name;
                 frm.doc.table_mxlk.forEach( station => {
                     //fdp_tab = name of outlet table listed in fuel delivery doctype
@@ -188,6 +205,7 @@ frappe.ui.form.on('Fuel Lifting Request', {
             }).css({'background-color':'#f5a914','color':'black','font-weight': 'bold'});;
         }
     }
+    */
 });
 
 frappe.ui.form.on('Fuel Lifting Request', {

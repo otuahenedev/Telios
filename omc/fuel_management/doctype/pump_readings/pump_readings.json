@@ -1,0 +1,92 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-10-04 18:38:27.497866",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "pump",
+  "current_reading",
+  "last_reading",
+  "capture_reading",
+  "difference",
+  "attendant",
+  "ago",
+  "pms"
+ ],
+ "fields": [
+  {
+   "fieldname": "pump",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Pump",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "current_reading",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Current Reading"
+  },
+  {
+   "default": "0",
+   "fieldname": "last_reading",
+   "fieldtype": "Float",
+   "label": "Last Reading",
+   "read_only": 1
+  },
+  {
+   "description": "Attach Image of reading",
+   "fieldname": "capture_reading",
+   "fieldtype": "Attach Image",
+   "label": "Capture Reading "
+  },
+  {
+   "default": "0",
+   "fieldname": "difference",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Difference",
+   "read_only": 1
+  },
+  {
+   "fieldname": "attendant",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Attendant",
+   "link_filters": "[[\"Employee\",\"designation\",\"=\",\"Station Attendant\"]]"
+  },
+  {
+   "default": "1",
+   "depends_on": "eval: doc.pump && doc.pump.toLowerCase().includes(\"pms\")\n",
+   "fieldname": "ago",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "AGO",
+   "link_filters": "[[\"Item\",\"item_group\",\"=\",\"White Products\"]]",
+   "print_hide": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "pms",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "PMS",
+   "print_hide": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-10-07 19:55:42.933408",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Pump Readings",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

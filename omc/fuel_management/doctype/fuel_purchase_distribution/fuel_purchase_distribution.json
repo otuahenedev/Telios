@@ -18,7 +18,7 @@
    "in_list_view": 1,
    "label": "Outlet",
    "link_filters": "[[\"Outlet\",\"outlet_type\",\"=\",\"Fuel Station\"]]",
-   "options": "Outlet",
+   "options": "inOutlet",
    "reqd": 1
   },
   {
@@ -45,7 +45,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-09-04 13:39:22.459448",
+ "modified": "2024-10-03 10:05:28.919196",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Fuel Purchase Distribution",

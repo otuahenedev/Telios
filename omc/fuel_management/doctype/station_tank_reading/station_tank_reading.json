@@ -1,0 +1,236 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:Dipp Reading-{outlet}-{MM}-{YY}-{###}",
+ "creation": "2024-09-12 21:08:17.519440",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "employee",
+  "station_supervisor",
+  "outlet",
+  "column_break_ooiw",
+  "storage_tank",
+  "state",
+  "ago_diesel_section",
+  "prod",
+  "column_break_vmde",
+  "attach_reading_picture",
+  "fuel_reading",
+  "posting_datetime",
+  "amended_from",
+  "readings_section",
+  "ago_diesel_tank_reading",
+  "pms_petrol_tank_reading",
+  "summary_section",
+  "ago_l",
+  "column_break_qndo",
+  "pms_l"
+ ],
+ "fields": [
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "station_supervisor",
+   "fieldtype": "Read Only",
+   "in_list_view": 1,
+   "label": "Station Supervisor ",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "employee.custom_outlet",
+   "fetch_if_empty": 1,
+   "fieldname": "outlet",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Outlet",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fetch_if_empty": 1,
+   "fieldname": "storage_tank",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Storage Tank",
+   "options": "Warehouse",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_ooiw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ago_diesel_section",
+   "fieldtype": "Section Break",
+   "hidden": 1,
+   "label": "Reading"
+  },
+  {
+   "fieldname": "column_break_vmde",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "attach_reading_picture",
+   "fieldtype": "Attach Image",
+   "label": "Attach Reading Picture ",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "fuel_reading",
+   "fieldtype": "Int",
+   "label": "Dip Reading (Litres) ",
+   "reqd": 1
+  },
+  {
+   "default": "Now",
+   "depends_on": "ago_reading",
+   "fieldname": "posting_datetime",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Posting Datetime",
+   "reqd": 1
+  },
+  {
+   "fieldname": "prod",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Product",
+   "link_filters": "[[\"Item\",\"item_group\",\"=\",\"White Products\"]]",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Station Tank Reading",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Select",
+   "label": "State",
+   "options": "Pump Reading\nBefore Fuel Discharge\nAfter Fuel Discharge",
+   "reqd": 1
+  },
+  {
+   "fieldname": "readings_section",
+   "fieldtype": "Section Break",
+   "label": "Readings"
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "Station Supervisor ",
+   "options": "Employee"
+  },
+  {
+   "bold": 1,
+   "fieldname": "pms_petrol_tank_reading",
+   "fieldtype": "Table",
+   "label": "PMS (Petrol) Tank Reading",
+   "options": "Tank Reading"
+  },
+  {
+   "bold": 1,
+   "fieldname": "summary_section",
+   "fieldtype": "Section Break",
+   "label": "Summary"
+  },
+  {
+   "fieldname": "ago_l",
+   "fieldtype": "Float",
+   "label": "AGO (L)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_qndo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "pms_l",
+   "fieldtype": "Float",
+   "label": "PMS (L)",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "fieldname": "ago_diesel_tank_reading",
+   "fieldtype": "Table",
+   "label": "AGO (Diesel) Tank Reading",
+   "options": "Tank Reading"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-10-04 13:32:01.139692",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Station Tank Reading",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Station Supervisor",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Operations Officer",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Logistics Officer",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -14,6 +14,8 @@ app_license = "mit"
 # app_include_js = "/assets/omc/js/omc.js"
 app_include_js = [
     "/assets/omc/js/map_defaults.js"
+     "/assets/omc/css/omc.css"
+
 ]
 
 # include js, css files in header of web template

@@ -13,7 +13,6 @@
   "capture_opening_reading",
   "opening_reading",
   "column_break_pajn",
-  "capture_closing_reading_copy",
   "closing_reading"
  ],
  "fields": [
@@ -21,7 +20,9 @@
    "fieldname": "fuel_pump",
    "fieldtype": "Select",
    "in_list_view": 1,
-   "label": "Fuel Pump"
+   "in_standard_filter": 1,
+   "label": "Fuel Pump",
+   "reqd": 1
   },
   {
    "default": "0",
@@ -30,14 +31,14 @@
    "in_list_view": 1,
    "label": "Opening Reading",
    "precision": "0",
-   "read_only_depends_on": "eval:parent\r\n.status == \"Closing Reading\""
+   "read_only_depends_on": "eval:parent\r\n.status == \"Closing Reading\"",
+   "reqd": 1
   },
   {
    "default": "0",
    "depends_on": "eval:parent\r\n.status == \"Closing Reading\"",
    "fieldname": "closing_reading",
    "fieldtype": "Float",
-   "in_list_view": 1,
    "label": "Closing Reading ",
    "precision": "0",
    "read_only_depends_on": "eval:parent\r\n.status != \"Closing Reading\""
@@ -47,7 +48,7 @@
    "depends_on": "closing_reading",
    "fieldname": "total_liters_sold",
    "fieldtype": "Float",
-   "in_standard_filter": 1,
+   "in_list_view": 1,
    "label": "Total Liters Sold",
    "non_negative": 1,
    "precision": "0",
@@ -58,13 +59,6 @@
    "fieldtype": "Attach Image",
    "label": "Capture Opening Reading",
    "read_only_depends_on": "eval:parent\r\n.status == \"Closing Reading\""
-  },
-  {
-   "depends_on": "eval:parent\r\n.status == \"Closing Reading\"",
-   "fieldname": "capture_closing_reading_copy",
-   "fieldtype": "Attach Image",
-   "label": "Capture Closing Reading ",
-   "read_only_depends_on": "eval:parent\r\n.status != \"Closing Reading\""
   },
   {
    "fieldname": "column_break_lvit",
@@ -85,7 +79,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-08-26 14:02:42.662093",
+ "modified": "2024-10-02 13:22:21.774087",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Diesel Readings Detail",
