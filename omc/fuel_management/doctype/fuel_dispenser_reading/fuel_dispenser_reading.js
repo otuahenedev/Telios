@@ -79,3 +79,5 @@ frappe.ui.form.on("Fuel Dispenser Reading", {
         }
     }
 });
+
+

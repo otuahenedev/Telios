@@ -40,5 +40,10 @@ def pumpdetails(atted):
     attend_data = [list(d.values())[0] for d in items]
     return {"message": attend_data}  # Return as a dict with "message" key
 
+
+
+
+
+
 class FuelDispenserReading(Document):
 	pass
