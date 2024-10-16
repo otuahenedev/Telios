@@ -6,9 +6,14 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "deposit_datetime",
-  "station_supervisor",
   "outlet",
+  "station_supervisor",
+  "pump_reading_ref",
+  "column_break_fchr",
+  "state",
+  "deposit_amount",
+  "section_break_tltx",
+  "deposit_datetime",
   "column_break_tfwo",
   "amount_deposited",
   "attach_deposit_slip",
@@ -36,6 +41,7 @@
   {
    "allow_in_quick_entry": 1,
    "default": "Now",
+   "depends_on": "amount_deposited",
    "fieldname": "deposit_datetime",
    "fieldtype": "Datetime",
    "in_filter": 1,
@@ -46,6 +52,7 @@
   },
   {
    "allow_in_quick_entry": 1,
+   "depends_on": "eval:doc.state == \" \"",
    "fieldname": "amount_deposited",
    "fieldtype": "Currency",
    "in_filter": 1,
@@ -57,6 +64,7 @@
   },
   {
    "allow_in_quick_entry": 1,
+   "depends_on": "eval:doc.state == \" \"",
    "fieldname": "attach_deposit_slip",
    "fieldtype": "Attach Image",
    "label": "Attach Deposit Slip"
@@ -74,6 +82,7 @@
   },
   {
    "allow_in_quick_entry": 1,
+   "depends_on": "amount_deposited",
    "fieldname": "signature",
    "fieldtype": "Signature",
    "label": "Signature"
@@ -87,12 +96,43 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "fieldname": "column_break_fchr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "bold": 1,
+   "description": "The total amount required to be deposited into your bank account.",
+   "fetch_from": "pump_reading_ref.total_sales",
+   "fieldname": "deposit_amount",
+   "fieldtype": "Currency",
+   "label": "Deposit Amount",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.status != \"Draft\"",
+   "fieldname": "section_break_tltx",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "pump_reading_ref",
+   "fieldtype": "Link",
+   "label": "Pump Reading Ref.",
+   "options": "Fuel Dispenser Reading",
+   "unique": 1
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Select",
+   "label": "Status",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-10-03 09:46:05.447285",
+ "modified": "2024-10-14 16:33:15.923966",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Sales Deposit",
@@ -129,7 +169,6 @@
    "share": 1
   }
  ],
- "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],

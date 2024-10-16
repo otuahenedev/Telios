@@ -31,7 +31,7 @@
   "r",
   "column_break_sjpv",
   "ago_readings",
-  "ago__pump_readings_diesel",
+  "ago_pump_readings_diesel",
   "ago_litres_sold",
   "ago_sales",
   "ago_product",
@@ -120,6 +120,7 @@
    "default": "0",
    "fieldname": "incurred_expenses",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Incurred Expenses "
   },
   {
@@ -151,13 +152,6 @@
    "fieldname": "r",
    "fieldtype": "Section Break",
    "label": "Pump Readings"
-  },
-  {
-   "bold": 1,
-   "fieldname": "ago__pump_readings_diesel",
-   "fieldtype": "Table",
-   "label": "AGO  Pump Readings (Diesel)",
-   "options": "Pump Readings"
   },
   {
    "bold": 1,
@@ -348,6 +342,13 @@
    "print_hide": 1,
    "read_only": 1,
    "report_hide": 1
+  },
+  {
+   "bold": 1,
+   "fieldname": "ago_pump_readings_diesel",
+   "fieldtype": "Table",
+   "label": "AGO  Pump Readings (Diesel)",
+   "options": "Pump Readings"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -356,11 +357,11 @@
  "links": [
   {
    "group": "Receivables",
-   "link_doctype": "Payment Entry",
-   "link_fieldname": "custom_fuel_pump_reading"
+   "link_doctype": "Sales Deposit",
+   "link_fieldname": "pump_reading_ref"
   }
  ],
- "modified": "2024-10-07 15:07:32.162226",
+ "modified": "2024-10-16 06:40:29.462594",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Fuel Dispenser Reading",

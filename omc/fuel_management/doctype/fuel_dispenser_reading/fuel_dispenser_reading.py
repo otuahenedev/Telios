@@ -42,7 +42,44 @@ def pumpdetails(atted):
 
 
 
+# In your custom app, in a custom Python file (or the relevant DocType's Python file)
+@frappe.whitelist()
+def dispenser(outlet):
+    # Fetch the latest Fuel Dispenser Reading for the given outlet
+    last_reading = frappe.get_list('Fuel Dispenser Reading', 
+                                   filters={'outlet': outlet}, 
+                                   fields=['name'], 
+                                   order_by='creation desc', 
+                                   limit=1)
 
+    if not last_reading:
+        return {'status': 'error', 'message': 'No previous readings found for this outlet.'}
+
+    # Fetch the full details of the last reading document
+    last_doc = frappe.get_doc('Fuel Dispenser Reading', last_reading[0].name)
+
+    # Prepare the data for the child tables
+    pms_pump_readings = []
+    ago_pump_readings = []
+
+    for row in last_doc.pms_pump_readings_petrol:
+        pms_pump_readings.append({
+            'pump': row.pump,
+            'current_reading': row.current_reading
+        })
+
+    for row in last_doc.ago__pump_readings_diesel:
+        ago_pump_readings.append({
+            'pump': row.pump,
+            'current_reading': row.current_reading
+        })
+
+    # Return the data for both child tables
+    return {
+        'status': 'success',
+        'pms_pump_readings': pms_pump_readings,
+        'ago_pump_readings': ago_pump_readings
+    }
 
 
 class FuelDispenserReading(Document):

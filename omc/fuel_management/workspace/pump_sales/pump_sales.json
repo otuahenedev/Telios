@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"2tBz4ceHVB\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Pump Sales</span>\",\"col\":12}},{\"id\":\"wSfICa5HPg\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dip Readings\",\"col\":3}},{\"id\":\"8XASOqKhrs\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Fuel Meter Reading\",\"col\":3}}]",
+ "content": "[{\"id\":\"2tBz4ceHVB\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Pump Sales</span>\",\"col\":12}},{\"id\":\"wSfICa5HPg\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dip Readings\",\"col\":3}},{\"id\":\"PBoXs-QfLv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Deposit\",\"col\":3}},{\"id\":\"8XASOqKhrs\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Pump Meter Reading\",\"col\":3}}]",
  "creation": "2024-09-16 08:55:03.392243",
  "custom_blocks": [],
  "docstatus": 0,
@@ -12,7 +12,7 @@
  "is_hidden": 0,
  "label": "Pump Sales",
  "links": [],
- "modified": "2024-10-05 12:40:31.667985",
+ "modified": "2024-10-14 16:13:49.546398",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Pump Sales",
@@ -27,8 +27,8 @@
   {
    "color": "Grey",
    "doc_view": "List",
-   "label": "Fuel Meter Reading",
-   "link_to": "Fuel Dispenser Reading",
+   "label": "Sales Deposit",
+   "link_to": "Sales Deposit",
    "stats_filter": "[]",
    "type": "DocType"
   },
@@ -37,6 +37,14 @@
    "doc_view": "List",
    "label": "Dip Readings",
    "link_to": "Station Tank Reading",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Cyan",
+   "doc_view": "List",
+   "label": "Pump Meter Reading",
+   "link_to": "Fuel Dispenser Reading",
    "stats_filter": "[]",
    "type": "DocType"
   }
