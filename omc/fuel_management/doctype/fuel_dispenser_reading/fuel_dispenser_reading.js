@@ -213,4 +213,6 @@ frappe.ui.form.on("Pump Readings", "difference", function(frm, cdt, cdn) {
     }
 
     // Calculate total sales or other operations as needed...
+    total_sales = frm.doc.pms_sales + frm.doc.ago_sales
+    frm.set_value('total_sales' , total_sales)
 });

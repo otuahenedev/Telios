@@ -70,6 +70,7 @@
   },
   {
    "fetch_from": "st.custom_outlet",
+   "fetch_if_empty": 1,
    "fieldname": "outlet",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -365,7 +366,7 @@
    "link_fieldname": "pump_reading_ref"
   }
  ],
- "modified": "2024-10-16 11:02:33.170968",
+ "modified": "2024-10-16 11:54:44.647361",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Fuel Dispenser Reading",
