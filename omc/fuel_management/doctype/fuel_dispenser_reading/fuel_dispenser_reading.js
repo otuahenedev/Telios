@@ -26,7 +26,7 @@ function fetch_pump_and_attendant_details(frm, outlet) {
     // Fetch pump details
     frappe.call({
         method: "omc.fuel_management.doctype.fuel_dispenser_reading.fuel_dispenser_reading.attendetails",
-        args: {  dispense: outlet  },
+        args: { dispense: outlet },
         callback: function(response) {
             if (!response || response.exc) {
                 console.error("Error fetching pump details", response);
@@ -40,7 +40,7 @@ function fetch_pump_and_attendant_details(frm, outlet) {
     // Fetch attendant details
     frappe.call({
         method: "omc.fuel_management.doctype.fuel_dispenser_reading.fuel_dispenser_reading.pumpdetails",
-        args: { atted: outlet},
+        args: { atted: outlet },
         callback: function(response) {
             if (!response || response.exc) {
                 console.error("Error fetching attendant details", response);
@@ -59,17 +59,50 @@ function process_pump_details(frm, message, field) {
         return;
     }
 
+    // Ensure message is an array
     let names = Array.isArray(message.message) ? message.message : Object.values(message.message);
     if (!Array.isArray(names)) {
         console.warn(`${field} names is not an array:`, names);
         return;
     }
 
-    frm.fields_dict.ago_pump_readings_diesel.grid.update_docfield_property(field, "options", names);
-    frm.fields_dict.pms_pump_readings_petrol.grid.update_docfield_property(field, "options", names);
+    // Separate filtering for AGO and PMS
+    let ago_names = [];
+    let pms_names = [];
 
+    // Clear the child tables first
+    frm.clear_table("ago_pump_readings_diesel");
+    frm.clear_table("pms_pump_readings_petrol");
+
+    // Filter names for AGO and PMS and add them to the respective child tables
+    names.forEach(name => {
+        if (/AGO/i.test(name)) {  // Case-insensitive match for 'AGO'
+            let child_row = frm.add_child("ago_pump_readings_diesel");
+            child_row[field] = name;  // Use 'attendant' or 'pump' based on the field
+            ago_names.push(name);  // Collect names for grid options
+        }
+        if (/PMS/i.test(name)) {  // Case-insensitive match for 'PMS'
+            let child_row = frm.add_child("pms_pump_readings_petrol");
+            child_row[field] = name;  // Use 'attendant' or 'pump' based on the field
+            pms_names.push(name);  // Collect names for grid options
+        }
+    });
+
+    // Ensure the correct grid options are set based on the attendant or pump
+    if (field === "attendant") {
+        frm.fields_dict.ago_pump_readings_diesel.grid.update_docfield_property('attendant', "options", ago_names);
+        frm.fields_dict.pms_pump_readings_petrol.grid.update_docfield_property('attendant', "options", pms_names);
+    } else if (field === "pump") {
+        frm.fields_dict.ago_pump_readings_diesel.grid.update_docfield_property('pump', "options", ago_names);
+        frm.fields_dict.pms_pump_readings_petrol.grid.update_docfield_property('pump', "options", pms_names);
+    }
+
+    // Refresh the child tables to display the updated rows
     frm.refresh_field("ago_pump_readings_diesel");
     frm.refresh_field("pms_pump_readings_petrol");
+
+    console.log(`AGO names: ${ago_names}`);
+    console.log(`PMS names: ${pms_names}`);
 }
 
 

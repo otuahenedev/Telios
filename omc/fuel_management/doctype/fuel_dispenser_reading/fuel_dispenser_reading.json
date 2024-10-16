@@ -12,6 +12,7 @@
   "outlet",
   "st",
   "station_supervisor",
+  "total_sales",
   "column_break_gawm",
   "date",
   "datetime",
@@ -44,7 +45,6 @@
   "total_litres_sold",
   "rttc",
   "column_break_mkpv",
-  "total_sales",
   "section_break_edrk",
   "fuel_sales_deposit_ref",
   "column_break_hqle",
@@ -241,14 +241,18 @@
    "fieldtype": "Column Break"
   },
   {
+   "bold": 1,
+   "default": "0",
+   "description": "Amount to Deposit",
    "fieldname": "total_sales",
    "fieldtype": "Currency",
-   "label": "Total Sales",
+   "label": "Total Sales (GHS)",
    "read_only": 1
   },
   {
    "fieldname": "section_break_edrk",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "hidden": 1
   },
   {
    "fieldname": "fuel_sales_deposit_ref",
@@ -361,7 +365,7 @@
    "link_fieldname": "pump_reading_ref"
   }
  ],
- "modified": "2024-10-16 06:40:29.462594",
+ "modified": "2024-10-16 11:02:33.170968",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Fuel Dispenser Reading",
