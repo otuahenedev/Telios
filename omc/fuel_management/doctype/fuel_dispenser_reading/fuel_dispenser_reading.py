@@ -44,8 +44,23 @@ def pumpdetails(atted):
 
 # In your custom app, in a custom Python file (or the relevant DocType's Python file)
 @frappe.whitelist()
-def last(outlet):
+def dispenser(outlet):
    pass
 
 class FuelDispenserReading(Document):
-	pass
+     def validate(self, method):
+         for reading in self.get("ago_pump_readings_diesel"):
+             if reading.current_reading < reading.last_reading:
+                 frappe.throw(
+                    _("Current reading cannot be less than the last reading for pump: {0}.").format(reading.pump)
+            )
+        
+         for reading in self.get("pms_pump_readings_petrol"):
+             if reading.current_reading < reading.last_reading:
+                 frappe.throw(
+                    _("Current reading cannot be less than the last reading for pump: {0}.").format(reading.pump)
+            )
+        
+
+     
+	
