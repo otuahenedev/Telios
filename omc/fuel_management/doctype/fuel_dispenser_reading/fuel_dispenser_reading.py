@@ -48,17 +48,32 @@ def dispenser(outlet):
    pass
 
 class FuelDispenserReading(Document):
-     def validate(self, method):
+     
+     def validate(self):
+         try :
+             if self.workflow_state == "Verified Pump Readings":
+                 sales = frappe.get.doc({
+                     "doctype": "Sales Deposit",
+                     "pump_reading_ref": self.name,
+                      "deposit_amount": self.total_sales,
+                 }) 
+                 sales.insert()
+                 frappe.msgprint(f"Sales Deposit created successfully for {self.name} with amount {self.total_sales}")
+         except Exception as e:
+             frappe.log_error(f"An error occurred: {str(e)}")
+		
+			
+         
          for reading in self.get("ago_pump_readings_diesel"):
              if reading.current_reading < reading.last_reading:
                  frappe.throw(
-                    _("Current reading cannot be less than the last reading for pump: {0}.").format(reading.pump)
+                    ("Current reading cannot be less than the last reading for pump: {0}.").format(reading.pump)
             )
         
          for reading in self.get("pms_pump_readings_petrol"):
              if reading.current_reading < reading.last_reading:
                  frappe.throw(
-                    _("Current reading cannot be less than the last reading for pump: {0}.").format(reading.pump)
+                    ("Current reading cannot be less than the last reading for pump: {0}.").format(reading.pump)
             )
         
 
