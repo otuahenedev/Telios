@@ -4,6 +4,7 @@
 
 // Main trigger for 'outlet' field
 frappe.ui.form.on("Fuel Dispenser Reading", {
+    // Triggered when the 'outlet' field changes
     outlet: function(frm) {
         let outlet = frm.doc.outlet;
         
@@ -14,18 +15,78 @@ frappe.ui.form.on("Fuel Dispenser Reading", {
 
         console.log(`Fetching data for outlet: ${outlet}`);
 
-        // Fetch pump and attendant details based on outlet
-        fetch_pump_and_attendant_details(frm, outlet);
+        // Try to fetch the last fuel dispenser reading for the outlet
+        fetch_last_fuel_dispenser_reading(frm, outlet);
+    },
+    // Preserve outlet field on save
+    before_save: function(frm) {
+        if (!frm.doc.outlet) {
+            frappe.throw("Outlet is required before saving.");
+        }
     }
 });
 
-// Helper function to fetch pump and attendant details and update child table options
+// Function to fetch the last fuel dispenser reading
+function fetch_last_fuel_dispenser_reading(frm, outlet) {
+    frappe.call({
+        method: "frappe.client.get",
+        args: {
+            doctype: "Fuel Dispenser Reading",
+            filters: { outlet: outlet },
+            order_by: "creation desc",
+            limit_page_length: 1
+        },
+        callback: function(response) {
+            if (response.message) {
+                console.log("Last reading found:", response.message);
+                // Populate child tables from last reading
+                populate_child_tables_from_last_reading(frm, response.message);
+            } else {
+                console.log("No last reading found, fetching pump and attendant details.");
+                // Fetch pump and attendant details as fallback
+                fetch_pump_and_attendant_details(frm, outlet);
+            }
+        }
+    });
+}
+
+// Helper function to populate child tables from last reading
+function populate_child_tables_from_last_reading(frm, last_reading) {
+    // Clear existing rows in child tables
+    frm.clear_table("ago_pump_readings_diesel");
+    frm.clear_table("pms_pump_readings_petrol");
+
+    // Loop through AGO pump readings
+    if (last_reading.ago_pump_readings_diesel) {
+        last_reading.ago_pump_readings_diesel.forEach(row => {
+            let child_row = frm.add_child("ago_pump_readings_diesel");
+            child_row.pump = row.pump;
+            //child_row.attendant = row.attendant;
+            child_row.last_reading = row.current_reading;
+        });
+    }
+
+    // Loop through PMS pump readings
+    if (last_reading.pms_pump_readings_petrol) {
+        last_reading.pms_pump_readings_petrol.forEach(row => {
+            let child_row = frm.add_child("pms_pump_readings_petrol");
+            child_row.pump = row.pump;
+           // child_row.attendant = row.attendant;
+            child_row.last_reading = row.current_reading;
+        });
+    }
+
+    frm.refresh_field("ago_pump_readings_diesel");
+    frm.refresh_field("pms_pump_readings_petrol");
+}
+
+// Helper function to fetch pump and attendant details and update child tables
 function fetch_pump_and_attendant_details(frm, outlet) {
     console.log(`Initiating fetch for pump and attendant details for outlet: ${outlet}`);
 
     // Fetch pump details
     frappe.call({
-        method: "omc.fuel_management.doctype.fuel_dispenser_reading.fuel_dispenser_reading.attendetails",
+        method: "omc.fuel_management.doctype.fuel_dispenser_reading.fuel_dispenser_reading.pumpdetails",
         args: { dispense: outlet },
         callback: function(response) {
             if (!response || response.exc) {
@@ -33,13 +94,13 @@ function fetch_pump_and_attendant_details(frm, outlet) {
                 return;
             }
             console.log("Pump details fetched successfully:", response.message);
-            process_pump_details(frm, response.message, "pump");
+            process_pump_details(frm, response.message);
         }
     });
 
     // Fetch attendant details
     frappe.call({
-        method: "omc.fuel_management.doctype.fuel_dispenser_reading.fuel_dispenser_reading.pumpdetails",
+        method: "omc.fuel_management.doctype.fuel_dispenser_reading.fuel_dispenser_reading.attendetails",
         args: { atted: outlet },
         callback: function(response) {
             if (!response || response.exc) {
@@ -47,62 +108,53 @@ function fetch_pump_and_attendant_details(frm, outlet) {
                 return;
             }
             console.log("Attendant details fetched successfully:", response.message);
-            process_pump_details(frm, response.message, "attendant");
+            process_attendant_details(frm, response.message);
         }
     });
 }
 
-// Helper function to process and update child table fields for pump/attendant
-function process_pump_details(frm, message, field) {
-    if (!message) {
-        console.warn("No valid message received.");
+// Helper function to process and update pump details
+function process_pump_details(frm, pump_data) {
+    if (!pump_data) {
+        console.warn("No valid pump data received.");
         return;
     }
 
-    // Ensure message is an array
-    let names = Array.isArray(message.message) ? message.message : Object.values(message.message);
-    if (!Array.isArray(names)) {
-        console.warn(`${field} names is not an array:`, names);
-        return;
-    }
+    let pumps = Array.isArray(pump_data.message) ? pump_data.message : Object.values(pump_data.message);
 
-    // Separate filtering for AGO and PMS
-    let ago_names = [];
-    let pms_names = [];
-
-    // Clear the child tables first
+    // Clear and populate AGO and PMS tables from pump data
     frm.clear_table("ago_pump_readings_diesel");
     frm.clear_table("pms_pump_readings_petrol");
 
-    // Filter names for AGO and PMS and add them to the respective child tables
-    names.forEach(name => {
-        if (/AGO/i.test(name)) {  // Case-insensitive match for 'AGO'
+    pumps.forEach(pump => {
+        if (/AGO/i.test(pump)) {
             let child_row = frm.add_child("ago_pump_readings_diesel");
-            child_row[field] = name;  // Use 'attendant' or 'pump' based on the field
-            ago_names.push(name);  // Collect names for grid options
+            child_row.pump = pump;
         }
-        if (/PMS/i.test(name)) {  // Case-insensitive match for 'PMS'
+        if (/PMS/i.test(pump)) {
             let child_row = frm.add_child("pms_pump_readings_petrol");
-            child_row[field] = name;  // Use 'attendant' or 'pump' based on the field
-            pms_names.push(name);  // Collect names for grid options
+            child_row.pump = pump;
         }
     });
 
-    // Ensure the correct grid options are set based on the attendant or pump
-    if (field === "attendant") {
-        frm.fields_dict.ago_pump_readings_diesel.grid.update_docfield_property('attendant', "options", ago_names);
-        frm.fields_dict.pms_pump_readings_petrol.grid.update_docfield_property('attendant', "options", pms_names);
-    } else if (field === "pump") {
-        frm.fields_dict.ago_pump_readings_diesel.grid.update_docfield_property('pump', "options", ago_names);
-        frm.fields_dict.pms_pump_readings_petrol.grid.update_docfield_property('pump', "options", pms_names);
-    }
-
-    // Refresh the child tables to display the updated rows
     frm.refresh_field("ago_pump_readings_diesel");
     frm.refresh_field("pms_pump_readings_petrol");
+}
 
-    console.log(`AGO names: ${ago_names}`);
-    console.log(`PMS names: ${pms_names}`);
+// Helper function to process and update attendant details
+function process_attendant_details(frm, attendant_data) {
+    if (!attendant_data) {
+        console.warn("No valid attendant data received.");
+        return;
+    }
+
+    let attendants = Array.isArray(attendant_data.message) ? attendant_data.message : Object.values(attendant_data.message);
+
+    frm.fields_dict.ago_pump_readings_diesel.grid.update_docfield_property('attendant', "options", attendants);
+    frm.fields_dict.pms_pump_readings_petrol.grid.update_docfield_property('attendant', "options", attendants);
+
+    frm.refresh_field("ago_pump_readings_diesel");
+    frm.refresh_field("pms_pump_readings_petrol");
 }
 
 
