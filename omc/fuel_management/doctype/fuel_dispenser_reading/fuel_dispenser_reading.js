@@ -16,15 +16,35 @@ frappe.ui.form.on("Fuel Dispenser Reading", {
         console.log(`Fetching data for outlet: ${outlet}`);
 
         // Try to fetch the last fuel dispenser reading for the outlet
-        fetch_last_fuel_dispenser_reading(frm, outlet);
+        handle_last_fuel_dispenser_reading(frm, outlet);
     },
-    // Preserve outlet field on save
-    before_save: function(frm) {
-        if (!frm.doc.outlet) {
-            frappe.throw("Outlet is required before saving.");
-        }
-    }
+   
 });
+
+// check if a last reading for selected outlet is available
+function handle_last_fuel_dispenser_reading(frm, outlet) {
+    frappe.call({
+        method: "frappe.client.get_list",
+        args: {
+            doctype: "Fuel Dispenser Reading",
+            filters: { outlet: outlet },
+            fields: ["name", "creation"],
+            order_by: "creation desc",
+            limit: 1
+        },
+        callback: function(response) {
+            if (response.message && response.message.length > 0) { 
+                // Populate child tables from last reading
+                console.log("Last reading found:", response.message)
+                fetch_last_fuel_dispenser_reading(frm, outlet)
+            } else {
+                fetch_pump_and_attendant_details(frm, outlet)
+                console.log(`No previous Fuel Dispenser Reading found for outlet: ${outlet}. Proceeding to fetch pump and attendant details.`)
+
+            }
+        }
+    });
+}
 
 // Function to fetch the last fuel dispenser reading
 function fetch_last_fuel_dispenser_reading(frm, outlet) {
@@ -37,15 +57,8 @@ function fetch_last_fuel_dispenser_reading(frm, outlet) {
             limit_page_length: 1
         },
         callback: function(response) {
-            if (response.message) {
-                console.log("Last reading found:", response.message);
-                // Populate child tables from last reading
-                populate_child_tables_from_last_reading(frm, response.message);
-            } else {
-                console.log("No last reading found, fetching pump and attendant details.");
-                // Fetch pump and attendant details as fallback
-                fetch_pump_and_attendant_details(frm, outlet);
-            }
+            console.log("Last reading found:", response.message);
+            populate_child_tables_from_last_reading(frm, response.message);
         }
     });
 }
@@ -76,44 +89,42 @@ function populate_child_tables_from_last_reading(frm, last_reading) {
         });
     }
 
-    frm.refresh_field("ago_pump_readings_diesel");
-    frm.refresh_field("pms_pump_readings_petrol");
+  //  frm.refresh_field("ago_pump_readings_diesel");
+   // frm.refresh_field("pms_pump_readings_petrol");
 }
 
-// Helper function to fetch pump and attendant details and update child tables
+// Fetch pump and attendant details
 function fetch_pump_and_attendant_details(frm, outlet) {
-    console.log(`Initiating fetch for pump and attendant details for outlet: ${outlet}`);
-
-    // Fetch pump details
+    // Fetch pump details and populate child tables
     frappe.call({
-        method: "omc.fuel_management.doctype.fuel_dispenser_reading.fuel_dispenser_reading.pumpdetails",
-        args: { dispense: outlet },
+        method: "omc.fuel_management.doctype.fuel_dispenser_reading.fuel_dispenser_reading.attendetails",
+        args: { dispense: outlet },  // Pass 'dispense' argument for pump details
         callback: function(response) {
             if (!response || response.exc) {
                 console.error("Error fetching pump details", response);
                 return;
             }
             console.log("Pump details fetched successfully:", response.message);
-            process_pump_details(frm, response.message);
+            process_pump_details(frm, response.message);  // Auto-populate pump readings tables
         }
     });
 
-    // Fetch attendant details
+    // Fetch attendant details and update attendant field in the child tables
     frappe.call({
-        method: "omc.fuel_management.doctype.fuel_dispenser_reading.fuel_dispenser_reading.attendetails",
-        args: { atted: outlet },
+        method: "omc.fuel_management.doctype.fuel_dispenser_reading.fuel_dispenser_reading.pumpdetails",
+        args: { atted: outlet },  // Pass 'atted' argument for attendant details
         callback: function(response) {
             if (!response || response.exc) {
                 console.error("Error fetching attendant details", response);
                 return;
             }
             console.log("Attendant details fetched successfully:", response.message);
-            process_attendant_details(frm, response.message);
+            update_attendant_select_options(frm, response.message);  // Dynamically set attendant field options
         }
     });
 }
 
-// Helper function to process and update pump details
+// Helper function to process and populate pump details into child tables
 function process_pump_details(frm, pump_data) {
     if (!pump_data) {
         console.warn("No valid pump data received.");
@@ -122,27 +133,29 @@ function process_pump_details(frm, pump_data) {
 
     let pumps = Array.isArray(pump_data.message) ? pump_data.message : Object.values(pump_data.message);
 
-    // Clear and populate AGO and PMS tables from pump data
-    frm.clear_table("ago_pump_readings_diesel");
-    frm.clear_table("pms_pump_readings_petrol");
+    // Clear current child tables
+   // frm.clear_table("ago_pump_readings_diesel");
+    //frm.clear_table("pms_pump_readings_petrol");
 
+    // Populate child tables with pumps data
     pumps.forEach(pump => {
         if (/AGO/i.test(pump)) {
             let child_row = frm.add_child("ago_pump_readings_diesel");
-            child_row.pump = pump;
+            child_row.pump = pump;  // Assign pump name
         }
         if (/PMS/i.test(pump)) {
             let child_row = frm.add_child("pms_pump_readings_petrol");
-            child_row.pump = pump;
+            child_row.pump = pump;  // Assign pump name
         }
     });
 
-    frm.refresh_field("ago_pump_readings_diesel");
-    frm.refresh_field("pms_pump_readings_petrol");
+    // Refresh both child tables to reflect changes
+   // frm.refresh_field("ago_pump_readings_diesel");
+   // frm.refresh_field("pms_pump_readings_petrol");
 }
 
-// Helper function to process and update attendant details
-function process_attendant_details(frm, attendant_data) {
+// Helper function to dynamically update the attendant field options in child tables
+function update_attendant_select_options(frm, attendant_data) {
     if (!attendant_data) {
         console.warn("No valid attendant data received.");
         return;
@@ -150,13 +163,14 @@ function process_attendant_details(frm, attendant_data) {
 
     let attendants = Array.isArray(attendant_data.message) ? attendant_data.message : Object.values(attendant_data.message);
 
+    // Update 'attendant' field options dynamically for both child tables
     frm.fields_dict.ago_pump_readings_diesel.grid.update_docfield_property('attendant', "options", attendants);
     frm.fields_dict.pms_pump_readings_petrol.grid.update_docfield_property('attendant', "options", attendants);
 
-    frm.refresh_field("ago_pump_readings_diesel");
-    frm.refresh_field("pms_pump_readings_petrol");
+    // Refresh fields to apply updated attendant options
+   // frm.refresh_field("ago_pump_readings_diesel");
+   // frm.refresh_field("pms_pump_readings_petrol");
 }
-
 
 frappe.ui.form.on("Pump Readings", "difference", function(frm, cdt, cdn) {
 

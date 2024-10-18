@@ -10,10 +10,10 @@
  "icon": "",
  "idx": 0,
  "indicator_color": "darkgrey",
- "is_hidden": 0,
+ "is_hidden": 1,
  "label": "Station Supervisor",
  "links": [],
- "modified": "2024-09-16 11:08:40.141088",
+ "modified": "2024-10-17 11:42:42.941094",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Station Supervisor",
@@ -36,7 +36,7 @@
    "color": "Grey",
    "doc_view": "New",
    "label": "Dip Reading",
-   "link_to": "Dip Reading",
+   "link_to": "Station Tank Reading",
    "stats_filter": "[]",
    "type": "DocType"
   },
@@ -52,7 +52,7 @@
    "color": "Grey",
    "doc_view": "List",
    "label": "Fuel Delivery Verification",
-   "link_to": "Fuel Delivery Verification",
+   "link_to": "Fuel Receipt Confirmation",
    "stats_filter": "[]",
    "type": "DocType"
   },
@@ -60,7 +60,7 @@
    "color": "Grey",
    "doc_view": "New",
    "label": "New Fuel Sales Deposit",
-   "link_to": "Fuel Sales Deposit",
+   "link_to": "Sales Deposit",
    "stats_filter": "[]",
    "type": "DocType"
   }
