@@ -5,21 +5,20 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "pump_reading_ref",
-  "column_break_zrrt",
-  "status",
-  "total_sales",
   "section_break_o9ok",
   "st",
   "station_supervisor",
   "column_break_fqka",
   "outlet",
-  "section_break_csbn",
-  "deposit_datetime",
-  "attach_deposit_slip",
-  "column_break_dsfm",
-  "amount_deposited",
-  "amended_from"
+  "section_break_dmfp",
+  "pump_reading_ref",
+  "column_break_zrrt",
+  "status",
+  "total_sales",
+  "total_deposited",
+  "balance",
+  "section_break_fuxm",
+  "sales_deposits"
  ],
  "fields": [
   {
@@ -44,31 +43,6 @@
    "options": "Customer"
   },
   {
-   "fieldname": "section_break_csbn",
-   "fieldtype": "Section Break"
-  },
-  {
-   "default": "Now",
-   "fieldname": "deposit_datetime",
-   "fieldtype": "Datetime",
-   "label": "Deposit Datetime "
-  },
-  {
-   "fieldname": "attach_deposit_slip",
-   "fieldtype": "Attach",
-   "label": "Attach Deposit Slip"
-  },
-  {
-   "fieldname": "column_break_dsfm",
-   "fieldtype": "Column Break"
-  },
-  {
-   "bold": 1,
-   "fieldname": "amount_deposited",
-   "fieldtype": "Currency",
-   "label": "Amount Deposited"
-  },
-  {
    "fetch_from": "pump_reading_ref.st",
    "fetch_if_empty": 1,
    "fieldname": "st",
@@ -84,16 +58,6 @@
    "label": "Station Supervisor"
   },
   {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Deposit Sales",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
-  },
-  {
    "fieldname": "column_break_zrrt",
    "fieldtype": "Column Break"
   },
@@ -101,7 +65,7 @@
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
-   "options": "Unpaid\nPaid"
+   "options": "Unpaid\nPartially Paid\nPaid"
   },
   {
    "fetch_from": "pump_reading_ref.total_sales",
@@ -109,13 +73,38 @@
    "fieldtype": "Currency",
    "label": "Total Sales",
    "read_only": 1
+  },
+  {
+   "fieldname": "section_break_fuxm",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "sales_deposits",
+   "fieldtype": "Table",
+   "label": "Sales Deposits",
+   "options": "Sales Multiple"
+  },
+  {
+   "bold": 1,
+   "fieldname": "total_deposited",
+   "fieldtype": "Currency",
+   "label": "Total Deposited"
+  },
+  {
+   "fieldname": "balance",
+   "fieldtype": "Currency",
+   "label": "Balance"
+  },
+  {
+   "fieldname": "section_break_dmfp",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_calendar_and_gantt": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-10-23 14:15:08.326584",
+ "modified": "2024-10-23 15:41:48.224943",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Deposit Sales",
@@ -147,6 +136,10 @@
   {
    "color": "Red",
    "title": "Unpaid"
+  },
+  {
+   "color": "Orange",
+   "title": "Partially Paid"
   }
  ],
  "track_changes": 1,

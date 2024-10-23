@@ -59,6 +59,7 @@ function fetch_last_fuel_dispenser_reading(frm, outlet) {
         callback: function(response) {
             console.log("Last reading found:", response.message);
             populate_child_tables_from_last_reading(frm, response.message);
+            fetch_attendant_details(frm, outlet)
         }
     });
 }
@@ -152,6 +153,24 @@ function process_pump_details(frm, pump_data) {
     // Refresh both child tables to reflect changes
    frm.refresh_field("ago_pump_readings_diesel");
    frm.refresh_field("pms_pump_readings_petrol");
+}
+
+
+//helper function to Fetch attendant details and update attendant field in the child tables
+function fetch_attendant_details(frm, outlet){
+    // Fetch attendant details and update attendant field in the child tables
+    frappe.call({
+        method: "omc.fuel_management.doctype.fuel_dispenser_reading.fuel_dispenser_reading.pumpdetails",
+        args: { atted: outlet },  // Pass 'atted' argument for attendant details
+        callback: function(response) {
+            if (!response || response.exc) {
+                console.error("Error fetching attendant details", response);
+                return;
+            }
+            console.log("Attendant details fetched successfully:", response.message);
+            update_attendant_select_options(frm, response.message);  // Dynamically set attendant field options
+        }
+    });
 }
 
 // Helper function to dynamically update the attendant field options in child tables
