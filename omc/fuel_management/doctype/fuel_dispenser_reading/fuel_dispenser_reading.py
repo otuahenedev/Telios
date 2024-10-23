@@ -53,7 +53,7 @@ class FuelDispenserReading(Document):
          try :
              if self.workflow_state == "Verified Pump Readings":
                  sales = frappe.get.doc({
-                     "doctype": "Sales Deposit",
+                     "doctype": "Deposit Sales",
                      "pump_reading_ref": self.name,
                       "deposit_amount": self.total_sales,
                  }) 

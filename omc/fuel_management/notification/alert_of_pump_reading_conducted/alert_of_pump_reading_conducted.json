@@ -1,0 +1,28 @@
+{
+ "attach_print": 0,
+ "channel": "System Notification",
+ "creation": "2024-10-18 12:46:22.426728",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Fuel Dispenser Reading",
+ "enabled": 1,
+ "event": "Submit",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "Reporting of Sales Conducted for  {{doc.outlet}} at {{doc.date}} . Kindly Review {{doc.name}}",
+ "message_type": "Markdown",
+ "modified": "2024-10-18 12:46:42.616873",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "alert of pump reading conducted",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "receiver_by_role": "System Manager"
+  }
+ ],
+ "send_system_notification": 0,
+ "send_to_all_assignees": 0,
+ "subject": "Reporting of Sales Conducted for  {{doc.outlet}}"
+}

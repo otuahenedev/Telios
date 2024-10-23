@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:TELIOS-{outlet}-{YYYY}-{###}",
+ "autoname": "format:TELIOS-{outlet}-{YYYY}-{MM}-{###}",
  "creation": "2024-10-04 18:07:35.814250",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -19,7 +19,7 @@
   "ago_rate",
   "pms_rate",
   "rtt",
-  "incurred_expenses",
+  "first_load_done",
   "returned_to_tank_section",
   "ago_diesel_column",
   "ago_litres_used",
@@ -116,13 +116,6 @@
    "fieldname": "rtt",
    "fieldtype": "Check",
    "label": "Returned To Tank Conducted "
-  },
-  {
-   "default": "0",
-   "fieldname": "incurred_expenses",
-   "fieldtype": "Check",
-   "hidden": 1,
-   "label": "Incurred Expenses "
   },
   {
    "depends_on": "eval:doc.rtt == 1",
@@ -229,6 +222,7 @@
   {
    "fieldname": "summary_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Summary"
   },
   {
@@ -259,7 +253,7 @@
    "fieldname": "fuel_sales_deposit_ref",
    "fieldtype": "Link",
    "label": "Fuel Sales Deposit Ref.",
-   "options": "Sales Deposit"
+   "options": "Deposit Sales"
   },
   {
    "fieldname": "column_break_hqle",
@@ -354,6 +348,15 @@
    "fieldtype": "Table",
    "label": "AGO  Pump Readings (Diesel)",
    "options": "Pump Readings"
+  },
+  {
+   "default": "0",
+   "fieldname": "first_load_done",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "first_load_done",
+   "print_hide": 1,
+   "report_hide": 1
   }
  ],
  "index_web_pages_for_search": 1,
@@ -362,11 +365,11 @@
  "links": [
   {
    "group": "Receivables",
-   "link_doctype": "Sales Deposit",
+   "link_doctype": "Deposit Sales",
    "link_fieldname": "pump_reading_ref"
   }
  ],
- "modified": "2024-10-16 11:54:44.647361",
+ "modified": "2024-10-18 13:58:49.068699",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Fuel Dispenser Reading",

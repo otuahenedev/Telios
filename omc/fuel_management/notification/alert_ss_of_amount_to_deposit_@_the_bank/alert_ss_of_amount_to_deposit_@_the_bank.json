@@ -1,0 +1,29 @@
+{
+ "attach_print": 1,
+ "channel": "System Notification",
+ "condition": "doc.workflow_state==\"Verified Pump Readings\"",
+ "creation": "2024-10-18 11:52:54.065066",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Fuel Dispenser Reading",
+ "enabled": 1,
+ "event": "Custom",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "Deposit sales of <b>{{doc.total_sales}}</b> to the bank and fill a deposit slip",
+ "message_type": "Markdown",
+ "modified": "2024-10-18 12:46:53.933811",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Alert SS of amount to deposit @ the bank",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "receiver_by_role": "Station Supervisor"
+  }
+ ],
+ "send_system_notification": 0,
+ "send_to_all_assignees": 0,
+ "subject": "Deposit Sales for {{ doc.name }}"
+}

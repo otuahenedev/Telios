@@ -1,0 +1,1 @@
+{{doc.station_supervisor}} deposit sales of **{{doc.total_sales}}** to the bank

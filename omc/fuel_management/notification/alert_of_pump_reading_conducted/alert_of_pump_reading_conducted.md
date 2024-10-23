@@ -1,0 +1,1 @@
+Reporting of Sales Conducted for  {{doc.outlet}} at {{doc.date}} . Kindly Review {{doc.name}}

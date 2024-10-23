@@ -89,8 +89,8 @@ function populate_child_tables_from_last_reading(frm, last_reading) {
         });
     }
 
-  //  frm.refresh_field("ago_pump_readings_diesel");
-   // frm.refresh_field("pms_pump_readings_petrol");
+    frm.refresh_field("ago_pump_readings_diesel");
+    frm.refresh_field("pms_pump_readings_petrol");
 }
 
 // Fetch pump and attendant details
@@ -134,8 +134,8 @@ function process_pump_details(frm, pump_data) {
     let pumps = Array.isArray(pump_data.message) ? pump_data.message : Object.values(pump_data.message);
 
     // Clear current child tables
-   // frm.clear_table("ago_pump_readings_diesel");
-    //frm.clear_table("pms_pump_readings_petrol");
+    frm.clear_table("ago_pump_readings_diesel");
+    frm.clear_table("pms_pump_readings_petrol");
 
     // Populate child tables with pumps data
     pumps.forEach(pump => {
@@ -150,8 +150,8 @@ function process_pump_details(frm, pump_data) {
     });
 
     // Refresh both child tables to reflect changes
-   // frm.refresh_field("ago_pump_readings_diesel");
-   // frm.refresh_field("pms_pump_readings_petrol");
+   frm.refresh_field("ago_pump_readings_diesel");
+   frm.refresh_field("pms_pump_readings_petrol");
 }
 
 // Helper function to dynamically update the attendant field options in child tables
@@ -168,8 +168,8 @@ function update_attendant_select_options(frm, attendant_data) {
     frm.fields_dict.pms_pump_readings_petrol.grid.update_docfield_property('attendant', "options", attendants);
 
     // Refresh fields to apply updated attendant options
-   // frm.refresh_field("ago_pump_readings_diesel");
-   // frm.refresh_field("pms_pump_readings_petrol");
+   frm.refresh_field("ago_pump_readings_diesel");
+   frm.refresh_field("pms_pump_readings_petrol");
 }
 
 frappe.ui.form.on("Pump Readings", "difference", function(frm, cdt, cdn) {

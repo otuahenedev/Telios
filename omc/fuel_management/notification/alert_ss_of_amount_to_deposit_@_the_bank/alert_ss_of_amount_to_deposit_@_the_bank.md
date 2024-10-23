@@ -1,0 +1,1 @@
+Deposit sales of <b>{{doc.total_sales}}</b> to the bank and fill a deposit slip

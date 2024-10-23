@@ -1,0 +1,154 @@
+{
+ "actions": [],
+ "autoname": "format:Fuel Sales Deposit-{outlet}-{DD}-{MM}-{YY}",
+ "creation": "2024-10-18 11:53:46.947499",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "pump_reading_ref",
+  "column_break_zrrt",
+  "status",
+  "total_sales",
+  "section_break_o9ok",
+  "st",
+  "station_supervisor",
+  "column_break_fqka",
+  "outlet",
+  "section_break_csbn",
+  "deposit_datetime",
+  "attach_deposit_slip",
+  "column_break_dsfm",
+  "amount_deposited",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_o9ok",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_fqka",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "pump_reading_ref",
+   "fieldtype": "Link",
+   "label": "Reporting Sales Ref.",
+   "options": "Fuel Dispenser Reading"
+  },
+  {
+   "fetch_from": "pump_reading_ref.outlet",
+   "fieldname": "outlet",
+   "fieldtype": "Link",
+   "label": "Outlet",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "section_break_csbn",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "Now",
+   "fieldname": "deposit_datetime",
+   "fieldtype": "Datetime",
+   "label": "Deposit Datetime "
+  },
+  {
+   "fieldname": "attach_deposit_slip",
+   "fieldtype": "Attach",
+   "label": "Attach Deposit Slip"
+  },
+  {
+   "fieldname": "column_break_dsfm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "bold": 1,
+   "fieldname": "amount_deposited",
+   "fieldtype": "Currency",
+   "label": "Amount Deposited"
+  },
+  {
+   "fetch_from": "pump_reading_ref.st",
+   "fetch_if_empty": 1,
+   "fieldname": "st",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Station Supervisor",
+   "options": "Employee"
+  },
+  {
+   "fetch_from": "st.employee_name",
+   "fieldname": "station_supervisor",
+   "fieldtype": "Data",
+   "label": "Station Supervisor"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Deposit Sales",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "column_break_zrrt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Unpaid\nPaid"
+  },
+  {
+   "fetch_from": "pump_reading_ref.total_sales",
+   "fieldname": "total_sales",
+   "fieldtype": "Currency",
+   "label": "Total Sales",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_calendar_and_gantt": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-10-23 14:15:08.326584",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Deposit Sales",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [
+  {
+   "color": "Green",
+   "title": "Paid"
+  },
+  {
+   "color": "Red",
+   "title": "Unpaid"
+  }
+ ],
+ "track_changes": 1,
+ "track_views": 1
+}

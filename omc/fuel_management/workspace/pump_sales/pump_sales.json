@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"2tBz4ceHVB\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Pump Sales</span>\",\"col\":12}},{\"id\":\"PBoXs-QfLv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Deposit\",\"col\":3}},{\"id\":\"8XASOqKhrs\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Pump Meter Reading\",\"col\":3}},{\"id\":\"2Xo_Vbtm9A\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"5yH4RPH46R\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Fuel Dispenser Reading\",\"col\":6}},{\"id\":\"dOsooP8qfP\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Sales Deposit\",\"col\":6}}]",
+ "content": "[{\"id\":\"2tBz4ceHVB\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Pump Sales</span>\",\"col\":12}},{\"id\":\"PBoXs-QfLv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Deposit Sales\",\"col\":3}},{\"id\":\"8XASOqKhrs\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Report Sales\",\"col\":3}},{\"id\":\"2Xo_Vbtm9A\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"5yH4RPH46R\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Fuel Dispenser Reading\",\"col\":6}},{\"id\":\"dOsooP8qfP\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Sales Deposit\",\"col\":6}}]",
  "creation": "2024-09-16 08:55:03.392243",
  "custom_blocks": [],
  "docstatus": 0,
@@ -12,7 +12,7 @@
  "is_hidden": 0,
  "label": "Pump Sales",
  "links": [],
- "modified": "2024-10-16 12:52:29.025279",
+ "modified": "2024-10-18 13:41:15.779847",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Pump Sales",
@@ -27,7 +27,7 @@
    "quick_list_filter": "[]"
   },
   {
-   "document_type": "Sales Deposit",
+   "document_type": "Deposit Sales",
    "label": "Sales Deposit",
    "quick_list_filter": "[]"
   }
@@ -38,15 +38,15 @@
   {
    "color": "Grey",
    "doc_view": "List",
-   "label": "Sales Deposit",
-   "link_to": "Sales Deposit",
+   "label": "Deposit Sales",
+   "link_to": "Deposit Sales",
    "stats_filter": "[]",
    "type": "DocType"
   },
   {
    "color": "Cyan",
    "doc_view": "List",
-   "label": "Pump Meter Reading",
+   "label": "Report Sales",
    "link_to": "Fuel Dispenser Reading",
    "stats_filter": "[]",
    "type": "DocType"
