@@ -8,12 +8,15 @@
  "field_order": [
   "pump",
   "current_reading",
-  "last_reading",
   "capture_reading",
   "difference",
   "attendant",
   "ago",
-  "pms"
+  "pms",
+  "column_break_ccin",
+  "last_reading",
+  "previous_capture_reading",
+  "previous_shifts_attendant"
  ],
  "fields": [
   {
@@ -77,12 +80,32 @@
    "hidden": 1,
    "label": "PMS",
    "print_hide": 1
+  },
+  {
+   "fieldname": "column_break_ccin",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Attach Image of reading",
+   "fieldname": "previous_capture_reading",
+   "fieldtype": "Attach Image",
+   "label": "Previous Capture Reading  ",
+   "mandatory_depends_on": "current_reading",
+   "read_only": 1
+  },
+  {
+   "fieldname": "previous_shifts_attendant",
+   "fieldtype": "Link",
+   "label": "Previous Shift's Attendant ",
+   "link_filters": "[[\"Employee\",\"designation\",\"=\",\"Station Attendant\"]]",
+   "options": "Fuel Station Attendant",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-10-17 13:21:38.219098",
+ "modified": "2024-10-25 10:44:29.596837",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Pump Readings",

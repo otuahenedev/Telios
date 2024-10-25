@@ -8,6 +8,7 @@
   "section_break_o9ok",
   "st",
   "station_supervisor",
+  "email",
   "column_break_fqka",
   "outlet",
   "section_break_dmfp",
@@ -18,7 +19,8 @@
   "total_deposited",
   "balance",
   "section_break_fuxm",
-  "sales_deposits"
+  "sales_deposits",
+  "amended_from"
  ],
  "fields": [
   {
@@ -98,13 +100,31 @@
   {
    "fieldname": "section_break_dmfp",
    "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "st.prefered_email",
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Deposit Sales",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_calendar_and_gantt": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-10-23 15:41:48.224943",
+ "modified": "2024-10-25 13:50:56.423088",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Deposit Sales",

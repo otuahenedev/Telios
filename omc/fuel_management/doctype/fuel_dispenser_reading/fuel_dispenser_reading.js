@@ -77,6 +77,8 @@ function populate_child_tables_from_last_reading(frm, last_reading) {
             child_row.pump = row.pump;
             //child_row.attendant = row.attendant;
             child_row.last_reading = row.current_reading;
+            child_row.previous_capture_reading = row.capture_reading
+            child_row.previous_shifts_attendant = row.attendant
         });
     }
 
