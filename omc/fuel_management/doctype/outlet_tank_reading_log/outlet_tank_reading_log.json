@@ -175,7 +175,7 @@
  "modified": "2024-10-04 13:32:01.139692",
  "modified_by": "Administrator",
  "module": "Fuel Management",
- "name": "Station Tank Reading",
+ "name": "Outlet Tank Reading Log",
  "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [

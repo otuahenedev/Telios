@@ -17,7 +17,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Tank Reading",
-   "options": "Station Tank Reading",
+   "options": "Outlet Tank Reading Log",
    "reqd": 1
   },
   {
@@ -50,7 +50,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-10-04 11:26:08.014043",
+ "modified": "2024-10-29 22:21:55.133564",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Tank Reading",

@@ -6,7 +6,7 @@ from frappe.model.document import Document
 
 
 
-class StationTankReading(Document):
+class OutletTankReadingLog(Document):
 	def validate(self):
 		try:
 			if self.docstatus == 1:
