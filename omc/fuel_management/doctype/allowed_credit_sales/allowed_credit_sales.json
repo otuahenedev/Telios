@@ -1,7 +1,8 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2024-11-06 13:25:50.432842",
+ "creation": "2024-11-11 13:38:01.903081",
+ "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
@@ -15,6 +16,13 @@
   "create_sales_invoice"
  ],
  "fields": [
+  {
+   "fieldname": "outlet_credit_sales_log",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Outlet Credit Sales Log",
+   "options": "Outlet Credit Sales Log"
+  },
   {
    "fetch_from": "outlet_credit_sales_log.name1",
    "fieldname": "name1",
@@ -33,11 +41,13 @@
    "read_only": 1
   },
   {
-   "fieldname": "outlet_credit_sales_log",
+   "fetch_from": "outlet_credit_sales_log.product",
+   "fieldname": "product",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Outlet Credit Sales Log",
-   "options": "Outlet Credit Sales Log"
+   "label": "Product",
+   "link_filters": "[[\"Item\",\"item_group\",\"=\",\"White Products\"]]",
+   "options": "Item"
   },
   {
    "fetch_from": "outlet_credit_sales_log.volume_sold_l",
@@ -56,15 +66,6 @@
    "read_only": 1
   },
   {
-   "fetch_from": "outlet_credit_sales_log.product",
-   "fieldname": "product",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Product",
-   "link_filters": "[[\"Item\",\"item_group\",\"=\",\"White Products\"]]",
-   "options": "Item"
-  },
-  {
    "fieldname": "create_sales_invoice",
    "fieldtype": "Button",
    "label": "Create Sales Invoice"
@@ -73,10 +74,10 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-11-11 13:26:54.771983",
+ "modified": "2024-11-11 13:38:01.903081",
  "modified_by": "Administrator",
  "module": "Fuel Management",
- "name": "Allowed Credit Customer",
+ "name": "Allowed Credit Sales",
  "owner": "Administrator",
  "permissions": [],
  "sort_field": "modified",
