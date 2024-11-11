@@ -26,48 +26,94 @@
 }
 });
 
-frappe.ui.form.on('Fuel Lifting Request', {
-    fuel_type: function(frm){
-        let fuel_type = frm.doc.fuel_type
-        if(fuel_type == 'AGO'){
+frappe.ui.form.on("Fuel Lifting Request", {
+    fuel_type: function(frm) {
+        let fuel_type = frm.doc.fuel_type;
+
+        // Check if the fuel type is AGO
+        if (fuel_type == 'AGO') {
             frappe.call({
                 method: "omc.fuel_management.doctype.fuel_lifting_request.fuel_lifting_request.justification",
-                args:{fuel_type:fuel_type}
+                args: { fuel_type: fuel_type }
             }).done((r) => {
-                frm.doc.just = []
-                $.each(r.message, function(_i, e){
-                    let justice = frm.add_child("just")
+                frm.doc.just = [];
+                $.each(r.message, function(_i, e) {
+                    let justice = frm.add_child("just");
                     justice.outlet = e.FuelStation;
                     justice.avg_daily_sales = e.AverageDailyDieselSales;
-                    justice.current_stock_level = e.CurrentDieselStock
-                    justice.stock_lifespan = e.DieselStockLifespan
-                    justice.reorder_level = e.ReorderLevelDiesel
-                })
-                refresh_field("just")
-            })
-        } 
-        if(fuel_type){
+                    justice.current_stock_level = e.CurrentDieselStock;
+                    justice.stock_lifespan = e.DieselStockLifespan;
+                    justice.reorder_level = e.ReorderLevelDiesel;
+                });
+                refresh_field("just");
+
+                // Call function to render table for AGO
+                render_fuel_data_table(frm, "just", "Diesel Justification Data");
+            });
+        } else if (fuel_type) {  // If the fuel type is anything else
             frappe.call({
                 method: "omc.fuel_management.doctype.fuel_lifting_request.fuel_lifting_request.justification",
-                args:{fuel_type:fuel_type}
+                args: { fuel_type: fuel_type }
             }).done((r) => {
-                frm.doc.justp = []
-                $.each(r.message, function(_i, j){
-                    let justiced = frm.add_child("justp")
+                frm.doc.justp = [];
+                $.each(r.message, function(_i, j) {
+                    let justiced = frm.add_child("justp");
                     justiced.outlet = j.FuelStation;
                     justiced.avg_daily_sales = j.AverageDailyPetrolSales;
-                    justiced.current_stock_level = j.CurrentPetrolStock
-                    justiced.stock_lifespan = j.PetrolStockLifespan
-                    justiced.reorder_level = j.ReorderLevelPetrol
-                })
-                refresh_field("justp")
-            })
+                    justiced.current_stock_level = j.CurrentPetrolStock;
+                    justiced.stock_lifespan = j.PetrolStockLifespan;
+                    justiced.reorder_level = j.ReorderLevelPetrol;
+                });
+                refresh_field("justp");
+
+                // Call function to render table for Petrol
+                render_fuel_data_table(frm, "justp", "Petrol Justification Data");
+            });
         }
-        
-        
-        
-        
-    },
+    }
+});
+
+// Helper function to render HTML table in the HTML field
+function render_fuel_data_table(frm, child_table_name, title) {
+    let table_content = `
+        <h4>${title}</h4>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Outlet</th>
+                    <th>Average Daily Sales</th>
+                    <th>Current Stock Level</th>
+                    <th>Stock Lifespan</th>
+                    <th>Reorder Level</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+
+    // Loop through each row in the specified child table
+    (frm.doc[child_table_name] || []).forEach(row => {
+        table_content += `
+            <tr>
+                <td>${row.outlet || ""}</td>
+                <td>${row.avg_daily_sales || ""}</td>
+                <td>${row.current_stock_level || ""}</td>
+                <td>${row.stock_lifespan || ""}</td>
+                <td>${row.reorder_level || ""}</td>
+            </tr>
+        `;
+    });
+
+    table_content += `
+            </tbody>
+        </table>
+    `;
+
+    // Set the HTML content to the HTML field
+    frm.set_df_property("fuel_data_table", "options", table_content);
+}
+
+frappe.ui.form.on('Fuel Lifting Request', {
+    
 
     /*validate: function(frm){
         total = 0; 

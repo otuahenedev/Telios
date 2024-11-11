@@ -1,0 +1,249 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:CA-{name1}-{MM}-{YY}-{#####}",
+ "creation": "2024-11-07 14:04:28.946238",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_anot",
+  "name1",
+  "type",
+  "mobile_number",
+  "email_id",
+  "address",
+  "column_break_jcjo",
+  "status",
+  "approved_credit_limit",
+  "assigned_to",
+  "credit_details_section",
+  "credit_limit_requested",
+  "payment_terms",
+  "column_break_bewx",
+  "supporting_documents",
+  "amended_from",
+  "company_staff_section",
+  "staff"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_anot",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "name1",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Name",
+   "link_filters": "[[\"Customer\",\"customer_group\",\"!=\",\"Outlet\"]]",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "name1.customer_type",
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "label": "Type",
+   "options": "Company\nIndividual\nPartnership"
+  },
+  {
+   "fetch_from": "name1.mobile_no",
+   "fieldname": "mobile_number",
+   "fieldtype": "Data",
+   "label": "Mobile Number"
+  },
+  {
+   "fetch_from": "name1.email_id",
+   "fieldname": "email_id",
+   "fieldtype": "Data",
+   "label": "Email Id"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address"
+  },
+  {
+   "fieldname": "column_break_jcjo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "approved_credit_limit",
+   "fieldtype": "Currency",
+   "label": "Approved Credit Limit",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "credit_details_section",
+   "fieldtype": "Section Break",
+   "label": "Credit Details"
+  },
+  {
+   "fieldname": "credit_limit_requested",
+   "fieldtype": "Currency",
+   "label": "Credit Limit Requested",
+   "precision": "2"
+  },
+  {
+   "fieldname": "payment_terms",
+   "fieldtype": "Select",
+   "label": "Payment Terms"
+  },
+  {
+   "fieldname": "column_break_bewx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Upload fields for documents such as business registration, financial statements, or bank statements ",
+   "fieldname": "supporting_documents",
+   "fieldtype": "Attach",
+   "label": "Supporting Documents"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Credit Application",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "assigned_to",
+   "fieldtype": "Table MultiSelect",
+   "label": "Assigned to ",
+   "options": "Multiple outlets",
+   "permlevel": 1
+  },
+  {
+   "description": "Persons allowed to purchase fuel on behalf of this customer",
+   "fieldname": "company_staff_section",
+   "fieldtype": "Section Break",
+   "label": "Company Staff"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Rejected\nUnder Review\nApproved",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "staff",
+   "fieldtype": "Table",
+   "options": "Company Staff"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-11-09 14:36:08.421534",
+ "modified_by": "Administrator",
+ "module": "Credit  Facilitation",
+ "name": "Credit Application",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "All",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Auditor",
+   "share": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Auditor",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [
+  {
+   "color": "Red",
+   "title": "Rejected"
+  },
+  {
+   "color": "Orange",
+   "title": "Under Review"
+  },
+  {
+   "color": "Green",
+   "title": "Approved"
+  }
+ ],
+ "title_field": "name1"
+}

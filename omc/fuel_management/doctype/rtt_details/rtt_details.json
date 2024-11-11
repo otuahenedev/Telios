@@ -7,20 +7,12 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "fuel_type",
+  "product",
   "litres_used",
   "attach_video_evidence",
   "attach_image_evidence"
  ],
  "fields": [
-  {
-   "fieldname": "fuel_type",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Fuel Type",
-   "options": "Item",
-   "reqd": 1
-  },
   {
    "fieldname": "litres_used",
    "fieldtype": "Float",
@@ -39,12 +31,21 @@
    "fieldname": "attach_image_evidence",
    "fieldtype": "Attach Image",
    "label": "Attach Image Evidence "
+  },
+  {
+   "fieldname": "product",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Product",
+   "link_filters": "[[\"Item\",\"item_group\",\"=\",\"White Products\"]]",
+   "options": "Item",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-10-04 18:36:01.792749",
+ "modified": "2024-11-09 10:31:02.674505",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "RTT Details",

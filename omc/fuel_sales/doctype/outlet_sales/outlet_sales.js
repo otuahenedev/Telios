@@ -1,5 +1,13 @@
+// Copyright (c) 2024, Kelvin and contributors
+// For license information, please see license.txt
+
+// frappe.ui.form.on("Outlet Sales", {
+// 	refresh(frm) {
+
+// 	},
+// });
 // Main trigger for 'outlet' field - Step 1: Fetch product pricing and populate it
-frappe.ui.form.on("Fuel Dispenser Reading", {
+frappe.ui.form.on("Outlet Sales", {
     outlet: function(frm) {
         let outlet = frm.doc.outlet;
         
@@ -110,7 +118,7 @@ function handle_last_fuel_dispenser_reading(frm, outlet) {
     frappe.call({
         method: "frappe.client.get_list",
         args: {
-            doctype: "Fuel Dispenser Reading",
+            doctype: "Outlet Sales",
             filters: { outlet: outlet },
             fields: ["name", "creation"],
             order_by: "creation desc",
@@ -126,7 +134,7 @@ function handle_last_fuel_dispenser_reading(frm, outlet) {
                 
             } else {
                 fetch_active_pumps(frm, outlet);
-                console.log(`No previous Fuel Dispenser Reading found for outlet: ${outlet}. Fetching active pump details.`);
+                console.log(`No previous Outlet Sales found for outlet: ${outlet}. Fetching active pump details.`);
                 fetch_attendant_details(frm, outlet)
                 // rows cannot be added or deleted
                 frm.set_df_property('dispenser_readings','cannot_add_rows', true);  
@@ -140,7 +148,7 @@ function fetch_last_fuel_dispenser_reading(frm, outlet) {
     frappe.call({
         method: "frappe.client.get",
         args: {
-            doctype: "Fuel Dispenser Reading",
+            doctype: "Outlet Sales",
             filters: { outlet: outlet },
             order_by: "creation desc",
             limit_page_length: 1
@@ -205,7 +213,7 @@ frappe.ui.form.on("dispenser_readings", "current_reading", function(frm, cdt, cd
 
 // Handle RTT
 // RTT deduction logic in the 'validate' function
-frappe.ui.form.on("Fuel Dispenser Reading", {
+frappe.ui.form.on("Outlet Sales", {
     validate: function(frm) {
         // Existing logic for calculating product totals and sales
         frm.clear_table('product_totals');
@@ -272,7 +280,7 @@ frappe.ui.form.on("Fuel Dispenser Reading", {
 
 // HANDLE CREDIT SALES
 // Step 2: Adding credit sales deduction logic in the 'validate' function
-frappe.ui.form.on("Fuel Dispenser Reading", {
+frappe.ui.form.on("Outlet Sales", {
     validate: function(frm) {
         // Original total sales calculation logic here
 
@@ -298,8 +306,10 @@ frappe.ui.form.on("Fuel Dispenser Reading", {
 //helper function to Fetch attendant details and update attendant field in the child tables
 function fetch_attendant_details(frm, outlet){
     // Fetch attendant details and update attendant field in the child tables
+    //        method: "omc.fuel_management.doctype.fuel_dispenser_reading.fuel_dispenser_reading.pumpdetails",
+
     frappe.call({
-        method: "omc.fuel_management.doctype.fuel_dispenser_reading.fuel_dispenser_reading.pumpdetails",
+        method: "omc.fuel_sales.doctype.outlet_sales.outlet_sales.pumpdetails",
         args: { atted:outlet },  // Pass 'atted' argument for attendant details
         callback: function(response) {
             if (!response || response.exc) {

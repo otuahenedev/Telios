@@ -1,0 +1,101 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-11-05 14:34:38.477319",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_pysq",
+  "fuel_type",
+  "driver",
+  "fuel_truck",
+  "column_break_zkta",
+  "fuel_quantity_supplied",
+  "expected_stock_level_after_discharge",
+  "section_break_uwjg",
+  "table_ilks",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_pysq",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "fuel_type",
+   "fieldtype": "Select",
+   "label": "Fuel Type"
+  },
+  {
+   "fieldname": "driver",
+   "fieldtype": "Link",
+   "label": "Driver",
+   "options": "Driver"
+  },
+  {
+   "fieldname": "fuel_truck",
+   "fieldtype": "Link",
+   "label": "Fuel Truck",
+   "options": "Vehicle"
+  },
+  {
+   "fieldname": "column_break_zkta",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "fuel_quantity_supplied",
+   "fieldtype": "Float",
+   "label": "Fuel Quantity Supplied"
+  },
+  {
+   "fieldname": "expected_stock_level_after_discharge",
+   "fieldtype": "Float",
+   "label": "Expected Stock Level After Discharge"
+  },
+  {
+   "fieldname": "section_break_uwjg",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "table_ilks",
+   "fieldtype": "Table",
+   "options": "Meter Readings During Discharge"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Fuel Discharge Log",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-11-05 15:03:16.664702",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Fuel Discharge Log",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

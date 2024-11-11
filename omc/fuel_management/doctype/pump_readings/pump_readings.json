@@ -7,16 +7,17 @@
  "engine": "InnoDB",
  "field_order": [
   "pump",
+  "product",
+  "column_break_fdgn",
   "current_reading",
   "capture_reading",
-  "difference",
   "attendant",
-  "ago",
-  "pms",
   "column_break_ccin",
   "last_reading",
   "previous_capture_reading",
-  "previous_shifts_attendant"
+  "previous_shifts_attendant",
+  "column_break_ytmg",
+  "difference"
  ],
  "fields": [
   {
@@ -53,7 +54,7 @@
    "fieldname": "difference",
    "fieldtype": "Float",
    "in_list_view": 1,
-   "label": "Difference",
+   "label": "Volume Sold",
    "read_only": 1
   },
   {
@@ -64,24 +65,6 @@
    "link_filters": "[[\"Employee\",\"designation\",\"=\",\"Station Attendant\"]]"
   },
   {
-   "default": "1",
-   "depends_on": "eval: doc.pump && doc.pump.toLowerCase().includes(\"pms\")\n",
-   "fieldname": "ago",
-   "fieldtype": "Check",
-   "hidden": 1,
-   "label": "AGO",
-   "link_filters": "[[\"Item\",\"item_group\",\"=\",\"White Products\"]]",
-   "print_hide": 1
-  },
-  {
-   "default": "1",
-   "fieldname": "pms",
-   "fieldtype": "Check",
-   "hidden": 1,
-   "label": "PMS",
-   "print_hide": 1
-  },
-  {
    "fieldname": "column_break_ccin",
    "fieldtype": "Column Break"
   },
@@ -90,7 +73,6 @@
    "fieldname": "previous_capture_reading",
    "fieldtype": "Attach Image",
    "label": "Previous Capture Reading  ",
-   "mandatory_depends_on": "current_reading",
    "read_only": 1
   },
   {
@@ -100,12 +82,28 @@
    "link_filters": "[[\"Employee\",\"designation\",\"=\",\"Station Attendant\"]]",
    "options": "Fuel Station Attendant",
    "read_only": 1
+  },
+  {
+   "fieldname": "product",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Product",
+   "link_filters": "[[\"Item\",\"item_group\",\"=\",\"White Products\"]]",
+   "options": "Item"
+  },
+  {
+   "fieldname": "column_break_ytmg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_fdgn",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-10-25 10:44:29.596837",
+ "modified": "2024-11-10 20:30:58.734266",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Pump Readings",

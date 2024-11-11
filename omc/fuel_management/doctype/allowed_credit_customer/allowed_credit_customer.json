@@ -1,0 +1,79 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-11-06 13:25:50.432842",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "outlet_credit_sales_log",
+  "name1",
+  "company",
+  "product",
+  "volume_sold",
+  "sales"
+ ],
+ "fields": [
+  {
+   "fetch_from": "outlet_credit_sales_log.name1",
+   "fieldname": "name1",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Name",
+   "options": "Company Staff",
+   "read_only": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Company",
+   "options": "Company",
+   "read_only": 1
+  },
+  {
+   "fieldname": "outlet_credit_sales_log",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Outlet Credit Sales Log",
+   "options": "Outlet Credit Sales Log"
+  },
+  {
+   "fetch_from": "outlet_credit_sales_log.volume_sold_l",
+   "fieldname": "volume_sold",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Volume Sold (L)",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "outlet_credit_sales_log.sales_ghs",
+   "fieldname": "sales",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total Sales (GHS)",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "outlet_credit_sales_log.product",
+   "fieldname": "product",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Product",
+   "link_filters": "[[\"Item\",\"item_group\",\"=\",\"White Products\"]]",
+   "options": "Item"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-11-07 23:29:40.512692",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Allowed Credit Customer",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -2,12 +2,12 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "format:TELIOS-{outlet}-{YYYY}-{MM}-{###}",
- "creation": "2024-10-04 18:07:35.814250",
+ "creation": "2024-11-10 08:28:25.031633",
+ "default_view": "List",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "section_break_wkbk",
-  "amended_from",
   "status",
   "outlet",
   "st",
@@ -16,8 +16,6 @@
   "date",
   "datetime",
   "product_pricing",
-  "ago_rate",
-  "pms_rate",
   "rtt",
   "first_load_done",
   "credit",
@@ -36,7 +34,8 @@
   "column_break_mkpv",
   "total_litres_sold",
   "total_sales",
-  "net_cash_sales"
+  "net_cash_sales",
+  "amended_from"
  ],
  "fields": [
   {
@@ -48,9 +47,20 @@
    "fieldtype": "Link",
    "label": "Amended From",
    "no_copy": 1,
-   "options": "Fuel Dispenser Reading",
+   "options": "Outlet Sales",
    "print_hide": 1,
    "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Status",
+   "no_copy": 1,
+   "print_hide": 1,
+   "read_only": 1,
+   "report_hide": 1,
    "search_index": 1
   },
   {
@@ -98,71 +108,16 @@
    "label": "Datetime"
   },
   {
+   "fieldname": "product_pricing",
+   "fieldtype": "Table",
+   "label": "Product Pricing",
+   "options": "Outlet Pricing Table"
+  },
+  {
    "default": "0",
    "fieldname": "rtt",
    "fieldtype": "Check",
    "label": "Returned To Tank Test Conducted "
-  },
-  {
-   "bold": 1,
-   "depends_on": "eval:doc.rtt == 1",
-   "fieldname": "returned_to_tank_section",
-   "fieldtype": "Section Break",
-   "label": "Returned To Tank",
-   "mandatory_depends_on": "eval:doc.rtt == 1"
-  },
-  {
-   "fetch_from": "outlet.custom_ago_price",
-   "fieldname": "ago_rate",
-   "fieldtype": "Currency",
-   "label": "AGO Rate"
-  },
-  {
-   "fetch_from": "outlet.custom_pms_price_",
-   "fieldname": "pms_rate",
-   "fieldtype": "Currency",
-   "label": "PMS Rate"
-  },
-  {
-   "bold": 1,
-   "fieldname": "r",
-   "fieldtype": "Section Break",
-   "hide_border": 1,
-   "label": "Pump Readings"
-  },
-  {
-   "bold": 1,
-   "fieldname": "column_break_sjpv",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "total_litres_sold",
-   "fieldtype": "Float",
-   "label": "Total Volume Sold",
-   "read_only": 1
-  },
-  {
-   "fieldname": "column_break_mkpv",
-   "fieldtype": "Column Break"
-  },
-  {
-   "bold": 1,
-   "default": "0",
-   "fieldname": "total_sales",
-   "fieldtype": "Currency",
-   "label": "Total Sales (GHS)",
-   "read_only": 1
-  },
-  {
-   "fieldname": "status",
-   "fieldtype": "Data",
-   "hidden": 1,
-   "label": "Status",
-   "no_copy": 1,
-   "print_hide": 1,
-   "read_only": 1,
-   "report_hide": 1,
-   "search_index": 1
   },
   {
    "default": "0",
@@ -180,28 +135,16 @@
    "label": "Credit Sales"
   },
   {
-   "depends_on": "credit",
-   "fieldname": "credit_sales_section",
+   "bold": 1,
+   "fieldname": "r",
    "fieldtype": "Section Break",
-   "label": "Credit Sales"
+   "hide_border": 1,
+   "label": "Pump Readings"
   },
   {
    "bold": 1,
-   "fieldname": "totals_section",
-   "fieldtype": "Section Break",
-   "hidden": 1,
-   "label": "Totals"
-  },
-  {
-   "fieldname": "column_break_cbak",
+   "fieldname": "column_break_sjpv",
    "fieldtype": "Column Break"
-  },
-  {
-   "depends_on": "credit",
-   "fieldname": "credit_sales",
-   "fieldtype": "Table",
-   "mandatory_depends_on": "credit",
-   "options": "Allowed Credit Customer"
   },
   {
    "bold": 1,
@@ -212,15 +155,43 @@
   },
   {
    "bold": 1,
+   "depends_on": "eval:doc.rtt == 1",
+   "fieldname": "returned_to_tank_section",
+   "fieldtype": "Section Break",
+   "label": "Returned To Tank",
+   "mandatory_depends_on": "eval:doc.rtt == 1"
+  },
+  {
+   "depends_on": "eval:doc.rtt == 1",
+   "fieldname": "returned_to_tank_test",
+   "fieldtype": "Table",
+   "label": "Returned To Tank Test",
+   "options": "RTT Details"
+  },
+  {
+   "depends_on": "credit",
+   "fieldname": "credit_sales_section",
+   "fieldtype": "Section Break",
+   "label": "Credit Sales"
+  },
+  {
+   "depends_on": "credit",
+   "fieldname": "credit_sales",
+   "fieldtype": "Table",
+   "mandatory_depends_on": "credit",
+   "options": "Allowed Credit Customer"
+  },
+  {
+   "bold": 1,
    "fieldname": "total_credit_sales_ghs",
    "fieldtype": "Currency",
    "label": "Total Credit Sales (GHS)"
   },
   {
-   "fieldname": "product_pricing",
-   "fieldtype": "Table",
-   "label": "Product Pricing",
-   "options": "Outlet Pricing Table"
+   "bold": 1,
+   "fieldname": "totals_section",
+   "fieldtype": "Section Break",
+   "label": "Totals"
   },
   {
    "fieldname": "product_totals",
@@ -228,12 +199,30 @@
    "options": "Pump Reading Totals"
   },
   {
-   "depends_on": "eval:doc.rtt == 1",
-   "fieldname": "returned_to_tank_test",
-   "fieldtype": "Table",
-   "hidden": 1,
-   "label": "Returned To Tank Test",
-   "options": "RTT Details"
+   "fieldname": "section_break_lpvu",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_cbak",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_mkpv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_litres_sold",
+   "fieldtype": "Float",
+   "label": "Total Volume Sold",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "fieldname": "total_sales",
+   "fieldtype": "Currency",
+   "label": "Total Sales (GHS)",
+   "read_only": 1
   },
   {
    "bold": 1,
@@ -243,8 +232,14 @@
    "label": "Net Cash Sales (GHS)"
   },
   {
-   "fieldname": "section_break_lpvu",
-   "fieldtype": "Section Break"
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Outlet Sales",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "index_web_pages_for_search": 1,
@@ -257,10 +252,10 @@
    "link_fieldname": "pump_reading_ref"
   }
  ],
- "modified": "2024-11-10 08:25:44.638395",
+ "modified": "2024-11-10 08:30:52.006886",
  "modified_by": "Administrator",
- "module": "Fuel Management",
- "name": "Fuel Dispenser Reading",
+ "module": "Fuel Sales",
+ "name": "Outlet Sales",
  "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [

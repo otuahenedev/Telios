@@ -1,0 +1,46 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-11-08 10:12:29.406580",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "product",
+  "total_volume_sold_l",
+  "total_sales_ghs"
+ ],
+ "fields": [
+  {
+   "fieldname": "product",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Product",
+   "options": "Item"
+  },
+  {
+   "fieldname": "total_volume_sold_l",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Total Volume Sold (L)"
+  },
+  {
+   "fieldname": "total_sales_ghs",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total Sales (GHS)"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-11-08 10:16:26.620247",
+ "modified_by": "Administrator",
+ "module": "Fuel Sales",
+ "name": "Pump Reading Totals",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

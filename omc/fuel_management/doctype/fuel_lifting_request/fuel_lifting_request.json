@@ -12,6 +12,7 @@
   "section_break_plux",
   "justp",
   "just",
+  "fuel_data_table",
   "section_break_lddd",
   "order_date",
   "column_break_ecig",
@@ -413,11 +414,17 @@
    "fieldtype": "Currency",
    "label": "Total Cost",
    "read_only": 1
+  },
+  {
+   "columns": 10,
+   "fieldname": "fuel_data_table",
+   "fieldtype": "HTML",
+   "label": "Justification Report"
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2024-09-26 14:30:54.296550",
+ "modified": "2024-11-02 11:13:11.852036",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Fuel Lifting Request",

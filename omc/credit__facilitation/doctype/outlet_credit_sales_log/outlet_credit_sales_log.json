@@ -1,0 +1,146 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:CS-{outlet}-{DD}-{MM}-{YY}",
+ "creation": "2024-11-06 15:59:31.459186",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "employee",
+  "outlet",
+  "product",
+  "column_break_hizs",
+  "datetime",
+  "product_pricing",
+  "customer_details_section",
+  "company",
+  "column_break_cjnk",
+  "name1",
+  "vehicle_license_number",
+  "order_details_section",
+  "volume_sold_l",
+  "column_break_sfee",
+  "sales_ghs"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "Employee",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "outlet",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Outlet",
+   "link_filters": "[[\"Customer\",\"customer_group\",\"=\",\"Outlet\"]]",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "product",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Product",
+   "link_filters": "[[\"Item\",\"item_group\",\"=\",\"White Products\"]]",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_hizs",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Now",
+   "fieldname": "datetime",
+   "fieldtype": "Datetime",
+   "label": "Datetime"
+  },
+  {
+   "fieldname": "product_pricing",
+   "fieldtype": "Table",
+   "label": "Product Pricing",
+   "options": "Outlet Pricing Table",
+   "print_hide": 1,
+   "report_hide": 1
+  },
+  {
+   "fieldname": "customer_details_section",
+   "fieldtype": "Section Break",
+   "label": "Customer Details"
+  },
+  {
+   "fetch_from": "name1.company",
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Company / Individual",
+   "link_filters": "[[\"Credit Application\",\"status\",\"=\",\"Approved\"]]",
+   "options": "Credit Application",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_cjnk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "name1",
+   "fieldtype": "Select",
+   "label": "Name"
+  },
+  {
+   "fieldname": "vehicle_license_number",
+   "fieldtype": "Data",
+   "label": "Vehicle License Number"
+  },
+  {
+   "fieldname": "order_details_section",
+   "fieldtype": "Section Break",
+   "label": "Order Details"
+  },
+  {
+   "fieldname": "volume_sold_l",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Volume Sold (L)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_sfee",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "sales_ghs",
+   "fieldtype": "Currency",
+   "label": "Total Sales (GHS)",
+   "read_only": 1,
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-11-09 21:58:09.991677",
+ "modified_by": "Administrator",
+ "module": "Credit  Facilitation",
+ "name": "Outlet Credit Sales Log",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
