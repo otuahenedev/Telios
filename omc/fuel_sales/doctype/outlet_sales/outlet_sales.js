@@ -110,7 +110,11 @@ frappe.ui.form.on("Outlet Sales", {
 
         // Step 5: Sum up total_sales_ghs in Product Totals and set total_sales in parent
         let total_sales = frm.doc.product_totals.reduce((sum, row) => sum + (row.total_sales_ghs || 0), 0);
+        let total_litres_sold = frm.doc.product_totals.reduce((sum, row) => sum + (row.total_volume_sold_l || 0), 0);
+
         frm.set_value('total_sales', total_sales);
+        frm.set_value('total_litres_sold', total_sales);
+
         
     }
 });
@@ -302,6 +306,7 @@ frappe.ui.form.on("Outlet Sales", {
 
         // Set the net cash deposit sales by excluding credit sales
         frm.set_value('total_sales', total_sales);
+        frm.set_value('credit_sales', total_credit_sales);
         frm.set_value('net_cash_sales', total_sales - total_credit_sales);
     }
 });

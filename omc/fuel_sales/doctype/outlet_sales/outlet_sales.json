@@ -34,6 +34,7 @@
   "column_break_mkpv",
   "total_litres_sold",
   "total_sales",
+  "credit_sales_ghs",
   "net_cash_sales",
   "amended_from"
  ],
@@ -229,7 +230,8 @@
    "description": "Cash at Hand",
    "fieldname": "net_cash_sales",
    "fieldtype": "Currency",
-   "label": "Net Cash Sales (GHS)"
+   "label": "Net Cash Sales (GHS)",
+   "read_only": 1
   },
   {
    "fieldname": "amended_from",
@@ -240,6 +242,14 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "fieldname": "credit_sales_ghs",
+   "fieldtype": "Currency",
+   "label": "Credit Sales (GHS) ",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
@@ -252,7 +262,7 @@
    "link_fieldname": "pump_reading_ref"
   }
  ],
- "modified": "2024-11-10 08:30:52.006886",
+ "modified": "2024-11-11 12:24:54.796239",
  "modified_by": "Administrator",
  "module": "Fuel Sales",
  "name": "Outlet Sales",
