@@ -197,6 +197,7 @@ function fetch_active_pumps(frm, outlet) {
                     if (pump.status === "Active") {
                         let child_row = frm.add_child("dispenser_readings");
                         child_row.pump = pump.dispenser;
+                        child_row.product = pump.product
                         child_row.last_reading = 0;  // Initialize last reading as 0
                     }
                 });
