@@ -22,7 +22,7 @@
  "fields": [
   {
    "fieldname": "pump",
-   "fieldtype": "Data",
+   "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Pump",
    "read_only": 1,
@@ -103,7 +103,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-11-10 20:30:58.734266",
+ "modified": "2024-11-11 10:53:34.155780",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Pump Readings",

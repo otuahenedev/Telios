@@ -10,6 +10,7 @@
 frappe.ui.form.on("Outlet Sales", {
     outlet: function(frm) {
         let outlet = frm.doc.outlet;
+        frm.clear_table("dispenser_readings");
         
         if (!outlet) {
             frappe.msgprint(__('Please select an Outlet.'));
@@ -110,6 +111,7 @@ frappe.ui.form.on("Outlet Sales", {
         // Step 5: Sum up total_sales_ghs in Product Totals and set total_sales in parent
         let total_sales = frm.doc.product_totals.reduce((sum, row) => sum + (row.total_sales_ghs || 0), 0);
         frm.set_value('total_sales', total_sales);
+        
     }
 });
 
@@ -309,7 +311,8 @@ function fetch_attendant_details(frm, outlet){
     //        method: "omc.fuel_management.doctype.fuel_dispenser_reading.fuel_dispenser_reading.pumpdetails",
 
     frappe.call({
-        method: "omc.fuel_sales.doctype.outlet_sales.outlet_sales.pumpdetails",
+       // method: "omc.fuel_sales.doctype.outlet_sales.outlet_sales.pumpdetails",
+       method: "omc.fuel_management.doctype.fuel_dispenser_reading.fuel_dispenser_reading.pumpdetails",
         args: { atted:outlet },  // Pass 'atted' argument for attendant details
         callback: function(response) {
             if (!response || response.exc) {
@@ -317,7 +320,8 @@ function fetch_attendant_details(frm, outlet){
                 return;
             }
             console.log("Attendant details fetched successfully:", response.message);
-            update_attendant_select_options(frm, response.message);  // Dynamically set attendant field options
+            update_attendant_select_options(frm, response.message); 
+            update_pump_select_options(frm, response.message); // Dynamically set attendant field options
         }
     });
 }
@@ -338,3 +342,20 @@ function update_attendant_select_options(frm, attendant_data) {
    frm.refresh_field("dispenser_readings");
    
 }
+/*
+// Helper function to dynamically update the pump  field options in child tables
+function update_pump_select_options(frm, pump_data) {
+    if (!pump_data) {
+        console.warn("No valid attendant data received.");
+        return;
+    }
+
+    let pumps = Array.isArray(pump_data_data.message) ? pump_data.message : Object.values(pump_data.message);
+
+    // Update 'attendant' field options dynamically for both child tables
+    frm.fields_dict.dispenser_readings.grid.update_docfield_property('pump', "options", pumps);
+   
+    // Refresh fields to apply updated attendant options
+   frm.refresh_field("dispenser_readings");
+   
+}*/
