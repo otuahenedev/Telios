@@ -33,7 +33,7 @@ frappe.ui.form.on("Fuel Lifting Order", {
         // Check if the fuel type is AGO
         if (fuel_type == 'AGO') {
             frappe.call({
-                method: "omc.fuel_management.doctype.fuel_lifting_request.fuel_lifting_request.justification",
+                method: "omc.fuel_management.doctype.fuel_lifting_order.fuel_lifting_order.justification",
                 args: { fuel_type: fuel_type }
             }).done((r) => {
                 frm.doc.just = [];
