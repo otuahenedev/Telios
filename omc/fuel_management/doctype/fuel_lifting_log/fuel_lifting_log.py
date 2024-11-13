@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class FuelPurchaseInvoice(Document):
+class FuelLiftingLog(Document):
 	pass

@@ -1,233 +1,478 @@
 {
  "actions": [],
+ "allow_events_in_timeline": 1,
  "allow_rename": 1,
- "autoname": "format:TELIOS-FPO-{MM}-{#####}",
- "creation": "2024-09-04 11:50:39.178525",
+ "autoname": "format:TEL{YY}{MM}{####}",
+ "creation": "2024-06-21 21:23:50.499817",
  "doctype": "DocType",
+ "document_type": "Document",
  "engine": "InnoDB",
  "field_order": [
-  "section_break_dwxd",
-  "fuel_order_ref",
-  "product",
-  "column_break_wlvy",
-  "datetime",
-  "amended_from",
-  "section_break_myjc",
-  "outlet_fuel_distribution",
-  "transportation_cost_section",
-  "transporter",
-  "bvr",
-  "column_break_ebpm",
-  "transport_mod",
-  "transporters_bank",
-  "transporters_bank_account_no",
-  "attach_receipt",
-  "supply_cost_section",
+  "order_details_tab",
+  "section_break_plux",
+  "just",
+  "fuel_data_table",
+  "section_break_lddd",
+  "order_date",
+  "column_break_ecig",
+  "mode_of_transport",
+  "order_details_section",
   "bdc",
+  "fuel_type",
+  "driver",
+  "drivers_contact",
+  "column_break_mnsk",
   "depot",
-  "supplier_mod",
-  "column_break_mene",
-  "bdcs_bank",
-  "bdcs_bank_account_no_copy",
-  "attach_bank_receipt",
-  "totals_section",
-  "column_break_ubkm",
-  "column_break_sxje",
-  "transportation_cost",
-  "total_fuel_distribution_ghs",
-  "grand_total_ghs"
+  "product_group",
+  "mate",
+  "mates_contact",
+  "column_break_wbqf",
+  "brv_internal",
+  "brv_external",
+  "diesel_buy_price",
+  "nominal_volume_l",
+  "section_break_ilbx",
+  "table_mxlk",
+  "transportation_cost_section",
+  "transporter_quotation",
+  "distance",
+  "column_break_rwre",
+  "internal_cost_of_transport",
+  "external_cost_of_transport",
+  "cost_of_supplied_fuel",
+  "total_cost",
+  "audit_tab",
+  "audit_section",
+  "fjfskfsgk",
+  "audit_live",
+  "audit_mini_sect",
+  "column_break_nnfk",
+  "processes_approvals",
+  "no_processes_approvals",
+  "column_break_gvxy",
+  "pay_amount",
+  "no_pay_amout",
+  "column_break_vpem",
+  "justification_given",
+  "no_justification_given",
+  "section_break_psyi",
+  "state",
+  "amended_from",
+  "accounts_tab"
  ],
  "fields": [
   {
-   "fieldname": "section_break_dwxd",
-   "fieldtype": "Section Break"
-  },
-  {
-   "description": "Fuel Supplier",
-   "fieldname": "bdc",
-   "fieldtype": "Link",
+   "default": "Now",
+   "fieldname": "order_date",
+   "fieldtype": "Datetime",
    "in_list_view": 1,
-   "label": "BDC",
-   "options": "Bulk Distribution Company",
+   "in_standard_filter": 1,
+   "label": "Transaction Date",
    "reqd": 1
   },
   {
-   "fieldname": "column_break_wlvy",
+   "fieldname": "column_break_mnsk",
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "datetime",
-   "fieldtype": "Datetime",
-   "label": "Datetime"
+   "fieldname": "fuel_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Product",
+   "options": "Item",
+   "reqd": 1,
+   "sort_options": 1
+  },
+  {
+   "fieldname": "order_details_section",
+   "fieldtype": "Section Break",
+   "hide_border": 1
+  },
+  {
+   "fieldname": "mode_of_transport",
+   "fieldtype": "Select",
+   "label": "Mode of Transport",
+   "options": "Internal Transport\nExternal Transport",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "brv.volume_l",
+   "fetch_if_empty": 1,
+   "fieldname": "nominal_volume_l",
+   "fieldtype": "Int",
+   "label": "Nominal Volume (L)",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "bdc.supplier_group",
+   "fieldname": "product_group",
+   "fieldtype": "Link",
+   "label": "Product Group",
+   "options": "Item Group",
+   "reqd": 1
+  },
+  {
+   "fieldname": "depot",
+   "fieldtype": "Link",
+   "label": "Depot",
+   "options": "Fuel Depot",
+   "reqd": 1
+  },
+  {
+   "description": "Supplier",
+   "fieldname": "bdc",
+   "fieldtype": "Link",
+   "in_preview": 1,
+   "label": "BDC",
+   "link_filters": "[[\"Supplier\",\"supplier_group\",\"=\",\"White Products\"]]",
+   "options": "Supplier",
+   "reqd": 1
+  },
+  {
+   "fieldname": "driver",
+   "fieldtype": "Link",
+   "in_preview": 1,
+   "label": "Driver",
+   "options": "Driver",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "driver.cell_number",
+   "fieldname": "drivers_contact",
+   "fieldtype": "Read Only",
+   "label": "Driver's Contact"
+  },
+  {
+   "fieldname": "mate",
+   "fieldtype": "Link",
+   "label": "Mate",
+   "options": "Mate",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "mate.contact_number",
+   "fieldname": "mates_contact",
+   "fieldtype": "Read Only",
+   "label": "Mate's Contact "
+  },
+  {
+   "fieldname": "section_break_ilbx",
+   "fieldtype": "Section Break",
+   "label": "Delivered To"
+  },
+  {
+   "fieldname": "table_mxlk",
+   "fieldtype": "Table",
+   "options": "Request Fuel Details"
+  },
+  {
+   "fieldname": "section_break_psyi",
+   "fieldtype": "Section Break",
+   "hidden": 1
+  },
+  {
+   "fieldname": "column_break_ecig",
+   "fieldtype": "Column Break"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_plux",
+   "fieldtype": "Section Break",
+   "label": "Justification"
+  },
+  {
+   "columns": 9,
+   "depends_on": "eval:doc.fuel_type == \"Diesel\"",
+   "fieldname": "just",
+   "fieldtype": "Table",
+   "label": "Diesel Trends",
+   "options": "Justification",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_wbqf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fetch_if_empty": 1,
+   "fieldname": "diesel_buy_price",
+   "fieldtype": "Currency",
+   "label": "Ex-Ref Price(GHS/LT) ",
+   "reqd": 1
   },
   {
    "fieldname": "amended_from",
    "fieldtype": "Link",
    "label": "Amended From",
    "no_copy": 1,
-   "options": "Fuel Lifting Order",
+   "options": "Fuel Lifting Log",
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
   },
   {
-   "fieldname": "depot",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Depot",
-   "options": "Fuel Depot",
-   "reqd": 1
-  },
-  {
-   "fieldname": "fuel_order_ref",
-   "fieldtype": "Link",
-   "label": "Fuel Order Ref.",
-   "options": "Fuel Lifting Request"
-  },
-  {
-   "fieldname": "section_break_myjc",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "outlet_fuel_distribution",
-   "fieldtype": "Table",
-   "label": "Outlet Fuel Distribution",
-   "options": "Fuel Purchase Distribution"
-  },
-  {
-   "fieldname": "transportation_cost_section",
+   "fieldname": "section_break_lddd",
    "fieldtype": "Section Break",
-   "label": "Transportation Cost"
+   "hide_border": 1
   },
   {
-   "fieldname": "transporter",
-   "fieldtype": "Link",
-   "label": "Transporter",
-   "options": "Supplier"
+   "depends_on": "eval:doc.audit_live == 1",
+   "fieldname": "audit_section",
+   "fieldtype": "Section Break",
+   "hide_border": 1,
+   "label": "Audit"
   },
   {
+   "fieldname": "fjfskfsgk",
+   "fieldtype": "Heading",
+   "label": "Reviewing the order details above and the approval timeline below:"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "processes_approvals",
+   "fieldtype": "Select",
+   "label": "Was the correct ordering process adhered to, including obtaining the necessary approvals before the fuel order was placed?",
+   "options": "\nYes\nNo",
+   "permlevel": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:doc.processes_approvals == \"No\"",
+   "fieldname": "no_processes_approvals",
+   "fieldtype": "Small Text",
+   "label": "If No, what justifications were provided?",
+   "mandatory_depends_on": "eval:doc.processes_approvals == \"No\"",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "column_break_vpem",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "justification_given",
+   "fieldtype": "Select",
+   "label": "Can you confirm that the fuel order BDC'S  price rate align the market rates?",
+   "options": "\nYes\nNo",
+   "permlevel": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:doc.justification_given == \"No\"",
+   "fieldname": "no_justification_given",
+   "fieldtype": "Small Text",
+   "label": "If No, what justifications were provided?",
+   "mandatory_depends_on": "eval:doc.justification_given == \"No\"",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "column_break_gvxy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "pay_amount",
+   "fieldtype": "Select",
+   "label": "Can you confirm that the fuel order quantity distribution align with the assigned outlet's consumption needs?",
+   "options": "\nYes\nNo",
+   "permlevel": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:doc.pay_amount == \"No\"",
+   "fieldname": "no_pay_amout",
+   "fieldtype": "Small Text",
+   "label": "If No, what justifications were provided?",
+   "mandatory_depends_on": "eval:doc.pay_amount == \"No\"",
+   "permlevel": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "bold": 1,
+   "fieldname": "column_break_nnfk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.audit_live == 1",
+   "fieldname": "audit_mini_sect",
+   "fieldtype": "Section Break",
+   "hide_border": 1,
+   "label": "Initial Audit",
+   "print_hide": 1,
+   "report_hide": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "audit_live",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "Audit Done",
+   "print_hide": 1,
+   "report_hide": 1
+  },
+  {
+   "default": "Rejected",
+   "fieldname": "state",
+   "fieldtype": "Read Only",
+   "hidden": 1,
+   "in_list_view": 1,
+   "label": "Status"
+  },
+  {
+   "fieldname": "order_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Order Details"
+  },
+  {
+   "fieldname": "audit_tab",
+   "fieldtype": "Tab Break",
+   "label": "Audit"
+  },
+  {
+   "fieldname": "accounts_tab",
+   "fieldtype": "Tab Break",
+   "label": "Accounts"
+  },
+  {
+   "depends_on": "eval:doc.mode_of_transport == \"Internal Transport\"",
    "description": "Fuel Truck",
-   "fieldname": "bvr",
+   "fieldname": "brv_internal",
    "fieldtype": "Link",
-   "label": "BVR ",
+   "in_preview": 1,
+   "label": "BRV #",
+   "link_filters": "[[\"Fuel Truck\",\"type\",\"=\",\"Internal\"]]",
+   "mandatory_depends_on": "eval:doc.mode_of_transport == \"Internal Transport\"\n",
    "options": "Fuel Truck"
   },
   {
-   "fieldname": "column_break_ebpm",
-   "fieldtype": "Column Break"
+   "depends_on": "eval:doc.mode_of_transport == \"External Transport\"",
+   "description": "Fuel Truck",
+   "fieldname": "brv_external",
+   "fieldtype": "Link",
+   "in_preview": 1,
+   "label": "BRV #",
+   "link_filters": "[[\"Fuel Truck\",\"type\",\"=\",\"External\"]]",
+   "mandatory_depends_on": "eval:doc.mode_of_transport == \"Internal Transport\"",
+   "options": "Fuel Truck"
   },
   {
    "bold": 1,
-   "default": "0",
-   "fieldname": "transportation_cost",
-   "fieldtype": "Currency",
-   "label": "Transportation Cost (GHS)"
-  },
-  {
-   "fieldname": "totals_section",
+   "fieldname": "transportation_cost_section",
    "fieldtype": "Section Break",
-   "label": "Totals"
+   "label": "Cost"
   },
   {
-   "fieldname": "column_break_ubkm",
+   "depends_on": "eval:doc.mode_of_transport == \"External Transport\"",
+   "fieldname": "transporter_quotation",
+   "fieldtype": "Link",
+   "in_preview": 1,
+   "label": "Transporter Quotation",
+   "options": "Supplier Quotation"
+  },
+  {
+   "fieldname": "column_break_rwre",
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "column_break_sxje",
-   "fieldtype": "Column Break"
+   "depends_on": "eval:doc.mode_of_transport == \"Internal Transport\"",
+   "fieldname": "internal_cost_of_transport",
+   "fieldtype": "Currency",
+   "label": "Cost of Transport"
+  },
+  {
+   "depends_on": "eval:doc.mode_of_transport == \"External Transport\"",
+   "fetch_from": "transporter_quotation.total",
+   "fieldname": "external_cost_of_transport",
+   "fieldtype": "Currency",
+   "label": "Cost of Transport ",
+   "read_only": 1
+  },
+  {
+   "fieldname": "distance",
+   "fieldtype": "Int",
+   "label": "Route Distance"
+  },
+  {
+   "fieldname": "cost_of_supplied_fuel",
+   "fieldtype": "Currency",
+   "label": "Cost of Supplied Fuel",
+   "read_only": 1
   },
   {
    "bold": 1,
-   "fieldname": "grand_total_ghs",
+   "fieldname": "total_cost",
    "fieldtype": "Currency",
-   "label": "Grand Total (GHS)"
+   "label": "Total Cost",
+   "read_only": 1
   },
   {
-   "default": "Wire Transfer",
-   "fieldname": "transport_mod",
-   "fieldtype": "Link",
-   "label": "Mode of Payment ",
-   "options": "Mode of Payment",
-   "reqd": 1
-  },
-  {
-   "fieldname": "transporters_bank",
-   "fieldtype": "Link",
-   "label": "Transporter's Bank",
-   "options": "Bank",
-   "reqd": 1
-  },
-  {
-   "fieldname": "transporters_bank_account_no",
-   "fieldtype": "Link",
-   "label": "Transporter's Bank Account No",
-   "options": "Bank",
-   "reqd": 1
-  },
-  {
-   "fieldname": "attach_receipt",
-   "fieldtype": "Attach Image",
-   "label": "Attach Receipt "
-  },
-  {
-   "fieldname": "supply_cost_section",
-   "fieldtype": "Section Break",
-   "label": "Supply Cost"
-  },
-  {
-   "default": "Wire Transfer",
-   "fieldname": "supplier_mod",
-   "fieldtype": "Link",
-   "label": "Mode of Payment",
-   "options": "Mode of Payment"
-  },
-  {
-   "fieldname": "column_break_mene",
-   "fieldtype": "Column Break"
-  },
-  {
-   "bold": 1,
-   "default": "0",
-   "fieldname": "total_fuel_distribution_ghs",
-   "fieldtype": "Currency",
-   "label": "Total Fuel Distribution (GHS)"
-  },
-  {
-   "fieldname": "bdcs_bank",
-   "fieldtype": "Link",
-   "label": "BDC's Bank",
-   "options": "Bank"
-  },
-  {
-   "fieldname": "bdcs_bank_account_no_copy",
-   "fieldtype": "Link",
-   "label": "BDC's Bank Account No Copy",
-   "options": "Bank"
-  },
-  {
-   "fieldname": "attach_bank_receipt",
-   "fieldtype": "Attach Image",
-   "label": "Attach Bank Receipt"
-  },
-  {
-   "fieldname": "product",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Product",
-   "options": "\nDiesel\nPetrol",
-   "reqd": 1
+   "columns": 10,
+   "fieldname": "fuel_data_table",
+   "fieldtype": "HTML",
+   "label": "Justification Report"
   }
  ],
- "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-09-11 15:17:57.273073",
+ "modified": "2024-11-13 16:00:23.649925",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Fuel Lifting Order",
  "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Logistics Officer",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "M. Director",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Auditor",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Auditor",
+   "share": 1,
+   "write": 1
+  },
   {
    "create": 1,
    "delete": 1,
@@ -238,7 +483,18 @@
    "report": 1,
    "role": "System Manager",
    "share": 1,
-   "submit": 1,
+   "write": 1
+  },
+  {
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
    "write": 1
   }
  ],

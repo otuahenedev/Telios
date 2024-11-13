@@ -30,6 +30,7 @@
    "options": "Employee"
   },
   {
+   "fetch_from": "employee.custom_outlet",
    "fieldname": "outlet",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -120,7 +121,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-09 21:58:09.991677",
+ "modified": "2024-11-12 15:45:28.657453",
  "modified_by": "Administrator",
  "module": "Credit  Facilitation",
  "name": "Outlet Credit Sales Log",

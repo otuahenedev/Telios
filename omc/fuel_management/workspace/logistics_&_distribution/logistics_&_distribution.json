@@ -13,7 +13,7 @@
  "is_hidden": 1,
  "label": "Logistics & Distribution",
  "links": [],
- "modified": "2024-10-17 11:42:45.819559",
+ "modified": "2024-11-12 07:51:38.728397",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Logistics & Distribution",
@@ -39,7 +39,7 @@
   }
  ],
  "roles": [],
- "sequence_id": 39.0,
+ "sequence_id": 30.0,
  "shortcuts": [
   {
    "color": "Grey",
@@ -53,7 +53,7 @@
    "color": "Grey",
    "doc_view": "List",
    "label": "Dip Reading",
-   "link_to": "Station Tank Reading",
+   "link_to": "Outlet Tank Reading Log",
    "stats_filter": "[]",
    "type": "DocType"
   },

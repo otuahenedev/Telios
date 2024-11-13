@@ -5,8 +5,7 @@ import frappe
 from frappe.model.document import Document
 
 
-class OutletSales(Document):
-	pass
+
 
 
 # Copyright (c) 2024, Kelvin and contributors
@@ -58,7 +57,7 @@ def pumpdetails(atted):
 def dispenser(outlet):
    pass
 
-class FuelDispenserReading(Document):
+class OutletSales(Document):
      
      def validate(self):
          try :

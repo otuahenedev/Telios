@@ -57,11 +57,11 @@
    "fieldname": "status",
    "fieldtype": "Data",
    "hidden": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Status",
    "no_copy": 1,
-   "print_hide": 1,
    "read_only": 1,
-   "report_hide": 1,
    "search_index": 1
   },
   {
@@ -70,6 +70,7 @@
    "fieldname": "outlet",
    "fieldtype": "Link",
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Outlet",
    "link_filters": "[[\"Customer\",\"customer_group\",\"=\",\"Outlet\"]]",
    "options": "Customer",
@@ -97,6 +98,8 @@
    "default": "Now",
    "fieldname": "date",
    "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Date",
    "print_hide": 1,
    "report_hide": 1
@@ -252,7 +255,6 @@
    "read_only": 1
   }
  ],
- "index_web_pages_for_search": 1,
  "is_calendar_and_gantt": 1,
  "is_submittable": 1,
  "links": [
@@ -262,7 +264,7 @@
    "link_fieldname": "pump_reading_ref"
   }
  ],
- "modified": "2024-11-11 12:24:54.796239",
+ "modified": "2024-11-12 11:00:46.550217",
  "modified_by": "Administrator",
  "module": "Fuel Sales",
  "name": "Outlet Sales",
@@ -298,5 +300,18 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [
+  {
+   "color": "Gray",
+   "title": "Draft"
+  },
+  {
+   "color": "Orange",
+   "title": "Under Review"
+  },
+  {
+   "color": "Green",
+   "title": "Reviewed"
+  }
+ ]
 }

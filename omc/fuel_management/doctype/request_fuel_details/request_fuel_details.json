@@ -22,7 +22,7 @@
    "options": "Customer"
   },
   {
-   "fetch_from": "fuel_station.outlet_code",
+   "fetch_from": "fuel_station.custom_outlet_code",
    "fieldname": "outlet_code",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -42,7 +42,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-10-18 12:50:14.673945",
+ "modified": "2024-11-12 15:02:16.364666",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Request Fuel Details",

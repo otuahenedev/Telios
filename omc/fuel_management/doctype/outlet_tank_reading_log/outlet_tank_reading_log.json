@@ -18,7 +18,6 @@
   "attach_reading_picture",
   "fuel_reading",
   "posting_datetime",
-  "amended_from",
   "readings_section",
   "ago_diesel_tank_reading",
   "pms_petrol_tank_reading",
@@ -105,16 +104,6 @@
    "reqd": 1
   },
   {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Station Tank Reading",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
-  },
-  {
    "fieldname": "state",
    "fieldtype": "Select",
    "label": "State",
@@ -172,7 +161,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-10-04 13:32:01.139692",
+ "modified": "2024-11-12 15:50:29.143565",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Outlet Tank Reading Log",

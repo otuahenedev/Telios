@@ -217,7 +217,7 @@
    "fieldname": "fdrar",
    "fieldtype": "Link",
    "label": "Fuel Delivery Request Approval Reference",
-   "options": "Fuel Lifting Request"
+   "options": "Fuel Lifting Order"
   },
   {
    "depends_on": "eval:doc.fuel_type == \"Diesel\"",
@@ -411,7 +411,7 @@
  "is_calendar_and_gantt": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-09-11 15:17:56.751995",
+ "modified": "2024-11-13 16:04:41.012507",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Fuel Delivery",

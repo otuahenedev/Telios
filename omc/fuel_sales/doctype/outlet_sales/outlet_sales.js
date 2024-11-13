@@ -212,11 +212,32 @@ function fetch_active_pumps(frm, outlet) {
 }
 
 // Calculate difference on change in 'current_reading' field in dispenser_readings
-frappe.ui.form.on("dispenser_readings", "current_reading", function(frm, cdt, cdn) {
-    let row = locals[cdt][cdn];
-    row.difference = (row.current_reading || 0) - (row.last_reading || 0);
-    frm.refresh_field("dispenser_readings");
+
+
+frappe.ui.form.on('Pump Readings', {
+    current_reading: function(frm, cdt, cdn) {
+        var d = locals[cdt][cdn];
+        
+        // Check if the current reading is less than the last reading
+        if (d.current_reading < d.last_reading) {
+            frappe.msgprint(__('Current reading cannot be less than the last reading.'));
+            
+            // Optionally,  clear the current reading value or set it to the last reading
+            //frappe.model.set_value(cdt, cdn, 'current_reading', '');
+            
+            //  highlight the field to show there's an error
+            frappe.validated = false;  // This prevents the form from being submitted with invalid values
+            return;
+        }
+
+        // If no error, calculate the difference
+        frappe.model.set_value(cdt, cdn, 'difference', (d.current_reading - d.last_reading));
+
+        // refresh the field if it's part of a child table
+        // frm.refresh_field('child_table_name');
+    }
 });
+
 
 // Handle RTT
 // RTT deduction logic in the 'validate' function

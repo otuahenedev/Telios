@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"4XsV9B-Jly\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Masters Data</span>\",\"col\":12}},{\"id\":\"ytcAQUO7zr\",\"type\":\"card\",\"data\":{\"card_name\":\"Logistics & Distributions Masters\",\"col\":4}},{\"id\":\"2DvuURDq4a\",\"type\":\"card\",\"data\":{\"card_name\":\"Station\",\"col\":4}},{\"id\":\"QwlS6FVJaA\",\"type\":\"card\",\"data\":{\"card_name\":\"Compliance Masters\",\"col\":4}},{\"id\":\"UfZy7Xqgfh\",\"type\":\"card\",\"data\":{\"card_name\":\"Accounts Masters \",\"col\":4}}]",
+ "content": "[{\"id\":\"4XsV9B-Jly\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Masters Data</span>\",\"col\":12}},{\"id\":\"ytcAQUO7zr\",\"type\":\"card\",\"data\":{\"card_name\":\"Logistics Masters\",\"col\":4}},{\"id\":\"2DvuURDq4a\",\"type\":\"card\",\"data\":{\"card_name\":\"Station\",\"col\":4}},{\"id\":\"QwlS6FVJaA\",\"type\":\"card\",\"data\":{\"card_name\":\"Compliance Masters\",\"col\":4}},{\"id\":\"UfZy7Xqgfh\",\"type\":\"card\",\"data\":{\"card_name\":\"Accounts Masters \",\"col\":4}},{\"id\":\"zeZZ_3-L-R\",\"type\":\"card\",\"data\":{\"card_name\":\"Suppliers\",\"col\":4}}]",
  "creation": "2024-09-10 15:21:32.860777",
  "custom_blocks": [],
  "docstatus": 0,
@@ -16,7 +16,45 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Logistics & Distributions Masters",
+   "label": "Compliance Masters",
+   "link_count": 1,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Compliance Ceritficate",
+   "link_count": 0,
+   "link_to": "Compliance Ceritficate",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Station",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Fuel Station Pricing",
+   "link_count": 0,
+   "link_to": "Fuel Station Pricing",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Logistics Masters",
    "link_count": 3,
    "link_type": "DocType",
    "onboard": 0,
@@ -55,27 +93,8 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Compliance Masters",
-   "link_count": 1,
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Compliance Ceritficate",
-   "link_count": 0,
-   "link_to": "Compliance Ceritficate",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Accounts Masters ",
-   "link_count": 1,
+   "link_count": 2,
    "link_type": "DocType",
    "onboard": 0,
    "type": "Card Break"
@@ -93,8 +112,18 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Station",
-   "link_count": 2,
+   "label": "Bank",
+   "link_count": 0,
+   "link_to": "Bank",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Suppliers",
+   "link_count": 4,
    "link_type": "DocType",
    "onboard": 0,
    "type": "Card Break"
@@ -102,9 +131,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Outlet",
+   "label": "Supplier",
    "link_count": 0,
-   "link_to": "Outlet",
+   "link_to": "Supplier",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -112,15 +141,35 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Fuel Station Pricing",
+   "label": "Supplier Group",
    "link_count": 0,
-   "link_to": "Fuel Station Pricing",
+   "link_to": "Supplier Group",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Supplier Quotation",
+   "link_count": 0,
+   "link_to": "Supplier Quotation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Request for Quotation",
+   "link_count": 0,
+   "link_to": "Request for Quotation",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
   }
  ],
- "modified": "2024-09-16 13:35:32.090985",
+ "modified": "2024-11-13 11:09:05.928764",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Masters Data",
@@ -130,7 +179,7 @@
  "public": 1,
  "quick_lists": [],
  "roles": [],
- "sequence_id": 3.0,
+ "sequence_id": 16.0,
  "shortcuts": [],
  "title": "Masters Data"
 }

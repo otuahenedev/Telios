@@ -8,19 +8,19 @@
   "section_break_o9ok",
   "st",
   "station_supervisor",
-  "email",
   "column_break_fqka",
-  "outlet",
-  "section_break_dmfp",
-  "pump_reading_ref",
-  "column_break_zrrt",
   "status",
-  "total_sales",
-  "total_deposited",
-  "balance",
+  "pump_reading_ref",
+  "outlet",
   "section_break_fuxm",
   "sales_deposits",
-  "amended_from"
+  "amended_from",
+  "section_break_dmfp",
+  "column_break_vwtm",
+  "column_break_zrrt",
+  "total_sales",
+  "total_deposited",
+  "balance"
  ],
  "fields": [
   {
@@ -35,7 +35,7 @@
    "fieldname": "pump_reading_ref",
    "fieldtype": "Link",
    "label": "Reporting Sales Ref.",
-   "options": "Fuel Dispenser Reading"
+   "options": "Outlet Sales"
   },
   {
    "fetch_from": "pump_reading_ref.outlet",
@@ -90,24 +90,18 @@
    "bold": 1,
    "fieldname": "total_deposited",
    "fieldtype": "Currency",
-   "label": "Total Deposited"
+   "label": "Total Deposited",
+   "read_only": 1
   },
   {
    "fieldname": "balance",
    "fieldtype": "Currency",
-   "label": "Balance"
+   "label": "Balance",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_dmfp",
    "fieldtype": "Section Break"
-  },
-  {
-   "fetch_from": "st.prefered_email",
-   "fieldname": "email",
-   "fieldtype": "Data",
-   "label": "Email",
-   "options": "Email",
-   "read_only": 1
   },
   {
    "fieldname": "amended_from",
@@ -118,13 +112,17 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "fieldname": "column_break_vwtm",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_calendar_and_gantt": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-10-25 13:50:56.423088",
+ "modified": "2024-11-12 11:20:50.327452",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Deposit Sales",
