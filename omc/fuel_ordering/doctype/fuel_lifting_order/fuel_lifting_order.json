@@ -70,117 +70,9 @@
  ],
  "fields": [
   {
-   "default": "Now",
-   "fieldname": "order_date",
-   "fieldtype": "Datetime",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
-   "label": "Transaction Date",
-   "reqd": 1
-  },
-  {
-   "fieldname": "column_break_mnsk",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "fuel_type",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Product",
-   "options": "Item",
-   "reqd": 1,
-   "sort_options": 1
-  },
-  {
-   "fieldname": "order_details_section",
-   "fieldtype": "Section Break",
-   "hide_border": 1
-  },
-  {
-   "fieldname": "mode_of_transport",
-   "fieldtype": "Select",
-   "label": "Mode of Transport",
-   "options": "Internal Transport\nExternal Transport",
-   "reqd": 1
-  },
-  {
-   "fetch_from": "brv.volume_l",
-   "fetch_if_empty": 1,
-   "fieldname": "nominal_volume_l",
-   "fieldtype": "Int",
-   "label": "Nominal Volume (L)",
-   "read_only": 1
-  },
-  {
-   "fetch_from": "bdc.supplier_group",
-   "fieldname": "product_group",
-   "fieldtype": "Link",
-   "label": "Product Group",
-   "options": "Item Group",
-   "reqd": 1
-  },
-  {
-   "fieldname": "depot",
-   "fieldtype": "Link",
-   "label": "Depot",
-   "options": "Fuel Depot",
-   "reqd": 1
-  },
-  {
-   "description": "Supplier",
-   "fieldname": "bdc",
-   "fieldtype": "Link",
-   "in_preview": 1,
-   "label": "BDC",
-   "link_filters": "[[\"Supplier\",\"supplier_group\",\"=\",\"White Products\"]]",
-   "options": "Supplier",
-   "reqd": 1
-  },
-  {
-   "fieldname": "driver",
-   "fieldtype": "Link",
-   "in_preview": 1,
-   "label": "Driver",
-   "options": "Driver",
-   "reqd": 1
-  },
-  {
-   "fetch_from": "driver.cell_number",
-   "fieldname": "drivers_contact",
-   "fieldtype": "Read Only",
-   "label": "Driver's Contact"
-  },
-  {
-   "fieldname": "mate",
-   "fieldtype": "Link",
-   "label": "Mate",
-   "options": "Mate",
-   "reqd": 1
-  },
-  {
-   "fetch_from": "mate.contact_number",
-   "fieldname": "mates_contact",
-   "fieldtype": "Read Only",
-   "label": "Mate's Contact "
-  },
-  {
-   "fieldname": "section_break_ilbx",
-   "fieldtype": "Section Break",
-   "label": "Delivered To"
-  },
-  {
-   "fieldname": "table_mxlk",
-   "fieldtype": "Table",
-   "options": "Request Fuel Details"
-  },
-  {
-   "fieldname": "section_break_psyi",
-   "fieldtype": "Section Break",
-   "hidden": 1
-  },
-  {
-   "fieldname": "column_break_ecig",
-   "fieldtype": "Column Break"
+   "fieldname": "order_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Order Details"
   },
   {
    "collapsible": 1,
@@ -198,26 +90,10 @@
    "read_only": 1
   },
   {
-   "fieldname": "column_break_wbqf",
-   "fieldtype": "Column Break"
-  },
-  {
-   "default": "0",
-   "fetch_if_empty": 1,
-   "fieldname": "diesel_buy_price",
-   "fieldtype": "Currency",
-   "label": "Ex-Ref Price(GHS/LT) ",
-   "reqd": 1
-  },
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Fuel Lifting Log",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
+   "columns": 10,
+   "fieldname": "fuel_data_table",
+   "fieldtype": "HTML",
+   "label": "Justification Report"
   },
   {
    "fieldname": "section_break_lddd",
@@ -225,121 +101,98 @@
    "hide_border": 1
   },
   {
-   "depends_on": "eval:doc.audit_live == 1",
-   "fieldname": "audit_section",
-   "fieldtype": "Section Break",
-   "hide_border": 1,
-   "label": "Audit"
-  },
-  {
-   "fieldname": "fjfskfsgk",
-   "fieldtype": "Heading",
-   "label": "Reviewing the order details above and the approval timeline below:"
-  },
-  {
-   "allow_on_submit": 1,
-   "fieldname": "processes_approvals",
-   "fieldtype": "Select",
-   "label": "Was the correct ordering process adhered to, including obtaining the necessary approvals before the fuel order was placed?",
-   "options": "\nYes\nNo",
-   "permlevel": 1
-  },
-  {
-   "allow_on_submit": 1,
-   "depends_on": "eval:doc.processes_approvals == \"No\"",
-   "fieldname": "no_processes_approvals",
-   "fieldtype": "Small Text",
-   "label": "If No, what justifications were provided?",
-   "mandatory_depends_on": "eval:doc.processes_approvals == \"No\"",
-   "permlevel": 1
-  },
-  {
-   "fieldname": "column_break_vpem",
-   "fieldtype": "Column Break"
-  },
-  {
-   "allow_on_submit": 1,
-   "fieldname": "justification_given",
-   "fieldtype": "Select",
-   "label": "Can you confirm that the fuel order BDC'S  price rate align the market rates?",
-   "options": "\nYes\nNo",
-   "permlevel": 1
-  },
-  {
-   "allow_on_submit": 1,
-   "depends_on": "eval:doc.justification_given == \"No\"",
-   "fieldname": "no_justification_given",
-   "fieldtype": "Small Text",
-   "label": "If No, what justifications were provided?",
-   "mandatory_depends_on": "eval:doc.justification_given == \"No\"",
-   "permlevel": 1
-  },
-  {
-   "fieldname": "column_break_gvxy",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "pay_amount",
-   "fieldtype": "Select",
-   "label": "Can you confirm that the fuel order quantity distribution align with the assigned outlet's consumption needs?",
-   "options": "\nYes\nNo",
-   "permlevel": 1
-  },
-  {
-   "allow_on_submit": 1,
-   "depends_on": "eval:doc.pay_amount == \"No\"",
-   "fieldname": "no_pay_amout",
-   "fieldtype": "Small Text",
-   "label": "If No, what justifications were provided?",
-   "mandatory_depends_on": "eval:doc.pay_amount == \"No\"",
-   "permlevel": 1
-  },
-  {
-   "allow_on_submit": 1,
-   "bold": 1,
-   "fieldname": "column_break_nnfk",
-   "fieldtype": "Column Break"
-  },
-  {
-   "depends_on": "eval:doc.audit_live == 1",
-   "fieldname": "audit_mini_sect",
-   "fieldtype": "Section Break",
-   "hide_border": 1,
-   "label": "Initial Audit",
-   "print_hide": 1,
-   "report_hide": 1
-  },
-  {
-   "default": "0",
-   "fieldname": "audit_live",
-   "fieldtype": "Check",
-   "hidden": 1,
-   "label": "Audit Done",
-   "print_hide": 1,
-   "report_hide": 1
-  },
-  {
-   "default": "Rejected",
-   "fieldname": "state",
-   "fieldtype": "Read Only",
-   "hidden": 1,
+   "default": "Now",
+   "fieldname": "order_date",
+   "fieldtype": "Datetime",
    "in_list_view": 1,
-   "label": "Status"
+   "in_standard_filter": 1,
+   "label": "Transaction Date",
+   "reqd": 1
   },
   {
-   "fieldname": "order_details_tab",
-   "fieldtype": "Tab Break",
-   "label": "Order Details"
+   "fieldname": "column_break_ecig",
+   "fieldtype": "Column Break"
   },
   {
-   "fieldname": "audit_tab",
-   "fieldtype": "Tab Break",
-   "label": "Audit"
+   "fieldname": "mode_of_transport",
+   "fieldtype": "Select",
+   "label": "Mode of Transport",
+   "options": "Internal Transport\nExternal Transport",
+   "reqd": 1
   },
   {
-   "fieldname": "accounts_tab",
-   "fieldtype": "Tab Break",
-   "label": "Accounts"
+   "fieldname": "order_details_section",
+   "fieldtype": "Section Break",
+   "hide_border": 1
+  },
+  {
+   "description": "Supplier",
+   "fieldname": "bdc",
+   "fieldtype": "Link",
+   "in_preview": 1,
+   "label": "BDC",
+   "link_filters": "[[\"Supplier\",\"supplier_group\",\"=\",\"White Products\"]]",
+   "options": "Supplier",
+   "reqd": 1
+  },
+  {
+   "fieldname": "fuel_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Product",
+   "options": "Item",
+   "reqd": 1,
+   "sort_options": 1
+  },
+  {
+   "fieldname": "driver",
+   "fieldtype": "Link",
+   "in_preview": 1,
+   "label": "Driver",
+   "options": "Driver",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "driver.cell_number",
+   "fieldname": "drivers_contact",
+   "fieldtype": "Read Only",
+   "label": "Driver's Contact"
+  },
+  {
+   "fieldname": "column_break_mnsk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "depot",
+   "fieldtype": "Link",
+   "label": "Depot",
+   "options": "Fuel Depot",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "bdc.supplier_group",
+   "fieldname": "product_group",
+   "fieldtype": "Link",
+   "label": "Product Group",
+   "options": "Item Group",
+   "reqd": 1
+  },
+  {
+   "fieldname": "mate",
+   "fieldtype": "Link",
+   "label": "Mate",
+   "options": "Mate",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "mate.contact_number",
+   "fieldname": "mates_contact",
+   "fieldtype": "Read Only",
+   "label": "Mate's Contact "
+  },
+  {
+   "fieldname": "column_break_wbqf",
+   "fieldtype": "Column Break"
   },
   {
    "depends_on": "eval:doc.mode_of_transport == \"Internal Transport\"",
@@ -364,60 +217,30 @@
    "options": "Fuel Truck"
   },
   {
-   "bold": 1,
-   "fieldname": "transportation_cost_section",
-   "fieldtype": "Section Break",
-   "label": "Transportation"
-  },
-  {
-   "depends_on": "eval:doc.mode_of_transport == \"External Transport\"",
-   "fieldname": "transporter_quotation",
-   "fieldtype": "Link",
-   "in_preview": 1,
-   "label": "Transporter Quotation",
-   "options": "Supplier Quotation"
-  },
-  {
-   "fieldname": "column_break_rwre",
-   "fieldtype": "Column Break"
-  },
-  {
-   "depends_on": "eval:doc.mode_of_transport == \"Internal Transport\"",
-   "fieldname": "internal_cost_of_transport",
+   "default": "0",
+   "fetch_if_empty": 1,
+   "fieldname": "diesel_buy_price",
    "fieldtype": "Currency",
-   "label": "Cost of Transport"
+   "label": "Ex-Ref Price(GHS/LT) ",
+   "reqd": 1
   },
   {
-   "depends_on": "eval:doc.mode_of_transport == \"External Transport\"",
-   "fetch_from": "transporter_quotation.total",
-   "fieldname": "external_cost_of_transport",
-   "fieldtype": "Currency",
-   "label": "Cost of Transport ",
-   "read_only": 1
-  },
-  {
-   "fieldname": "distance",
+   "fetch_from": "brv.volume_l",
+   "fetch_if_empty": 1,
+   "fieldname": "nominal_volume_l",
    "fieldtype": "Int",
-   "label": "Route Distance"
-  },
-  {
-   "fieldname": "cost_of_supplied_fuel",
-   "fieldtype": "Currency",
-   "label": "Cost of Supplied Fuel",
+   "label": "Nominal Volume (L)",
    "read_only": 1
   },
   {
-   "bold": 1,
-   "fieldname": "total_cost",
-   "fieldtype": "Currency",
-   "label": "Total Cost",
-   "read_only": 1
+   "fieldname": "section_break_ilbx",
+   "fieldtype": "Section Break",
+   "label": "Delivered To"
   },
   {
-   "columns": 10,
-   "fieldname": "fuel_data_table",
-   "fieldtype": "HTML",
-   "label": "Justification Report"
+   "fieldname": "table_mxlk",
+   "fieldtype": "Table",
+   "options": "Request Fuel Details"
   },
   {
    "fieldname": "taxes_section",
@@ -447,6 +270,49 @@
    "label": "Total Deferred Taxes"
   },
   {
+   "bold": 1,
+   "fieldname": "transportation_cost_section",
+   "fieldtype": "Section Break",
+   "label": "Transportation"
+  },
+  {
+   "depends_on": "eval:doc.mode_of_transport == \"External Transport\"",
+   "fieldname": "transporter_quotation",
+   "fieldtype": "Link",
+   "in_preview": 1,
+   "label": "Transporter Quotation",
+   "options": "Supplier Quotation"
+  },
+  {
+   "fieldname": "distance",
+   "fieldtype": "Int",
+   "label": "Route Distance"
+  },
+  {
+   "fieldname": "column_break_rwre",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.mode_of_transport == \"Internal Transport\"",
+   "fieldname": "internal_cost_of_transport",
+   "fieldtype": "Currency",
+   "label": "Cost of Transport"
+  },
+  {
+   "depends_on": "eval:doc.mode_of_transport == \"External Transport\"",
+   "fetch_from": "transporter_quotation.total",
+   "fieldname": "external_cost_of_transport",
+   "fieldtype": "Currency",
+   "label": "Cost of Transport ",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cost_of_supplied_fuel",
+   "fieldtype": "Currency",
+   "label": "Cost of Supplied Fuel",
+   "read_only": 1
+  },
+  {
    "fieldname": "totals_section",
    "fieldtype": "Section Break",
    "label": "Totals"
@@ -458,13 +324,147 @@
   {
    "fieldname": "column_break_ttff",
    "fieldtype": "Column Break"
+  },
+  {
+   "bold": 1,
+   "fieldname": "total_cost",
+   "fieldtype": "Currency",
+   "label": "Total Cost",
+   "read_only": 1
+  },
+  {
+   "fieldname": "audit_tab",
+   "fieldtype": "Tab Break",
+   "label": "Audit"
+  },
+  {
+   "depends_on": "eval:doc.audit_live == 1",
+   "fieldname": "audit_section",
+   "fieldtype": "Section Break",
+   "hide_border": 1,
+   "label": "Audit"
+  },
+  {
+   "fieldname": "fjfskfsgk",
+   "fieldtype": "Heading",
+   "label": "Reviewing the order details above and the approval timeline below:"
+  },
+  {
+   "default": "0",
+   "fieldname": "audit_live",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "Audit Done",
+   "print_hide": 1,
+   "report_hide": 1
+  },
+  {
+   "depends_on": "eval:doc.audit_live == 1",
+   "fieldname": "audit_mini_sect",
+   "fieldtype": "Section Break",
+   "hide_border": 1,
+   "label": "Initial Audit",
+   "print_hide": 1,
+   "report_hide": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "bold": 1,
+   "fieldname": "column_break_nnfk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "processes_approvals",
+   "fieldtype": "Select",
+   "label": "Was the correct ordering process adhered to, including obtaining the necessary approvals before the fuel order was placed?",
+   "options": "\nYes\nNo",
+   "permlevel": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:doc.processes_approvals == \"No\"",
+   "fieldname": "no_processes_approvals",
+   "fieldtype": "Small Text",
+   "label": "If No, what justifications were provided?",
+   "mandatory_depends_on": "eval:doc.processes_approvals == \"No\"",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "column_break_gvxy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "pay_amount",
+   "fieldtype": "Select",
+   "label": "Can you confirm that the fuel order quantity distribution align with the assigned outlet's consumption needs?",
+   "options": "\nYes\nNo",
+   "permlevel": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:doc.pay_amount == \"No\"",
+   "fieldname": "no_pay_amout",
+   "fieldtype": "Small Text",
+   "label": "If No, what justifications were provided?",
+   "mandatory_depends_on": "eval:doc.pay_amount == \"No\"",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "column_break_vpem",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "justification_given",
+   "fieldtype": "Select",
+   "label": "Can you confirm that the fuel order BDC'S  price rate align the market rates?",
+   "options": "\nYes\nNo",
+   "permlevel": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:doc.justification_given == \"No\"",
+   "fieldname": "no_justification_given",
+   "fieldtype": "Small Text",
+   "label": "If No, what justifications were provided?",
+   "mandatory_depends_on": "eval:doc.justification_given == \"No\"",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "section_break_psyi",
+   "fieldtype": "Section Break",
+   "hidden": 1
+  },
+  {
+   "default": "Rejected",
+   "fieldname": "state",
+   "fieldtype": "Read Only",
+   "hidden": 1,
+   "in_list_view": 1,
+   "label": "Status"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Fuel Lifting Log",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "accounts_tab",
+   "fieldtype": "Tab Break",
+   "label": "Accounts"
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2024-11-14 14:10:40.327966",
+ "modified": "2024-11-14 14:31:09.223800",
  "modified_by": "Administrator",
- "module": "Fuel Management",
+ "module": "Fuel Ordering",
  "name": "Fuel Lifting Order",
  "naming_rule": "Expression",
  "owner": "Administrator",
