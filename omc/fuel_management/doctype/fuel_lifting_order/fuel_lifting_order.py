@@ -11,7 +11,7 @@ def justification(fuel_type):
 
 @frappe.whitelist()
 def truckdetails(truckid):
-	items = frappe.get_all("Tanker Compartments", fields=["volume_l"], filters={ "parent": truckid, "parenttype": "Fuel Truck"}, order_by="idx")
+	items = frappe.get_all("Tanker Compartment", fields=["volume_l"], filters={ "parent": truckid, "parenttype": "Fuel Truck"}, order_by="idx")
 	data = [list(d.values())[0] for d in items]	
 	return data
 

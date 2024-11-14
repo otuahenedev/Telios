@@ -14,6 +14,7 @@
   "fuel_data_table",
   "section_break_lddd",
   "order_date",
+  "supplier_quotation",
   "column_break_ecig",
   "mode_of_transport",
   "order_details_section",
@@ -116,8 +117,9 @@
    "fieldname": "mode_of_transport",
    "fieldtype": "Select",
    "label": "Mode of Transport",
-   "options": "Internal Transport\nExternal Transport",
-   "reqd": 1
+   "options": "\nInternal Transport\nExternal Transport",
+   "reqd": 1,
+   "sort_options": 1
   },
   {
    "fieldname": "order_details_section",
@@ -443,11 +445,17 @@
    "in_preview": 1,
    "label": "BRV #",
    "options": "Fuel Truck"
+  },
+  {
+   "fieldname": "supplier_quotation",
+   "fieldtype": "Link",
+   "label": "Supplier Quotation",
+   "options": "Supplier Quotation"
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2024-11-14 16:20:19.710818",
+ "modified": "2024-11-14 18:19:04.709375",
  "modified_by": "Administrator",
  "module": "Fuel Ordering",
  "name": "Fuel Lifting Order",

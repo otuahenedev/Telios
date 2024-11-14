@@ -222,58 +222,47 @@ frappe.ui.form.on('Fuel Lifting Order', {
     },
     brv: function(frm){
         let truckid = frm.doc.brv;
-        if(truckid){
+        if (truckid) {
             frappe.call({
-                method:"omc.fuel_ordering.doctype.fuel_lifting_order.fuel_lifting_order.truckdetails",
-                args: {truckid:truckid}
+                method: "omc.fuel_ordering.doctype.fuel_lifting_order.fuel_lifting_order.truckdetails",
+                args: { truckid: truckid }
             }).done((r) => {
-                console.log(typeof r.message, r.message)
-                const mrss = r.message
-                console.log(mrss)
-                function listAndSumPairs(obj) {
-                    let result = [];
-                
-                    // Extract values from the object and convert them to integers
-                    let values = [];
-                    for (let key in mrss) {
-                        if (mrss.hasOwnProperty(key)) {
-                            values.push(parseInt(mrss[key], 10));
+                const mrss = r.message;
+    
+                // Helper function to calculate all unique sums of compartment volumes
+                function listAndSumPairs(values) {
+                    let result = new Set();
+    
+                    function findCombinations(currentIndex, currentSum) {
+                        if (currentIndex === values.length) {
+                            if (currentSum > 0) result.add(currentSum); // Add to result if not zero
+                            return;
                         }
+    
+                        // Include the current compartment in the sum
+                        findCombinations(currentIndex + 1, currentSum + values[currentIndex]);
+    
+                        // Exclude the current compartment from the sum
+                        findCombinations(currentIndex + 1, currentSum);
                     }
-                
-                    // Add original values to the result array
-                    result.push(...values);
-                
-                    // Loop through the array to calculate sums of each pair
-                    let length = values.length;
-                    for (let i = 0; i < length; i++) {
-                        let sum = 0;
-                        for (let j = 0; j < length; j++) {
-                            sum += values[j];
-                            result.push(sum);
-                        }
-                    }
-                
-                    // Remove duplicates and sort the result
-                    result = [...new Set(result)].sort((a, b) => a - b);
-                
-                    return result;
+    
+                    findCombinations(0, 0);
+    
+                    // Convert the Set to a sorted array and return
+                    return Array.from(result).sort((a, b) => a - b);
                 }
-                result = listAndSumPairs(r.message)
-                $.each(result, function(_i, j){
-                    // select options for outlets based on fuel truck on request fuel details
-                    frm.fields_dict.table_mxlk.grid.update_docfield_property("volume_l","options", result)
-
-                })
-                
-                
-            })
+    
+                // Convert mrss object values to integers and pass to listAndSumPairs
+                let values = Object.values(mrss).map(v => parseInt(v, 10));
+                let result = listAndSumPairs(values);
+    
+                // Update the "volume_l" field options in the "table_mxlk" child table
+                frm.fields_dict.table_mxlk.grid.update_docfield_property("volume_l", "options", result);
+                frm.refresh_field('table_mxlk');
+            });
+        } else {
+            frappe.throw("Select BRV first");
         }
-        else{
-            frappe.throw("Select BRV first")
-        }
-         frm.refresh_field('table_mxlk')
-
     }
 
 

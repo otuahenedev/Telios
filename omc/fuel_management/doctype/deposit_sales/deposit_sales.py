@@ -41,5 +41,3 @@ class DepositSales(Document):
         # Optional: Show a message confirming the creation of the Payment Entry
         frappe.msgprint(f"Payment Entry created successfully for deposit: {doc.name}")
 
-# Attach the function to the on_update event of the Deposit Sales doctype
-frappe.ui.form.on("Deposit Sales", "on_update", create_payment_entry)
