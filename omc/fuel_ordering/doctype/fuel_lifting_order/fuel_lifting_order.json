@@ -27,8 +27,7 @@
   "mate",
   "mates_contact",
   "column_break_wbqf",
-  "brv_internal",
-  "brv_external",
+  "brv",
   "diesel_buy_price",
   "nominal_volume_l",
   "section_break_ilbx",
@@ -193,28 +192,6 @@
   {
    "fieldname": "column_break_wbqf",
    "fieldtype": "Column Break"
-  },
-  {
-   "depends_on": "eval:doc.mode_of_transport == \"Internal Transport\"",
-   "description": "Fuel Truck",
-   "fieldname": "brv_internal",
-   "fieldtype": "Link",
-   "in_preview": 1,
-   "label": "BRV #",
-   "link_filters": "[[\"Fuel Truck\",\"type\",\"=\",\"Internal\"]]",
-   "mandatory_depends_on": "eval:doc.mode_of_transport == \"Internal Transport\"\n",
-   "options": "Fuel Truck"
-  },
-  {
-   "depends_on": "eval:doc.mode_of_transport == \"External Transport\"",
-   "description": "Fuel Truck",
-   "fieldname": "brv_external",
-   "fieldtype": "Link",
-   "in_preview": 1,
-   "label": "BRV #",
-   "link_filters": "[[\"Fuel Truck\",\"type\",\"=\",\"External\"]]",
-   "mandatory_depends_on": "eval:doc.mode_of_transport == \"Internal Transport\"",
-   "options": "Fuel Truck"
   },
   {
    "default": "0",
@@ -458,11 +435,19 @@
    "fieldname": "accounts_tab",
    "fieldtype": "Tab Break",
    "label": "Accounts"
+  },
+  {
+   "description": "Fuel Truck",
+   "fieldname": "brv",
+   "fieldtype": "Link",
+   "in_preview": 1,
+   "label": "BRV #",
+   "options": "Fuel Truck"
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2024-11-14 14:31:09.223800",
+ "modified": "2024-11-14 16:20:19.710818",
  "modified_by": "Administrator",
  "module": "Fuel Ordering",
  "name": "Fuel Lifting Order",

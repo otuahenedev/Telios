@@ -120,65 +120,7 @@ frappe.ui.form.on('Fuel Lifting Order', {
     },/*
 
     */
-    brv: function(frm){
-        let truckid = frm.doc.brv;
-        if(truckid){
-            frappe.call({
-                method:"omc.fuel_ordering.doctype.fuel_lifting_order.fuel_lifting_order.truckdetails",
-                args: {truckid:truckid}
-            }).done((r) => {
-                console.log(typeof r.message, r.message)
-                const mrss = r.message
-                console.log(mrss)
-                function listAndSumPairs(obj) {
-                    let result = [];
-                
-                    // Extract values from the object and convert them to integers
-                    let values = [];
-                    for (let key in mrss) {
-                        if (mrss.hasOwnProperty(key)) {
-                            values.push(parseInt(mrss[key], 10));
-                        }
-                    }
-                
-                    // Add original values to the result array
-                    result.push(...values);
-                
-                    // Loop through the array to calculate sums of each pair
-                    let length = values.length;
-                    for (let i = 0; i < length; i++) {
-                        let sum = 0;
-                        for (let j = 0; j < length; j++) {
-                            sum += values[j];
-                            result.push(sum);
-                        }
-                    }
-                
-                    // Remove duplicates and sort the result
-                    result = [...new Set(result)].sort((a, b) => a - b);
-                
-                    return result;
-                }
-                result = listAndSumPairs(r.message)
-                $.each(result, function(_i, j){
-                    // select options for outlets based on fuel truck on request fuel details
-                    frm.fields_dict.table_mxlk.grid.update_docfield_property("volume_l","options", result)
-
-                })
-                
-                
-            })
-        }
-        else{
-            frappe.throw("Select BRV first")
-        }
-         frm.refresh_field('table_mxlk')
-
-    },
    
-    
-
-    
 
     refresh: function(frm) {
 
@@ -240,11 +182,8 @@ frappe.ui.form.on('Fuel Lifting Order', {
                });
             }).css({'background-color':'#f8c516','color':'black','font-weight': 'bold'});;
         }*/
-    }
-   
-});
+    },
 
-frappe.ui.form.on('Fuel Lifting Order', {
     before_workflow_action: async (frm) => {
     	let promise = new Promise((resolve, reject) => {
             frappe.dom.unfreeze()
@@ -256,13 +195,93 @@ frappe.ui.form.on('Fuel Lifting Order', {
     
     	});
     	await promise.catch(() => frappe.throw());
-    }  
-});
+    },
 
+    mode_of_transport: function(frm) {
+        if (frm.doc.mode_of_transport === "Internal Transport") {
+            frm.set_query("brv", function() {
+                return {
+                    filters: {
+                        type: "Internal"
+                    }
+                };
+            });
+        } else if (frm.doc.mode_of_transport === "External Transport") {
+            frm.set_query("brv", function() {
+                return {
+                    filters: {
+                        type: "External"
+                    }
+                };
+            });
+        } else {
+            frm.set_query("brv", function() {
+                return {};
+            });
+        }
+    },
+    brv: function(frm){
+        let truckid = frm.doc.brv;
+        if(truckid){
+            frappe.call({
+                method:"omc.fuel_ordering.doctype.fuel_lifting_order.fuel_lifting_order.truckdetails",
+                args: {truckid:truckid}
+            }).done((r) => {
+                console.log(typeof r.message, r.message)
+                const mrss = r.message
+                console.log(mrss)
+                function listAndSumPairs(obj) {
+                    let result = [];
+                
+                    // Extract values from the object and convert them to integers
+                    let values = [];
+                    for (let key in mrss) {
+                        if (mrss.hasOwnProperty(key)) {
+                            values.push(parseInt(mrss[key], 10));
+                        }
+                    }
+                
+                    // Add original values to the result array
+                    result.push(...values);
+                
+                    // Loop through the array to calculate sums of each pair
+                    let length = values.length;
+                    for (let i = 0; i < length; i++) {
+                        let sum = 0;
+                        for (let j = 0; j < length; j++) {
+                            sum += values[j];
+                            result.push(sum);
+                        }
+                    }
+                
+                    // Remove duplicates and sort the result
+                    result = [...new Set(result)].sort((a, b) => a - b);
+                
+                    return result;
+                }
+                result = listAndSumPairs(r.message)
+                $.each(result, function(_i, j){
+                    // select options for outlets based on fuel truck on request fuel details
+                    frm.fields_dict.table_mxlk.grid.update_docfield_property("volume_l","options", result)
 
-frappe.ui.form.on('Fuel Lifting Order', {
-    refresh: function(frm) {
-        // Show buttons only when state is 'Vetted'
-        
+                })
+                
+                
+            })
+        }
+        else{
+            frappe.throw("Select BRV first")
+        }
+         frm.refresh_field('table_mxlk')
+
     }
+
+
+   
 });
+
+
+
+
+
+
