@@ -10,12 +10,17 @@
   "tax_name",
   "tax_rate",
   "amount",
-  "account",
+  "total",
+  "section_break_tmkq",
+  "payment_due_date",
+  "accounting_dimensions_section",
   "cost_center",
-  "payment_due_date"
+  "column_break_fxno",
+  "account"
  ],
  "fields": [
   {
+   "columns": 2,
    "fieldname": "tax_name",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -24,24 +29,27 @@
    "reqd": 1
   },
   {
-   "fetch_from": "tax_name.rate_percent",
+   "columns": 2,
+   "fetch_from": "tax_name.rate",
    "fieldname": "tax_rate",
-   "fieldtype": "Percent",
+   "fieldtype": "Float",
    "in_list_view": 1,
    "label": "Tax Rate",
    "reqd": 1
   },
   {
+   "columns": 2,
    "fieldname": "amount",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Amount "
+   "label": "Amount ",
+   "read_only": 1
   },
   {
    "fieldname": "account",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Account",
+   "label": "Account Head",
    "link_filters": "[[\"Account\",\"root_type\",\"=\",\"Liability\"]]",
    "options": "Account"
   },
@@ -53,16 +61,41 @@
    "options": "Cost Center"
   },
   {
+   "columns": 2,
    "fieldname": "payment_due_date",
    "fieldtype": "Date",
    "in_list_view": 1,
    "label": "Payment Due Date"
+  },
+  {
+   "fieldname": "section_break_tmkq",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "accounting_dimensions_section",
+   "fieldtype": "Section Break",
+   "label": "Accounting Dimensions"
+  },
+  {
+   "fieldname": "column_break_fxno",
+   "fieldtype": "Column Break"
+  },
+  {
+   "columns": 2,
+   "fieldname": "total",
+   "fieldtype": "Currency",
+   "hidden": 1,
+   "in_list_view": 1,
+   "label": "Total ",
+   "print_hide": 1,
+   "read_only": 1,
+   "report_hide": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-11-14 12:17:52.878446",
+ "modified": "2024-11-15 11:56:46.467819",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Deferred Tax Detail",

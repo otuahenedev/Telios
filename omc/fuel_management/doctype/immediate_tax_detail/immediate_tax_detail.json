@@ -9,8 +9,11 @@
   "tax_name",
   "tax_rate",
   "amount",
-  "account",
-  "cost_center"
+  "total",
+  "section_break_hvgz",
+  "cost_center",
+  "column_break_gzwo",
+  "account"
  ],
  "fields": [
   {
@@ -22,9 +25,9 @@
    "reqd": 1
   },
   {
-   "fetch_from": "tax_name.rate_percent",
+   "fetch_from": "tax_name.rate",
    "fieldname": "tax_rate",
-   "fieldtype": "Percent",
+   "fieldtype": "Float",
    "in_list_view": 1,
    "label": "Tax Rate",
    "reqd": 1
@@ -32,12 +35,14 @@
   {
    "fieldname": "amount",
    "fieldtype": "Currency",
-   "label": "Amount "
+   "in_list_view": 1,
+   "label": "Amount ",
+   "read_only": 1
   },
   {
    "fieldname": "account",
    "fieldtype": "Link",
-   "label": "Account",
+   "label": "Account Head",
    "link_filters": "[[\"Account\",\"root_type\",\"=\",\"Liability\"]]",
    "options": "Account"
   },
@@ -46,12 +51,31 @@
    "fieldtype": "Link",
    "label": "Cost Center",
    "options": "Cost Center"
+  },
+  {
+   "fieldname": "total",
+   "fieldtype": "Currency",
+   "hidden": 1,
+   "in_list_view": 1,
+   "label": "Total",
+   "print_hide": 1,
+   "read_only": 1,
+   "report_hide": 1
+  },
+  {
+   "fieldname": "section_break_hvgz",
+   "fieldtype": "Section Break",
+   "label": "Accounting Dimensions"
+  },
+  {
+   "fieldname": "column_break_gzwo",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-11-14 12:18:06.133037",
+ "modified": "2024-11-15 11:55:04.343524",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Immediate Tax Detail",
