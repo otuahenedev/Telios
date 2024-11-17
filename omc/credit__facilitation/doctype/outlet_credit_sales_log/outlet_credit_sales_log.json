@@ -6,7 +6,9 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "section_break_hils",
   "employee",
+  "fullname",
   "outlet",
   "product",
   "column_break_hizs",
@@ -20,7 +22,8 @@
   "order_details_section",
   "volume_sold_l",
   "column_break_sfee",
-  "sales_ghs"
+  "sales_ghs",
+  "amended_from"
  ],
  "fields": [
   {
@@ -117,11 +120,32 @@
    "label": "Total Sales (GHS)",
    "read_only": 1,
    "reqd": 1
+  },
+  {
+   "fieldname": "section_break_hils",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "fullname",
+   "fieldtype": "Data",
+   "label": "Name"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Outlet Credit Sales Log",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2024-11-12 15:45:28.657453",
+ "modified": "2024-11-17 22:21:26.866226",
  "modified_by": "Administrator",
  "module": "Credit  Facilitation",
  "name": "Outlet Credit Sales Log",
@@ -137,6 +161,30 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Station Supervisor",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts User",
    "share": 1,
    "write": 1
   }

@@ -249,6 +249,7 @@
   {
    "bold": 1,
    "default": "0",
+   "depends_on": "total_credit_sales_ghs",
    "fieldname": "credit_sales_ghs",
    "fieldtype": "Currency",
    "label": "Credit Sales (GHS) ",
@@ -264,7 +265,7 @@
    "link_fieldname": "pump_reading_ref"
   }
  ],
- "modified": "2024-11-12 11:00:46.550217",
+ "modified": "2024-11-17 16:40:51.988832",
  "modified_by": "Administrator",
  "module": "Fuel Sales",
  "name": "Outlet Sales",

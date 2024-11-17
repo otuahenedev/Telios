@@ -12,8 +12,7 @@
   "company",
   "product",
   "volume_sold",
-  "sales",
-  "create_sales_invoice"
+  "sales"
  ],
  "fields": [
   {
@@ -64,17 +63,12 @@
    "in_list_view": 1,
    "label": "Total Sales (GHS)",
    "read_only": 1
-  },
-  {
-   "fieldname": "create_sales_invoice",
-   "fieldtype": "Button",
-   "label": "Create Sales Invoice"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-11-11 13:38:01.903081",
+ "modified": "2024-11-17 16:44:41.395713",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Allowed Credit Sales",
