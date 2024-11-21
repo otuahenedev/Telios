@@ -123,96 +123,50 @@ frappe.ui.form.on('Fuel Lifting Order', {
    
 
     refresh: function(frm) {
-        if ((frm.doc.workflow_state === 'Vetted') && (frappe.user.has_role('Account User'))) {
+        if ((frm.doc.workflow_state == "Vetted") && (frm.doc.status != "Paid") && (frappe.user.has_role('Accounts User'))) {
+
+            // Button for Transportation Cost Payment Entry if mode of transport is external
+            if (frm.doc.mode_of_transport === "External") {
+                frm.add_custom_button("Create Payment Entry (Transport)", () => {
+                    frappe.new_doc("Payment Entry", {}, fdp => {
+                        fdp.custom_reference_link = frm.doc.name;
+                        fdp.payment_type = "Pay"; // Set Payment Type to "Pay" for transport costs
+                        fdp.party_type = "Supplier"; // Assuming transporter is treated as a supplier
+                        fdp.party = frm.doc.transporter; // Fetch transporter from the form
+                        fdp.paid_amount = frm.doc.transportation_cost; // Fetch transport cost
+                    });
+                }).css({ 'background-color': '#f8c516', 'color': 'black', 'font-weight': 'bold' });
+            }
         
-            // Button to create Purchase Invoice for Supplier
-            frm.add_custom_button(__('Purchase Invoice (Supplier)'), () => {
-                frappe.new_doc("Purchase Invoice", {
-                    supplier: frm.doc.bdc,
-                    items: [
+            // Button for Purchase Invoice for Supplier
+            frm.add_custom_button("Create Purchase Invoice (Supplier)", () => {
+                frappe.new_doc("Purchase Invoice", {}, pi => {
+                    pi.supplier = frm.doc.bdc; // Set supplier from the current form
+                    pi.bill_date = frappe.datetime.now_date(); // Set current date as bill date
+                    pi.due_date = frappe.datetime.add_days(frappe.datetime.now_date(), 30); // Example: 30 days due
+                    pi.items = [
                         {
-                            item_name: frm.doc.product,
-                            qty: frm.doc.nominal_volume_l,
-                            rate: frm.doc.buy_price,
-                            amount: frm.doc.total_cost
+                            item_name: "Fuel Purchase",
+                            qty: frm.doc.nominal_volume_l, // Assuming nominal_volume is quantity
+                            rate: frm.doc.buy_price, // Assuming price_rate is unit rate
+                            amount: frm.doc.total_cost // Total cost from the form
                         }
-                    ],
-                    taxes_and_charges: frm.doc.immidiate_taxes.map(tax => ({
-                        charge_type: 'Actual',
-                        rate: tax.tax_rate,
-                        category: 'Total',
-
-                        account_head: tax.account,
-                        cost_center: tax.cost_center,
-                        tax_amount: tax.amount
-                    }))
-                });
-            }, __('Create'));
-    
-            // Button to create Purchase Invoice for Transport
-            frm.add_custom_button(__('Purchase Invoice (Transport)'), () => {
-                frappe.new_doc("Purchase Invoice", {
-                    supplier: frm.doc.transporter,
-                    items: [
-                        {
-                            item_name: 'Transportation Cost',
-                            qty: 1,
-                            rate: frm.doc.transportation_cost,
-                            amount: frm.doc.transportation_cost
-                        }
-                    ]
-                });
-            }, __('Create'));
-        }
-
+                    ];
+                    pi.total = frm.doc.total_cost; // Set total cost
         
-        calculate_totals(frm);
-
-        
-        /*if((frm.doc.docstatus == 1 ) && (frappe.user.has_role('Accounts User'))) {
-            frm.add_custom_button("Create Payment Entry ", () => {
-               // frappe.msgprint("clicked")
-               frappe.new_doc("Payment Entry",{}, fdp => {
-                fdp.custom_reference_link = frm.doc.name;
-                fdp.payment_type = "Receive"
-                fdp.party_type = "Supplier"
-                fdp.party = frm.doc.bdc
-                fdp.paid_amount = frm.doc.total_cost
-                
-                
-                
-               });
-            }).css({'background-color':'#f8c516','color':'black','font-weight': 'bold'});;
-        }*/
-       
-    },
-
-    supplier_quotation: function(frm) {
-        if (frm.doc.supplier_quotation) {
-            frappe.call({
-                method: 'frappe.client.get',
-                args: {
-                    doctype: 'Supplier Quotation',
-                    name: frm.doc.supplier_quotation
-                },
-                callback: function(r) {
-                    if (r.message) {
-                        // Fetch supplier and grand total
-                        frm.set_value('bdc', r.message.supplier);
-                        frm.set_value('total_cost', r.message.grand_total);
-
-                        // Fetch item_code and rate from the child table
-                        if (r.message.items && r.message.items.length > 0) {
-                            // Assuming you want to fetch the first item's details
-                            let item = r.message.items[0];
-                            frm.set_value('fuel_type', item.item_code);
-                            frm.set_value('buy_price', item.rate);
-                        }
-                    }
-                }
-            });
+                    // Add taxes to the Purchase Invoice
+                    pi.taxes = frm.doc.immidiate_taxes.map(tax => ({
+                        charge_type: "Actual", // Use 'Actual' for directly setting the tax amount
+                        account_head: tax.account, // Set the account for the tax
+                        description: tax.tax_name, // Set the tax description
+                        cost_center: tax.cost_center, // Set the cost center
+                        tax_amount: tax.amount // Set the tax amount
+                    }));
+                });
+            }).css({ 'background-color': '#f8c516', 'color': 'black', 'font-weight': 'bold' });
         }
     },
+        
 
     before_workflow_action: async (frm) => {
     	let promise = new Promise((resolve, reject) => {
@@ -353,7 +307,95 @@ frappe.ui.form.on('Fuel Lifting Order', {
         }
         calculate_totals(frm);
 
-    }
+    },
+    on_workflow_state_change: function (frm) {
+        if (frm.doc.workflow_state === 'Vetted') {
+            // Process Deferred Taxes into Deferred Statutory Payment
+            frm.doc.deferred_taxes.forEach(tax => {
+                frappe.call({
+                    method: "frappe.client.insert",
+                    args: {
+                        doc: {
+                            doctype: "Deferred Statutory Payment",
+                            tax_name: tax.tax_name,
+                            tax_rate: tax.tax_rate,
+                            tax_amount: tax.amount,
+                            account: tax.account,
+                            cost_center: tax.cost_center,
+                            payment_due_date: tax.payment_due_date,
+                            reference_doc: frm.doc.name, // Reference back to current document
+                        }
+                    },
+                    callback: function (r) {
+                        if (!r.exc) {
+                            console.log("Deferred Statutory Payment created for tax:", tax.tax_name);
+                        }
+                    }
+                });
+            });
+
+            // Notify roles about payment deadlines
+            frm.doc.deferred_taxes.forEach(tax => {
+                if (tax.payment_due_date) {
+                    const one_week_before = frappe.datetime.add_days(tax.payment_due_date, -7);
+                    const three_days_before = frappe.datetime.add_days(tax.payment_due_date, -3);
+
+                    // Create alerts for 1 week and 3 days before due date
+                    frappe.call({
+                        method: "frappe.core.doctype.notification_log.notification_log.create_notification_log",
+                        args: {
+                            subject: `Upcoming Payment Due for ${tax.tax_name}`,
+                            message: `Payment of ${tax.amount} for tax ${tax.tax_name} is due on ${tax.payment_due_date}. Please ensure payment is made.`,
+                            for_users: frappe.user_roles.filter(role => 
+                                ["Accounts User", "Accounts Manager", "Auditor"].some(r => frappe.user.has_role(r))
+                            ),
+                            date: one_week_before,
+                        }
+                    });
+
+                    frappe.call({
+                        method: "frappe.core.doctype.notification_log.notification_log.create_notification_log",
+                        args: {
+                            subject: `Urgent Payment Reminder for ${tax.tax_name}`,
+                            message: `Payment of ${tax.amount} for tax ${tax.tax_name} is due in 3 days (${tax.payment_due_date}). Immediate action required.`,
+                            for_users: frappe.user_roles.filter(role => 
+                                ["Accounts User", "Accounts Manager", "Auditor"].some(r => frappe.user.has_role(r))
+                            ),
+                            date: three_days_before,
+                        }
+                    });
+                }
+            });
+
+            frappe.msgprint(__('Deferred Statutory Payments have been created, and notifications scheduled.'));
+        }
+    },
+    supplier_quotation: function(frm) {
+        if (frm.doc.supplier_quotation) {
+            frappe.call({
+                method: 'frappe.client.get',
+                args: {
+                    doctype: 'Supplier Quotation',
+                    name: frm.doc.supplier_quotation
+                },
+                callback: function(r) {
+                    if (r.message) {
+                        // Fetch supplier and grand total
+                        frm.set_value('bdc', r.message.supplier);
+                        frm.set_value('total_cost', r.message.grand_total);
+
+                        // Fetch item_code and rate from the child table
+                        if (r.message.items && r.message.items.length > 0) {
+                            // Assuming you want to fetch the first item's details
+                            let item = r.message.items[0];
+                            frm.set_value('fuel_type', item.item_code);
+                            frm.set_value('buy_price', item.rate);
+                        }
+                    }
+                }
+            });
+        }
+    },
 
 
    

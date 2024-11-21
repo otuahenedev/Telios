@@ -12,7 +12,7 @@
  "idx": 1,
  "indicator_color": "",
  "is_hidden": 0,
- "label": "Sales",
+ "label": "Outlet Sales",
  "links": [
   {
    "hidden": 0,
@@ -73,10 +73,10 @@
    "type": "Link"
   }
  ],
- "modified": "2024-11-20 10:57:16.144498",
+ "modified": "2024-11-21 12:47:43.765076",
  "modified_by": "Administrator",
  "module": "Fuel Sales",
- "name": "Sales",
+ "name": "Outlet Sales",
  "number_cards": [],
  "owner": "Administrator",
  "parent_page": "",
@@ -113,6 +113,6 @@
    "type": "DocType"
   }
  ],
- "title": "Sales",
+ "title": "Outlet Sales",
  "type": "Workspace"
 }

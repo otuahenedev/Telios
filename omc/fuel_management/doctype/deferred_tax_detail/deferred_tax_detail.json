@@ -26,8 +26,7 @@
    "in_list_view": 1,
    "label": "Tax Name",
    "options": "Statutory Fuel Tax",
-   "reqd": 1,
-   "unique": 1
+   "reqd": 1
   },
   {
    "columns": 2,
@@ -97,7 +96,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-11-21 10:16:53.522735",
+ "modified": "2024-11-21 13:17:57.209563",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Deferred Tax Detail",
