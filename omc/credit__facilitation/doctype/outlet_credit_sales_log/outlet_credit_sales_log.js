@@ -64,6 +64,17 @@ frappe.ui.form.on("Outlet Credit Sales Log", {
             }
         })
     }
+    //unfinsed code to create sales button
+    /*
+    refresh: function(frm){
+        if (frm.doc.docstatus == 1){
+            frm.add_custom_button(__('Sales Invoice' ),() => {
+                frappe.new.doc("Sales Invoice",{}, inv => {})
+            },__('Create'));
+        }
+    }
+})
+    */
 })
 
 // Helper function to dynamically update the staff field options in child tables

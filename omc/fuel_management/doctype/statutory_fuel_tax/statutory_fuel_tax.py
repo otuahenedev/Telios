@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class CompanyStaff(Document):
+class StatutoryFuelTax(Document):
 	pass

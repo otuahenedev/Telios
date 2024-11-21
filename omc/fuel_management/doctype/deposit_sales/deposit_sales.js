@@ -29,5 +29,5 @@ frappe.ui.form.on('Sales Multiple', "sales_deposited",function(frm, cdt, cdn) {
     frm.set_value('total_deposited', total_deposit);
 	
 });
-frappe.ui.form.on("Deposit Sales", "on_update", create_payment_entry)
+
 

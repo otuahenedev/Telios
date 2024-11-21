@@ -25,8 +25,9 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Tax Name",
-   "options": "Fuel Tax",
-   "reqd": 1
+   "options": "Statutory Fuel Tax",
+   "reqd": 1,
+   "unique": 1
   },
   {
    "columns": 2,
@@ -46,10 +47,11 @@
    "read_only": 1
   },
   {
+   "fetch_from": "tax_name.account",
    "fieldname": "account",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Account Head",
+   "label": "Account",
    "link_filters": "[[\"Account\",\"root_type\",\"=\",\"Liability\"]]",
    "options": "Account"
   },
@@ -95,7 +97,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-11-15 11:56:46.467819",
+ "modified": "2024-11-21 10:16:53.522735",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Deferred Tax Detail",

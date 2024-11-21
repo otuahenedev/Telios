@@ -44,16 +44,6 @@
    "fieldtype": "Section Break"
   },
   {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Outlet Sales",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
-  },
-  {
    "fieldname": "status",
    "fieldtype": "Data",
    "hidden": 1,
@@ -72,7 +62,7 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Outlet",
-   "link_filters": "[[\"Customer\",\"customer_group\",\"=\",\"Outlet\"]]",
+   "link_filters": "[[\"Customer\",\"customer_group\",\"=\",\"Fuel Station\"]]",
    "options": "Customer",
    "reqd": 1
   },
@@ -136,6 +126,7 @@
    "default": "0",
    "fieldname": "credit",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Credit Sales"
   },
   {
@@ -237,6 +228,15 @@
    "read_only": 1
   },
   {
+   "bold": 1,
+   "default": "0",
+   "depends_on": "total_credit_sales_ghs",
+   "fieldname": "credit_sales_ghs",
+   "fieldtype": "Currency",
+   "label": "Credit Sales (GHS) ",
+   "read_only": 1
+  },
+  {
    "fieldname": "amended_from",
    "fieldtype": "Link",
    "label": "Amended From",
@@ -245,15 +245,6 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
-  },
-  {
-   "bold": 1,
-   "default": "0",
-   "depends_on": "total_credit_sales_ghs",
-   "fieldname": "credit_sales_ghs",
-   "fieldtype": "Currency",
-   "label": "Credit Sales (GHS) ",
-   "read_only": 1
   }
  ],
  "is_calendar_and_gantt": 1,
@@ -265,7 +256,7 @@
    "link_fieldname": "pump_reading_ref"
   }
  ],
- "modified": "2024-11-17 16:40:51.988832",
+ "modified": "2024-11-20 17:12:39.368725",
  "modified_by": "Administrator",
  "module": "Fuel Sales",
  "name": "Outlet Sales",

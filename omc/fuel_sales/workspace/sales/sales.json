@@ -1,6 +1,7 @@
 {
+ "app": "omc",
  "charts": [],
- "content": "[{\"id\":\"2tBz4ceHVB\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>Reporting Sales</b></span>\",\"col\":12}},{\"id\":\"PBoXs-QfLv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Deposit Sales\",\"col\":3}},{\"id\":\"8XASOqKhrs\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Report Sales\",\"col\":3}},{\"id\":\"2Xo_Vbtm9A\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"5yH4RPH46R\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Reporting Sales\",\"col\":6}},{\"id\":\"dOsooP8qfP\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Sales Deposit\",\"col\":6}},{\"id\":\"rE0JLDQ6BJ\",\"type\":\"card\",\"data\":{\"card_name\":\"Credit\",\"col\":4}},{\"id\":\"bPLlK9qHwR\",\"type\":\"card\",\"data\":{\"card_name\":\"Sales Pricing\",\"col\":4}}]",
+ "content": "[{\"id\":\"2tBz4ceHVB\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px; letter-spacing: 0.18px;\\\"><b>Reporting Sales</b></span>\",\"col\":12}},{\"id\":\"8XASOqKhrs\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Report Sales\",\"col\":3}},{\"id\":\"PBoXs-QfLv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Deposit Sales\",\"col\":3}},{\"id\":\"2Xo_Vbtm9A\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"5yH4RPH46R\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Reporting Sales\",\"col\":6}},{\"id\":\"dOsooP8qfP\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Sales Deposit\",\"col\":6}},{\"id\":\"rE0JLDQ6BJ\",\"type\":\"card\",\"data\":{\"card_name\":\"Credit\",\"col\":4}},{\"id\":\"bPLlK9qHwR\",\"type\":\"card\",\"data\":{\"card_name\":\"Sales Pricing\",\"col\":4}}]",
  "creation": "2024-09-16 08:55:03.392243",
  "custom_blocks": [],
  "docstatus": 0,
@@ -72,7 +73,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-11-12 10:31:27.814464",
+ "modified": "2024-11-20 10:57:16.144498",
  "modified_by": "Administrator",
  "module": "Fuel Sales",
  "name": "Sales",
@@ -112,5 +113,6 @@
    "type": "DocType"
   }
  ],
- "title": "Sales"
+ "title": "Sales",
+ "type": "Workspace"
 }

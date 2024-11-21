@@ -6,9 +6,7 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "fullname",
-  "column_break_wvmw",
-  "staff_id"
+  "fullname"
  ],
  "fields": [
   {
@@ -16,27 +14,17 @@
    "fieldname": "fullname",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Fullname",
+   "label": "Vehicle License ID",
    "unique": 1
-  },
-  {
-   "fieldname": "column_break_wvmw",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "staff_id",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Staff ID"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-11-09 14:19:49.894485",
+ "modified": "2024-11-20 08:46:56.468427",
  "modified_by": "Administrator",
  "module": "Credit  Facilitation",
- "name": "Company Staff",
+ "name": "Company Vehicles",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [],

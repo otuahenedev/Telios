@@ -62,7 +62,7 @@
    "fieldname": "outlet",
    "fieldtype": "Link",
    "label": "Outlet",
-   "link_filters": "[[\"Customer\",\"customer_group\",\"=\",\"Outlet\"]]",
+   "link_filters": "[[\"Customer\",\"custom_parent_group\",\"=\",\"Outlets\"]]",
    "options": "Customer"
   },
   {
@@ -83,7 +83,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-11-11 16:43:01.458435",
+ "modified": "2024-11-21 10:48:43.434231",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Outlet Pricing",

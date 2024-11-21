@@ -10,7 +10,8 @@
   "tax_name",
   "rate",
   "amended_from",
-  "column_break_vdhf"
+  "column_break_vdhf",
+  "account"
  ],
  "fields": [
   {
@@ -22,7 +23,7 @@
    "fieldtype": "Link",
    "label": "Amended From",
    "no_copy": 1,
-   "options": "Fuel Tax",
+   "options": "Statutory Payments",
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
@@ -47,15 +48,25 @@
    "in_list_view": 1,
    "label": "Rate ",
    "mandatory_depends_on": "eval:doc.tax_type =='Percent'",
-   "precision": "2"
+   "precision": "2",
+   "reqd": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "account",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Account ",
+   "options": "Account"
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-11-15 11:28:18.832862",
+ "modified": "2024-11-21 09:10:44.009856",
  "modified_by": "Administrator",
  "module": "Fuel Management",
- "name": "Fuel Tax",
+ "name": "Statutory Fuel Tax",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
@@ -85,7 +96,10 @@
   }
  ],
  "quick_entry": 1,
+ "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "tax_name",
+ "track_changes": 1
 }

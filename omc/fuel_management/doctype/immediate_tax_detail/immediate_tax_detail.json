@@ -21,8 +21,9 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Tax Name",
-   "options": "Fuel Tax",
-   "reqd": 1
+   "options": "Statutory Fuel Tax",
+   "reqd": 1,
+   "unique": 1
   },
   {
    "fetch_from": "tax_name.rate",
@@ -40,9 +41,10 @@
    "read_only": 1
   },
   {
+   "fetch_from": "tax_name.account",
    "fieldname": "account",
    "fieldtype": "Link",
-   "label": "Account Head",
+   "label": "Account",
    "link_filters": "[[\"Account\",\"root_type\",\"=\",\"Liability\"]]",
    "options": "Account"
   },
@@ -75,7 +77,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-11-15 11:55:04.343524",
+ "modified": "2024-11-21 10:16:52.576670",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Immediate Tax Detail",

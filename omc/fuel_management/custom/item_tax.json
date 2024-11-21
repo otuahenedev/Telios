@@ -1,7 +1,7 @@
 {
  "custom_fields": [],
  "custom_perms": [],
- "doctype": "Item Barcode",
+ "doctype": "Item Tax",
  "links": [],
  "property_setters": [
   {
@@ -9,23 +9,23 @@
    "_comments": null,
    "_liked_by": null,
    "_user_tags": null,
-   "creation": "2024-09-10 02:13:23.807423",
+   "creation": "2024-11-20 12:25:12.246896",
    "default_value": null,
-   "doc_type": "Item Barcode",
+   "doc_type": "Item Tax",
    "docstatus": 0,
    "doctype_or_field": "DocField",
-   "field_name": "barcode",
+   "field_name": "item_tax_template",
    "idx": 0,
-   "is_system_generated": 1,
-   "modified": "2024-11-20 09:26:21.292374",
+   "is_system_generated": 0,
+   "modified": "2024-11-20 12:25:12.246896",
    "modified_by": "Administrator",
    "module": null,
-   "name": "Item Barcode-barcode-hidden",
+   "name": "Item Tax-item_tax_template-label",
    "owner": "Administrator",
-   "property": "hidden",
-   "property_type": "Check",
+   "property": "label",
+   "property_type": "Data",
    "row_name": null,
-   "value": "0"
+   "value": "Product Tax Template"
   }
  ],
  "sync_on_migrate": 1

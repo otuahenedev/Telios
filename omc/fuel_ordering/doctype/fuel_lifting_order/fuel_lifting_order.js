@@ -123,50 +123,49 @@ frappe.ui.form.on('Fuel Lifting Order', {
    
 
     refresh: function(frm) {
-
-        if ((frm.doc.state === 'Vetted') && (frappe.user.role('Account User'))) {
-            // Button to pay Supplier Cost
-            frm.add_custom_button(__('Pay Supplier Cost'), function() {
-                frappe.call({
-                    method: "omc.fuel_ordering.doctype.fuel_lifting_order.fuel_lifting_order.create_supplier_payment_entry",
-                    args: { fuel_purchase_order: frm.doc.name },
-                    callback: function(r) {
-                        if (r.message) {
-                            frappe.msgprint("Supplier payment entry created successfully.");
-                            frm.reload_doc();
+        if ((frm.doc.workflow_state === 'Vetted') && (frappe.user.has_role('Account User'))) {
+        
+            // Button to create Purchase Invoice for Supplier
+            frm.add_custom_button(__('Purchase Invoice (Supplier)'), () => {
+                frappe.new_doc("Purchase Invoice", {
+                    supplier: frm.doc.bdc,
+                    items: [
+                        {
+                            item_name: frm.doc.product,
+                            qty: frm.doc.nominal_volume_l,
+                            rate: frm.doc.buy_price,
+                            amount: frm.doc.total_cost
                         }
-                    }
-                });
-            });
+                    ],
+                    taxes_and_charges: frm.doc.immidiate_taxes.map(tax => ({
+                        charge_type: 'Actual',
+                        rate: tax.tax_rate,
+                        category: 'Total',
 
-            // Button to pay Immediate Taxes
-            frm.add_custom_button(__('Pay Immediate Taxes'), function() {
-                frappe.call({
-                    method: "omc.fuel_ordering.doctype.fuel_lifting_order.fuel_lifting_order.create_immediate_tax_payment_entry",
-                    args: { fuel_purchase_order: frm.doc.name },
-                    callback: function(r) {
-                        if (r.message) {
-                            frappe.msgprint("Immediate tax payment entry created successfully.");
-                            frm.reload_doc();
-                        }
-                    }
+                        account_head: tax.account,
+                        cost_center: tax.cost_center,
+                        tax_amount: tax.amount
+                    }))
                 });
-            });
-
-            // Button to pay Deferred Taxes
-            frm.add_custom_button(__('Pay Deferred Taxes'), function() {
-                frappe.call({
-                    method: "omc.fuel_ordering.doctype.fuel_lifting_order.fuel_lifting_order.create_deferred_tax_payment_entry",
-                    args: { fuel_purchase_order: frm.doc.name },
-                    callback: function(r) {
-                        if (r.message) {
-                            frappe.msgprint("Deferred tax payment entry created successfully.");
-                            frm.reload_doc();
+            }, __('Create'));
+    
+            // Button to create Purchase Invoice for Transport
+            frm.add_custom_button(__('Purchase Invoice (Transport)'), () => {
+                frappe.new_doc("Purchase Invoice", {
+                    supplier: frm.doc.transporter,
+                    items: [
+                        {
+                            item_name: 'Transportation Cost',
+                            qty: 1,
+                            rate: frm.doc.transportation_cost,
+                            amount: frm.doc.transportation_cost
                         }
-                    }
+                    ]
                 });
-            });
+            }, __('Create'));
         }
+
+        
         calculate_totals(frm);
 
         

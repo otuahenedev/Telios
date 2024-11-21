@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class Taxes(Document):
+class DeferredStatutoryPayment(Document):
 	pass

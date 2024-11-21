@@ -132,13 +132,13 @@
   {
    "fieldname": "staff",
    "fieldtype": "Table",
-   "options": "Company Staff"
+   "options": "Company Vehicles"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-11-09 14:36:08.421534",
+ "modified": "2024-11-20 08:47:24.511226",
  "modified_by": "Administrator",
  "module": "Credit  Facilitation",
  "name": "Credit Application",

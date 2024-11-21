@@ -2,8 +2,9 @@
  "actions": [],
  "allow_import": 1,
  "allow_rename": 1,
- "autoname": "format:{depot} - {bdc_name}",
+ "autoname": "field:depot",
  "creation": "2024-07-21 22:38:55.096191",
+ "default_view": "List",
  "doctype": "DocType",
  "document_type": "Setup",
  "engine": "InnoDB",
@@ -137,8 +138,7 @@
    "in_standard_filter": 1,
    "label": "BDC",
    "link_filters": "[[\"Supplier\",\"supplier_group\",\"=\",\"White Products\"]]",
-   "options": "Supplier",
-   "reqd": 1
+   "options": "Supplier"
   },
   {
    "fieldname": "primary_contact_no",
@@ -204,11 +204,11 @@
  ],
  "icon": "fa fa-flag",
  "links": [],
- "modified": "2024-09-11 15:17:22.013300",
+ "modified": "2024-11-21 08:48:15.726773",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Fuel Depot",
- "naming_rule": "Expression",
+ "naming_rule": "By fieldname",
  "nsm_parent_field": "parent_supplier_group",
  "owner": "Administrator",
  "permissions": [
@@ -266,7 +266,9 @@
  ],
  "quick_entry": 1,
  "show_name_in_global_search": 1,
+ "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "ASC",
- "states": []
+ "states": [],
+ "title_field": "depot"
 }
