@@ -388,12 +388,12 @@
   },
   {
    "allow_on_submit": 1,
-   "default": "Rejected",
    "fieldname": "state",
-   "fieldtype": "Read Only",
+   "fieldtype": "Select",
    "hidden": 1,
    "in_list_view": 1,
-   "label": "Status"
+   "label": "Status",
+   "options": "Fuel Order Awaiting Approval\nLifting Order Approved By FD\nLifting Order Approved By MD\nPaid\nOrder Placed\nOrder Delivered"
   },
   {
    "fieldname": "amended_from",
@@ -416,7 +416,8 @@
    "fieldtype": "Link",
    "in_preview": 1,
    "label": "BRV #",
-   "options": "Fuel Truck"
+   "options": "Fuel Truck",
+   "reqd": 1
   },
   {
    "fieldname": "supplier_quotation",
@@ -506,7 +507,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2024-11-21 13:24:11.678680",
+ "modified": "2024-11-21 17:04:43.387424",
  "modified_by": "Administrator",
  "module": "Fuel Ordering",
  "name": "Fuel Lifting Order",
@@ -592,5 +593,30 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [
+  {
+   "color": "Red",
+   "title": "Fuel Order Awaiting Approval"
+  },
+  {
+   "color": "Orange",
+   "title": "Lifting Order Approved By FD"
+  },
+  {
+   "color": "Light Blue",
+   "title": "Lifting Order Approved By MD"
+  },
+  {
+   "color": "Cyan",
+   "title": "Paid"
+  },
+  {
+   "color": "Purple",
+   "title": "Order Placed"
+  },
+  {
+   "color": "Green",
+   "title": "Order Delivered"
+  }
+ ]
 }

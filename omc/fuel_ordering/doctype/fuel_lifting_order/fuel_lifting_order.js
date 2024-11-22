@@ -14,7 +14,7 @@ frappe.ui.form.on("Request Fuel Details", {
                        
 }
 });
-
+/*
 frappe.ui.form.on("Fuel Lifting Order", {
     fuel_type: function(frm) {
         let fuel_type = frm.doc.fuel_type;
@@ -60,7 +60,7 @@ frappe.ui.form.on("Fuel Lifting Order", {
             });
         }
     }
-});
+});*/
 
 // Helper function to render HTML table in the HTML field
 function render_fuel_data_table(frm, child_table_name, title) {
@@ -126,7 +126,7 @@ frappe.ui.form.on('Fuel Lifting Order', {
         if ((frm.doc.workflow_state == "Vetted") && (frm.doc.status != "Paid") && (frappe.user.has_role('Accounts User'))) {
 
             // Button for Transportation Cost Payment Entry if mode of transport is external
-            if (frm.doc.mode_of_transport === "External") {
+            if (frm.doc.mode_of_transport === "External Transport") {
                 frm.add_custom_button("Create Payment Entry (Transport)", () => {
                     frappe.new_doc("Payment Entry", {}, fdp => {
                         fdp.custom_reference_link = frm.doc.name;
@@ -141,30 +141,42 @@ frappe.ui.form.on('Fuel Lifting Order', {
             // Button for Purchase Invoice for Supplier
             frm.add_custom_button("Create Purchase Invoice (Supplier)", () => {
                 frappe.new_doc("Purchase Invoice", {}, pi => {
+                    // Set supplier and bill date
                     pi.supplier = frm.doc.bdc; // Set supplier from the current form
                     pi.bill_date = frappe.datetime.now_date(); // Set current date as bill date
                     pi.due_date = frappe.datetime.add_days(frappe.datetime.now_date(), 30); // Example: 30 days due
-                    pi.items = [
-                        {
-                            item_name: "Fuel Purchase",
-                            qty: frm.doc.nominal_volume_l, // Assuming nominal_volume is quantity
-                            rate: frm.doc.buy_price, // Assuming price_rate is unit rate
-                            amount: frm.doc.total_cost // Total cost from the form
-                        }
-                    ];
+            
+                    // Reference the current document
+                    pi.custom_reference_document = 'Fuel Lifting Order'; // Custom reference document type
+                    pi.custom_doc = frm.doc.name; // Reference the current document (name field)
+            
+                    // Add items to the 'items' child table
+                    const item = frappe.model.add_child(pi, 'items'); // Add a child record to the 'items' table
+                    item.item_name = frm.doc.product;
+                    item.qty = frm.doc.nominal_volume_l; // Assuming nominal_volume is quantity
+                    item.rate = frm.doc.buy_price; // Assuming price_rate is unit rate
+                    item.amount = frm.doc.total_cost; // Total cost from the form
+            
+                    // Add taxes to the 'taxes' child table
+                    frm.doc.immediate_taxes.forEach(tax => {
+                        const tx = frappe.model.add_child(pi, 'taxes'); // Add a child record in the 'taxes' table of the Purchase Invoice
+                        tx.charge_type = "Actual"; // Use 'Actual' for directly setting the tax amount
+                        tx.account_head = tax.account; // Set the account for the tax
+                        tx.description = tax.tax_name; // Set the tax description
+                        tx.cost_center = tax.cost_center; // Set the cost center
+                        tx.tax_amount = tax.amount; // Set the tax amount
+                    });
+            
+                    // Set other custom fields
                     pi.total = frm.doc.total_cost; // Set total cost
-        
-                    // Add taxes to the Purchase Invoice
-                    pi.taxes = frm.doc.immidiate_taxes.map(tax => ({
-                        charge_type: "Actual", // Use 'Actual' for directly setting the tax amount
-                        account_head: tax.account, // Set the account for the tax
-                        description: tax.tax_name, // Set the tax description
-                        cost_center: tax.cost_center, // Set the cost center
-                        tax_amount: tax.amount // Set the tax amount
-                    }));
+            
+                    // Save the Purchase Invoice and navigate to it
+                    frappe.set_route('Form', 'Purchase Invoice', pi.name); // Navigate to the new Purchase Invoice
                 });
             }).css({ 'background-color': '#f8c516', 'color': 'black', 'font-weight': 'bold' });
+            
         }
+        
     },
         
 
