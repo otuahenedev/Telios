@@ -10,7 +10,6 @@
   "employee",
   "fullname",
   "outlet",
-  "product",
   "column_break_hizs",
   "datetime",
   "product_pricing",
@@ -20,7 +19,9 @@
   "name1",
   "vehicle_license_number",
   "order_details_section",
+  "product",
   "volume_sold_l",
+  "is_paid",
   "column_break_sfee",
   "sales_ghs",
   "amended_from"
@@ -108,6 +109,7 @@
    "fieldtype": "Float",
    "in_list_view": 1,
    "label": "Volume Sold (L)",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -140,12 +142,19 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_paid",
+   "fieldtype": "Check",
+   "label": "Paid",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-11-17 22:21:26.866226",
+ "modified": "2024-11-27 05:52:42.654771",
  "modified_by": "Administrator",
  "module": "Credit  Facilitation",
  "name": "Outlet Credit Sales Log",
@@ -162,6 +171,7 @@
    "report": 1,
    "role": "System Manager",
    "share": 1,
+   "submit": 1,
    "write": 1
   },
   {
@@ -186,10 +196,12 @@
    "report": 1,
    "role": "Accounts User",
    "share": 1,
+   "submit": 1,
    "write": 1
   }
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "track_changes": 1
 }

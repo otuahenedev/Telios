@@ -8,10 +8,11 @@
   "section_break_o9ok",
   "st",
   "station_supervisor",
+  "outlet",
   "column_break_fqka",
   "status",
   "pump_reading_ref",
-  "outlet",
+  "credit_sales",
   "section_break_fuxm",
   "sales_deposits",
   "amended_from",
@@ -35,7 +36,8 @@
    "fieldname": "pump_reading_ref",
    "fieldtype": "Link",
    "label": "Reporting Sales Ref.",
-   "options": "Outlet Sales"
+   "link_filters": "[[\"Outlet Pump Sales\",\"status\",\"=\",\"Approved\"]]",
+   "options": "Outlet Pump Sales"
   },
   {
    "fetch_from": "pump_reading_ref.outlet",
@@ -78,7 +80,8 @@
   },
   {
    "fieldname": "section_break_fuxm",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Deposits Sales "
   },
   {
    "fieldname": "sales_deposits",
@@ -116,13 +119,19 @@
   {
    "fieldname": "column_break_vwtm",
    "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "credit_sales",
+   "fieldtype": "Check",
+   "label": "Credit Sales"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_calendar_and_gantt": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-11-12 11:20:50.327452",
+ "modified": "2024-12-01 22:05:07.763820",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Deposit Sales",

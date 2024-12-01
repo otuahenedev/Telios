@@ -1,16 +1,21 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{competitor}-{outlet}-{MM}-{YY}-{###}",
  "creation": "2024-11-12 10:41:39.593635",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "section_break_lc7y",
   "competitor",
-  "outlet",
-  "amended_from",
+  "attach_image",
   "column_break_pjcv",
-  "datetime"
+  "datetime",
+  "outlet",
+  "employee",
+  "pricing_section",
+  "table_emuc",
+  "amended_from"
  ],
  "fields": [
   {
@@ -30,15 +35,19 @@
   {
    "fieldname": "competitor",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Competitor",
-   "options": "Competitor"
+   "options": "Competitor",
+   "reqd": 1
   },
   {
    "fieldname": "outlet",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Outlet",
    "link_filters": "[[\"Customer\",\"customer_group\",\"=\",\"Outlet\"]]",
-   "options": "Customer"
+   "options": "Customer",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_pjcv",
@@ -48,16 +57,44 @@
    "default": "Now",
    "fieldname": "datetime",
    "fieldtype": "Datetime",
-   "label": "Datetime"
+   "in_list_view": 1,
+   "label": "Datetime",
+   "reqd": 1
+  },
+  {
+   "fieldname": "attach_image",
+   "fieldtype": "Attach Image",
+   "label": "Attach Image ",
+   "reqd": 1
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Employee",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fieldname": "pricing_section",
+   "fieldtype": "Section Break",
+   "label": "Pricing"
+  },
+  {
+   "fieldname": "table_emuc",
+   "fieldtype": "Table",
+   "options": "Outlet Pricing Table",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-11-12 10:47:55.657585",
+ "modified": "2024-11-27 07:59:18.601034",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Competitor Pricing",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
@@ -76,5 +113,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "track_changes": 1
 }

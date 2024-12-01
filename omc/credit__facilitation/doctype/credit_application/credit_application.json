@@ -15,14 +15,16 @@
   "column_break_jcjo",
   "status",
   "approved_credit_limit",
+  "credit_utilization",
   "assigned_to",
+  "assigned_outlet",
   "credit_details_section",
   "credit_limit_requested",
   "payment_terms",
   "column_break_bewx",
   "supporting_documents",
   "amended_from",
-  "company_staff_section",
+  "company_trucks_section",
   "staff"
  ],
  "fields": [
@@ -35,7 +37,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Name",
-   "link_filters": "[[\"Customer\",\"customer_group\",\"!=\",\"Outlet\"]]",
+   "link_filters": "[[\"Customer\",\"custom_parent_group\",\"!=\",\"Outlets\"]]",
    "options": "Customer",
    "reqd": 1
   },
@@ -50,13 +52,14 @@
    "fetch_from": "name1.mobile_no",
    "fieldname": "mobile_number",
    "fieldtype": "Data",
-   "label": "Mobile Number"
+   "label": "Mobile Number",
+   "options": "Phone"
   },
   {
    "fetch_from": "name1.email_id",
    "fieldname": "email_id",
    "fieldtype": "Data",
-   "label": "Email Id"
+   "label": "Email ID"
   },
   {
    "fieldname": "address",
@@ -68,6 +71,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "default": "0",
    "fieldname": "approved_credit_limit",
    "fieldtype": "Currency",
    "label": "Approved Credit Limit",
@@ -112,15 +116,12 @@
   {
    "fieldname": "assigned_to",
    "fieldtype": "Table MultiSelect",
+   "hidden": 1,
    "label": "Assigned to ",
    "options": "Multiple outlets",
-   "permlevel": 1
-  },
-  {
-   "description": "Persons allowed to purchase fuel on behalf of this customer",
-   "fieldname": "company_staff_section",
-   "fieldtype": "Section Break",
-   "label": "Company Staff"
+   "permlevel": 1,
+   "print_hide": 1,
+   "report_hide": 1
   },
   {
    "fieldname": "status",
@@ -133,12 +134,32 @@
    "fieldname": "staff",
    "fieldtype": "Table",
    "options": "Company Vehicles"
+  },
+  {
+   "description": "Persons allowed to purchase fuel on behalf of this customer",
+   "fieldname": "company_trucks_section",
+   "fieldtype": "Section Break",
+   "label": "Company Trucks"
+  },
+  {
+   "default": "0",
+   "fieldname": "credit_utilization",
+   "fieldtype": "Currency",
+   "label": "Credit Utilization",
+   "read_only": 1
+  },
+  {
+   "fieldname": "assigned_outlet",
+   "fieldtype": "Link",
+   "label": "Assigned Outlet",
+   "options": "Customer",
+   "permlevel": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-11-20 08:47:24.511226",
+ "modified": "2024-11-30 16:21:32.639372",
  "modified_by": "Administrator",
  "module": "Credit  Facilitation",
  "name": "Credit Application",
@@ -159,17 +180,6 @@
    "write": 1
   },
   {
-   "create": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "All",
-   "share": 1,
-   "write": 1
-  },
-  {
    "delete": 1,
    "email": 1,
    "export": 1,
@@ -194,7 +204,6 @@
    "write": 1
   },
   {
-   "delete": 1,
    "email": 1,
    "export": 1,
    "permlevel": 1,
@@ -214,16 +223,38 @@
    "report": 1,
    "role": "Accounts Manager",
    "share": 1,
+   "submit": 1,
    "write": 1
   },
   {
-   "delete": 1,
    "email": 1,
    "export": 1,
    "print": 1,
    "read": 1,
    "report": 1,
    "role": "Auditor",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "report": 1,
+   "role": "Station Supervisor",
+   "select": 1,
+   "share": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts User",
+   "select": 1,
    "share": 1,
    "write": 1
   }

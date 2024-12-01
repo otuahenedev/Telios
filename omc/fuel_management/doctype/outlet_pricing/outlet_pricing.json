@@ -11,8 +11,9 @@
   "posting_datetime",
   "amended_from",
   "column_break_bdcw",
-  "outlet",
   "status",
+  "outlet",
+  "pricing_window",
   "section_break_nrfa",
   "pricing_justification",
   "section_break_cudu",
@@ -29,7 +30,8 @@
    "fieldtype": "Datetime",
    "in_list_view": 1,
    "in_preview": 1,
-   "label": "Posting Datetime"
+   "label": "Posting Datetime",
+   "reqd": 1
   },
   {
    "fieldname": "status",
@@ -43,7 +45,7 @@
    "fieldname": "pricing_table",
    "fieldtype": "Table",
    "label": "Pricing Table",
-   "options": "Outlet Pricing Table"
+   "options": "Outlet Pricing Detail"
   },
   {
    "fieldname": "amended_from",
@@ -63,7 +65,8 @@
    "fieldtype": "Link",
    "label": "Outlet",
    "link_filters": "[[\"Customer\",\"custom_parent_group\",\"=\",\"Outlets\"]]",
-   "options": "Customer"
+   "options": "Customer",
+   "reqd": 1
   },
   {
    "fieldname": "section_break_nrfa",
@@ -78,12 +81,18 @@
   {
    "fieldname": "section_break_cudu",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "pricing_window",
+   "fieldtype": "Duration",
+   "label": "Pricing Window",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-11-21 10:48:43.434231",
+ "modified": "2024-11-27 08:22:28.608809",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Outlet Pricing",

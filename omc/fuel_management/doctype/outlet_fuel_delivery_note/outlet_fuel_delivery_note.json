@@ -1,0 +1,335 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:Fuel Delivery Proof-{outlet}-{MM}-{YY}-{#####}",
+ "creation": "2024-07-26 06:35:57.985263",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "status",
+  "column_break_avdn",
+  "fuel_lifting_log_ref",
+  "order_details_section",
+  "outlet",
+  "outlet_code",
+  "station_supervisor",
+  "driver_name",
+  "column_break_wrbm",
+  "fuel_type",
+  "product_price_rate",
+  "volume_received_l",
+  "product_value",
+  "section_break_pbbg",
+  "discharge_datetime",
+  "notes",
+  "column_break_rmhn",
+  "safety_cap_seal_intact",
+  "outlet_fuel_discharge_log",
+  "total_fuel_delivered",
+  "evidence_section",
+  "table_ozsi",
+  "signatures_section",
+  "drivers_signature",
+  "datetime_kxtf",
+  "column_break_ujtg",
+  "station_supervisers_signature",
+  "signed_on",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "default": "Now",
+   "fieldname": "discharge_datetime",
+   "fieldtype": "Datetime",
+   "label": "Discharge Datetime",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "outlet",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Outlet",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_rmhn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "fuel_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Product",
+   "options": "Item",
+   "read_only": 1,
+   "reqd": 1,
+   "sort_options": 1
+  },
+  {
+   "fieldname": "volume_received_l",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Fuel Quantity Expected (L)",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "evidence_section",
+   "fieldtype": "Section Break",
+   "label": "Evidence"
+  },
+  {
+   "fieldname": "table_ozsi",
+   "fieldtype": "Table",
+   "options": "Video Evidence"
+  },
+  {
+   "fieldname": "signatures_section",
+   "fieldtype": "Section Break",
+   "label": "Signatures"
+  },
+  {
+   "fieldname": "drivers_signature",
+   "fieldtype": "Signature",
+   "label": "Driver's Signature",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "column_break_ujtg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "station_supervisers_signature",
+   "fieldtype": "Signature",
+   "label": "Station Superviser's Signature "
+  },
+  {
+   "fieldname": "order_details_section",
+   "fieldtype": "Section Break",
+   "label": "Order Details"
+  },
+  {
+   "fieldname": "column_break_wrbm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_pbbg",
+   "fieldtype": "Section Break",
+   "label": "Verification"
+  },
+  {
+   "fieldname": "safety_cap_seal_intact",
+   "fieldtype": "Select",
+   "label": "Safety Cap Seal Status",
+   "options": "\nIntact\nBroken\nReplaced",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Outlet Fuel Delivery Note",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "columns": 8,
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "label": "Status",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "outlet.custom_station_supervisor",
+   "fieldname": "station_supervisor",
+   "fieldtype": "Link",
+   "label": "Station Supervisor",
+   "options": "Employee",
+   "read_only": 1
+  },
+  {
+   "default": "Now",
+   "depends_on": "drivers_signature",
+   "fieldname": "datetime_kxtf",
+   "fieldtype": "Datetime",
+   "label": "Signed On",
+   "mandatory_depends_on": "drivers_signature",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "outlet.custom_outlet_code",
+   "fieldname": "outlet_code",
+   "fieldtype": "Date",
+   "label": "Outlet Code",
+   "read_only": 1
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  },
+  {
+   "default": "Now",
+   "depends_on": "station_supervisers_signature",
+   "fieldname": "signed_on",
+   "fieldtype": "Datetime",
+   "label": "Signed On",
+   "mandatory_depends_on": "station_supervisers_signature",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_avdn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "fuel_lifting_log_ref",
+   "fieldtype": "Link",
+   "label": "Fuel Lifting Request Ref.",
+   "options": "Fuel Lifting Request"
+  },
+  {
+   "fieldname": "outlet_fuel_discharge_log",
+   "fieldtype": "Link",
+   "label": "Outlet Fuel Discharge Log",
+   "options": "Outlet Fuel Discharge Log",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "outlet_fuel_discharge_log.total_fuel_delivered",
+   "fieldname": "total_fuel_delivered",
+   "fieldtype": "Float",
+   "label": "Total Fuel Delivered"
+  },
+  {
+   "default": "10",
+   "fieldname": "product_price_rate",
+   "fieldtype": "Currency",
+   "label": "Product Price Rate",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "product_value",
+   "fieldtype": "Currency",
+   "label": "Product Value",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "driver_name",
+   "fieldtype": "Data",
+   "label": "Driver"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_calendar_and_gantt": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-11-29 17:06:22.168572",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Outlet Fuel Delivery Note",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "permlevel": 2,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Auditor",
+   "select": 1,
+   "share": 1
+  },
+  {
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Logistics Officer",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Station Supervisor",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Driver",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Driver",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

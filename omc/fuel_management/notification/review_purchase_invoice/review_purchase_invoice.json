@@ -1,0 +1,31 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "condition": "",
+ "creation": "2024-11-28 12:50:37.833554",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Payment Entry",
+ "enabled": 1,
+ "event": "Submit",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<p>Review Purchase Invoice Form <b>{{doc.name}}</b> for {{doc.custom_reference_doc}} : {{doc.custom_ref}}</p>\n",
+ "message_type": "Markdown",
+ "minutes_offset": 0,
+ "modified": "2024-11-28 12:50:37.833554",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "review Purchase Invoice",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "receiver_by_role": "Auditor"
+  }
+ ],
+ "send_system_notification": 1,
+ "send_to_all_assignees": 0,
+ "subject": "Review Purchase Invoice",
+ "value_changed": "workflow_state"
+}

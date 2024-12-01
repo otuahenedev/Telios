@@ -1,0 +1,256 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:Dipp Reading-{outlet}-{MM}-{YY}-{###}",
+ "creation": "2024-09-12 21:08:17.519440",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "employee",
+  "station_supervisor",
+  "outlet",
+  "column_break_ooiw",
+  "storage_tank",
+  "state",
+  "ago_diesel_section",
+  "prod",
+  "product_has_multiple_tanks",
+  "column_break_vmde",
+  "fuel_reading",
+  "attach_reading_picture",
+  "posting_datetime",
+  "section_break_kybd",
+  "pump_reading_summary",
+  "table_zzvb",
+  "summary_section",
+  "column_break_yauk",
+  "column_break_qndo",
+  "current_fuel_volume_l",
+  "variance",
+  "reconciliation_remarks",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "station_supervisor",
+   "fieldtype": "Read Only",
+   "in_list_view": 1,
+   "label": "Station Supervisor ",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "employee.custom_outlet",
+   "fetch_if_empty": 1,
+   "fieldname": "outlet",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Outlet",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fetch_if_empty": 1,
+   "fieldname": "storage_tank",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Storage Tank",
+   "options": "Warehouse",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_ooiw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ago_diesel_section",
+   "fieldtype": "Section Break",
+   "hidden": 1,
+   "label": "Reading"
+  },
+  {
+   "fieldname": "column_break_vmde",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "attach_reading_picture",
+   "fieldtype": "Attach Image",
+   "label": "Attach Dip Rod Reading Picture ",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "fuel_reading",
+   "fieldtype": "Read Only",
+   "label": "Dip Rod Reading (L) ",
+   "reqd": 1
+  },
+  {
+   "default": "Now",
+   "depends_on": "ago_reading",
+   "fieldname": "posting_datetime",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Posting Datetime",
+   "reqd": 1
+  },
+  {
+   "fieldname": "prod",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Product",
+   "link_filters": "[[\"Item\",\"item_group\",\"=\",\"White Products\"]]",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Select",
+   "label": "State",
+   "options": "Pump Reading\nBefore Fuel Discharge\nAfter Fuel Discharge",
+   "reqd": 1
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "Station Supervisor ",
+   "options": "Employee"
+  },
+  {
+   "bold": 1,
+   "fieldname": "summary_section",
+   "fieldtype": "Section Break",
+   "label": "Summary"
+  },
+  {
+   "fieldname": "column_break_qndo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Daily Stock Entry",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "section_break_kybd",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "pump_reading_summary",
+   "fieldtype": "Table",
+   "hidden": 1,
+   "label": "Pump Reading Summary",
+   "options": "Pump Reading Totals",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_yauk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "bold": 1,
+   "fieldname": "current_fuel_volume_l",
+   "fieldtype": "Float",
+   "label": "Current Fuel Volume (L)",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "fieldname": "variance",
+   "fieldtype": "Float",
+   "label": "Variance",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reconciliation_remarks",
+   "fieldtype": "Small Text",
+   "label": "Reconciliation Remarks"
+  },
+  {
+   "default": "0",
+   "fieldname": "product_has_multiple_tanks",
+   "fieldtype": "Check",
+   "label": "Product Has Multiple Tanks"
+  },
+  {
+   "depends_on": "eval:doc.product_has_multiple_tanks == 1;",
+   "fieldname": "table_zzvb",
+   "fieldtype": "Table",
+   "mandatory_depends_on": "eval:doc.product_has_multiple_tanks == 1;",
+   "options": "Tank Details Diesel"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-11-25 19:08:49.312737",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Daily Stock Entry",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Station Supervisor",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Operations Officer",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Logistics Officer",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

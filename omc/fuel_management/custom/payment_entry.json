@@ -493,7 +493,7 @@
    "name": "Payment Entry-custom_reference_doc",
    "no_copy": 0,
    "non_negative": 0,
-   "options": "\nDeposit Sales\nFuel Lifting Order\n",
+   "options": "\nDeposit Sales\nFuel Lifting Request\nStatutory Payment\n",
    "owner": "Administrator",
    "permlevel": 0,
    "placeholder": null,

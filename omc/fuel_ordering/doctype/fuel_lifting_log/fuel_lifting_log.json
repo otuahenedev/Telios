@@ -1,0 +1,370 @@
+{
+ "actions": [],
+ "allow_events_in_timeline": 1,
+ "allow_rename": 1,
+ "autoname": "format:TEL{YY}{MM}{####}",
+ "creation": "2024-11-27 20:55:49.870364",
+ "default_view": "List",
+ "doctype": "DocType",
+ "document_type": "Document",
+ "engine": "InnoDB",
+ "field_order": [
+  "order_details_tab",
+  "fuel_lifting_request_ref",
+  "column_break_vgiy",
+  "state",
+  "section_break_lddd",
+  "order_date",
+  "column_break_ecig",
+  "mode_of_transport",
+  "order_details_section",
+  "bdc",
+  "fuel_type",
+  "driver",
+  "drivers_contact",
+  "column_break_mnsk",
+  "depot",
+  "product_group",
+  "mate",
+  "mates_contact",
+  "column_break_wbqf",
+  "brv",
+  "buy_price",
+  "nominal_volume_l",
+  "section_break_ilbx",
+  "delivered_to",
+  "transportation_cost_section",
+  "transporter_quotation",
+  "distance",
+  "fuel_price_rate",
+  "lkm",
+  "column_break_rwre",
+  "transporter",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "order_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Order Details"
+  },
+  {
+   "fieldname": "section_break_lddd",
+   "fieldtype": "Section Break",
+   "hide_border": 1
+  },
+  {
+   "default": "Now",
+   "fetch_from": "fuel_lifting_request_ref.order_date",
+   "fieldname": "order_date",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Transaction Date",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_ecig",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "fuel_lifting_request_ref.mode_of_transport",
+   "fieldname": "mode_of_transport",
+   "fieldtype": "Select",
+   "label": "Mode of Transport",
+   "options": "\nInternal Transport\nExternal Transport",
+   "read_only": 1,
+   "reqd": 1,
+   "sort_options": 1
+  },
+  {
+   "fieldname": "order_details_section",
+   "fieldtype": "Section Break",
+   "hide_border": 1
+  },
+  {
+   "description": "Supplier",
+   "fetch_from": "fuel_lifting_request_ref.bdc",
+   "fieldname": "bdc",
+   "fieldtype": "Link",
+   "in_preview": 1,
+   "label": "BDC",
+   "link_filters": "[[\"Supplier\",\"supplier_group\",\"=\",\"White Products\"]]",
+   "options": "Supplier",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "fuel_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Product",
+   "link_filters": "[[\"Item\",\"item_group\",\"=\",\"White Products\"]]",
+   "options": "Item",
+   "read_only": 1,
+   "reqd": 1,
+   "sort_options": 1
+  },
+  {
+   "fetch_from": "fuel_lifting_request_ref.driver",
+   "fieldname": "driver",
+   "fieldtype": "Link",
+   "in_preview": 1,
+   "label": "Driver",
+   "options": "Driver",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fetch_from": "driver.cell_number",
+   "fieldname": "drivers_contact",
+   "fieldtype": "Read Only",
+   "label": "Driver's Contact",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_mnsk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "fuel_lifting_request_ref.depot",
+   "fieldname": "depot",
+   "fieldtype": "Link",
+   "label": "Depot/Yard",
+   "options": "Fuel Depot",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fetch_from": "fuel_lifting_request_ref.product_group",
+   "fieldname": "product_group",
+   "fieldtype": "Link",
+   "label": "Product Group",
+   "options": "Item Group",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fetch_from": "fuel_lifting_request_ref.mate",
+   "fieldname": "mate",
+   "fieldtype": "Link",
+   "label": "Mate",
+   "options": "Mate",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "mate.contact_number",
+   "fieldname": "mates_contact",
+   "fieldtype": "Read Only",
+   "label": "Mate's Contact ",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_wbqf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Fuel Truck",
+   "fetch_from": "fuel_lifting_request_ref.brv",
+   "fieldname": "brv",
+   "fieldtype": "Link",
+   "in_preview": 1,
+   "label": "BRV #",
+   "options": "Fuel Truck",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fetch_from": "fuel_lifting_request_ref.buy_price",
+   "fetch_if_empty": 1,
+   "fieldname": "buy_price",
+   "fieldtype": "Currency",
+   "label": "Ex-Ref Price(GHS/LT) ",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fetch_from": "fuel_lifting_request_ref.nominal_volume_l",
+   "fetch_if_empty": 1,
+   "fieldname": "nominal_volume_l",
+   "fieldtype": "Int",
+   "label": "Nominal Volume (L)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_ilbx",
+   "fieldtype": "Section Break",
+   "label": "Delivered To"
+  },
+  {
+   "bold": 1,
+   "fieldname": "transportation_cost_section",
+   "fieldtype": "Section Break",
+   "label": "Transportation"
+  },
+  {
+   "depends_on": "eval:doc.mode_of_transport == \"External Transport\"",
+   "fetch_from": "fuel_lifting_request_ref.transporter_quotation",
+   "fieldname": "transporter_quotation",
+   "fieldtype": "Link",
+   "in_preview": 1,
+   "label": "Transporter Quotation",
+   "link_filters": "[[\"Supplier Quotation\",\"custom_supplier_group\",\"=\",\"Transporter\"]]",
+   "options": "Supplier Quotation",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.mode_of_transport == \"Internal Transport\"",
+   "fetch_from": "fuel_lifting_request_ref.distance",
+   "fieldname": "distance",
+   "fieldtype": "Float",
+   "label": "Route Distance",
+   "mandatory_depends_on": "eval:doc.mode_of_transport == \"Internal Transport\"",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "depends_on": "distance",
+   "fetch_from": "fuel_lifting_request_ref.fuel_price_rate",
+   "fieldname": "fuel_price_rate",
+   "fieldtype": "Currency",
+   "label": "Fuel Price Rate",
+   "mandatory_depends_on": "distance",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "depends_on": "distance",
+   "fetch_from": "fuel_lifting_request_ref.lkm",
+   "fieldname": "lkm",
+   "fieldtype": "Float",
+   "label": "L/km",
+   "mandatory_depends_on": "distance",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_rwre",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "transporter_quotation",
+   "fetch_from": "fuel_lifting_request_ref.transporter",
+   "fieldname": "transporter",
+   "fieldtype": "Link",
+   "label": "Transporter",
+   "link_filters": "[[\"Supplier\",\"supplier_group\",\"=\",\"Transporter\"]]",
+   "options": "Supplier",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Fuel Lifting Log",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "fuel_lifting_request_ref",
+   "fieldtype": "Link",
+   "label": "Fuel Lifting Request Ref",
+   "options": "Fuel Lifting Request",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_vgiy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "label": "State",
+   "read_only": 1
+  },
+  {
+   "allow_bulk_edit": 1,
+   "fieldname": "delivered_to",
+   "fieldtype": "Table",
+   "options": "Request Fuel Details",
+   "read_only": 1
+  }
+ ],
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-11-29 09:37:53.665300",
+ "modified_by": "Administrator",
+ "module": "Fuel Ordering",
+ "name": "Fuel Lifting Log",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts User",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Auditor",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [
+  {
+   "color": "Red",
+   "title": "Fuel Order Awaiting Approval"
+  },
+  {
+   "color": "Orange",
+   "title": "Lifting Order Approved By FD"
+  },
+  {
+   "color": "Light Blue",
+   "title": "Lifting Order Approved By MD"
+  },
+  {
+   "color": "Cyan",
+   "title": "Paid"
+  },
+  {
+   "color": "Purple",
+   "title": "Order Placed"
+  },
+  {
+   "color": "Green",
+   "title": "Order Delivered"
+  }
+ ],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
+}

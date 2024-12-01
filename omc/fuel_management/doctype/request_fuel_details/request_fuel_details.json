@@ -8,7 +8,8 @@
  "field_order": [
   "fuel_station",
   "outlet_code",
-  "volume_l"
+  "volume_l",
+  "product_price"
  ],
  "fields": [
   {
@@ -37,12 +38,18 @@
    "in_list_view": 1,
    "label": "Volume (L)",
    "non_negative": 1
+  },
+  {
+   "fieldname": "product_price",
+   "fieldtype": "Currency",
+   "label": "Product Price",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-11-12 15:02:16.364666",
+ "modified": "2024-11-29 15:44:46.497586",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Request Fuel Details",

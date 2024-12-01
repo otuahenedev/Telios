@@ -127,12 +127,12 @@
    "fieldname": "fuel_order_lifting_ref",
    "fieldtype": "Link",
    "label": "Fuel Order Lifting Ref.",
-   "options": "Fuel Lifting Order"
+   "options": "Fuel Lifting Request"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-21 10:27:03.410280",
+ "modified": "2024-11-27 12:52:17.782160",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Deferred Statutory Payment",

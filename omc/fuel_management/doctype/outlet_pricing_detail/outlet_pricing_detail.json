@@ -1,0 +1,92 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-11-27 08:16:10.652262",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "product",
+  "profit_margin_",
+  "selling_price",
+  "proposed_selling_price",
+  "purchase_price",
+  "avg_competitor_price",
+  "lowest_competitor_price"
+ ],
+ "fields": [
+  {
+   "columns": 1,
+   "fieldname": "profit_margin_",
+   "fieldtype": "Percent",
+   "in_list_view": 1,
+   "label": "Profit Margin (%)"
+  },
+  {
+   "columns": 2,
+   "fieldname": "selling_price",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Selling Price",
+   "options": "currency",
+   "reqd": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "proposed_selling_price",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Proposed Selling Price",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "purchase_price",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Purchase Price",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "avg_competitor_price",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Avg Competitor Price",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "lowest_competitor_price",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Lowest Competitor Price",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "columns": 2,
+   "fieldname": "product",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Product",
+   "link_filters": "[[\"Item\",\"item_group\",\"=\",\"White Products\"]]",
+   "options": "Item",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-11-27 11:54:37.402069",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Outlet Pricing Detail",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

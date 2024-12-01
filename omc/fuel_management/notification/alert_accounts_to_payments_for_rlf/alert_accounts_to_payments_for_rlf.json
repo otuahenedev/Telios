@@ -1,0 +1,31 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "condition": "doc.state == \"Submitted\"",
+ "creation": "2024-11-28 12:01:29.464453",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Fuel Lifting Request",
+ "enabled": 1,
+ "event": "Custom",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<p>Create Purchase Invoice for Supplier, payment entries for external transporter(If applicable) for Fuel Lifting Request <b>{{doc.name}}</b></p>\n\n<p>Attach relevant attachments</p>\n",
+ "message_type": "Markdown",
+ "minutes_offset": 0,
+ "modified": "2024-11-28 12:01:46.548686",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Alert Accounts to payments for RLF",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "receiver_by_role": "Accounts User"
+  }
+ ],
+ "send_system_notification": 1,
+ "send_to_all_assignees": 0,
+ "subject": "Awaiting Approval on Fuel Lifting Request Form",
+ "value_changed": "workflow_state"
+}

@@ -48,6 +48,36 @@ frappe.ui.form.on("Outlet Credit Sales Log", {
             }
         });
     },
+
+    refresh: function(frm) {
+        if (frm.doc.docstatus === 1  && frappe.user.has_role('Accounts User')) {
+            frm.add_custom_button("Create Sales Invoice", () => {
+                frappe.new_doc("Sales Invoice", {}, (si) => {
+                    si.customer = frm.doc.company; // Map company field to customer in Sales Invoice
+                    si.due_date = frappe.datetime.add_days(frappe.datetime.now_date(), 30); // Example: Set due date 30 days from today
+                    si.custom_reference_doc = 'Outlet Credit Sales Log'; // reference type
+                    si.custom_ref = frm.doc.name; //reference doc name
+
+                    // Loop through products to add items to the Sales Invoice
+                    (frm.doc.products || []).forEach(product_row => {
+                        const item = frappe.model.add_child(si, 'items'); // Add a child record to the 'items' table
+                        item.item_name = product_row.product; // Map product name
+                        item.qty = product_row.volume_sold_l; // Map volume_sold_l to quantity
+                        item.amount = product_row.sales_ghs; // Map sales_ghs to amount
+
+                        // Fetch rate from the product_pricing child table
+                        const pricing_row = (frm.doc.product_pricing || []).find(p => p.product === product_row.product);
+                        if (pricing_row) {
+                            item.rate = pricing_row.rate; // Set rate from product_pricing
+                        }
+                    });
+
+                    // Save and navigate to the new Sales Invoice
+                    frappe.set_route('Form', 'Sales Invoice', si.name);
+                });
+            }).css({ 'font-weight': 'bold' });
+        }
+    },
     // fetch staff from company approved to have credit
     company: function(frm){
         const company = frm.doc.company;
@@ -77,6 +107,11 @@ frappe.ui.form.on("Outlet Credit Sales Log", {
     */
 })
 
+
+frappe.ui.form.on('Your Doctype', {
+    
+});
+
 // Helper function to dynamically update the staff field options in child tables
 function update_staff_select_options(frm, staff_data) {
     if (!staff_data) {
@@ -93,3 +128,4 @@ function update_staff_select_options(frm, staff_data) {
    frm.refresh_field("name1");
    
 }
+

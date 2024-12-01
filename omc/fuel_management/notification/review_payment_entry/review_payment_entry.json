@@ -1,0 +1,31 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "condition": "",
+ "creation": "2024-11-28 12:48:48.744116",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Payment Entry",
+ "enabled": 1,
+ "event": "Submit",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<p>Review Payment Entry Form <b>{{doc.name}}</b> for {{doc.custom_reference_doc}} : {{doc.custom_ref}}</p>\n",
+ "message_type": "Markdown",
+ "minutes_offset": 0,
+ "modified": "2024-11-28 12:49:14.938550",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Review Payment Entry",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "receiver_by_role": "Auditor"
+  }
+ ],
+ "send_system_notification": 1,
+ "send_to_all_assignees": 0,
+ "subject": "Review Payment Entry",
+ "value_changed": "workflow_state"
+}

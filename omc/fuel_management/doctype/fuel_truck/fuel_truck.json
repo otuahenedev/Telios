@@ -259,8 +259,8 @@
   {
    "description": "Fuel consumption per 1km",
    "fieldname": "fuel_consumption_litres",
-   "fieldtype": "Int",
-   "label": "Fuel Consumption (Litres)",
+   "fieldtype": "Float",
+   "label": "Fuel Consumption (L/Km)",
    "mandatory_depends_on": "eval:doc.type == \"Internal\""
   },
   {
@@ -276,7 +276,7 @@
  ],
  "image_field": "truck_profile_image",
  "links": [],
- "modified": "2024-09-11 17:17:36.228267",
+ "modified": "2024-11-27 13:20:36.688434",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Fuel Truck",

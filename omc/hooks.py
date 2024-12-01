@@ -127,34 +127,48 @@ app_include_js = [
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+ 	#"*": {
+ 	#	"on_update": "method",
+ 	##	"on_trash": "method"
+ 	#},
+     "Outlet Sales Credit Log": {
+        "after_insert": "omc.credit__facilitation.doctype.outlet_credit_sales_log.update_credit_utilization",
+        "on_update": "omc.credit__facilitation.doctype.outlet_credit_sales_log.update_credit_utilization"
+    },
+   
+    "Payment Entry": {
+        "on_submit": "omc.fuel_management.doctype.statutory_payment.statutory_payment.tax_management.update_statutory_payment_status"
+    }
+ }
 
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
+scheduler_events = {
 # 	"all": [
 # 		"omc.tasks.all"
 # 	],
-# 	"daily": [
-# 		"omc.tasks.daily"
-# 	],
+ 	"daily": ["omc.send_credit_utilization_alert"],
 # 	"hourly": [
 # 		"omc.tasks.hourly"
 # 	],
 # 	"weekly": [
 # 		"omc.tasks.weekly"
 # 	],
-# 	"monthly": [
-# 		"omc.tasks.monthly"
-# 	],
-# }
+ 	"monthly": [
+ 		"omc.adjust_credit_limits"
+	],
+ }
+
+fixtures = [
+    {
+        "dt": "Report",
+        "filters": [
+            ["name", "=", "Credit Risk Report"]
+        ]
+    }
+]
 
 # Testing
 # -------

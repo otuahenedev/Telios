@@ -1,30 +1,31 @@
 {
  "attach_print": 0,
  "channel": "Email",
- "condition": "doc.workflow_state == \"Approved\"",
+ "condition": "doc.state == \"Approved by FD\"",
  "creation": "2024-07-30 08:23:08.478172",
  "days_in_advance": 0,
  "docstatus": 0,
  "doctype": "Notification",
- "document_type": "Fuel Delivery Request Approval",
- "enabled": 0,
+ "document_type": "Fuel Lifting Request",
+ "enabled": 1,
  "event": "Custom",
  "idx": 0,
  "is_standard": 1,
- "message": "<p>Add your message here</p>\n",
+ "message": "<p>Awaiting Approval on Fuel Lifting Request Form <b>{{doc.name}}</b></p>\n",
  "message_type": "Markdown",
- "modified": "2024-07-30 08:48:35.240264",
+ "minutes_offset": 0,
+ "modified": "2024-11-28 11:53:40.308139",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Fuel Delivery Request Approval Granted",
  "owner": "Administrator",
  "recipients": [
   {
-   "receiver_by_role": "All"
+   "receiver_by_role": "M. Director"
   }
  ],
  "send_system_notification": 1,
  "send_to_all_assignees": 0,
- "subject": "Fuel Delivery Request Approval {{doc.name}} Granted. Initiate Fuel Delivery Process.",
+ "subject": "Awaiting Approval on Fuel Lifting Request Form",
  "value_changed": "workflow_state"
 }

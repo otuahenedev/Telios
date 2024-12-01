@@ -5,24 +5,25 @@
  "days_in_advance": 0,
  "docstatus": 0,
  "doctype": "Notification",
- "document_type": "Fuel Delivery",
+ "document_type": "Fuel Lifting Log",
  "enabled": 1,
  "event": "New",
  "idx": 0,
  "is_standard": 1,
- "message": "<p>Add your message here</p>\n",
+ "message": "<p>Place Order on the NPA portal based on the Approved Lifting Request {{doc.name}}</p>\n",
  "message_type": "Markdown",
- "modified": "2024-07-30 08:27:56.716810",
+ "minutes_offset": 0,
+ "modified": "2024-11-28 12:30:06.246956",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Fuel Delivery Process Initiated",
  "owner": "Administrator",
  "recipients": [
   {
-   "receiver_by_role": "All"
+   "receiver_by_role": "Logistics Officer"
   }
  ],
  "send_system_notification": 1,
  "send_to_all_assignees": 0,
- "subject": "Fuel Delivery Process {{doc.name}} initiated."
+ "subject": "Place Order "
 }

@@ -1,0 +1,327 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:TELIOS-{outlet}-{YYYY}-{MM}-{###}",
+ "creation": "2024-11-10 08:28:25.031633",
+ "default_view": "List",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_wkbk",
+  "status",
+  "outlet",
+  "outlet_code",
+  "st",
+  "station_supervisor",
+  "column_break_gawm",
+  "date",
+  "datetime",
+  "product_pricing",
+  "rtt",
+  "first_load_done",
+  "r",
+  "column_break_sjpv",
+  "dispenser_readings",
+  "returned_to_tank_section",
+  "returned_to_tank_test",
+  "credit_sales_section",
+  "credit_sales",
+  "total_credit_sales_ghs",
+  "totals_section",
+  "product_totals",
+  "section_break_lpvu",
+  "column_break_cbak",
+  "column_break_mkpv",
+  "total_litres_sold",
+  "total_sales",
+  "credit_sales_ghs",
+  "net_cash_sales",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_wkbk",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "no_copy": 1,
+   "options": "Draft\nUnder review\nApproved",
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fetch_from": "st.custom_outlet",
+   "fetch_if_empty": 1,
+   "fieldname": "outlet",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Outlet",
+   "link_filters": "[[\"Customer\",\"customer_group\",\"=\",\"Fuel Station\"]]",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "st",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Station Manager",
+   "options": "Employee"
+  },
+  {
+   "fetch_from": "st.employee_name",
+   "fieldname": "station_supervisor",
+   "fieldtype": "Data",
+   "label": "Station Supervisor",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_gawm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Now",
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Date",
+   "print_hide": 1,
+   "report_hide": 1
+  },
+  {
+   "default": "Now",
+   "fieldname": "datetime",
+   "fieldtype": "Datetime",
+   "hidden": 1,
+   "label": "Datetime"
+  },
+  {
+   "fieldname": "product_pricing",
+   "fieldtype": "Table",
+   "label": "Product Pricing",
+   "options": "Outlet Pricing Table",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "rtt",
+   "fieldtype": "Check",
+   "label": "Returned To Tank Test Conducted "
+  },
+  {
+   "default": "0",
+   "fieldname": "first_load_done",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "first_load_done",
+   "print_hide": 1,
+   "report_hide": 1
+  },
+  {
+   "bold": 1,
+   "fieldname": "r",
+   "fieldtype": "Section Break",
+   "hide_border": 1,
+   "label": "Pump Readings"
+  },
+  {
+   "bold": 1,
+   "fieldname": "column_break_sjpv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "bold": 1,
+   "fieldname": "dispenser_readings",
+   "fieldtype": "Table",
+   "label": "Dispenser Readings ",
+   "options": "Pump Readings"
+  },
+  {
+   "bold": 1,
+   "depends_on": "eval:doc.rtt == 1",
+   "fieldname": "returned_to_tank_section",
+   "fieldtype": "Section Break",
+   "label": "Returned To Tank",
+   "mandatory_depends_on": "eval:doc.rtt == 1"
+  },
+  {
+   "depends_on": "eval:doc.rtt == 1",
+   "fieldname": "returned_to_tank_test",
+   "fieldtype": "Table",
+   "label": "Returned To Tank Test",
+   "options": "RTT Details"
+  },
+  {
+   "depends_on": "credit",
+   "fieldname": "credit_sales_section",
+   "fieldtype": "Section Break",
+   "hidden": 1,
+   "label": "Credit Sales",
+   "print_hide": 1,
+   "report_hide": 1
+  },
+  {
+   "depends_on": "credit",
+   "fieldname": "credit_sales",
+   "fieldtype": "Table",
+   "hidden": 1,
+   "mandatory_depends_on": "credit",
+   "options": "Allowed Credit Customer",
+   "print_hide": 1,
+   "report_hide": 1
+  },
+  {
+   "bold": 1,
+   "fieldname": "total_credit_sales_ghs",
+   "fieldtype": "Currency",
+   "hidden": 1,
+   "label": "Total Credit Sales (GHS)",
+   "print_hide": 1,
+   "report_hide": 1
+  },
+  {
+   "bold": 1,
+   "fieldname": "totals_section",
+   "fieldtype": "Section Break",
+   "label": "Totals"
+  },
+  {
+   "fieldname": "product_totals",
+   "fieldtype": "Table",
+   "options": "Pump Reading Totals",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_lpvu",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_cbak",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_mkpv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_litres_sold",
+   "fieldtype": "Float",
+   "label": "Total Volume Sold",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "fieldname": "total_sales",
+   "fieldtype": "Currency",
+   "label": "Total Sales (GHS)",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "description": "Cash at Hand",
+   "fieldname": "net_cash_sales",
+   "fieldtype": "Currency",
+   "label": "Net Cash Sales (GHS)",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "depends_on": "total_credit_sales_ghs",
+   "fieldname": "credit_sales_ghs",
+   "fieldtype": "Currency",
+   "label": "Credit Sales (GHS) ",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Outlet Pump Sales",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fetch_from": "st.custom_outlet",
+   "fetch_if_empty": 1,
+   "fieldname": "outlet_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Outlet Code",
+   "link_filters": "[[\"Customer\",\"customer_group\",\"=\",\"Fuel Station\"]]",
+   "read_only": 1,
+   "reqd": 1
+  }
+ ],
+ "is_calendar_and_gantt": 1,
+ "is_submittable": 1,
+ "links": [
+  {
+   "link_doctype": "Deposit Sales",
+   "link_fieldname": "pump_reading_ref"
+  }
+ ],
+ "modified": "2024-12-01 22:00:33.599260",
+ "modified_by": "Administrator",
+ "module": "Fuel Sales",
+ "name": "Outlet Pump Sales",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Station Supervisor",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [
+  {
+   "color": "Gray",
+   "title": "Draft"
+  },
+  {
+   "color": "Orange",
+   "title": "Under review"
+  },
+  {
+   "color": "Green",
+   "title": "Approved"
+  }
+ ],
+ "track_changes": 1,
+ "track_seen": 1
+}

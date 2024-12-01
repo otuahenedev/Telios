@@ -173,7 +173,7 @@
    "name": "Purchase Invoice-custom_reference_document",
    "no_copy": 0,
    "non_negative": 0,
-   "options": "\nFuel Lifting Order",
+   "options": "\nFuel Lifting Request",
    "owner": "Administrator",
    "permlevel": 0,
    "placeholder": null,

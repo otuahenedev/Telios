@@ -13,14 +13,14 @@
    "fieldname": "outlet",
    "fieldtype": "Link",
    "label": "Outlet",
-   "link_filters": "[[\"Customer\",\"customer_group\",\"=\",\"Outlet\"]]",
+   "link_filters": "[[\"Customer\",\"customer_group\",\"=\",\"Fuel Station\"]]",
    "options": "Customer"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-11-07 14:57:06.372720",
+ "modified": "2024-11-30 16:15:26.430344",
  "modified_by": "Administrator",
  "module": "Credit  Facilitation",
  "name": "Multiple outlets",

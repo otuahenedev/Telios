@@ -14,14 +14,13 @@
    "in_list_view": 1,
    "label": "Compartment",
    "non_negative": 1,
-   "reqd": 1,
-   "unique": 1
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-09-11 16:45:30.527561",
+ "modified": "2024-11-27 16:13:21.388528",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Tanker Compartment",
