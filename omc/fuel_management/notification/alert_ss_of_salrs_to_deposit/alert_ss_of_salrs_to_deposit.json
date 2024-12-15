@@ -12,7 +12,8 @@
  "is_standard": 1,
  "message": "<p>{{doc.station_supervisor}} deposit sales of <strong>{{doc.total_sales}}</strong> to the bank</p>\n",
  "message_type": "HTML",
- "modified": "2024-10-23 14:17:49.318945",
+ "minutes_offset": 0,
+ "modified": "2024-12-02 05:28:10.711826",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Alert SS of salrs to deposit",
@@ -20,6 +21,12 @@
  "recipients": [
   {
    "receiver_by_role": "Station Supervisor"
+  },
+  {
+   "receiver_by_role": "Operations Officer"
+  },
+  {
+   "receiver_by_role": "Accounts User"
   }
  ],
  "send_system_notification": 0,

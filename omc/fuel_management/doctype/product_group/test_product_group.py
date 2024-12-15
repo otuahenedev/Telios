@@ -12,18 +12,18 @@ EXTRA_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 IGNORE_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 
 
-class UnitTestOutlet(UnitTestCase):
+class UnitTestProductGroup(UnitTestCase):
 	"""
-	Unit tests for Outlet.
+	Unit tests for ProductGroup.
 	Use this class for testing individual functions and methods.
 	"""
 
 	pass
 
 
-class IntegrationTestOutlet(IntegrationTestCase):
+class IntegrationTestProductGroup(IntegrationTestCase):
 	"""
-	Integration tests for Outlet.
+	Integration tests for ProductGroup.
 	Use this class for testing interactions between multiple components.
 	"""
 

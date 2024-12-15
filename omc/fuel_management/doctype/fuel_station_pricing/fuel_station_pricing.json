@@ -2,15 +2,22 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "format:Fuel Station Pricing - {YYYY}-{####}",
- "creation": "2024-08-05 21:48:58.325925",
+ "creation": "2024-11-11 16:39:03.983719",
+ "default_view": "List",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "section_break_o7zw",
   "posting_datetime",
+  "amended_from",
+  "column_break_bdcw",
   "status",
-  "pricing_table",
-  "amended_from"
+  "outlet",
+  "pricing_window",
+  "section_break_nrfa",
+  "pricing_justification",
+  "section_break_cudu",
+  "pricing_table"
  ],
  "fields": [
   {
@@ -23,23 +30,8 @@
    "fieldtype": "Datetime",
    "in_list_view": 1,
    "in_preview": 1,
-   "label": "Posting Datetime"
-  },
-  {
-   "fieldname": "pricing_table",
-   "fieldtype": "Table",
-   "label": "Pricing Table",
-   "options": "Outlet Pricing Table"
-  },
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Fuel Station Pricing",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
+   "label": "Posting Datetime",
+   "reqd": 1
   },
   {
    "fieldname": "status",
@@ -48,12 +40,62 @@
    "label": "Status",
    "options": "Active\nInactive",
    "print_hide": 1
+  },
+  {
+   "fieldname": "pricing_table",
+   "fieldtype": "Table",
+   "label": "Pricing Table",
+   "options": "Outlet Pricing Detail"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Fuel Station Pricing",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_bdcw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "outlet",
+   "fieldtype": "Link",
+   "label": "Outlet",
+   "link_filters": "[[\"Customer\",\"custom_parent_group\",\"=\",\"Outlets\"]]",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_nrfa",
+   "fieldtype": "Section Break"
+  },
+  {
+   "columns": 10,
+   "fieldname": "pricing_justification",
+   "fieldtype": "HTML",
+   "hidden": 1,
+   "label": "Pricing Justification",
+   "print_hide": 1,
+   "report_hide": 1
+  },
+  {
+   "fieldname": "section_break_cudu",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "pricing_window",
+   "fieldtype": "Duration",
+   "hidden": 1,
+   "label": "Pricing Window"
   }
  ],
  "index_web_pages_for_search": 1,
- "is_submittable": 1,
+ "issingle": 1,
  "links": [],
- "modified": "2024-08-24 22:17:49.472834",
+ "modified": "2024-12-02 07:30:01.530966",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Fuel Station Pricing",
@@ -62,40 +104,25 @@
  "permissions": [
   {
    "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
    "read": 1,
-   "report": 1,
    "role": "System Manager",
-   "share": 1,
-   "submit": 1,
+   "select": 1,
    "write": 1
   },
   {
    "create": 1,
    "email": 1,
-   "export": 1,
    "print": 1,
    "read": 1,
-   "report": 1,
    "role": "Accounts User",
    "select": 1,
    "share": 1,
-   "submit": 1,
    "write": 1
   },
   {
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
    "read": 1,
-   "report": 1,
    "role": "M. Director",
-   "select": 1,
-   "share": 1
+   "select": 1
   }
  ],
  "sort_field": "modified",

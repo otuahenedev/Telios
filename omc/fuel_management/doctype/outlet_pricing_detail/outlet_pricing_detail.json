@@ -9,6 +9,7 @@
   "product",
   "profit_margin_",
   "selling_price",
+  "column_break_iqcs",
   "proposed_selling_price",
   "purchase_price",
   "avg_competitor_price",
@@ -74,13 +75,18 @@
    "label": "Product",
    "link_filters": "[[\"Item\",\"item_group\",\"=\",\"White Products\"]]",
    "options": "Item",
+   "read_only": 1,
    "reqd": 1
+  },
+  {
+   "fieldname": "column_break_iqcs",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-11-27 11:54:37.402069",
+ "modified": "2024-12-02 07:43:16.043166",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Outlet Pricing Detail",

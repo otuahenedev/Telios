@@ -1,0 +1,259 @@
+{
+ "app": "omc",
+ "charts": [],
+ "content": "[{\"id\":\"mLuHwUZWQA\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Purchase</span>\",\"col\":12}},{\"id\":\"9c0GkAeKA6\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Fuel Lifting Request Pending Approval\",\"col\":4}},{\"id\":\"NycbP3-p4i\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Rejected Fuel Lifting Request\",\"col\":4}},{\"id\":\"EEByybIoEn\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Approved Fuel Lifting Request \",\"col\":4}},{\"id\":\"Y5dW9lo7kZ\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"GzFtVmp5t0\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"du2SkO2R_7\",\"type\":\"card\",\"data\":{\"card_name\":\"Processes\",\"col\":4}},{\"id\":\"oxO-Eq1Y1v\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}}]",
+ "creation": "2024-12-15 20:02:24.012680",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "grid",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Purchase",
+ "link_type": "DocType",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Masters",
+   "link_count": 8,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Outlet",
+   "link_count": 0,
+   "link_to": "Outlet",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Supplier",
+   "link_count": 0,
+   "link_to": "Supplier",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Fuel Depot",
+   "link_count": 0,
+   "link_to": "Fuel Depot",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Fuel Truck",
+   "link_count": 0,
+   "link_to": "Fuel Truck",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Mate",
+   "link_count": 0,
+   "link_to": "Mate",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Item Group",
+   "link_count": 0,
+   "link_to": "Item Group",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Item Group",
+   "link_count": 0,
+   "link_to": "Item Group",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Driver",
+   "link_count": 0,
+   "link_to": "Driver",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Processes",
+   "link_count": 7,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Request for Quotation",
+   "link_count": 0,
+   "link_to": "Request for Quotation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Supplier Quotation",
+   "link_count": 0,
+   "link_to": "Supplier Quotation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Fuel Lifting Request",
+   "link_count": 0,
+   "link_to": "Fuel Lifting Request",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Outlet Fuel Delivery Note",
+   "link_count": 0,
+   "link_to": "Outlet Fuel Delivery Note",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Outlet Fuel Discharge Log",
+   "link_count": 0,
+   "link_to": "Outlet Fuel Discharge Log",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Purchase Invoice",
+   "link_count": 0,
+   "link_to": "Purchase Invoice",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Purchase Receipt",
+   "link_count": 0,
+   "link_to": "Purchase Receipt",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Reports",
+   "link_count": 3,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Supplier Quotation Comparison",
+   "link_count": 0,
+   "link_to": "Supplier Quotation Comparison",
+   "link_type": "Report",
+   "onboard": 0,
+   "report_ref_doctype": "Supplier Quotation",
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Procurement Tracker",
+   "link_count": 0,
+   "link_to": "Procurement Tracker",
+   "link_type": "Report",
+   "onboard": 0,
+   "report_ref_doctype": "Purchase Order",
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Purchase Invoice Trends",
+   "link_count": 0,
+   "link_to": "Purchase Invoice Trends",
+   "link_type": "Report",
+   "onboard": 0,
+   "report_ref_doctype": "Purchase Invoice",
+   "type": "Link"
+  }
+ ],
+ "modified": "2024-12-15 20:17:28.373643",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Purchase",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [
+  {
+   "document_type": "Fuel Lifting Request",
+   "label": "Fuel Lifting Request Pending Approval",
+   "quick_list_filter": "[[\"Fuel Lifting Request\",\"state\",\"like\",\"%Pending Approval%\",false]]"
+  },
+  {
+   "document_type": "Fuel Lifting Request",
+   "label": "Rejected Fuel Lifting Request",
+   "quick_list_filter": "[[\"Fuel Lifting Request\",\"workflow_state\",\"=\",\"Rejected\",false]]"
+  },
+  {
+   "document_type": "Fuel Lifting Request",
+   "label": "Approved Fuel Lifting Request ",
+   "quick_list_filter": "[[\"Fuel Lifting Request\",\"workflow_state\",\"=\",\"Vetted\",false]]"
+  }
+ ],
+ "roles": [],
+ "sequence_id": 42.0,
+ "shortcuts": [],
+ "title": "Purchase",
+ "type": "Workspace"
+}

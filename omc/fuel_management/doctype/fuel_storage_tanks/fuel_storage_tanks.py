@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class Outlet(Document):
+class FuelStorageTanks(Document):
 	pass

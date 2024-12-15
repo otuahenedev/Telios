@@ -2,38 +2,58 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on("Fuel Lifting Request", {
+
+    before_workflow_action: async (frm) => {
+        let promise = new Promise((resolve, reject) => {
+         frappe.dom.unfreeze()
+            frappe.confirm(
+                "<b>Are all of the below fields entered correctly?</b><ul>",
+                () => resolve(), // User confirms
+                () => reject()   // User rejects
+            );
+        });
+        await promise.catch(() => frappe.throw()); // If the promise is rejected, throw an error
+    },
     // REFRESH EVENT
     refresh: function(frm){
-        if (frm.doc.docstatus == 1  && frappe.user.has_role('Accounts User')) {
+        if (frm.doc.docstatus == 1) {
             // Prevent duplicate button additions
             if (!frm.custom_buttons_added) {
-                frm.add_custom_button('Generate Outlet Delivery Notes', () => {
-                    frappe.call({
-                        method: "frappe.client.run_doc_method",
-                        args: {
-                            doc: frm.doc,
-                            method: "omc.fuel_ordering.doctype.fuel_lifting_request.fuel_lifting_request.generate_outlet_delivery_notes"
-                        },
-                        callback: function (r) {
-                            if (r.message) {
-                                frappe.msgprint(r.message);
-                            }
-                        }
-                    });
-                });
-                frm.add_custom_button("Create Purchase Invoice (Supplier)", () => create_purchase_invoice(frm))
-                .css({  'font-weight': 'bold' });
-                frm.add_custom_button("Place Order", () => place_order(frm))
-                .css({  'font-weight': 'bold' });
-                frm.custom_buttons_added = true; // Track that buttons are added
-    
-                // Button for Payment Entry (only for External Transport)
-                if (frm.doc.mode_of_transport === "External Transport") {
-                    frm.add_custom_button("Create Payment Entry (Transport)", () => create_payment_entry(frm, "Transport"))
-                        .css({  'font-weight': 'bold' });
+                if (frappe.user.has_role('Accounts User')){
+                    frm.add_custom_button("Create Purchase Invoice (Supplier)", () => create_purchase_invoice(frm))
+                    .css({  'font-weight': 'bold' });
+                    
+                    frm.custom_buttons_added = true; // Track that buttons are added
+        
+                    // Button for Payment Entry (only for External Transport)
+                    if (frm.doc.mode_of_transport === "External Transport") {
+                        frm.add_custom_button("Create Payment Entry (Transport)", () => create_payment_entry(frm, "Transport"))
+                            .css({  'font-weight': 'bold' });
+                    }
+        
+                    // Button for Purchase Invoice
+                    
                 }
-    
-                // Button for Purchase Invoice
+                if (frappe.user.has_role('Accounts User')){
+                    frm.add_custom_button('Generate Outlet Delivery Notes', () => {
+                        frappe.call({
+                            method: "omc.fuel_ordering.doctype.fuel_lifting_request.fuel_lifting_request.generate_outlet_delivery_notes", // Replace with the actual path
+                            args: {
+                                docname: frm.doc.name
+                            },
+                            callback: function (r) {
+                                if (r.message) {
+                                    frappe.msgprint(r.message);
+                                }
+                            }
+                        });
+                    }) .css({  'font-weight': 'bold' });;
+
+                }
+
+
+                
+               
               
             }
         }

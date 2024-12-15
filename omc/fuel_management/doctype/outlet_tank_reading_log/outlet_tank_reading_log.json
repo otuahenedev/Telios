@@ -5,17 +5,98 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "section_break_1smb"
+  "employee",
+  "outlet",
+  "column_break_ykvz",
+  "storage_tank",
+  "product",
+  "datetime",
+  "section_break_ybqv",
+  "measured_volume_l",
+  "previous_day_voulume_l",
+  "column_break_qwyz",
+  "variance_l",
+  "remarks"
  ],
  "fields": [
   {
-   "fieldname": "section_break_1smb",
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Employee",
+   "link_filters": "[[\"Employee\",\"designation\",\"=\",\"Station Supervisor\"]]",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "employee.custom_outlet",
+   "fieldname": "outlet",
+   "fieldtype": "Link",
+   "label": "Outlet",
+   "options": "Outlet",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_ykvz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "storage_tank",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Storage Tank",
+   "options": "Fuel Storage Tanks",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "storage_tank.fuel_type",
+   "fieldname": "product",
+   "fieldtype": "Link",
+   "label": "Product",
+   "options": "Fuel Type",
+   "reqd": 1
+  },
+  {
+   "default": "Now",
+   "fieldname": "datetime",
+   "fieldtype": "Datetime",
+   "label": "Datetime"
+  },
+  {
+   "fieldname": "section_break_ybqv",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "measured_volume_l",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Measured Volume (L)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "previous_day_voulume_l",
+   "fieldtype": "Float",
+   "label": "Previous Day Voulume (L)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_qwyz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "variance_l",
+   "fieldtype": "Float",
+   "label": "Variance (L)"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-29 08:21:58.640393",
+ "modified": "2024-12-13 12:57:07.739928",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Outlet Tank Reading Log",

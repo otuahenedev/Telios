@@ -1,47 +1,41 @@
 {
  "actions": [],
- "autoname": "field:fuel_type",
+ "autoname": "field:product",
  "creation": "2024-06-20 21:30:06.562380",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "fuel_type",
+  "product",
   "column_break_jjbr",
-  "product_group",
-  "fuel_name"
+  "product_group"
  ],
  "fields": [
-  {
-   "fieldname": "fuel_type",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Product (Fuel Type)",
-   "unique": 1
-  },
   {
    "fieldname": "column_break_jjbr",
    "fieldtype": "Column Break"
   },
   {
+   "allow_in_quick_entry": 1,
    "fieldname": "product_group",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Product Group",
-   "options": "WHITE PRODUCT"
+   "options": "Product Group",
+   "reqd": 1
   },
   {
-   "fieldname": "fuel_name",
-   "fieldtype": "Read Only",
-   "hidden": 1,
-   "label": "fuel_name",
-   "options": "petrol\ndiesel",
-   "print_hide": 1,
-   "report_hide": 1
+   "allow_in_quick_entry": 1,
+   "fieldname": "product",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Product ",
+   "reqd": 1,
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-07-22 08:02:40.901629",
+ "modified": "2024-12-11 15:04:14.446220",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Fuel Type",
@@ -61,7 +55,10 @@
    "write": 1
   }
  ],
+ "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "track_changes": 1,
+ "track_views": 1
 }

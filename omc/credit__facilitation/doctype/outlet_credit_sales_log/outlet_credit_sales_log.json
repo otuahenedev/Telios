@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:CS-{outlet}-{DD}-{MM}-{YY}",
+ "autoname": "format:TELOCSL-{outlet}-{DD}-{MM}-{YY}",
  "creation": "2024-11-06 15:59:31.459186",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -34,14 +34,10 @@
    "options": "Employee"
   },
   {
-   "fetch_from": "employee.custom_outlet",
    "fieldname": "outlet",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "label": "Outlet",
-   "link_filters": "[[\"Customer\",\"customer_group\",\"=\",\"Outlet\"]]",
-   "options": "Customer",
-   "reqd": 1
+   "options": "Outlet"
   },
   {
    "fieldname": "product",
@@ -154,7 +150,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-11-27 05:52:42.654771",
+ "modified": "2024-12-12 09:35:48.370103",
  "modified_by": "Administrator",
  "module": "Credit  Facilitation",
  "name": "Outlet Credit Sales Log",

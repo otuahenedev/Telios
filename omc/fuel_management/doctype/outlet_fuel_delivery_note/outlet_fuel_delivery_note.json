@@ -13,12 +13,22 @@
   "outlet",
   "outlet_code",
   "station_supervisor",
-  "driver_name",
+  "liaison_officer",
   "column_break_wrbm",
   "fuel_type",
   "product_price_rate",
   "volume_received_l",
   "product_value",
+  "section_break_lcde",
+  "load_datetime",
+  "total_fuel_loaded",
+  "origin__depot",
+  "safety_cap_seal_status",
+  "column_break_nsta",
+  "transporter",
+  "driver_name",
+  "fuel_truck_license_no",
+  "waybill",
   "section_break_pbbg",
   "discharge_datetime",
   "notes",
@@ -34,11 +44,13 @@
   "column_break_ujtg",
   "station_supervisers_signature",
   "signed_on",
-  "amended_from"
+  "amended_from",
+  "column_break_hzgu",
+  "liaison_officers_signature",
+  "signed_on_liason"
  ],
  "fields": [
   {
-   "default": "Now",
    "fieldname": "discharge_datetime",
    "fieldtype": "Datetime",
    "label": "Discharge Datetime",
@@ -117,7 +129,7 @@
   {
    "fieldname": "section_break_pbbg",
    "fieldtype": "Section Break",
-   "label": "Verification"
+   "label": "Station Checks"
   },
   {
    "fieldname": "safety_cap_seal_intact",
@@ -141,6 +153,7 @@
    "fieldname": "status",
    "fieldtype": "Data",
    "label": "Status",
+   "print_hide": 1,
    "read_only": 1
   },
   {
@@ -189,7 +202,8 @@
    "fieldname": "fuel_lifting_log_ref",
    "fieldtype": "Link",
    "label": "Fuel Lifting Request Ref.",
-   "options": "Fuel Lifting Request"
+   "options": "Fuel Lifting Request",
+   "print_hide": 1
   },
   {
    "fieldname": "outlet_fuel_discharge_log",
@@ -221,15 +235,91 @@
   },
   {
    "fieldname": "driver_name",
-   "fieldtype": "Data",
-   "label": "Driver"
+   "fieldtype": "Link",
+   "label": "Driver",
+   "options": "Driver"
+  },
+  {
+   "fieldname": "column_break_hzgu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "liaison_officers_signature",
+   "fieldtype": "Signature",
+   "label": "Liaison Officer's Signature"
+  },
+  {
+   "default": "Now",
+   "depends_on": "liaison_officers_signature",
+   "fieldname": "signed_on_liason",
+   "fieldtype": "Datetime",
+   "label": "Signed On Copy",
+   "mandatory_depends_on": "station_supervisers_signature",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_lcde",
+   "fieldtype": "Section Break",
+   "label": "Depot / Yard Checks"
+  },
+  {
+   "fieldname": "load_datetime",
+   "fieldtype": "Datetime",
+   "label": "Load Datetime"
+  },
+  {
+   "fieldname": "column_break_nsta",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "liaison_officer",
+   "fieldtype": "Link",
+   "label": "Liaison Officer",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "origin__depot",
+   "fieldtype": "Link",
+   "label": "Origin / Depot",
+   "options": "Fuel Depot",
+   "read_only": 1
+  },
+  {
+   "fieldname": "transporter",
+   "fieldtype": "Link",
+   "label": "Transporter",
+   "link_filters": "[[\"Supplier\",\"supplier_group\",\"=\",\"Transporter\"]]",
+   "options": "Supplier"
+  },
+  {
+   "fieldname": "fuel_truck_license_no",
+   "fieldtype": "Link",
+   "label": "Fuel Truck License No.",
+   "options": "Fuel Truck"
+  },
+  {
+   "fieldname": "total_fuel_loaded",
+   "fieldtype": "Float",
+   "label": "Total Fuel Loaded"
+  },
+  {
+   "fieldname": "safety_cap_seal_status",
+   "fieldtype": "Select",
+   "label": "Safety Cap Seal Status ",
+   "options": "\nSealed\nBroken\nUnsealed",
+   "reqd": 1
+  },
+  {
+   "fieldname": "waybill",
+   "fieldtype": "Attach",
+   "label": "Waybill"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_calendar_and_gantt": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-11-29 17:06:22.168572",
+ "modified": "2024-12-02 16:21:49.170316",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Outlet Fuel Delivery Note",
@@ -283,47 +373,51 @@
    "share": 1
   },
   {
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Logistics Officer",
-   "select": 1,
-   "share": 1,
-   "write": 1
-  },
-  {
-   "create": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Station Supervisor",
-   "share": 1,
-   "write": 1
-  },
-  {
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Driver",
-   "share": 1
-  },
-  {
    "email": 1,
    "export": 1,
    "permlevel": 1,
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Driver",
-   "share": 1,
-   "write": 1
+   "role": "Auditor",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "permlevel": 2,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Auditor",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Liaison Officer",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "All",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Station Supervisor",
+   "share": 1
   }
  ],
  "sort_field": "modified",

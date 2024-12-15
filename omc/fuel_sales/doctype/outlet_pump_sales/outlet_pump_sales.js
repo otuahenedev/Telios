@@ -21,16 +21,16 @@ frappe.ui.form.on("Outlet Pump Sales", {
         frappe.call({
             method: "frappe.client.get",
             args: {
-                doctype: "Customer",
+                doctype: "Outlet",
                 name: outlet,
             },
             callback: function(response) {
-                let customer = response.message;
+                let outlet = response.message;
                 
                 // Clear and populate 'product_pricing' table
-                if (customer && customer.custom_product_rates) {
+                if (outlet && outlet.product_rates) {
                     frm.clear_table("product_pricing");
-                    customer.custom_product_rates.forEach(product => {
+                    outlet.product_rates.forEach(product => {
                         let child = frm.add_child("product_pricing");
                         child.product = product.product;
                         child.rate = product.rate;
@@ -186,7 +186,7 @@ function populate_child_tables_from_last_reading(frm, last_reading) {
     frm.refresh_field("dispenser_readings");
 }
 
-// Fetch active pumps from custom_fuel_dispensers if no last reading is available
+// Fetch active pumps from fuel_dispensers if no last reading is available
 function fetch_active_pumps(frm, outlet) {
     frappe.call({
         method: "frappe.client.get",
@@ -195,9 +195,9 @@ function fetch_active_pumps(frm, outlet) {
             name: outlet,
         },
         callback: function(response) {
-            let customer = response.message;
-            if (customer && customer.custom_fuel_dispensers) {
-                customer.custom_fuel_dispensers.forEach(pump => {
+            let outlet = response.message;
+            if (outlet && outlet.fuel_dispensers) {
+                outlet.fuel_dispensers.forEach(pump => {
                     if (pump.status === "Active") {
                         let child_row = frm.add_child("dispenser_readings");
                         child_row.pump = pump.dispenser;

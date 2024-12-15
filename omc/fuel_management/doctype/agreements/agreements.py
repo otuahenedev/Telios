@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class OutletPricing(Document):
+class Agreements(Document):
 	pass

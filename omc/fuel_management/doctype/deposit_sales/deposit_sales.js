@@ -9,6 +9,17 @@ frappe.ui.form.on("Deposit Sales", {
 
         frm.set_value('balance', tsasp);
     },
+    before_workflow_action: async (frm) => {
+        let promise = new Promise((resolve, reject) => {
+         frappe.dom.unfreeze()
+            frappe.confirm(
+                "<b>Are all of the below fields entered correctly?</b><ul>",
+                () => resolve(), // User confirms
+                () => reject()   // User rejects
+            );
+        });
+        await promise.catch(() => frappe.throw()); // If the promise is rejected, throw an error
+    }
 });
 
 frappe.ui.form.on('Sales Multiple', "sales_deposited",function(frm, cdt, cdn) {

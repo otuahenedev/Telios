@@ -10,6 +10,7 @@
   "tax_name",
   "tax_type",
   "tax_purpose",
+  "tax_payment_reminder_period_days",
   "column_break_vdhf",
   "rate",
   "account",
@@ -75,12 +76,18 @@
    "in_standard_filter": 1,
    "label": "Cost Center",
    "options": "Cost Center"
+  },
+  {
+   "fieldname": "tax_payment_reminder_period_days",
+   "fieldtype": "Datetime",
+   "label": "Tax Payment Reminder Period (Days)",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-11-27 15:17:15.614667",
+ "modified": "2024-12-02 15:34:02.977654",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Statutory Fuel Tax",

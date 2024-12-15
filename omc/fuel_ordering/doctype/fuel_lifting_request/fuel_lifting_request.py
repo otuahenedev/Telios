@@ -160,6 +160,72 @@ def generate_outlet_delivery_notes(docname):
 
     # Validation: Ensure child table `table_mxlk` is not empty
     if not doc.table_mxlk:
+        frappe.throw("Please ensure the 'Deliver To' table is populated before submission.")
+
+    # Prepare for bulk insertion and error logging
+    outlet_delivery_notes = []
+    error_log = []
+
+    for row in doc.table_mxlk:
+        try:
+            # Fetch Station Supervisor either from `row` or from Outlet record
+            station_supervisor = row.station_supervisor or frappe.db.get_value("Outlet", row.fuel_station, "custom_station_supervisor")
+            if not station_supervisor:
+                raise ValueError(f"Station Supervisor not assigned for Outlet {row.fuel_station} in either the Outlet or Request Fuel Details table.")
+
+            # Validate critical fields
+            if not doc.buy_price:
+                raise ValueError("Product price rate  is missing in the Fuel Lifting Request document.")
+            if not row.volume_l:
+                raise ValueError(f"Volume (L) is missing for outlet {row.fuel_station} in the Request Fuel Details table.")
+
+            # Calculate Product Value
+            product_value = float(row.product_price) * float(row.volume_l) if row.product_price and row.volume_l else 0
+
+            # Prepare Outlet Delivery Note for bulk insertion
+            outlet_delivery_note = {
+                "doctype": "Outlet Delivery Note",
+                "outlet": row.fuel_station,
+                "fuel_lifting_log_ref": doc.name,
+                "fuel_type": doc.fuel_type,
+                "station_supervisor": station_supervisor,
+                "product_price_rate": row.product_price,
+                "fuel_quantity_expected": row.volume_l,
+                "driver_name": doc.driver,
+                "product_value": product_value
+            }
+            outlet_delivery_notes.append(outlet_delivery_note)
+
+            # Notify Station Supervisor (Example: Email or Notification)
+            supervisor_email = frappe.db.get_value("Employee", station_supervisor, "user_id")
+            if supervisor_email:
+                frappe.sendmail(
+                    recipients=supervisor_email,
+                    subject=f"Fuel Delivery Scheduled for {row.fuel_station}",
+                    message=f"The fuel lifting request {doc.name} has been processed. "
+                            f"Please ensure receipt of {row.volume_l} liters of {doc.fuel_type}."
+                )
+
+        except Exception as e:
+            # Log errors for review
+            error_log.append(f"Error for Outlet {row.fuel_station}: {str(e)}")
+
+    # Bulk insert all Outlet Delivery Notes
+    if outlet_delivery_notes:
+        frappe.get_doc(outlet_delivery_notes)
+
+    # Display error log if any
+    if error_log:
+        frappe.msgprint("\n".join(error_log), title="Errors in Delivery Note Creation")
+
+    return "Outlet Delivery Notes created successfully."    """
+    Generate Outlet Delivery Notes for each outlet in `table_mxlk` and notify Station Supervisors.
+    This method can be triggered manually using a button or automatically on submit.
+    """
+    doc = frappe.get_doc("Fuel Lifting Request", docname)
+
+    # Validation: Ensure child table `table_mxlk` is not empty
+    if not doc.table_mxlk:
         frappe.throw("Please ensure the 'Request Fuel Details' table is populated before submission.")
 
     for row in doc.table_mxlk:
@@ -175,7 +241,7 @@ def generate_outlet_delivery_notes(docname):
             frappe.throw(f"Volume (L) is missing for outlet {row.fuel_station} in the Request Fuel Details table.")
 
         # Calculate Product Value
-        product_value = float(row.product_price) * float(row.volume_l) if row.product_price and row.volume_l else 0
+        
 
         # Create Outlet Delivery Note
         outlet_delivery_note = frappe.get_doc({
