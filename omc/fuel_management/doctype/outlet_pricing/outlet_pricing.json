@@ -14,8 +14,6 @@
   "status",
   "outlet",
   "pricing_window",
-  "section_break_nrfa",
-  "pricing_justification",
   "section_break_cudu",
   "pricing_table"
  ],
@@ -64,22 +62,8 @@
    "fieldname": "outlet",
    "fieldtype": "Link",
    "label": "Outlet",
-   "link_filters": "[[\"Customer\",\"custom_parent_group\",\"=\",\"Outlets\"]]",
-   "options": "Customer",
+   "options": "Outlet",
    "reqd": 1
-  },
-  {
-   "fieldname": "section_break_nrfa",
-   "fieldtype": "Section Break"
-  },
-  {
-   "columns": 10,
-   "fieldname": "pricing_justification",
-   "fieldtype": "HTML",
-   "hidden": 1,
-   "label": "Pricing Justification",
-   "print_hide": 1,
-   "report_hide": 1
   },
   {
    "fieldname": "section_break_cudu",
@@ -95,10 +79,10 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-12-02 07:30:01.530966",
+ "modified": "2024-12-15 22:26:35.759965",
  "modified_by": "Administrator",
  "module": "Fuel Management",
- "name": "Fuel Station Pricing",
+ "name": "Outlet Pricing",
  "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [

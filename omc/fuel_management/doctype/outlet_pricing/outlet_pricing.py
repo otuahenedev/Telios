@@ -5,12 +5,12 @@ import frappe
 from frappe.model.document import Document
 
 
-class FuelStationPricing(Document):
+class OutletPricing(Document):
 	pass
 
 
 @frappe.whitelist()
-def update_fuel_station_pricing_from_competitor(outlet):
+def update_outlet_pricing_from_competitor(outlet):
     # Fetch competitor pricing for the last 2 weeks
     competitor_data = frappe.db.sql("""
         SELECT product, 
@@ -31,14 +31,14 @@ def update_fuel_station_pricing_from_competitor(outlet):
 
 def update_customer_product_pricing(outlet):
     # Fetch outlet pricing data
-    fuel_station_pricing = frappe.get_doc("Outlet Pricing", outlet)
+    outlet_pricing = frappe.get_doc("Outlet Pricing", outlet)
 
     # Fetch the customer linked to this outlet
     customer = frappe.db.get_value("Customer", {"outlet_name": outlet}, "name")
     customer_doc = frappe.get_doc("Customer", customer)
 
     # Update the Product Pricing child table
-    for product in fuel_station_pricing.pricing_table:
+    for product in outlet_pricing.pricing_table:
         for item in customer_doc.product_pricing:
             if item.product == product.product:
                 item.rate = product.final_selling_price
@@ -51,10 +51,10 @@ def update_customer_product_pricing(outlet):
 @frappe.whitelist()
 def calculate_proposed_selling_price(outlet):
     # Fetch Outlet Pricing data
-    fuel_station_pricing = frappe.get_doc("Outlet Pricing", outlet)
+    outlet_pricing = frappe.get_doc("Outlet Pricing", outlet)
 
     # Loop through each fuel type in the Fuel Pricing Table
-    for product in fuel_station_pricing.fuel_pricing_table:
+    for product in outlet_pricing.fuel_pricing_table:
         # Ensure purchase_price is calculated or provided
         if not product.purchase_price:
             product.purchase_price = calculate_purchase_price(outlet, product.fuel_type)
@@ -77,7 +77,7 @@ def calculate_proposed_selling_price(outlet):
         product.proposed_selling_price = proposed_price
 
     # Save the updated document
-    fuel_station_pricing.save()
+    outlet_pricing.save()
 
     return "Proposed selling prices updated successfully."
 

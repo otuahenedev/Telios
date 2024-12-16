@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:TEL-{name1}-{MM}-{YY}",
+ "autoname": "field:name1",
  "creation": "2024-12-11 12:38:59.456147",
  "doctype": "DocType",
  "document_type": "Document",
@@ -71,7 +71,8 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Name",
-   "reqd": 1
+   "reqd": 1,
+   "unique": 1
   },
   {
    "fieldname": "outlet_code",
@@ -354,11 +355,11 @@
  "image_field": "image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-15 21:07:32.203606",
+ "modified": "2024-12-15 22:37:49.412650",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Outlet",
- "naming_rule": "Expression",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

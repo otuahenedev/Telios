@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestFuelStationPricing(FrappeTestCase):
+class TestOutletPricing(FrappeTestCase):
 	pass

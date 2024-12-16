@@ -1,7 +1,7 @@
 // Copyright (c) 2024, Kelvin and contributors
 // For license information, please see license.txt
 
- frappe.ui.form.on("Fuel Station Pricing", {
+ frappe.ui.form.on("Outlet Pricing", {
     outlet: function(frm) {
         let outlet = frm.doc.outlet;
    
@@ -19,12 +19,12 @@
                 name: outlet,
             },
             callback: function(response) {
-                let customer = response.message;
+                let outlet = response.message;
                 
                 // Clear and populate 'product_pricing' table
-                if (customer && customer.custom_product_rates) {
+                if (outlet && outlet.product_rates) {
                     frm.clear_table("pricing_table");
-                    customer.custom_product_rates.forEach(product => {
+                    outlet.product_rates.forEach(product => {
                         let child = frm.add_child("pricing_table");
                         child.product = product.product;
                         child.selling_price = product.rate;

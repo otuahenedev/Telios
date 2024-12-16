@@ -140,8 +140,8 @@ doc_events = {
     "Payment Entry": {
         "on_submit": "omc.fuel_management.doctype.statutory_payment.statutory_payment.tax_management.update_statutory_payment_status"
     },
-     "Outlet Pricing": {
-        "on_update": "omc.fuel_management.doctype.outlet_pricing.outlet_pricing.update_customer_product_pricing"
+     "Fuel Station Pricing": {
+        "on_update": "omc.fuel_management.doctype.fuel_station_pricing.fuel_station_pricing.update_customer_product_pricing"
     }
  }
 

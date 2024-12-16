@@ -191,7 +191,7 @@ function fetch_active_pumps(frm, outlet) {
     frappe.call({
         method: "frappe.client.get",
         args: {
-            doctype: "Customer",
+            doctype: "Outlet",
             name: outlet,
         },
         callback: function(response) {

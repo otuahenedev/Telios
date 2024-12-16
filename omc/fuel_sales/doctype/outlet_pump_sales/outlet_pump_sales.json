@@ -63,8 +63,7 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Outlet",
-   "link_filters": "[[\"Customer\",\"customer_group\",\"=\",\"Fuel Station\"]]",
-   "options": "Customer",
+   "options": "Outlet",
    "reqd": 1
   },
   {
@@ -252,7 +251,7 @@
    "search_index": 1
   },
   {
-   "fetch_from": "st.custom_outlet",
+   "fetch_from": "outlet.outlet_code",
    "fetch_if_empty": 1,
    "fieldname": "outlet_code",
    "fieldtype": "Data",
@@ -272,7 +271,7 @@
    "link_fieldname": "pump_reading_ref"
   }
  ],
- "modified": "2024-12-01 22:00:33.599260",
+ "modified": "2024-12-16 06:52:33.117529",
  "modified_by": "Administrator",
  "module": "Fuel Sales",
  "name": "Outlet Pump Sales",

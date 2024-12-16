@@ -45,8 +45,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Outlet",
-   "link_filters": "[[\"Customer\",\"customer_group\",\"=\",\"Fuel Station\"]]",
-   "options": "Customer",
+   "options": "Outlet",
    "reqd": 1
   },
   {
@@ -90,7 +89,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-12-02 08:07:33.618346",
+ "modified": "2024-12-15 22:42:35.096962",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Competitor Pricing",
