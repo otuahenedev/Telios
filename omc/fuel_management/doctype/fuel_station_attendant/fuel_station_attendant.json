@@ -6,8 +6,8 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "employee",
   "full_name",
+  "employee",
   "fuel_station",
   "column_break_zrkz",
   "contact",
@@ -29,10 +29,11 @@
    "unique": 1
   },
   {
+   "fetch_from": "employee.custom_outlet",
    "fieldname": "fuel_station",
    "fieldtype": "Link",
    "label": "Fuel Station",
-   "options": "Customer"
+   "options": "Outlet"
   },
   {
    "fieldname": "column_break_zrkz",
@@ -42,20 +43,21 @@
    "fetch_from": "employee.cell_number",
    "fetch_if_empty": 1,
    "fieldname": "contact",
-   "fieldtype": "Read Only",
-   "label": "Contact"
+   "fieldtype": "Data",
+   "label": "Contact",
+   "options": "Phone"
   },
   {
    "fetch_from": "employee.permanent_address",
    "fetch_if_empty": 1,
    "fieldname": "address",
-   "fieldtype": "Read Only",
+   "fieldtype": "Small Text",
    "label": "Address"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 15:18:35.118685",
+ "modified": "2024-12-16 08:47:48.196972",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Fuel Station Attendant",

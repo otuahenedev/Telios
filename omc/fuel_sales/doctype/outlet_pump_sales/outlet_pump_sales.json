@@ -35,6 +35,7 @@
   "total_litres_sold",
   "total_sales",
   "credit_sales_ghs",
+  "total_credit_sales",
   "net_cash_sales",
   "amended_from"
  ],
@@ -261,6 +262,15 @@
    "link_filters": "[[\"Customer\",\"customer_group\",\"=\",\"Fuel Station\"]]",
    "read_only": 1,
    "reqd": 1
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "depends_on": "total_credit_sales_ghs",
+   "fieldname": "total_credit_sales",
+   "fieldtype": "Currency",
+   "label": "Total Credit Sales (GHS)  ",
+   "read_only": 1
   }
  ],
  "is_calendar_and_gantt": 1,
@@ -271,7 +281,7 @@
    "link_fieldname": "pump_reading_ref"
   }
  ],
- "modified": "2024-12-16 06:52:33.117529",
+ "modified": "2024-12-16 10:40:42.123387",
  "modified_by": "Administrator",
  "module": "Fuel Sales",
  "name": "Outlet Pump Sales",
