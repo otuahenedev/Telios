@@ -11,11 +11,11 @@
             return;
         }
         
-        // Fetch product pricing data from Customer doctype
+        // Fetch product pricing data from Outlet doctype
         frappe.call({
             method: "frappe.client.get",
             args: {
-                doctype: "Customer",
+                doctype: "Outlet",
                 name: outlet,
             },
             callback: function(response) {

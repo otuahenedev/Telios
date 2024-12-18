@@ -266,16 +266,11 @@ function fetch_supplier_quotation(frm) {
 
 // DOCUMENT CREATION
 function create_payment_entry(frm, purpose) {
-    
-    frm.add_custom_button("Create Payment Entry (Transport)", () => {
-        frappe.new_doc("Payment Entry", {}, (fdp) => {
-            // Set only reference fields
-            fdp.custom_reference_doc = "Fuel Lifting Request";
-            fdp.custom_ref = frm.doc.name;
-    
-            // Redirect to the new Payment Entry form
-          //  frappe.set_route("Form", "Payment Entry", fdp.name);
-        });
+    frappe.new_doc("Payment Entry", {}, fetp => {
+        fetp.payment_type = 'Pay',
+        fetp.party_type = 'Supplier',
+        fetp.party_name = frm.doc.transporter, 
+        fetp.paid_amount = frm.doc.transportation_cost
     });
 }
 
@@ -289,7 +284,7 @@ function create_purchase_invoice(frm) {
         total: frm.doc.total_cost
     }, pi => {
         const item = frappe.model.add_child(pi, 'items');
-        item.item_name = frm.doc.product;
+        item.item_code = frm.doc.product;
         item.qty = frm.doc.nominal_volume_l;
         item.rate = frm.doc.buy_price;
         item.amount = frm.doc.total_cost;

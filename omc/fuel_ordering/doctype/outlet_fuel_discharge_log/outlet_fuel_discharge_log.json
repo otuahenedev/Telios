@@ -1,0 +1,169 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:Tel-OFDL-",
+ "creation": "2024-11-05 14:34:38.477319",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "station_supervisor",
+  "outlet",
+  "fuel_tank",
+  "column_break_grpg",
+  "fuel_quantity_supplied",
+  "fuel_type",
+  "section_break_pysq",
+  "driver",
+  "fuel_truck",
+  "column_break_zkta",
+  "expected_stock_level_after_discharge",
+  "total_fuel_delivered",
+  "section_break_uwjg",
+  "pump_activity",
+  "total_sales_during_discharge_l",
+  "amended_from",
+  "tank_activity",
+  "total_tanks_net_volume_l"
+ ],
+ "fields": [
+  {
+   "fieldname": "station_supervisor",
+   "fieldtype": "Link",
+   "label": "Station Supervisor",
+   "options": "Employee"
+  },
+  {
+   "fetch_from": "station_supervisor.custom_outlet",
+   "fieldname": "outlet",
+   "fieldtype": "Link",
+   "label": "Outlet",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "fuel_tank",
+   "fieldtype": "Link",
+   "label": "Outlet's Product Tank",
+   "options": "Warehouse",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_grpg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Now",
+   "fieldname": "fuel_quantity_supplied",
+   "fieldtype": "Datetime",
+   "label": "Discharge Datetime",
+   "read_only": 1
+  },
+  {
+   "fieldname": "fuel_type",
+   "fieldtype": "Link",
+   "label": "Product",
+   "options": "Item",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_pysq",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "driver",
+   "fieldtype": "Link",
+   "label": "Driver",
+   "options": "Driver",
+   "read_only": 1
+  },
+  {
+   "fieldname": "fuel_truck",
+   "fieldtype": "Link",
+   "label": "Fuel Truck",
+   "options": "Fuel Truck",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_zkta",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "expected_stock_level_after_discharge",
+   "fieldtype": "Float",
+   "label": "Expected Stock Level After Discharge",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "fieldname": "total_fuel_delivered",
+   "fieldtype": "Float",
+   "label": "Total Fuel Delivered",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_uwjg",
+   "fieldtype": "Section Break",
+   "label": "Discharge Activity"
+  },
+  {
+   "fieldname": "pump_activity",
+   "fieldtype": "Table",
+   "label": "Pump Activity ",
+   "options": "Pump Activity"
+  },
+  {
+   "fieldname": "total_sales_during_discharge_l",
+   "fieldtype": "Float",
+   "label": "Total Sales During Discharge (L)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Outlet Fuel Discharge Log",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "tank_activity",
+   "fieldtype": "Table",
+   "label": "Tank Activity",
+   "options": "Tank Activity"
+  },
+  {
+   "fieldname": "total_tanks_net_volume_l",
+   "fieldtype": "Float",
+   "label": "Total Tanks Net Volume (L)",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-12-17 06:20:44.845334",
+ "modified_by": "Administrator",
+ "module": "Fuel Ordering",
+ "name": "Outlet Fuel Discharge Log",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -44,7 +44,7 @@
    "fieldname": "outlet",
    "fieldtype": "Link",
    "label": "Outlet",
-   "options": "Customer"
+   "options": "Outlet"
   },
   {
    "fetch_from": "pump_reading_ref.st",
@@ -131,7 +131,7 @@
  "is_calendar_and_gantt": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-12-01 22:05:07.763820",
+ "modified": "2024-12-16 11:06:57.397153",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Deposit Sales",
