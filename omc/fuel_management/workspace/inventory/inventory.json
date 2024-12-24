@@ -1,0 +1,101 @@
+{
+ "app": "omc",
+ "charts": [],
+ "content": "[{\"id\":\"GV7KEVpt8f\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Inventory</span>\",\"col\":12}},{\"id\":\"LfLFYpJgGa\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"AUBcYmJ_gX\",\"type\":\"card\",\"data\":{\"card_name\":\"Processes\",\"col\":4}}]",
+ "creation": "2024-12-18 15:18:55.045030",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "grid",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Inventory",
+ "link_type": "DocType",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Masters",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Warehouse",
+   "link_count": 0,
+   "link_to": "Warehouse",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Outlet Fuel Tank",
+   "link_count": 0,
+   "link_to": "Outlet Fuel Tank",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Processes",
+   "link_count": 3,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Outlet Daily Fuel Log",
+   "link_count": 0,
+   "link_to": "Outlet Daily Fuel Log",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Outlet Fuel Discharge Log",
+   "link_count": 0,
+   "link_to": "Outlet Fuel Discharge Log",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Outlet Pricing",
+   "link_count": 0,
+   "link_to": "Outlet Pricing",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2024-12-22 22:42:22.793542",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Inventory",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 44.0,
+ "shortcuts": [],
+ "title": "Inventory",
+ "type": "Workspace"
+}

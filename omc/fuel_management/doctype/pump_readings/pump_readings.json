@@ -46,8 +46,7 @@
    "description": "Attach Image of reading",
    "fieldname": "capture_reading",
    "fieldtype": "Attach Image",
-   "label": "Capture Reading ",
-   "mandatory_depends_on": "current_reading"
+   "label": "Capture Reading "
   },
   {
    "default": "0",
@@ -102,7 +101,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-12-16 10:11:04.645670",
+ "modified": "2024-12-24 09:34:17.164317",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Pump Readings",

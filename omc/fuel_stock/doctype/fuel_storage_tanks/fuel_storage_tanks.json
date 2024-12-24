@@ -1,0 +1,72 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{Outlet} - {tank_id}",
+ "creation": "2024-12-11 14:57:42.528728",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "tank_id",
+  "outlet",
+  "tank_capacity_l",
+  "uom",
+  "column_break_poxd",
+  "status",
+  "fuel_type"
+ ],
+ "fields": [
+  {
+   "fieldname": "tank_id",
+   "fieldtype": "Link",
+   "label": "Tank ID",
+   "options": "Outlet Fuel Tank"
+  },
+  {
+   "fieldname": "outlet",
+   "fieldtype": "Link",
+   "label": "Outlet",
+   "options": "Outlet"
+  },
+  {
+   "fieldname": "tank_capacity_l",
+   "fieldtype": "Float",
+   "label": "Tank Capacity (L)"
+  },
+  {
+   "default": "Litre",
+   "fieldname": "uom",
+   "fieldtype": "Link",
+   "label": "UoM",
+   "options": "UOM"
+  },
+  {
+   "fieldname": "column_break_poxd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status"
+  },
+  {
+   "fieldname": "fuel_type",
+   "fieldtype": "Link",
+   "label": "Fuel Type",
+   "options": "Fuel Type"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-12-21 21:14:14.502780",
+ "modified_by": "Administrator",
+ "module": "Fuel Stock",
+ "name": "Fuel Storage Tanks",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

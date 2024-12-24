@@ -19,98 +19,10 @@ def truckdetails(truckid):
 
 
 
-@frappe.whitelist()
-def create_supplier_payment_entry(fuel_purchase_order):
-    # Fetch the Fuel Purchase Order document
-    po_doc = frappe.get_doc("Fuel Purchase Order", fuel_purchase_order)
-    
-    # Check if the order is vetted
-    if po_doc.state != 'Vetted':
-        frappe.throw("Payment can only be made after the order is vetted by the auditor.")
 
-    # Create Payment Entry for Supplier Cost
-    payment_entry = frappe.get_doc({
-        "doctype": "Payment Entry",
-        "payment_type": "Pay",
-        "posting_date": po_doc.transaction_date,
-        "paid_from": "Bank Account",  # Replace with the actual bank/cash account
-        "paid_to": "Supplier",        # Replace with actual payable account or party account
-        "party_type": "Supplier",
-        "party": po_doc.supplier,
-        "paid_amount": po_doc.supply_cost,  # Assuming supply_cost is defined in the document
-        "references": [
-            {
-                "reference_doctype": "Fuel Purchase Order",
-                "reference_name": po_doc.name,
-                "total_amount": po_doc.supply_cost,
-                "outstanding_amount": po_doc.supply_cost
-            }
-        ]
-    })
-    payment_entry.insert()
-    payment_entry.submit()
 
-@frappe.whitelist()
-def create_immediate_tax_payment_entry(fuel_purchase_order):
-    po_doc = frappe.get_doc("Fuel Purchase Order", fuel_purchase_order)
 
-    # Check if the order is vetted
-    if po_doc.state != 'Vetted':
-        frappe.throw("Payment can only be made after the order is vetted by the auditor.")
 
-    # Create Payment Entry for Immediate Taxes
-    total_immediate_taxes = po_doc.total_immediate_taxes
-    payment_entry = frappe.get_doc({
-        "doctype": "Payment Entry",
-        "payment_type": "Pay",
-        "posting_date": po_doc.transaction_date,
-        "paid_from": "Bank Account",  # Replace with actual bank account
-        "paid_to": "Tax Liability Account",  # Replace with actual tax liability account
-        "references": []
-    })
-
-    for tax in po_doc.immediate_taxes:
-        payment_entry.append("references", {
-            "reference_doctype": "Fuel Purchase Order",
-            "reference_name": po_doc.name,
-            "total_amount": tax.amount,
-            "outstanding_amount": tax.amount
-        })
-
-    payment_entry.paid_amount = total_immediate_taxes
-    payment_entry.insert()
-    payment_entry.submit()
-
-@frappe.whitelist()
-def create_deferred_tax_payment_entry(fuel_purchase_order):
-    po_doc = frappe.get_doc("Fuel Purchase Order", fuel_purchase_order)
-
-    # Check if the order is vetted
-    if po_doc.state != 'Vetted':
-        frappe.throw("Payment can only be made after the order is vetted by the auditor.")
-
-    # Create Payment Entry for Deferred Taxes
-    total_deferred_taxes = po_doc.total_deferred_taxes
-    payment_entry = frappe.get_doc({
-        "doctype": "Payment Entry",
-        "payment_type": "Pay",
-        "posting_date": datetime.today(),
-        "paid_from": "Bank Account",  # Replace with actual bank account
-        "paid_to": "Deferred Tax Liability Account",  # Replace with actual deferred tax account
-        "references": []
-    })
-
-    for tax in po_doc.deferred_taxes:
-        payment_entry.append("references", {
-            "reference_doctype": "Fuel Purchase Order",
-            "reference_name": po_doc.name,
-            "total_amount": tax.amount,
-            "outstanding_amount": tax.amount
-        })
-
-    payment_entry.paid_amount = total_deferred_taxes
-    payment_entry.insert()
-    payment_entry.submit()
 
 
 class FuelLiftingRequest(Document):
@@ -148,8 +60,13 @@ class FuelLiftingRequest(Document):
         Calls a method to generate Outlet Delivery Notes.
         """
         generate_outlet_delivery_notes(self.name)
-                  
 
+
+
+
+
+
+#create delivery notes for each oulet lisred in delivered to table
 @frappe.whitelist()
 def generate_outlet_delivery_notes(docname):
     """
@@ -262,6 +179,32 @@ def generate_outlet_delivery_notes(docname):
     return "Outlet Delivery Notes created successfully."
 		
 
+@frappe.whitelist()
+def fetch_fuel_data(product):
+    """
+    Fetch OFT data and calculate ADS for the given product.
+    """
+    # Fetch OFT data
+    oft_data = frappe.get_all(
+        "Outlet Fuel Tank",
+        filters={"product": product},
+        fields=["outlet", "current_level_l", "reorder_level_l"]
+    )
 
+    # Fetch sales data
+    sales_data = frappe.db.sql("""
+        SELECT
+            SUM(child.total_volume_sold_l) AS total_volume,
+            COUNT(DISTINCT parent.posting_date) AS num_days
+        FROM `tabOutlet Pump Sales` parent
+        JOIN `tabPump Reading Totals` child ON child.parent = parent.name
+        WHERE child.product = %s
+    """, (product,), as_dict=True)
+
+    total_volume = sales_data[0].get("total_volume", 0) or 0
+    num_days = sales_data[0].get("num_days", 1)  # Avoid division by zero
+    ads = total_volume / num_days
+
+    return {"oft_data": oft_data, "ads": ads}
 
 

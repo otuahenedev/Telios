@@ -74,17 +74,13 @@ class OutletPumpSales(Document):
 		
 			
          
-         for reading in self.get("ago_pump_readings_diesel"):
+         for reading in self.get("dispenser_readings"):
              if reading.current_reading < reading.last_reading:
                  frappe.throw(
                     ("Current reading cannot be less than the last reading for pump: {0}.").format(reading.pump)
             )
         
-         for reading in self.get("pms_pump_readings_petrol"):
-             if reading.current_reading < reading.last_reading:
-                 frappe.throw(
-                    ("Current reading cannot be less than the last reading for pump: {0}.").format(reading.pump)
-            )
+        
         
 
      

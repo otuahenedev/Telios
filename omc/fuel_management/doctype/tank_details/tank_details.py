@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class TankDetailsDiesel(Document):
+class TankDetails(Document):
 	pass

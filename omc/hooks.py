@@ -149,11 +149,15 @@ doc_events = {
 # ---------------
 
 scheduler_events = {
+    "cron": {
+        "30 12 * * *": ["omc.fuel_stock.doctype.outlet_fuel_tank.outlet_fuel_tank.update_reorder_levels"],
+        "0 */4 * * *": ["omc.fuel_stock.doctype.outlet_fuel_tank.outlet_fuel_tank.notify_low_stock"]
+    },
 # 	"all": [
 # 		"omc.tasks.all"
 # 	],
  	"daily": ["omc.send_credit_utilization_alert"],
-# 	"hourly": [
+ #	"hourly": [
 # 		"omc.tasks.hourly"
 # 	],
 # 	"weekly": [

@@ -186,13 +186,13 @@
    "fieldname": "table_zzvb",
    "fieldtype": "Table",
    "mandatory_depends_on": "eval:doc.product_has_multiple_tanks == 1;",
-   "options": "Tank Details Diesel"
+   "options": "Tank Details"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-11-25 19:08:49.312737",
+ "modified": "2024-12-21 22:25:40.919367",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Daily Stock Entry",

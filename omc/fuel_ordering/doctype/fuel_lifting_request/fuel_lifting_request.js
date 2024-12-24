@@ -14,6 +14,13 @@ frappe.ui.form.on("Fuel Lifting Request", {
         });
         await promise.catch(() => frappe.throw()); // If the promise is rejected, throw an error
     },
+    fuel_type: function (frm) {
+        // Refresh the table when the product field changes
+        if (frm.doc.product) {
+            render_fuel_data_table(frm);
+        }
+    },
+
     // REFRESH EVENT
     refresh: function(frm){
         if (frm.doc.docstatus == 1) {
@@ -61,6 +68,10 @@ frappe.ui.form.on("Fuel Lifting Request", {
             // Add button to generate Outlet Delivery Notes manually
             
         }
+        if (frm.doc.product) {
+            render_fuel_data_table(frm);
+        }
+
     },
     
 
@@ -269,7 +280,7 @@ function create_payment_entry(frm, purpose) {
     frappe.new_doc("Payment Entry", {}, fetp => {
         fetp.payment_type = 'Pay',
         fetp.party_type = 'Supplier',
-        fetp.party_name = frm.doc.transporter, 
+        fetp.party = frm.doc.transporter, 
         fetp.paid_amount = frm.doc.transportation_cost
     });
 }
@@ -292,7 +303,59 @@ function create_purchase_invoice(frm) {
     });
 }
 
+function render_fuel_data_table(frm) {
+    if (!frm.doc.product) {
+        frm.set_df_property("fuel_data_table", "options", "<p>Please select a product to view data.</p>");
+        return;
+    }
 
+    frappe.call({
+        method: "your_app_path.fetch_fuel_data",
+        args: { product: frm.doc.product },
+        callback: function (response) {
+            const { oft_data, ads } = response.message;
+
+            if (!oft_data || oft_data.length === 0) {
+                frm.set_df_property("fuel_data_table", "options", "<p>No data found for the selected product.</p>");
+                return;
+            }
+
+            let table_html = `
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Outlet</th>
+                            <th>Average Daily Sales (L)</th>
+                            <th>Current Stock (L)</th>
+                            <th>Stock Lifespan (Days)</th>
+                            <th>Reorder Level (L)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            oft_data.forEach(oft => {
+                const stock_lifespan = ads > 0 ? (oft.current_level / ads).toFixed(2) : "N/A";
+                table_html += `
+                    <tr>
+                        <td>${oft.outlet}</td>
+                        <td>${ads.toFixed(2)}</td>
+                        <td>${oft.current_level}</td>
+                        <td>${stock_lifespan}</td>
+                        <td>${oft.reorder_level}</td>
+                    </tr>
+                `;
+            });
+
+            table_html += `
+                    </tbody>
+                </table>
+            `;
+
+            frm.set_df_property("fuel_data_table", "options", table_html);
+        },
+    });
+}
 
 
 

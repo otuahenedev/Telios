@@ -1,0 +1,135 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{outlet} - {product}",
+ "creation": "2024-12-21 21:00:33.875874",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "outlet",
+  "product",
+  "tank_capacity_l",
+  "column_break_wkal",
+  "safety_stock_l",
+  "reorder_level_l",
+  "lead_time",
+  "variance",
+  "section_break_cztu",
+  "current_level_l",
+  "column_break_qcgl",
+  "last_reading_date"
+ ],
+ "fields": [
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "outlet",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Outlet",
+   "options": "Outlet",
+   "reqd": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "product",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Product",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "default": "0",
+   "fieldname": "tank_capacity_l",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Outlet Tank Capacity (L)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_wkal",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "default": "0",
+   "fieldname": "safety_stock_l",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Safety Stock (L)",
+   "reqd": 1
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "fieldname": "reorder_level_l",
+   "fieldtype": "Float",
+   "label": "Reorder Level (L)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_cztu",
+   "fieldtype": "Section Break"
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "fieldname": "current_level_l",
+   "fieldtype": "Float",
+   "label": "Current Level (L)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_qcgl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "last_reading_date",
+   "fieldtype": "Datetime",
+   "label": "Last Reading Date",
+   "read_only": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "default": "0",
+   "fieldname": "lead_time",
+   "fieldtype": "Float",
+   "label": "Lead Days"
+  },
+  {
+   "bold": 1,
+   "fieldname": "variance",
+   "fieldtype": "Float",
+   "label": "Variance",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-12-23 14:48:13.855279",
+ "modified_by": "Administrator",
+ "module": "Fuel Stock",
+ "name": "Outlet Fuel Tank",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

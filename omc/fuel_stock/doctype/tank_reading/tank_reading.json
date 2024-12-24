@@ -1,0 +1,74 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-09-26 10:38:38.023162",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "tank_id",
+  "oft",
+  "product",
+  "current_tank_level",
+  "capture_tank_reading"
+ ],
+ "fields": [
+  {
+   "columns": 1,
+   "fieldname": "tank_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Tank ID",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fetch_from": "tank_reading.prod",
+   "fieldname": "product",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Product",
+   "link_filters": "[[\"Item\",\"item_group\",\"=\",\"White Products\"]]",
+   "options": "Item",
+   "read_only": 1
+  },
+  {
+   "columns": 3,
+   "fieldname": "capture_tank_reading",
+   "fieldtype": "Attach Image",
+   "label": "Capture Tank Reading",
+   "reqd": 1
+  },
+  {
+   "columns": 2,
+   "fieldname": "oft",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Outlet Fuel Tank",
+   "options": "Outlet Fuel Tank",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "columns": 3,
+   "fetch_from": "tank_reading.fuel_reading",
+   "fieldname": "current_tank_level",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Current Tank Level (L)",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-12-23 09:37:36.365694",
+ "modified_by": "Administrator",
+ "module": "Fuel Stock",
+ "name": "Tank Reading",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

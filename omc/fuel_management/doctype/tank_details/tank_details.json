@@ -6,55 +6,40 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "tank_sel",
-  "tank",
+  "tank_id",
+  "oft",
   "product",
   "volume",
-  "status",
   "column_break_xaof",
+  "status",
   "why_inactive"
  ],
  "fields": [
-  {
-   "fieldname": "tank",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
-   "label": "Tank Warehouse",
-   "options": "Warehouse",
-   "reqd": 1
-  },
   {
    "fieldname": "volume",
    "fieldtype": "Int",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Volume Capacity (L)",
-   "non_negative": 1,
+   "label": "Tank Capacity (L)",
    "reqd": 1
   },
   {
-   "fieldname": "tank_sel",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Tank",
-   "reqd": 1
-  },
-  {
+   "fetch_from": "oft.product",
    "fieldname": "product",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Product",
    "link_filters": "[[\"Item\",\"item_group\",\"=\",\"White Products\"]]",
    "options": "Item",
-   "reqd": 1
+   "read_only": 1
   },
   {
    "fieldname": "status",
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status",
-   "options": "Active\nInactive"
+   "options": "Active\nInactive",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_xaof",
@@ -66,15 +51,31 @@
    "fieldtype": "Small Text",
    "label": "Why Inactive?",
    "mandatory_depends_on": "eval:doc.status == \"Inactive\""
+  },
+  {
+   "fieldname": "tank_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Tank ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "oft",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Outlet Fuel Tank",
+   "options": "Outlet Fuel Tank",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-11-29 08:14:35.207214",
+ "modified": "2024-12-22 23:22:45.181012",
  "modified_by": "Administrator",
  "module": "Fuel Management",
- "name": "Tank Details Diesel",
+ "name": "Tank Details",
  "owner": "Administrator",
  "permissions": [],
  "sort_field": "modified",

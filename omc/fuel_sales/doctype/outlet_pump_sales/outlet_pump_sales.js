@@ -102,12 +102,18 @@ frappe.ui.form.on("Outlet Pump Sales", {
             let rate = product_pricing.rate || 0;
             frm.add_child('product_totals', {
                 product: product,
-                total_litres_sold: total_volume_sold,
+                total_volume_sold_l: total_volume_sold,
                 total_sales_ghs: total_volume_sold * rate
             });
         }
 
         frm.refresh_field('product_totals');
+
+        //
+        let total_volume_sold = frm.doc.product_totals.reduce((sum, row) => sum + (row.total_volume_sold_l || 0), 0);
+        frm.set_value('total_litres_sold', total_volume_sold);
+
+
 
         // Calculate total sales and adjust for credit sales
         let total_sales = frm.doc.product_totals.reduce((sum, row) => sum + (row.total_sales_ghs || 0), 0);
@@ -132,15 +138,30 @@ function handle_last_fuel_dispenser_reading(frm, outlet) {
         method: "frappe.client.get_list",
         args: {
             doctype: "Outlet Pump Sales",
-            filters: { outlet: outlet.name },
-            fields: ["name", "creation", "dispenser_readings"],
+            filters: { outlet: outlet.name , docstatus: 1},
+            fields: ["name"], // Fetch only the document name
             order_by: "creation desc",
             limit: 1
         },
         callback: function(response) {
             if (response.message && response.message.length > 0) {
-                populate_child_tables_from_last_reading(frm, response.message[0]);
+                let last_entry_name = response.message[0].name;
+
+                // Fetch the full document including dispenser readings
+                frappe.call({
+                    method: "frappe.client.get",
+                    args: {
+                        doctype: "Outlet Pump Sales",
+                        name: last_entry_name
+                    },
+                    callback: function(res) {
+                        if (res.message) {
+                            populate_child_tables_from_last_reading(frm, res.message);
+                        }
+                    }
+                });
             } else {
+                // No previous entry found; fetch active pumps
                 fetch_active_pumps(frm, outlet);
             }
         }
@@ -149,20 +170,24 @@ function handle_last_fuel_dispenser_reading(frm, outlet) {
 
 // Helper: Populate dispenser readings from last entry
 function populate_child_tables_from_last_reading(frm, last_entry) {
+    // Clear the child table
     frm.clear_table("dispenser_readings");
 
-    if (last_entry.dispenser_readings) {
+    if (last_entry.dispenser_readings && last_entry.dispenser_readings.length > 0) {
         last_entry.dispenser_readings.forEach(row => {
             let child_row = frm.add_child("dispenser_readings");
             child_row.pump = row.pump;
             child_row.product = row.product;
-            child_row.last_reading = row.current_reading;
-            child_row.previous_capture_reading = row.capture_reading;
-            child_row.previous_shifts_attendant = row.attendant;
+            child_row.last_reading = row.current_reading || 0;
+            child_row.previous_capture_reading = row.capture_reading || 0;
+            child_row.previous_shifts_attendant = row.attendant || "";
         });
-    }
 
-    frm.refresh_field("dispenser_readings");
+        frm.refresh_field("dispenser_readings");
+      //  frappe.msgprint(__('Dispenser readings populated from the last submitted entry.'));
+    } else {
+        frappe.msgprint(__('No dispenser readings found in the last entry.'));
+    }
 }
 
 // Helper: Fetch active pumps if no last readings are available
