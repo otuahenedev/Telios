@@ -11,7 +11,7 @@
   "fuel_tank",
   "column_break_grpg",
   "fuel_quantity_supplied",
-  "fuel_type",
+  "product",
   "section_break_pysq",
   "driver",
   "fuel_truck",
@@ -37,7 +37,7 @@
    "fieldname": "outlet",
    "fieldtype": "Link",
    "label": "Outlet",
-   "options": "Customer"
+   "options": "Outlet"
   },
   {
    "fieldname": "fuel_tank",
@@ -55,13 +55,6 @@
    "fieldname": "fuel_quantity_supplied",
    "fieldtype": "Datetime",
    "label": "Discharge Datetime",
-   "read_only": 1
-  },
-  {
-   "fieldname": "fuel_type",
-   "fieldtype": "Link",
-   "label": "Product",
-   "options": "Item",
    "read_only": 1
   },
   {
@@ -137,12 +130,20 @@
    "fieldtype": "Float",
    "label": "Total Tanks Net Volume (L)",
    "read_only": 1
+  },
+  {
+   "depends_on": "outlet",
+   "fieldname": "product",
+   "fieldtype": "Link",
+   "label": "Product",
+   "mandatory_depends_on": "outlet",
+   "options": "Item"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-12-23 10:01:59.081308",
+ "modified": "2024-12-26 19:25:01.673769",
  "modified_by": "Administrator",
  "module": "Fuel Ordering",
  "name": "Outlet Fuel Discharge Log",

@@ -8,6 +8,17 @@
 // });
 // Main trigger for 'outlet' field - Step 1: Fetch product pricing and populate it
 frappe.ui.form.on("Outlet Pump Sales", {
+    before_workflow_action: async (frm) => {
+        let promise = new Promise((resolve, reject) => {
+         frappe.dom.unfreeze()
+            frappe.confirm(
+                "<b>Are all of the below fields entered correctly?</b><ul>",
+                () => resolve(), // User confirms
+                () => reject()   // User rejects
+            );
+        });
+        await promise.catch(() => frappe.throw()); // If the promise is rejected, throw an error
+    },
     outlet: function(frm) {
         let outlet = frm.doc.outlet;
         frm.clear_table("dispenser_readings");

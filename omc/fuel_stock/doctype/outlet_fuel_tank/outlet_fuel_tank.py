@@ -1,7 +1,7 @@
 # Copyright (c) 2024, Kelvin and contributors
 # For license information, please see license.txt
 
-# import frappe
+import frappe
 from frappe.model.document import Document
 
 
@@ -57,7 +57,7 @@ def calculate_average_daily_sales(product, outlet, days=30):
         SELECT SUM(child.total_volume_sold_l) AS total_volume
         FROM `tabOutlet Pump Sales` parent
         JOIN `tabPump Reading Totals` child ON child.parent = parent.name
-        WHERE child.product = %s AND parent.outlet = %s AND parent.posting_date >= %s
+        WHERE child.product = %s AND parent.outlet = %s AND parent.creation >= %s
     """, (product, outlet, start_date), as_dict=True)
 
     total_volume = sales_data[0].total_volume or 0  # Default to 0 if no sales found

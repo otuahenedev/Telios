@@ -177,34 +177,49 @@ def generate_outlet_delivery_notes(docname):
    
 
     return "Outlet Delivery Notes created successfully."
-		
 
 @frappe.whitelist()
 def fetch_fuel_data(product):
     """
-    Fetch OFT data and calculate ADS for the given product.
+    Fetch OFT data and calculate ADS for the given product per outlet.
     """
-    # Fetch OFT data
+    # Fetch OFT data for the specified product
     oft_data = frappe.get_all(
         "Outlet Fuel Tank",
         filters={"product": product},
         fields=["outlet", "current_level_l", "reorder_level_l"]
     )
+    print("OFT Data:", oft_data)  # Debug log for fetched OFT data
 
-    # Fetch sales data
-    sales_data = frappe.db.sql("""
-        SELECT
-            SUM(child.total_volume_sold_l) AS total_volume,
-            COUNT(DISTINCT parent.posting_date) AS num_days
-        FROM `tabOutlet Pump Sales` parent
-        JOIN `tabPump Reading Totals` child ON child.parent = parent.name
-        WHERE child.product = %s
-    """, (product,), as_dict=True)
+    # Prepare trends data
+    trends_data = []
 
-    total_volume = sales_data[0].get("total_volume", 0) or 0
-    num_days = sales_data[0].get("num_days", 1)  # Avoid division by zero
-    ads = total_volume / num_days
+    for oft in oft_data:
+        # Calculate ADS for each outlet
+        sales_data = frappe.db.sql("""
+            SELECT
+                SUM(child.total_volume_sold_l) AS total_volume,
+                COUNT(DISTINCT parent.creation) AS num_days
+            FROM `tabOutlet Pump Sales` parent
+            JOIN `tabPump Reading Totals` child ON child.parent = parent.name
+            WHERE child.product = %s AND parent.outlet = %s
+        """, (product, oft["outlet"]), as_dict=True)
 
-    return {"oft_data": oft_data, "ads": ads}
+        total_volume = sales_data[0].get("total_volume", 0) or 0
+        num_days = sales_data[0].get("num_days", 1)  # Avoid division by zero
+        ads = total_volume / num_days if num_days > 0 else 0
 
+        # Calculate stock lifespan
+        stock_lifespan = ads > 0 and (oft["current_level_l"] / ads) or 0
 
+        # Append to trends data
+        trends_data.append({
+            "outlet": oft["outlet"],
+            "average_daily_sales_l": ads,
+            "current_stock_l": oft["current_level_l"],
+            "stock_lifespan_days": stock_lifespan,
+            "reorder_level_l": oft["reorder_level_l"]
+        })
+
+    print("Trends Data:", trends_data)  # Debug log for trends data
+    return trends_data

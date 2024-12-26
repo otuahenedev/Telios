@@ -7,43 +7,45 @@
  "engine": "InnoDB",
  "field_order": [
   "outlet",
-  "avg_daily_sales",
-  "current_stock_level",
-  "stock_lifespan",
-  "reorder_level"
+  "average_daily_sales_l",
+  "current_stock_l",
+  "stock_lifespan_days",
+  "reorder_level_l"
  ],
  "fields": [
   {
    "fieldname": "outlet",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Outlet",
+   "options": "Outlet",
    "read_only": 1
   },
   {
-   "fieldname": "avg_daily_sales",
-   "fieldtype": "Data",
+   "fieldname": "average_daily_sales_l",
+   "fieldtype": "Float",
    "in_list_view": 1,
-   "label": "Avg. Daily Sales (GH\u20b5)",
+   "label": "Avg. Daily Sales (L)",
    "read_only": 1
   },
   {
-   "fieldname": "current_stock_level",
-   "fieldtype": "Data",
+   "fieldname": "current_stock_l",
+   "fieldtype": "Float",
    "in_list_view": 1,
    "label": "Current Stock Level (L)",
    "read_only": 1
   },
   {
-   "fieldname": "stock_lifespan",
-   "fieldtype": "Data",
+   "description": "Days",
+   "fieldname": "stock_lifespan_days",
+   "fieldtype": "Float",
    "in_list_view": 1,
-   "label": "Stock Lifespan (L)",
+   "label": "Stock Lifespan ",
    "read_only": 1
   },
   {
-   "fieldname": "reorder_level",
-   "fieldtype": "Data",
+   "fieldname": "reorder_level_l",
+   "fieldtype": "Float",
    "in_list_view": 1,
    "label": "Reorder Level (L)",
    "read_only": 1
@@ -52,7 +54,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-07-18 20:25:17.821764",
+ "modified": "2024-12-24 12:03:11.020537",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Justification",

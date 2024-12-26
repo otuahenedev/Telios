@@ -6,8 +6,8 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "tank_warehouse",
-  "tank",
+  "oft",
+  "tank_id",
   "product",
   "column_break_edge",
   "tank_volume_before_delivery",
@@ -19,13 +19,6 @@
   "net_volume_delivered"
  ],
  "fields": [
-  {
-   "fieldname": "tank",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Tank",
-   "read_only": 1
-  },
   {
    "fieldname": "product",
    "fieldtype": "Link",
@@ -74,18 +67,25 @@
    "label": " Attach Tank Reading Picture After Discharge"
   },
   {
-   "fieldname": "tank_warehouse",
+   "fieldname": "oft",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Tank Storage",
-   "options": "Warehouse",
+   "label": "Outlet Fuel Storage",
+   "options": "Outlet Fuel Tank",
+   "read_only": 1
+  },
+  {
+   "fieldname": "tank_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Tank",
    "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-11-29 08:59:19.770928",
+ "modified": "2024-12-26 18:57:51.923486",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Tank Activity",
