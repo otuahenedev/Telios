@@ -16,7 +16,7 @@
   "tank_volume_after_delivery",
   "attach_tank_reading_picture_after_discharge",
   "section_break_txfh",
-  "net_volume_delivered"
+  "net_volume"
  ],
  "fields": [
   {
@@ -51,12 +51,6 @@
    "fieldtype": "Section Break"
   },
   {
-   "fieldname": "net_volume_delivered",
-   "fieldtype": "Float",
-   "in_list_view": 1,
-   "label": "Net Volume"
-  },
-  {
    "fieldname": "attach_tank_reading_picture_before_discharge",
    "fieldtype": "Attach Image",
    "label": " Attach Tank Reading Picture Before Discharge"
@@ -80,12 +74,18 @@
    "in_list_view": 1,
    "label": "Tank",
    "read_only": 1
+  },
+  {
+   "fieldname": "net_volume",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Net Volume"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-12-26 18:57:51.923486",
+ "modified": "2024-12-26 22:27:08.526513",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Tank Activity",

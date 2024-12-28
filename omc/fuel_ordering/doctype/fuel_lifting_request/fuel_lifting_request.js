@@ -18,6 +18,7 @@ frappe.ui.form.on("Fuel Lifting Request", {
         // Refresh the table when the product field changes
         if (frm.doc.fuel_type) {
             render_fuel_data_table(frm);
+            fetch_tax_records(frm);
             console.log("issue ")
         }
     },
@@ -28,7 +29,7 @@ frappe.ui.form.on("Fuel Lifting Request", {
             // Prevent duplicate button additions
             if (!frm.custom_buttons_added) {
                 if (frappe.user.has_role('Accounts User')){
-                    frm.add_custom_button("Create Purchase Invoice (Supplier)", () => create_purchase_invoice(frm))
+                    frm.add_custom_button("Create Payment Entry (Supplier)", () => create_purchase_invoice(frm))
                     .css({  'font-weight': 'bold' });
                     
                     frm.custom_buttons_added = true; // Track that buttons are added
@@ -76,11 +77,11 @@ frappe.ui.form.on("Fuel Lifting Request", {
     },
     
 
-    // ONLOAD EVENT
-    onload: function(frm) {
-        hand(frm);
-        fetch_tax_records(frm);
-    },
+    // // ONLOAD EVENT
+    // onload: function(frm) {
+    //     hand(frm);
+    //    // fetch_tax_records(frm);
+    // },
 
     // WORKFLOW STATE CHANGE
     on_workflow_state_change: function(frm) {
@@ -122,11 +123,11 @@ frappe.ui.form.on("Fuel Lifting Request", {
 
 });
 
-// HANDLE BUTTONS
-function hand(frm) {
-    // Add buttons only in the "Vetted" state and when status is not "Paid"
+// // HANDLE BUTTONS
+// function hand(frm) {
+//     // Add buttons only in the "Vetted" state and when status is not "Paid"
    
-}
+// }
 
 // CALCULATIONS
 function calculate_total_internal_transport_cost(frm) {
@@ -286,7 +287,7 @@ function create_payment_entry(frm, purpose) {
     });
 }
 
-//helper function to fetch stock and sales trends into trends table
+
 function create_purchase_invoice(frm) {
     frappe.new_doc("Purchase Invoice", {
         supplier: frm.doc.bdc,
@@ -411,7 +412,7 @@ function create_purchase_invoice(frm) {
 
 
 
-
+//helper function to fetch stock and sales trends into trends table
 function render_fuel_data_table(frm) {
     if (!frm.doc.fuel_type) {
         frappe.msgprint(__('Please select a product to view trends.'));

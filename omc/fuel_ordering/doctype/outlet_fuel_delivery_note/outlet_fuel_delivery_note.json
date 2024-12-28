@@ -7,37 +7,36 @@
  "engine": "InnoDB",
  "field_order": [
   "status",
+  "state",
   "column_break_avdn",
   "fuel_lifting_log_ref",
   "order_details_section",
+  "depot",
   "outlet",
   "outlet_code",
-  "station_supervisor",
-  "liaison_officer",
-  "column_break_wrbm",
-  "fuel_type",
-  "product_price_rate",
-  "volume_received_l",
-  "product_value",
-  "section_break_lcde",
-  "load_datetime",
-  "total_fuel_loaded",
-  "origin__depot",
-  "safety_cap_seal_status",
-  "column_break_nsta",
   "transporter",
   "driver_name",
   "fuel_truck_license_no",
-  "waybill",
+  "column_break_wrbm",
+  "product_price_rate",
+  "volume_received_l",
+  "product_value",
+  "fuel_type",
+  "section_break_lcde",
+  "load_datetime",
+  "total_fuel_loaded",
+  "safety_cap_seal_status",
+  "column_break_nsta",
+  "liaison_officer",
+  "upload_documents",
   "section_break_pbbg",
-  "discharge_datetime",
+  "station_supervisor",
   "notes",
   "column_break_rmhn",
-  "safety_cap_seal_intact",
   "outlet_fuel_discharge_log",
+  "discharge_datetime",
+  "safety_cap_seal_intact",
   "total_fuel_delivered",
-  "evidence_section",
-  "table_ozsi",
   "signatures_section",
   "drivers_signature",
   "datetime_kxtf",
@@ -75,22 +74,24 @@
    "label": "Order Details"
   },
   {
+   "bold": 1,
    "fieldname": "outlet",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Outlet",
-   "options": "Customer",
+   "options": "Outlet",
    "reqd": 1
   },
   {
-   "fetch_from": "outlet.custom_outlet_code",
+   "bold": 1,
+   "fetch_from": "outlet.outlet_code",
    "fieldname": "outlet_code",
    "fieldtype": "Date",
    "label": "Outlet Code",
    "read_only": 1
   },
   {
-   "fetch_from": "outlet.custom_station_supervisor",
+   "fetch_from": "outlet.station_supervisor",
    "fieldname": "station_supervisor",
    "fieldtype": "Link",
    "label": "Station Supervisor",
@@ -118,14 +119,16 @@
    "sort_options": 1
   },
   {
+   "bold": 1,
    "default": "10",
    "fieldname": "product_price_rate",
    "fieldtype": "Currency",
-   "label": "Product Price Rate",
+   "label": "Product Unit Price Rate",
    "options": "currency",
    "read_only": 1
   },
   {
+   "bold": 1,
    "fieldname": "volume_received_l",
    "fieldtype": "Float",
    "in_list_view": 1,
@@ -134,6 +137,7 @@
    "reqd": 1
   },
   {
+   "bold": 1,
    "fieldname": "product_value",
    "fieldtype": "Currency",
    "label": "Product Value",
@@ -151,16 +155,10 @@
    "label": "Load Datetime"
   },
   {
+   "default": "0",
    "fieldname": "total_fuel_loaded",
-   "fieldtype": "Float",
-   "label": "Total Fuel Loaded"
-  },
-  {
-   "fieldname": "origin__depot",
-   "fieldtype": "Link",
-   "label": "Origin / Depot",
-   "options": "Fuel Depot",
-   "read_only": 1
+   "fieldtype": "Check",
+   "label": "Fuel Quantity Expected Loaded ?"
   },
   {
    "fieldname": "safety_cap_seal_status",
@@ -193,21 +191,16 @@
    "options": "Fuel Truck"
   },
   {
-   "fieldname": "waybill",
-   "fieldtype": "Attach",
-   "label": "Waybill"
-  },
-  {
    "fieldname": "section_break_pbbg",
    "fieldtype": "Section Break",
    "label": "Station Checks"
   },
   {
+   "fetch_from": "outlet_fuel_discharge_log.fuel_quantity_supplied",
    "fieldname": "discharge_datetime",
    "fieldtype": "Datetime",
    "label": "Discharge Datetime",
-   "read_only": 1,
-   "reqd": 1
+   "read_only": 1
   },
   {
    "fieldname": "notes",
@@ -219,11 +212,12 @@
    "fieldtype": "Column Break"
   },
   {
+   "fetch_from": "outlet_fuel_discharge_log.safety_cap_seal_status",
    "fieldname": "safety_cap_seal_intact",
    "fieldtype": "Select",
    "label": "Safety Cap Seal Status",
    "options": "\nIntact\nBroken\nReplaced",
-   "reqd": 1
+   "read_only": 1
   },
   {
    "fieldname": "outlet_fuel_discharge_log",
@@ -233,20 +227,13 @@
    "reqd": 1
   },
   {
-   "fetch_from": "outlet_fuel_discharge_log.total_fuel_delivered",
+   "bold": 1,
+   "depends_on": "outlet_fuel_discharge_log",
+   "fetch_from": "outlet_fuel_discharge_log.fuel_received_l",
    "fieldname": "total_fuel_delivered",
    "fieldtype": "Float",
-   "label": "Total Fuel Delivered"
-  },
-  {
-   "fieldname": "evidence_section",
-   "fieldtype": "Section Break",
-   "label": "Evidence"
-  },
-  {
-   "fieldname": "table_ozsi",
-   "fieldtype": "Table",
-   "options": "Video Evidence"
+   "label": "Total Fuel Delivered (L)",
+   "read_only": 1
   },
   {
    "fieldname": "signatures_section",
@@ -310,16 +297,39 @@
    "depends_on": "liaison_officers_signature",
    "fieldname": "signed_on_liason",
    "fieldtype": "Datetime",
-   "label": "Signed On Copy",
+   "label": "Signed On ",
    "mandatory_depends_on": "station_supervisers_signature",
    "read_only": 1
+  },
+  {
+   "fieldname": "depot",
+   "fieldtype": "Link",
+   "label": " Depot / Yard",
+   "options": "Fuel Depot",
+   "read_only": 1
+  },
+  {
+   "description": "Upload fields for: Loading Slip,Waybill, Margin Set, Quality Certificate and any other depot-issued document.",
+   "fieldname": "upload_documents",
+   "fieldtype": "Table",
+   "label": "Upload Documents",
+   "options": "Video Evidence"
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "State",
+   "options": "\nDepot\nTransport\nStation",
+   "print_hide": 1,
+   "report_hide": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_calendar_and_gantt": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-12-17 06:20:09.232244",
+ "modified": "2024-12-27 14:05:33.049273",
  "modified_by": "Administrator",
  "module": "Fuel Ordering",
  "name": "Outlet Fuel Delivery Note",

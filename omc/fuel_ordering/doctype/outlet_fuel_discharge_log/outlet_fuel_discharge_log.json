@@ -8,43 +8,36 @@
  "field_order": [
   "station_supervisor",
   "outlet",
-  "fuel_tank",
+  "safety_cap_seal_status",
   "column_break_grpg",
   "fuel_quantity_supplied",
   "product",
-  "section_break_pysq",
-  "driver",
-  "fuel_truck",
-  "column_break_zkta",
-  "expected_stock_level_after_discharge",
-  "total_fuel_delivered",
+  "fuel_received_l",
   "section_break_uwjg",
   "pump_activity",
   "total_sales_during_discharge_l",
   "amended_from",
   "tank_activity",
-  "total_tanks_net_volume_l"
+  "total_tanks_net_volume_l",
+  "evidence_attachments"
  ],
  "fields": [
   {
    "fieldname": "station_supervisor",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Station Supervisor",
-   "options": "Employee"
+   "options": "Employee",
+   "reqd": 1
   },
   {
    "fetch_from": "station_supervisor.custom_outlet",
    "fieldname": "outlet",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Outlet",
-   "options": "Outlet"
-  },
-  {
-   "fieldname": "fuel_tank",
-   "fieldtype": "Link",
-   "label": "Outlet Fuel Tank",
-   "options": "Outlet Fuel Tank",
-   "read_only": 1
+   "options": "Outlet",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_grpg",
@@ -54,43 +47,10 @@
    "default": "Now",
    "fieldname": "fuel_quantity_supplied",
    "fieldtype": "Datetime",
+   "in_list_view": 1,
    "label": "Discharge Datetime",
-   "read_only": 1
-  },
-  {
-   "fieldname": "section_break_pysq",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "driver",
-   "fieldtype": "Link",
-   "label": "Driver",
-   "options": "Driver",
-   "read_only": 1
-  },
-  {
-   "fieldname": "fuel_truck",
-   "fieldtype": "Link",
-   "label": "Fuel Truck",
-   "options": "Fuel Truck",
-   "read_only": 1
-  },
-  {
-   "fieldname": "column_break_zkta",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "expected_stock_level_after_discharge",
-   "fieldtype": "Float",
-   "label": "Expected Stock Level After Discharge",
-   "read_only": 1
-  },
-  {
-   "bold": 1,
-   "fieldname": "total_fuel_delivered",
-   "fieldtype": "Float",
-   "label": "Total Fuel Delivered",
-   "read_only": 1
+   "read_only": 1,
+   "reqd": 1
   },
   {
    "fieldname": "section_break_uwjg",
@@ -104,6 +64,7 @@
    "options": "Pump Activity"
   },
   {
+   "bold": 1,
    "fieldname": "total_sales_during_discharge_l",
    "fieldtype": "Float",
    "label": "Total Sales During Discharge (L)",
@@ -126,6 +87,7 @@
    "options": "Tank Activity"
   },
   {
+   "bold": 1,
    "fieldname": "total_tanks_net_volume_l",
    "fieldtype": "Float",
    "label": "Total Tanks Net Volume (L)",
@@ -138,12 +100,33 @@
    "label": "Product",
    "mandatory_depends_on": "outlet",
    "options": "Item"
+  },
+  {
+   "bold": 1,
+   "fieldname": "fuel_received_l",
+   "fieldtype": "Float",
+   "label": "Fuel Received (L)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "safety_cap_seal_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Safety Cap Seal Status",
+   "reqd": 1
+  },
+  {
+   "description": "Upload supporting videos or images of fuel discharge.",
+   "fieldname": "evidence_attachments",
+   "fieldtype": "Table",
+   "label": "Evidence Attachments",
+   "options": "Video Evidence"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-12-26 19:25:01.673769",
+ "modified": "2024-12-26 23:18:13.776853",
  "modified_by": "Administrator",
  "module": "Fuel Ordering",
  "name": "Outlet Fuel Discharge Log",
