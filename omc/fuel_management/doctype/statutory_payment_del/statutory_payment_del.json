@@ -1,0 +1,121 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:TEL-SP-",
+ "creation": "2024-11-27 22:51:24.698052",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "reference_document",
+  "remarks",
+  "column_break_gicn",
+  "status",
+  "payment_due_date",
+  "total_tax_amount",
+  "payment_date",
+  "section_break_garc",
+  "table_xrwc",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "reference_document",
+   "fieldtype": "Link",
+   "label": "Ref. Document",
+   "options": "Fuel Lifting Request"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "column_break_gicn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Unpaid\nPaid\nOverdue"
+  },
+  {
+   "description": "Earliest due date from the tax rows.",
+   "fieldname": "payment_due_date",
+   "fieldtype": "Date",
+   "label": "Payment Due Date"
+  },
+  {
+   "bold": 1,
+   "fieldname": "total_tax_amount",
+   "fieldtype": "Currency",
+   "label": "Total Tax Amount",
+   "options": "currency"
+  },
+  {
+   "description": "Date when payment is made.",
+   "fieldname": "payment_date",
+   "fieldtype": "Datetime",
+   "label": "Payment Date"
+  },
+  {
+   "fieldname": "section_break_garc",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "table_xrwc",
+   "fieldtype": "Table",
+   "options": "Tax Detail"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Statutory Payment",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-11-27 23:22:34.532326",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Statutory Payment del",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [
+  {
+   "color": "Orange",
+   "title": "Unpaid"
+  },
+  {
+   "color": "Green",
+   "title": "Paid"
+  },
+  {
+   "color": "Red",
+   "title": "Overdue"
+  }
+ ],
+ "track_seen": 1
+}

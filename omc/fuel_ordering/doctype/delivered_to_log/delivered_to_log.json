@@ -1,0 +1,63 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-01-06 14:26:40.196644",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "fuel_station",
+  "outlet_code",
+  "column_break_ntsw",
+  "volume_l",
+  "status"
+ ],
+ "fields": [
+  {
+   "fieldname": "fuel_station",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Oulet",
+   "options": "Outlet",
+   "read_only": 1
+  },
+  {
+   "fieldname": "outlet_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Outlet Code",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_ntsw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "bold": 1,
+   "fieldname": "status",
+   "fieldtype": "Read Only",
+   "in_list_view": 1,
+   "label": "Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "volume_l",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Volume (L)",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-01-06 14:32:45.539518",
+ "modified_by": "Administrator",
+ "module": "Fuel Ordering",
+ "name": "Delivered To Log",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

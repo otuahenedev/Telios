@@ -12,18 +12,18 @@ EXTRA_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 IGNORE_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 
 
-class UnitTestDeferredStatutoryPayment(UnitTestCase):
+class UnitTestStatutoryPaymentdel(UnitTestCase):
 	"""
-	Unit tests for DeferredStatutoryPayment.
+	Unit tests for StatutoryPaymentdel.
 	Use this class for testing individual functions and methods.
 	"""
 
 	pass
 
 
-class IntegrationTestDeferredStatutoryPayment(IntegrationTestCase):
+class IntegrationTestStatutoryPaymentdel(IntegrationTestCase):
 	"""
-	Integration tests for DeferredStatutoryPayment.
+	Integration tests for StatutoryPaymentdel.
 	Use this class for testing interactions between multiple components.
 	"""
 

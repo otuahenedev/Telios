@@ -10,7 +10,6 @@
  "field_order": [
   "order_details_tab",
   "section_break_plux",
-  "trends",
   "fuel_data_table",
   "workflow_state",
   "section_break_lddd",
@@ -406,7 +405,8 @@
    "label": "Supplier Quotation",
    "link_filters": "[[\"Supplier Quotation\",\"custom_supplier_group\",\"=\",\"White Products\"]]",
    "options": "Supplier Quotation",
-   "reqd": 1
+   "reqd": 1,
+   "search_index": 1
   },
   {
    "default": "0",
@@ -482,20 +482,11 @@
    "print_hide": 1,
    "read_only": 1,
    "report_hide": 1
-  },
-  {
-   "columns": 9,
-   "depends_on": "fuel_type",
-   "fieldname": "trends",
-   "fieldtype": "Table",
-   "label": "Trends",
-   "options": "Justification",
-   "read_only": 1
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2024-12-24 13:02:15.793689",
+ "modified": "2025-01-06 14:25:33.710453",
  "modified_by": "Administrator",
  "module": "Fuel Ordering",
  "name": "Fuel Lifting Request",

@@ -1,87 +1,139 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:TEL-SP-",
- "creation": "2024-11-27 22:51:24.698052",
+ "autoname": "format:DSP-{tax_name}-{YY}-{####}",
+ "creation": "2024-11-21 10:19:28.681170",
+ "default_view": "List",
  "doctype": "DocType",
+ "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "reference_document",
-  "remarks",
-  "column_break_gicn",
+  "section_break_tmkq",
   "status",
+  "fuel_order_lifting_ref",
+  "column_break_jxkm",
   "payment_due_date",
-  "total_tax_amount",
-  "payment_date",
-  "section_break_garc",
-  "table_xrwc",
-  "amended_from"
+  "section_break_yqjr",
+  "tax_name",
+  "tax_rate",
+  "total",
+  "column_break_nanf",
+  "amount",
+  "accounting_dimensions_section",
+  "cost_center",
+  "column_break_fxno",
+  "account"
  ],
  "fields": [
   {
-   "fieldname": "reference_document",
+   "columns": 2,
+   "fieldname": "tax_name",
    "fieldtype": "Link",
-   "label": "Ref. Document",
-   "options": "Fuel Lifting Request"
+   "in_list_view": 1,
+   "label": "Tax Name",
+   "options": "Statutory Fuel Tax",
+   "read_only": 1,
+   "reqd": 1,
+   "unique": 1
   },
   {
-   "fieldname": "remarks",
-   "fieldtype": "Small Text",
-   "label": "Remarks"
+   "columns": 2,
+   "fetch_from": "tax_name.rate",
+   "fieldname": "tax_rate",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Tax Rate",
+   "read_only": 1,
+   "reqd": 1
   },
   {
-   "fieldname": "column_break_gicn",
+   "columns": 2,
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Amount ",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "columns": 2,
+   "fieldname": "total",
+   "fieldtype": "Currency",
+   "hidden": 1,
+   "in_list_view": 1,
+   "label": "Total ",
+   "print_hide": 1,
+   "read_only": 1,
+   "report_hide": 1
+  },
+  {
+   "fieldname": "section_break_tmkq",
+   "fieldtype": "Section Break"
+  },
+  {
+   "columns": 2,
+   "fieldname": "payment_due_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Payment Due Date"
+  },
+  {
+   "fieldname": "accounting_dimensions_section",
+   "fieldtype": "Section Break",
+   "label": "Accounting Dimensions"
+  },
+  {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Cost Center",
+   "options": "Cost Center",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_fxno",
    "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "tax_name.account",
+   "fieldname": "account",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Account Payable",
+   "link_filters": "[[\"Account\",\"root_type\",\"=\",\"Liability\"]]",
+   "options": "Account",
+   "read_only": 1
   },
   {
    "fieldname": "status",
    "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Status",
-   "options": "Unpaid\nPaid\nOverdue"
+   "options": "Unpaid\nPaid"
   },
   {
-   "description": "Earliest due date from the tax rows.",
-   "fieldname": "payment_due_date",
-   "fieldtype": "Date",
-   "label": "Payment Due Date"
+   "fieldname": "column_break_jxkm",
+   "fieldtype": "Column Break"
   },
   {
-   "bold": 1,
-   "fieldname": "total_tax_amount",
-   "fieldtype": "Currency",
-   "label": "Total Tax Amount",
-   "options": "currency"
-  },
-  {
-   "description": "Date when payment is made.",
-   "fieldname": "payment_date",
-   "fieldtype": "Datetime",
-   "label": "Payment Date"
-  },
-  {
-   "fieldname": "section_break_garc",
+   "fieldname": "section_break_yqjr",
    "fieldtype": "Section Break"
   },
   {
-   "fieldname": "table_xrwc",
-   "fieldtype": "Table",
-   "options": "Tax Detail"
+   "fieldname": "column_break_nanf",
+   "fieldtype": "Column Break"
   },
   {
-   "fieldname": "amended_from",
+   "fieldname": "fuel_order_lifting_ref",
    "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Statutory Payment",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
+   "label": "Fuel Order Lifting Ref.",
+   "options": "Fuel Lifting Request"
   }
  ],
  "index_web_pages_for_search": 1,
- "is_submittable": 1,
  "links": [],
- "modified": "2024-11-27 23:22:34.532326",
+ "modified": "2024-12-29 06:34:34.818865",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Statutory Payment",
@@ -101,21 +153,17 @@
    "write": 1
   }
  ],
- "sort_field": "creation",
+ "sort_field": "modified",
  "sort_order": "DESC",
  "states": [
-  {
-   "color": "Orange",
-   "title": "Unpaid"
-  },
   {
    "color": "Green",
    "title": "Paid"
   },
   {
    "color": "Red",
-   "title": "Overdue"
+   "title": "Unpaid"
   }
  ],
- "track_seen": 1
+ "track_changes": 1
 }
