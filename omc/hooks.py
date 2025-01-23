@@ -137,9 +137,9 @@ doc_events = {
         "on_update": "omc.credit__facilitation.doctype.outlet_credit_sales_log.update_credit_utilization"
     },
    
-    "Payment Entry": {
-        "on_submit": "omc.fuel_management.doctype.statutory_payment.statutory_payment.tax_management.update_statutory_payment_status"
-    },
+    # "Payment Entry": {
+    #     "on_submit": "omc.fuel_management.doctype.statutory_payment.statutory_payment.tax_management.update_statutory_payment_status"
+    # },
      "Fuel Station Pricing": {
         "on_update": "omc.fuel_management.doctype.fuel_station_pricing.fuel_station_pricing.update_customer_product_pricing"
     }

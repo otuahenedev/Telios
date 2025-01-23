@@ -64,6 +64,7 @@ class FuelLiftingRequest(Document):
         """
         generate_outlet_delivery_notes(self)
         create_statutory_payments(self)
+        create_journal_entry(self)
 
 
 
@@ -304,3 +305,71 @@ def get_fuel_taxes(fuel_type):
     except Exception as e:
         frappe.log_error(f"Error fetching fuel taxes: {str(e)}", "get_fuel_taxes")
         return {"error": str(e)}
+
+
+
+import frappe
+
+def create_journal_entry(doc):
+    """
+    Create and save a Journal Entry for the submitted document.
+    Handles supplier payment, transportation cost, and customs tax.
+    """
+    try:
+        je = frappe.get_doc({
+            "doctype": "Journal Entry",
+            "posting_date": frappe.utils.today(),
+            "voucher_type": "Journal Entry",
+            "company": doc.company,
+            "remark": f"Journal Entry for {doc.name}",
+            "accounts": []
+        })
+
+        # Supplier Payable Entry
+        if doc.supplier and doc.total_cost:
+            je.append("accounts", {
+                "account": doc.supplier_account,  # Replace with the correct GL account for suppliers
+                "party_type": "Supplier",
+                "party": doc.supplier,
+                "credit_in_account_currency": doc.total_cost,
+                "debit_in_account_currency": 0,
+                "cost_center": doc.cost_center
+            })
+
+        # Transportation Cost Entry
+        if doc.transporter and doc.transportation_cost:
+            je.append("accounts", {
+                "account": doc.transportation_account,  # Replace with the transportation expense account
+                "party_type": "Supplier",
+                "party": doc.transporter,
+                "credit_in_account_currency": doc.transportation_cost,
+                "debit_in_account_currency": 0,
+                "cost_center": doc.cost_center
+            })
+
+        # Customs Tax Entry
+        if doc.gra_customs_tax:
+            je.append("accounts", {
+                "account": doc.customs_tax_account,  # Replace with the customs tax liability account
+                "credit_in_account_currency": doc.gra_customs_tax,
+                "debit_in_account_currency": 0,
+                "cost_center": doc.cost_center
+            })
+
+        # Balancing Debit Entry
+        total_credit = (doc.total_cost or 0) + (doc.transportation_cost or 0) + (doc.gra_customs_tax or 0)
+        je.append("accounts", {
+            "account": doc.payment_account,  # Replace with the bank/cash payment account
+            "debit_in_account_currency": total_credit,
+            "credit_in_account_currency": 0,
+            "cost_center": doc.cost_center
+        })
+
+        je.insert(ignore_permissions=True)
+       # je.submit()
+
+        frappe.msgprint(f"Journal Entry {je.name} created successfully.")
+
+    except Exception as e:
+        frappe.log_error(f"Error creating journal entry for {doc.name}: {str(e)}")
+        frappe.throw(f"Error while creating Journal Entry: {str(e)}")

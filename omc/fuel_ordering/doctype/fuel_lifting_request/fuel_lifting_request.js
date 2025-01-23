@@ -28,37 +28,38 @@ frappe.ui.form.on("Fuel Lifting Request", {
         if (frm.doc.docstatus == 1) {
             // Prevent duplicate button additions
             if (!frm.custom_buttons_added) {
-                if (frappe.user.has_role('Accounts User')){
-                    frm.add_custom_button("Create Payment Entry (Supplier)", () => create_purchase_invoice(frm))
-                    .css({  'font-weight': 'bold' });
-                    
-                    frm.custom_buttons_added = true; // Track that buttons are added
-        
-                    // Button for Payment Entry (only for External Transport)
+                if (frappe.user.has_role('Accounts User')) {
+                    // Add main button with sub-options
+                   
+                
+                    // Add sub-options under Create Payment Entry
+                    frm.page.add_inner_button(__('Supplier Payment Entry'), function() {
+                        create_purchase_invoice(frm);
+                    }, __('Create Payment Entry'));
+                
+                    // Add sub-button for Transport payment (only for External Transport mode)
                     if (frm.doc.mode_of_transport === "External Transport") {
-                        frm.add_custom_button("Create Payment Entry (Transport)", () => create_payment_entry(frm, "Transport"))
-                            .css({  'font-weight': 'bold' });
+                        frm.page.add_inner_button(__('Transport Payment Entry'), function() {
+                            create_payment_entry(frm);
+                        }, __('Create Payment Entry'));
                     }
-        
-                    // Button for Purchase Invoice
-                    
                 }
-                if (frappe.user.has_role('Accounts User')){
-                    frm.add_custom_button('Generate Outlet Delivery Notes', () => {
-                        frappe.call({
-                            method: "omc.fuel_ordering.doctype.fuel_lifting_request.fuel_lifting_request.generate_outlet_delivery_notes", // Replace with the actual path
-                            args: {
-                                docname: frm.doc.name
-                            },
-                            callback: function (r) {
-                                if (r.message) {
-                                    frappe.msgprint(r.message);
-                                }
-                            }
-                        });
-                    }) .css({  'font-weight': 'bold' });;
+                // if (frappe.user.has_role('Accounts User')){
+                //     frm.add_custom_button('Generate Outlet Delivery Notes', () => {
+                //         frappe.call({
+                //             method: "omc.fuel_ordering.doctype.fuel_lifting_request.fuel_lifting_request.generate_outlet_delivery_notes", // Replace with the actual path
+                //             args: {
+                //                 docname: frm.doc.name
+                //             },
+                //             callback: function (r) {
+                //                 if (r.message) {
+                //                     frappe.msgprint(r.message);
+                //                 }
+                //             }
+                //         });
+                //     }) .css({  'font-weight': 'bold' });;
 
-                }
+                // }
 
 
                 
@@ -148,14 +149,27 @@ function calculate_grand_cost(frm) {
 function calculate_all_totals(frm) {
     const lqty = frm.doc.nominal_volume_l || 0;
     let total_tax = 0;
+    let total_deferred = 0;
+    let total_immediate = 0;
 
     (frm.doc.tax || []).forEach(row => {
-        row.amount = row.tax_rate * lqty;
-       // row.total = total_cost + row.amount;
+        row.amount = row.tax_rate * lqty;  // Calculate amount based on tax rate and quantity
+
         total_tax += row.amount;
+
+        // Categorize tax amounts based on tax_type
+        if (row.tax_type === 'Deferred') {
+            total_deferred += row.amount;
+        } else if (row.tax_type === 'Immediate') {
+            total_immediate += row.amount;
+        }
     });
 
+    // Set calculated values to respective fields
     frm.set_value('total_taxes_and_charges', total_tax);
+    frm.set_value('deferred_statutory_taxes', total_deferred);
+    frm.set_value('gra_customs_tax', total_immediate);
+
     frm.refresh_field('tax');
     calculate_grand_cost(frm);
 }
@@ -184,7 +198,7 @@ function fetch_tax_records(frm) {
         return;
     }
 
-    frappe.show_progress(__('Fetching tax records...'), 50);  // Show loading indicator
+    //frappe.show_progress(__('Fetching tax records...'), 50);  // Show loading indicator
 
     frappe.call({
         method: 'omc.fuel_ordering.doctype.fuel_lifting_request.fuel_lifting_request.get_fuel_taxes', 
@@ -299,15 +313,23 @@ function fetch_supplier_quotation(frm) {
 }
 
 // DOCUMENT CREATION
-function create_payment_entry(frm, purpose) {
-    frappe.new_doc("Payment Entry", {}, fetp => {
-        fetp.payment_type = 'Pay',
-        fetp.party_type = 'Supplier',
-        fetp.party = frm.doc.transporter, 
-        fetp.paid_amount = frm.doc.transportation_cost
+
+function create_payment_entry(frm) {
+    frappe.model.with_doctype('Payment Entry', () => {
+        let payment_entry = frappe.model.get_new_doc('Payment Entry');
+        
+        payment_entry.payment_type = 'Pay';
+        payment_entry.party_type = 'Supplier';
+        payment_entry.party = frm.doc.transporter || "";
+        payment_entry.paid_amount = frm.doc.transportation_cost || 0;
+        
+        // Add optional reference for better tracking
+        payment_entry.custom_reference_doctype = 'Fuel Lifting Request';
+        payment_entry.custom_reference_name = frm.doc.name;
+
+       // frappe.set_route('Form', 'Payment Entry', payment_entry.name);
     });
 }
-
 
 function create_purchase_invoice(frm) {
     frappe.new_doc("Purchase Invoice", {}, piv => {
