@@ -19,7 +19,7 @@ frappe.ui.form.on("Fuel Lifting Request", {
         if (frm.doc.fuel_type) {
             render_fuel_data_table(frm);
             fetch_tax_records(frm);
-            console.log("issue ")
+           // console.log("issue ")
         }
     },
 
@@ -66,7 +66,7 @@ frappe.ui.form.on("Fuel Lifting Request", {
               
             }
         }
-        if (frm.doc.docstatus == 1 && frappe.user.has_roles('Logistics Officer')) {
+        if (frm.doc.docstatus == 1 && frappe.user.has_role('Logistics Officer')) {
             // Add button to generate Outlet Delivery Notes manually
             
         }
@@ -146,12 +146,12 @@ function calculate_grand_cost(frm) {
 }
 
 function calculate_all_totals(frm) {
-    const total_cost = frm.doc.total_cost || 0;
+    const lqty = frm.doc.nominal_volume_l || 0;
     let total_tax = 0;
 
     (frm.doc.tax || []).forEach(row => {
-        row.amount = (row.tax_rate / 100) * total_cost;
-        row.total = total_cost + row.amount;
+        row.amount = row.tax_rate * lqty;
+       // row.total = total_cost + row.amount;
         total_tax += row.amount;
     });
 
@@ -177,39 +177,60 @@ function validate_truck_volume(frm) {
     }
 }
 
-// TAX AND NOTIFICATIONS
+// TAX custom
 function fetch_tax_records(frm) {
-    frappe.call({
-        method: 'frappe.client.get_list',
-        args: {
-            doctype: 'Statutory Fuel Tax',
-            filters: { tax_purpose: 'Fuel Purchase' },
-            fields: ['tax_name', 'tax_type', 'rate', 'account', 'cost_center']
-        },
-        callback: function(response) {
-            if (response.message) {
-                frm.clear_table('tax');
-                response.message.forEach(tax => frm.add_child('tax', { ...tax, tax_rate: tax.rate }));
-                frm.refresh_field('tax');
-            } else {
-                frappe.msgprint(__('No tax records found for "Fuel Purchase".'));
-            }
-        }
-    });
-}
+    if (!frm.doc.fuel_type) {
+        frappe.msgprint(__('Please select a fuel type first.'));
+        return;
+    }
 
-function process_deferred_taxes(frm) {
-    frm.doc.tax.forEach(tax => {
-        frappe.call({
-            method: "frappe.client.insert",
-            args: {
-                doc: {
-                    doctype: "Deferred Statutory Payment",
-                    ...tax,
-                    reference_doc: frm.doc.name
-                }
+    frappe.show_progress(__('Fetching tax records...'), 50);  // Show loading indicator
+
+    frappe.call({
+        method: 'omc.fuel_ordering.doctype.fuel_lifting_request.fuel_lifting_request.get_fuel_taxes', 
+        args: { fuel_type: frm.doc.fuel_type },
+        callback: function(response) {
+            frappe.hide_progress();  // Hide loading indicator
+
+            if (response.message && response.message.length > 0) {
+                console.log("Fetched Tax Records:", response.message);
+
+                frm.clear_table('tax');  // Clear the existing tax records
+
+                response.message.forEach(tax => {
+                    if (tax.fuel_product_tax_rates.length > 0) {
+                        console.log(`Fuel Product Tax Rates for ${tax.tax_name}:`, tax.fuel_product_tax_rates);
+
+                        tax.fuel_product_tax_rates.forEach(fptr => {
+                            let tx = frm.add_child('tax');
+                            tx.tax_name = tax.tax_name;
+                            tx.tax_type = tax.tax_type;
+                            tx.tax_rate = fptr.rate;
+                            tx.product = fptr.product;
+                            tx.account = tax.account;
+                            tx.cost_center = tax.cost_center;
+
+                            // Calculate payment due date
+                            let due_date = frappe.datetime.add_days(frappe.datetime.nowdate(), tax.tax_payment_reminder_period_days || 0);
+                            tx.payment_due_date = due_date;
+                        });
+                    } else {
+                        console.warn(`No tax rates found for fuel type: ${frm.doc.fuel_type} in ${tax.tax_name}`);
+                    }
+                });
+
+                frm.refresh_field('tax');
+                frappe.show_alert({ message: __('Tax records updated successfully.'), indicator: 'green' });
+
+            } else {
+                frappe.show_alert({ message: __('No active tax records found for "Fuel Purchase".'), indicator: 'orange' });
             }
-        });
+        },
+        error: function(err) {
+            frappe.hide_progress();
+            console.error("Error fetching tax records:", err);
+            frappe.show_alert({ message: __('Failed to retrieve tax records. Please try again later.'), indicator: 'red' });
+        }
     });
 }
 
@@ -289,22 +310,46 @@ function create_payment_entry(frm, purpose) {
 
 
 function create_purchase_invoice(frm) {
-    frappe.new_doc("Purchase Invoice", {
-        supplier: frm.doc.bdc,
-        bill_date: frappe.datetime.now_date(),
-        due_date: frappe.datetime.add_days(frappe.datetime.now_date(), 30),
-        custom_reference_document: "Fuel Lifting Request",
-        custom_doc: frm.doc.name,
-        total: frm.doc.total_cost
-    }, pi => {
-        const item = frappe.model.add_child(pi, 'items');
-        item.item_code = frm.doc.product;
-        item.qty = frm.doc.nominal_volume_l;
-        item.rate = frm.doc.buy_price;
-        item.amount = frm.doc.total_cost;
-        frappe.set_route('Form', 'Purchase Invoice', pi.name);
+    frappe.new_doc("Purchase Invoice", {}, piv => {
+        piv.supplier = frm.doc.bdc;
+        piv.bill_date = frappe.datetime.nowdate(); 
+        piv.supplier = frm.doc.bdc;
+        piv.due_date = frappe.datetime.add_days(frappe.datetime.nowdate(), 30);
+        piv.custom_reference_document = "Fuel Lifting Request";
+        piv.custom_doc = frm.doc.name;
+        piv.total = frm.doc.total_cost;
+
+        frm.doc.items.forEach(invoice_item => {
+            let inv_item = frappe.model.add_child(piv, 'items');  // Correct field reference
+            inv_item.item_code = invoice_item.product;
+            inv_item.qty = invoice_item.nominal_volume_l;
+            inv_item.item_name = invoice_item.item_name;  // Correct field assignment
+            inv_item.rate = invoice_item.buy_price;
+            inv_item.amount = invoice_item.total_cost;
+        });
+
+        // Save the newly created Purchase Invoice
+        piv.save().then(() => {
+            frappe.msgprint(__('Purchase Invoice Created Successfully!'));
+        }).catch(err => {
+            frappe.msgprint(__('Error creating Purchase Invoice.'));
+            console.error(err);
+        });
+    }).catch(err => {
+        frappe.msgprint(__('Error initializing Purchase Invoice.'));
+        console.error(err);
     });
 }
+    
+    // pi => {
+    //     const item = frappe.model.add_child(pi, 'items');
+    //     item.item_code = frm.doc.product;
+    //     item.qty = frm.doc.nominal_volume_l;
+    //     item.rate = frm.doc.buy_price;
+    //     item.amount = frm.doc.total_cost;
+    //     frappe.set_route('Form', 'Purchase Invoice', pi.name);
+    // });
+
 
 // function render_fuel_data_table(frm) {
 //     if (!frm.doc.fuel_type) {
@@ -423,7 +468,7 @@ function render_fuel_data_table(frm) {
         method: "omc.fuel_ordering.doctype.fuel_lifting_request.fuel_lifting_request.fetch_fuel_data",
         args: { product: frm.doc.fuel_type },
         callback: function (response) {
-            console.log("API Response:", response.message); // Debug
+           // console.log("API Response:", response.message); // Debug
 
             const oft_data = response.message;
             if (!oft_data || oft_data.length === 0) {
@@ -462,7 +507,7 @@ function render_fuel_data_table(frm) {
                     </tbody>
                 </table>
             `;
-            console.log("Generated Table HTML:", table_html); // Debug
+           // console.log("Generated Table HTML:", table_html); // Debug
 
             frm.set_df_property("fuel_data_table", "options", table_html);
         },

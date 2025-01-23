@@ -273,3 +273,34 @@ def create_statutory_payments(doc):
 
         # Notify the user
         frappe.msgprint("Statutory Payments have been created successfully.")
+
+
+
+
+@frappe.whitelist()
+def get_fuel_taxes(fuel_type):
+    """
+    Fetch all active Statutory Fuel Tax records along with the relevant fuel product tax rates for the given fuel_type.
+    """
+    try:
+        # Fetch parent tax records with filters
+        tax_records = frappe.get_all(
+            "Statutory Fuel Tax",
+            filters={"tax_purpose": "Fuel Purchase", "status": "Active"},
+            fields=["name", "tax_name", "tax_type", "account", "cost_center", "tax_payment_reminder_period_days"]
+        )
+
+        for record in tax_records:
+            # Fetch related fuel product tax rates for the specific fuel_type
+            fuel_rates = frappe.get_all(
+                "Fuel Product Tax Rates",
+                filters={"parent": record["name"], "product": fuel_type},
+                fields=["product", "rate"]
+            )
+            record['fuel_product_tax_rates'] = fuel_rates if fuel_rates else []
+
+        return tax_records
+
+    except Exception as e:
+        frappe.log_error(f"Error fetching fuel taxes: {str(e)}", "get_fuel_taxes")
+        return {"error": str(e)}

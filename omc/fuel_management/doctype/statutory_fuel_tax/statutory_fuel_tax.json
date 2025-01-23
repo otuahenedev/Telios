@@ -10,12 +10,13 @@
   "tax_name",
   "column_break_vdhf",
   "status",
-  "rate",
   "section_break_dlac",
   "tax_type",
   "tax_purpose",
   "column_break_gxaw",
   "tax_payment_reminder_period_days",
+  "section_break_vhux",
+  "fuel_product_tax_rates",
   "section_break_bwef",
   "account",
   "column_break_nuqb",
@@ -38,16 +39,6 @@
   {
    "fieldname": "column_break_vdhf",
    "fieldtype": "Column Break"
-  },
-  {
-   "allow_in_quick_entry": 1,
-   "fieldname": "rate",
-   "fieldtype": "Float",
-   "in_list_view": 1,
-   "label": "Tax Rate ",
-   "mandatory_depends_on": "eval:doc.tax_type =='Percent'",
-   "precision": "2",
-   "reqd": 1
   },
   {
    "allow_in_quick_entry": 1,
@@ -84,22 +75,21 @@
   },
   {
    "default": "1",
-   "description": "0 - 30 Days",
+   "depends_on": "eval:doc.tax_type == \"Deferred\"",
+   "description": "In Day(s)",
    "fieldname": "tax_payment_reminder_period_days",
    "fieldtype": "Int",
    "in_list_view": 1,
    "label": "Tax Payment Reminder Period (Days)",
-   "non_negative": 1,
-   "reqd": 1
+   "non_negative": 1
   },
   {
    "fieldname": "status",
    "fieldtype": "Select",
-   "hidden": 1,
+   "in_list_view": 1,
    "label": "Status",
-   "options": "Unpaid\nPaid",
-   "print_hide": 1,
-   "report_hide": 1
+   "options": "Active\nInactive",
+   "reqd": 1
   },
   {
    "fieldname": "section_break_dlac",
@@ -116,12 +106,23 @@
   {
    "fieldname": "column_break_nuqb",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_vhux",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "fuel_product_tax_rates",
+   "fieldtype": "Table",
+   "label": "Fuel Product Tax Rates",
+   "options": "Fuel Product Tax Rates",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2025-01-20 11:21:08.255857",
+ "modified": "2025-01-22 14:04:48.025907",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Statutory Fuel Tax",
@@ -153,11 +154,19 @@
    "write": 1
   }
  ],
- "quick_entry": 1,
  "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": [],
+ "states": [
+  {
+   "color": "Green",
+   "title": "Active"
+  },
+  {
+   "color": "Gray",
+   "title": "Inactive"
+  }
+ ],
  "title_field": "tax_name",
  "track_changes": 1
 }
