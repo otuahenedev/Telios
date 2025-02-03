@@ -6,6 +6,7 @@ from frappe.model.document import Document
 from datetime import datetime
 from frappe.utils import today
 from frappe.utils import add_days
+from frappe.utils import flt
 
 
 @frappe.whitelist()
@@ -73,23 +74,25 @@ class FuelLiftingRequest(Document):
 
 #create delivery notes for each oulet lisred in delivered to table
 @frappe.whitelist()
+@frappe.whitelist()
 def generate_outlet_delivery_notes(self):
     """
     Triggered when Fuel Lifting Request is submitted.
-    Generates Outlet Delivery Notes for each outlet in the 'Deliver To' table.
+    Generates Outlet Fuel Delivery Notes for each outlet in the 'Deliver To' table.
     """
+    
     # Validation: Ensure child table 'table_mxlk' is not empty
     if not self.table_mxlk:
         frappe.throw("Please ensure the 'Deliver To' table is populated before submission.")
 
-    # Calculate shared cost per outlet
+    # Calculate total outlets to share costs
     total_outlets = len(self.table_mxlk)
     if total_outlets == 0:
         frappe.throw("No outlets listed in the 'Deliver To' table.")
 
-    # Calculate shared transport and tax cost per outlet
-    total_transport_cost = flt(self.total_transport_cost or 0)
-    total_tax_cost = flt(self.total_tax_cost or 0)
+    # Fetch shared cost components
+    total_transport_cost = flt(self.transportation_cost or 0)  # Ensure value is float
+    total_tax_cost = flt(self.total_taxes_and_charges or 0)  # Ensure value is float
     shared_cost_per_outlet = (total_transport_cost + total_tax_cost) / total_outlets
 
     # Prepare for error logging
@@ -97,49 +100,54 @@ def generate_outlet_delivery_notes(self):
 
     for row in self.table_mxlk:
         try:
-            # Fetch Station Supervisor for the outlet
+            # Fetch Station Supervisor from the row or Outlet master
             station_supervisor = row.station_supervisor or frappe.db.get_value(
                 "Outlet", row.fuel_station, "custom_station_supervisor"
             )
             if not station_supervisor:
                 raise ValueError(f"Station Supervisor not assigned for Outlet {row.fuel_station}.")
 
-            # Validate critical fields
+            # Validate required fields
             if not self.buy_price:
-                raise ValueError("Buy price (buy_price) is missing in the Fuel Lifting Request document.")
+                raise ValueError("Product buy price (buy_price) is missing in the Fuel Lifting Request document.")
             if not row.volume_l:
-                raise ValueError(f"Volume (L) is missing for Outlet {row.fuel_station}.")
+                raise ValueError(f"Fuel volume (L) is missing for Outlet {row.fuel_station}.")
+
+            # Fetch product price from the Outlet -> Product Pricing table
+            product_price = frappe.db.get_value(
+                "Outlet Product Price", {"parent": row.fuel_station, "product": self.fuel_type}, "rate"
+            )
+            if not product_price:
+                product_price = flt(self.buy_price)  # Default to `buy_price` if no outlet-specific rate exists
 
             # Calculate Product Value
-            product_value = (
-                (flt(self.buy_price) * flt(row.volume_l)) +
-                shared_cost_per_outlet
-            )
+            product_value = (flt(product_price) * flt(row.volume_l)) + shared_cost_per_outlet
 
-            # Create Outlet Delivery Note
+            # Create Outlet Fuel Delivery Note
             outlet_delivery_note = frappe.get_doc({
                 "doctype": "Outlet Fuel Delivery Note",
                 "outlet": row.fuel_station,
                 "fuel_lifting_log_ref": self.name,
                 "fuel_type": self.fuel_type,
                 "station_supervisor": station_supervisor,
-                "product_price_rate": self.buy_price,
+                "product_price_rate": product_price,
                 "fuel_quantity_expected": row.volume_l,
                 "driver_name": self.driver,
                 "product_value": product_value
             })
             outlet_delivery_note.insert()
+            frappe.msgprint(f"Delivery Note created for {row.fuel_station}")
 
         except Exception as e:
             # Log errors for review
             error_log.append(f"Error for Outlet {row.fuel_station}: {str(e)}")
+            frappe.log_error(f"Fuel Delivery Note Error for {row.fuel_station}: {str(e)}", "Fuel Lifting Request")
 
     # Display error log if any issues occurred
     if error_log:
         frappe.msgprint("\n".join(error_log), title="Errors in Fuel Delivery Note Creation")
     else:
-        frappe.msgprint("Outlet Fuel Delivery Notes have been created successfully.")
-
+        frappe.msgprint("✅ Outlet Fuel Delivery Notes have been created successfully.")
 
 
 @frappe.whitelist()
@@ -243,39 +251,73 @@ def fetch_fuel_data(product):
 
 
 
+@frappe.whitelist()
 def create_statutory_payments(doc):
     """
-    Creates Statutory Payment documents for each tax row in the Fuel Lifting Request.
-    
+    Creates Statutory Payment documents for each applicable tax row in the Fuel Lifting Request.
+
     :param doc: Fuel Lifting Request document
     """
-    # Ensure the document is submitted
-    if doc.docstatus == 1:
-        for tax_row in doc.tax:
-            # Skip rows with missing payment due or tax amount
+
+    # Ensure the document is submitted before proceeding
+    if doc.docstatus != 1:
+        frappe.throw("Statutory Payments can only be generated after submission.")
+
+    # Check if submission_date exists, otherwise use today’s date
+    submission_date = doc.submission_date or nowdate()
+
+    # Track created payments
+    created_payments = []
+    error_log = []
+
+    for tax_row in doc.tax:
+        try:
+            # Skip if tax row is missing required fields
             if not tax_row.payment_due or not tax_row.tax_amount:
-                frappe.msgprint(f"Skipping tax {tax_row.tax_name} due to missing data.")
+                error_log.append(f"Skipping {tax_row.tax_name}: Missing tax amount or due date.")
                 continue
 
-            # Calculate the payment due date
-            payment_due_date = add_days(doc.submission_date, tax_row.payment_due)
+            if tax_row.tax_type != "Deferred":
+                continue  # Only process deferred taxes
 
-            # Create the Statutory Payment document
+            # Calculate the due date for the payment
+            payment_due_date = add_days(submission_date, int(tax_row.payment_due))
+
+            # Check if a Statutory Payment already exists for this tax
+            existing_payment = frappe.db.exists(
+                "Statutory Payment",
+                {"tax_name": tax_row.tax_name, "payment_due_date": payment_due_date}
+            )
+            if existing_payment:
+                error_log.append(f"Skipping {tax_row.tax_name}: Already recorded.")
+                continue
+
+            # Create new Statutory Payment
             statutory_payment = frappe.get_doc({
                 "doctype": "Statutory Payment",
+                "fuel_lifting_request": doc.name,
                 "tax_name": tax_row.tax_name,
                 "tax_amount": tax_row.tax_amount,
                 "payment_due_date": payment_due_date,
-                "status": "Unpaid",  # Default status for new Statutory Payments
+                "status": "Unpaid"  # Default status for new payments
             })
 
-            # Insert the Statutory Payment into the database
+            # Insert into database
             statutory_payment.insert(ignore_permissions=True)
+            created_payments.append(tax_row.tax_name)
 
-        # Notify the user
-        frappe.msgprint("Statutory Payments have been created successfully.")
+        except Exception as e:
+            error_log.append(f"Error for {tax_row.tax_name}: {str(e)}")
+            frappe.log_error(f"Error creating Statutory Payment for {tax_row.tax_name}: {str(e)}")
 
-import frappe
+    # Notify user
+    if created_payments:
+        frappe.msgprint(f"✅ Statutory Payments created for: {', '.join(created_payments)}")
+
+    if error_log:
+        frappe.msgprint(f"⚠️ Issues encountered:\n" + "\n".join(error_log))
+
+
 
 @frappe.whitelist()
 def get_fuel_taxes(fuel_type):
@@ -319,6 +361,8 @@ def get_fuel_taxes(fuel_type):
 
 
 def create_journal_entry(doc):
+    default_company = frappe.db.get_single_value("Global Defaults", "default_company")
+    
     """
     Create and save a Journal Entry for the submitted document.
     Handles supplier payment, transportation cost, and customs tax.
@@ -328,7 +372,7 @@ def create_journal_entry(doc):
             "doctype": "Journal Entry",
             "posting_date": frappe.utils.today(),
             "voucher_type": "Journal Entry",
-            "company": doc.company,
+            "company": default_company,
             "remark": f"Journal Entry for {doc.name}",
             "accounts": []
         })

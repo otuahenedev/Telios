@@ -17,6 +17,7 @@
   "supplier_quotation",
   "column_break_ecig",
   "mode_of_transport",
+  "tax_inclusive",
   "order_details_section",
   "bdc",
   "fuel_type",
@@ -211,6 +212,7 @@
    "options": "Request Fuel Details"
   },
   {
+   "depends_on": "eval:doc.tax_inclusive == 1",
    "fieldname": "taxes_section",
    "fieldtype": "Section Break",
    "label": "Taxes"
@@ -507,11 +509,17 @@
    "label": "GRA Customs Tax",
    "options": "currency",
    "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "tax_inclusive",
+   "fieldtype": "Check",
+   "label": "Tax Inclusive"
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2025-01-23 14:44:38.333998",
+ "modified": "2025-02-03 17:27:27.985899",
  "modified_by": "Administrator",
  "module": "Fuel Ordering",
  "name": "Fuel Lifting Request",

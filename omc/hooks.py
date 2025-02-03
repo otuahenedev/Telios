@@ -17,15 +17,13 @@ app_include_js = [
      "/assets/omc/css/omc.css"
 
 ]
-add_to_apps_screen = [
-	{
-		"name": "FSM",
-		"logo": "apps/omc/assets/FSM/FSM.png",
-		"title": "FSM",
-		"route": "/app/masters-data",
-		#"has_permission": "raven.permissions.check_app_permission",
-	}
-]
+add_to_apps_screen = [{
+    "name": "omc",
+    "logo": "/assets/FSM/FSM.png",
+    "title": "FSM",
+    "route": "/masters-data",
+   # "has_permission": "crm.api.check_app_permission"
+}]
 
 # include js, css files in header of web template
 # web_include_css = "/assets/omc/css/omc.css"

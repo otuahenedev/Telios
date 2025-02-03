@@ -14,12 +14,31 @@ frappe.ui.form.on("Fuel Lifting Request", {
         });
         await promise.catch(() => frappe.throw()); // If the promise is rejected, throw an error
     },
+
     fuel_type: function (frm) {
-        // Refresh the table when the product field changes
+        // Check if a product is selected
         if (frm.doc.fuel_type) {
-            render_fuel_data_table(frm);
-            fetch_tax_records(frm);
-           // console.log("issue ")
+            console.log("Fuel Type selected: ", frm.doc.fuel_type);
+            
+            // Render Fuel Data Table
+            if (typeof render_fuel_data_table === "function") {
+                render_fuel_data_table(frm);
+            } else {
+                console.error("render_fuel_data_table is not defined");
+            }
+
+            // Fetch Tax Records if tax is inclusive
+            if (frm.doc.tax_inclusive == 1) {
+                if (typeof fetch_tax_records === "function") {
+                    fetch_tax_records(frm);
+                } else {
+                    console.error("fetch_tax_records is not defined");
+                }
+            }
+
+            console.log("fuel_type function executed successfully.");
+        } else {
+            console.warn("No fuel type selected.");
         }
     },
 
