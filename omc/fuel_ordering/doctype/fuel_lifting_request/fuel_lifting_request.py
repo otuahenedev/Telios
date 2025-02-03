@@ -275,8 +275,7 @@ def create_statutory_payments(doc):
         # Notify the user
         frappe.msgprint("Statutory Payments have been created successfully.")
 
-
-
+import frappe
 
 @frappe.whitelist()
 def get_fuel_taxes(fuel_type):
@@ -284,31 +283,40 @@ def get_fuel_taxes(fuel_type):
     Fetch all active Statutory Fuel Tax records along with the relevant fuel product tax rates for the given fuel_type.
     """
     try:
-        # Fetch parent tax records with filters
+        # Ensure case-insensitive matching
+        fuel_type = str(fuel_type).strip().lower()
+
+        # Fetch parent tax records
         tax_records = frappe.get_all(
             "Statutory Fuel Tax",
             filters={"tax_purpose": "Fuel Purchase", "status": "Active"},
             fields=["name", "tax_name", "tax_type", "account", "cost_center", "tax_payment_reminder_period_days"]
         )
 
+        filtered_records = []  # Store only relevant tax records
+
         for record in tax_records:
-            # Fetch related fuel product tax rates for the specific fuel_type
+            # Fetch child table entries and filter manually
             fuel_rates = frappe.get_all(
                 "Fuel Product Tax Rates",
-                filters={"parent": record["name"], "product": fuel_type},
+                filters={"parent": record["name"]},
                 fields=["product", "rate"]
             )
-            record['fuel_product_tax_rates'] = fuel_rates if fuel_rates else []
 
-        return tax_records
+            # Manual filtering to ensure exact matching
+            matching_rates = [rate for rate in fuel_rates if str(rate["product"]).strip().lower() == fuel_type]
+
+            if matching_rates:
+                record["fuel_product_tax_rates"] = matching_rates
+                filtered_records.append(record)
+
+        return filtered_records
 
     except Exception as e:
         frappe.log_error(f"Error fetching fuel taxes: {str(e)}", "get_fuel_taxes")
         return {"error": str(e)}
 
 
-
-import frappe
 
 def create_journal_entry(doc):
     """

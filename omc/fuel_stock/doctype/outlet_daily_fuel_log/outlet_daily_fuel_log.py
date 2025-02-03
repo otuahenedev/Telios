@@ -9,7 +9,7 @@ class OutletDailyFuelLog(Document):
     def on_submit(self):
         # Call the update logic during validation
         self.update_outlet_fuel_tanks()
-		calculate_tank_variance(self, "on_submit")
+        calculate_tank_variance(self, "on_submit")
 
     def update_outlet_fuel_tanks(self):
         """
@@ -40,11 +40,10 @@ class OutletDailyFuelLog(Document):
             try:
                 # Fetch the Outlet Fuel Tank document
                 oft_doc = frappe.get_doc("Outlet Fuel Tank", oft)
-
-				# Validation: Check if the aggregated total exceeds the tank capacity
-				if total_level > oft_doc.tank_capacity_l:
-					frappe.throw(f"The total tank level for Tank ID {oft_doc.name} exceeds its capacity. "
-					 f"Current Total: {total_level}L, Capacity: {oft_doc.capacity}L." )
+                # Validation: Check if the aggregated total exceeds the tank capacity
+                if total_level > oft_doc.tank_capacity_l:
+                    frappe.throw(f"The total tank level for Tank ID {oft_doc.name} exceeds its capacity. "
+                                 f"Current Total: {total_level}L, Capacity: {oft_doc.capacity}L." )
 
                 # Update fields in the Outlet Fuel Tank
                 oft_doc.current_level_l = total_level

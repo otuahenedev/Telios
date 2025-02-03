@@ -17,6 +17,15 @@ app_include_js = [
      "/assets/omc/css/omc.css"
 
 ]
+add_to_apps_screen = [
+	{
+		"name": "FSM",
+		"logo": "apps/omc/assets/FSM/FSM.png",
+		"title": "FSM",
+		"route": "/app/masters-data",
+		#"has_permission": "raven.permissions.check_app_permission",
+	}
+]
 
 # include js, css files in header of web template
 # web_include_css = "/assets/omc/css/omc.css"
@@ -136,7 +145,6 @@ doc_events = {
         "after_insert": "omc.credit__facilitation.doctype.outlet_credit_sales_log.update_credit_utilization",
         "on_update": "omc.credit__facilitation.doctype.outlet_credit_sales_log.update_credit_utilization"
     },
-   
     # "Payment Entry": {
     #     "on_submit": "omc.fuel_management.doctype.statutory_payment.statutory_payment.tax_management.update_statutory_payment_status"
     # },

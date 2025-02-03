@@ -315,53 +315,31 @@ function fetch_supplier_quotation(frm) {
 // DOCUMENT CREATION
 
 function create_payment_entry(frm) {
-    frappe.model.with_doctype('Payment Entry', () => {
-        let payment_entry = frappe.model.get_new_doc('Payment Entry');
-        
-        payment_entry.payment_type = 'Pay';
-        payment_entry.party_type = 'Supplier';
-        payment_entry.party = frm.doc.transporter || "";
-        payment_entry.paid_amount = frm.doc.transportation_cost || 0;
-        
-        // Add optional reference for better tracking
-        payment_entry.custom_reference_doctype = 'Fuel Lifting Request';
-        payment_entry.custom_reference_name = frm.doc.name;
+    frappe.new_doc("Payment Entry", {}, py =>{
+        py.payment_type = "Pay";
+        py.party_type = "Supplier";
+        py.party = frm.doc.transporter;
+        py.paid_amount = frm.doc.total_cost || 0;
+        py.custom_reference_doctype = "Fuel Lifting Request";
+        py.custom_reference_name = frm.doc.name;
 
-       // frappe.set_route('Form', 'Payment Entry', payment_entry.name);
     });
 }
-
-function create_purchase_invoice(frm) {
-    frappe.new_doc("Purchase Invoice", {}, piv => {
-        piv.supplier = frm.doc.bdc;
-        piv.bill_date = frappe.datetime.nowdate(); 
-        piv.supplier = frm.doc.bdc;
-        piv.due_date = frappe.datetime.add_days(frappe.datetime.nowdate(), 30);
-        piv.custom_reference_document = "Fuel Lifting Request";
-        piv.custom_doc = frm.doc.name;
-        piv.total = frm.doc.total_cost;
-
-        frm.doc.items.forEach(invoice_item => {
-            let inv_item = frappe.model.add_child(piv, 'items');  // Correct field reference
-            inv_item.item_code = invoice_item.product;
-            inv_item.qty = invoice_item.nominal_volume_l;
-            inv_item.item_name = invoice_item.item_name;  // Correct field assignment
-            inv_item.rate = invoice_item.buy_price;
-            inv_item.amount = invoice_item.total_cost;
+    function create_purchase_invoice(frm) {
+        frappe.new_doc("Payment Entry", {}, py =>{
+            py.payment_type = "Pay";
+            py.party_type = "Supplier";
+            py.party = frm.doc.bdc;
+            py.paid_amount = frm.doc.transportation_cost || 0;
+            py.custom_reference_doctype = "Fuel Lifting Request";
+            py.custom_reference_name = frm.doc.name;
+    
         });
+    }
+    
 
-        // Save the newly created Purchase Invoice
-        piv.save().then(() => {
-            frappe.msgprint(__('Purchase Invoice Created Successfully!'));
-        }).catch(err => {
-            frappe.msgprint(__('Error creating Purchase Invoice.'));
-            console.error(err);
-        });
-    }).catch(err => {
-        frappe.msgprint(__('Error initializing Purchase Invoice.'));
-        console.error(err);
-    });
-}
+
+
     
     // pi => {
     //     const item = frappe.model.add_child(pi, 'items');
