@@ -6,7 +6,7 @@ from frappe.model.document import Document
 
 
 class OutletDailyFuelLog(Document):
-    def on_submit(self):
+    def after_submit(self):
         # Call the update logic during validation
         self.update_outlet_fuel_tanks()
         calculate_tank_variance(self, "on_submit")
@@ -67,7 +67,7 @@ def calculate_tank_variance(doc, method):
     for reading in doc.readings:
         # Fetch the expected level from Outlet Fuel Tank
         tank = frappe.get_doc("Outlet Fuel Tank", reading.oft)
-        expected_level = tank.current_level or 0
+        expected_level = tank.current_level_l or 0
         variance = reading.current_tank_level - expected_level
 
         # Update the variance field in the Outlet Fuel Tank

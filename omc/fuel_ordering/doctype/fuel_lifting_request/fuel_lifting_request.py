@@ -73,7 +73,7 @@ class FuelLiftingRequest(Document):
 
 
 #create delivery notes for each oulet lisred in delivered to table
-@frappe.whitelist()
+
 @frappe.whitelist()
 def generate_outlet_delivery_notes(self):
     """
@@ -102,7 +102,7 @@ def generate_outlet_delivery_notes(self):
         try:
             # Fetch Station Supervisor from the row or Outlet master
             station_supervisor = row.station_supervisor or frappe.db.get_value(
-                "Outlet", row.fuel_station, "custom_station_supervisor"
+                "Outlet", row.fuel_station, "station_supervisor"
             )
             if not station_supervisor:
                 raise ValueError(f"Station Supervisor not assigned for Outlet {row.fuel_station}.")
@@ -131,7 +131,7 @@ def generate_outlet_delivery_notes(self):
                 "fuel_type": self.fuel_type,
                 "station_supervisor": station_supervisor,
                 "product_price_rate": product_price,
-                "fuel_quantity_expected": row.volume_l,
+                "fuel_quantity_expected": flt(row.volume_l),
                 "driver_name": self.driver,
                 "product_value": product_value
             })
@@ -263,8 +263,7 @@ def create_statutory_payments(doc):
     if doc.docstatus != 1:
         frappe.throw("Statutory Payments can only be generated after submission.")
 
-    # Check if submission_date exists, otherwise use today’s date
-    submission_date = doc.submission_date or nowdate()
+    
 
     # Track created payments
     created_payments = []
@@ -280,8 +279,7 @@ def create_statutory_payments(doc):
             if tax_row.tax_type != "Deferred":
                 continue  # Only process deferred taxes
 
-            # Calculate the due date for the payment
-            payment_due_date = add_days(submission_date, int(tax_row.payment_due))
+            
 
             # Check if a Statutory Payment already exists for this tax
             existing_payment = frappe.db.exists(
@@ -298,7 +296,7 @@ def create_statutory_payments(doc):
                 "fuel_lifting_request": doc.name,
                 "tax_name": tax_row.tax_name,
                 "tax_amount": tax_row.tax_amount,
-                "payment_due_date": payment_due_date,
+                "payment_due_date": tax_row.payment_due_date,
                 "status": "Unpaid"  # Default status for new payments
             })
 

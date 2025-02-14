@@ -1,0 +1,54 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-02-10 13:46:46.132824",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "approval",
+  "designation",
+  "signature",
+  "datetime"
+ ],
+ "fields": [
+  {
+   "fieldname": "approval",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Role",
+   "options": "Prepared By\nRequested By\nApproved By\nReceived By\nReviewed By",
+   "sort_options": 1
+  },
+  {
+   "fieldname": "designation",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Designation"
+  },
+  {
+   "fieldname": "signature",
+   "fieldtype": "Signature",
+   "in_list_view": 1,
+   "label": "Signature"
+  },
+  {
+   "fieldname": "datetime",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Datetime"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-02-10 13:57:23.030678",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Approvals",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
