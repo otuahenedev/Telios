@@ -40,6 +40,7 @@ class OutletDailyFuelLog(Document):
             try:
                 # Fetch the Outlet Fuel Tank document
                 oft_doc = frappe.get_doc("Outlet Fuel Tank", oft)
+                total_capacity = oft_doc.tank_capacity_l
                 # Validation: Check if the aggregated total exceeds the tank capacity
                 if total_level > oft_doc.tank_capacity_l:
                     frappe.throw(f"The total tank level for Tank ID {oft_doc.name} exceeds its capacity. "
@@ -47,6 +48,7 @@ class OutletDailyFuelLog(Document):
 
                 # Update fields in the Outlet Fuel Tank
                 oft_doc.current_level_l = total_level
+                oft_doc.current_level_ = (total_level / total_capacity) * 100
                 oft_doc.last_reading_date = self.datetime
 
                 # Save the updated Outlet Fuel Tank document

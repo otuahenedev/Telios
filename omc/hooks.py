@@ -178,9 +178,10 @@ fixtures = [
     {
         "dt": "Report",
         "filters": [
-            ["name", "=", "Credit Risk Report"]
+            ["name", "=", "Credit Report"]
         ]
-    }
+    },
+    "Workflow"  # This ensures all workflows are exported
 ]
 
 # Testing

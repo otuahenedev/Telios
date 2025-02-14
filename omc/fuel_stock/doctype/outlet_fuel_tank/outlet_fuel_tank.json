@@ -16,6 +16,7 @@
   "variance",
   "section_break_cztu",
   "current_level_l",
+  "current_level_",
   "column_break_qcgl",
   "last_reading_date"
  ],
@@ -105,11 +106,18 @@
    "fieldtype": "Float",
    "label": "Variance",
    "read_only": 1
+  },
+  {
+   "fieldname": "current_level_",
+   "fieldtype": "Percent",
+   "in_list_view": 1,
+   "label": "Current Level (%)",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-14 12:59:04.242284",
+ "modified": "2025-02-14 13:14:14.393194",
  "modified_by": "Administrator",
  "module": "Fuel Stock",
  "name": "Outlet Fuel Tank",
