@@ -19,7 +19,7 @@ app_include_js = [
 ]
 add_to_apps_screen = [{
     "name": "omc",
-    "logo": "/assets/FSM/FSM.png",
+    "logo": "omc/assets/FSM/FSM.png",
     "title": "FSM",
     "route": "/masters-data",
    # "has_permission": "crm.api.check_app_permission"
