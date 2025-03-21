@@ -9,4 +9,5 @@ from frappe.utils import nowdate
 
 
 class DepositSales(Document):
+    pass
 
