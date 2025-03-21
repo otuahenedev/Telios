@@ -44,7 +44,7 @@
   "outlets_product_pricing_section",
   "product_rates",
   "accounting_tab",
-  "default_account",
+  "default_cash_account",
   "loyalty_program",
   "column_break_aziv",
   "default_cost_center",
@@ -152,13 +152,6 @@
    "fieldtype": "Table MultiSelect",
    "label": "Station Attendant(s)",
    "options": "Attendants Details"
-  },
-  {
-   "fieldname": "default_account",
-   "fieldtype": "Link",
-   "label": "Default Account",
-   "link_filters": "[[\"Account\",\"account_type\",\"=\",\"Receivable\"],[\"Account\",\"root_type\",\"=\",\"Asset\"],[\"Account\",\"company\",\"=\",\"Telios Energy\"]]",
-   "options": "Account"
   },
   {
    "fieldname": "column_break_aziv",
@@ -352,12 +345,19 @@
    "fieldtype": "Table",
    "label": "Fuel Dispensers",
    "options": "Fuel Dispenser"
+  },
+  {
+   "fieldname": "default_cash_account",
+   "fieldtype": "Link",
+   "label": "Default Cash Account",
+   "link_filters": "[[\"Account\",\"account_type\",\"=\",\"Receivable\"],[\"Account\",\"root_type\",\"=\",\"Asset\"],[\"Account\",\"company\",\"=\",\"Telios Energy\"]]",
+   "options": "Account"
   }
  ],
  "image_field": "image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-24 07:50:18.339843",
+ "modified": "2025-03-20 22:18:57.852172",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Outlet",

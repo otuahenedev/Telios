@@ -13,6 +13,8 @@
   "outlet_code",
   "st",
   "station_supervisor",
+  "account",
+  "cost_center",
   "column_break_gawm",
   "date",
   "datetime",
@@ -271,6 +273,24 @@
    "fieldtype": "Currency",
    "label": "Total Credit Sales (GHS)  ",
    "read_only": 1
+  },
+  {
+   "fetch_from": "outlet.default_account",
+   "fieldname": "account",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Account",
+   "options": "Account",
+   "print_hide": 1
+  },
+  {
+   "fetch_from": "outlet.default_cost_center",
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Cost Center",
+   "options": "Cost Center",
+   "print_hide": 1
   }
  ],
  "is_calendar_and_gantt": 1,
@@ -281,7 +301,7 @@
    "link_fieldname": "pump_reading_ref"
   }
  ],
- "modified": "2024-12-16 10:40:42.123387",
+ "modified": "2025-03-20 13:08:15.512756",
  "modified_by": "Administrator",
  "module": "Fuel Sales",
  "name": "Outlet Pump Sales",
@@ -313,6 +333,17 @@
    "share": 1,
    "submit": 1,
    "write": 1
+  },
+  {
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Operations Officer",
+   "select": 1,
+   "share": 1
   }
  ],
  "sort_field": "modified",

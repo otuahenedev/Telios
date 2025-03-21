@@ -1,0 +1,154 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-03-07 07:39:21.250322",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "product",
+  "product_price",
+  "trip_distance_km",
+  "column_break_wthu",
+  "transport_type",
+  "fuel_truck",
+  "third_party_transport_price",
+  "outlet_selection_section",
+  "table_nyuu",
+  "tax_breakdown_section",
+  "table_bfhd",
+  "section_break_jbnu",
+  "column_break_fxwz",
+  "column_break_kmjv",
+  "supply_total_cost",
+  "transport_total_cost",
+  "immediate_tax_charges",
+  "deferred_tax_charges",
+  "grand_total_cost"
+ ],
+ "fields": [
+  {
+   "fieldname": "product",
+   "fieldtype": "Link",
+   "label": "Product",
+   "options": "Item"
+  },
+  {
+   "fieldname": "column_break_wthu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "product_price",
+   "fieldtype": "Currency",
+   "label": "Product Price",
+   "options": "currency"
+  },
+  {
+   "fieldname": "fuel_truck",
+   "fieldtype": "Link",
+   "label": "Fuel Truck",
+   "options": "Fuel Truck"
+  },
+  {
+   "fieldname": "outlet_selection_section",
+   "fieldtype": "Section Break",
+   "label": "Outlet Selection"
+  },
+  {
+   "fieldname": "table_nyuu",
+   "fieldtype": "Table",
+   "options": "Outlet Details"
+  },
+  {
+   "fieldname": "third_party_transport_price",
+   "fieldtype": "Currency",
+   "label": "Third Party Transport Price"
+  },
+  {
+   "fieldname": "transport_type",
+   "fieldtype": "Select",
+   "label": "Transport Type",
+   "options": "Company Transport\nThird-Party Transport"
+  },
+  {
+   "fieldname": "tax_breakdown_section",
+   "fieldtype": "Section Break",
+   "label": "Tax Breakdown"
+  },
+  {
+   "fieldname": "table_bfhd",
+   "fieldtype": "Table",
+   "options": "Tax Detail"
+  },
+  {
+   "fieldname": "section_break_jbnu",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_fxwz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_kmjv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "supply_total_cost",
+   "fieldtype": "Currency",
+   "label": "Supply Total Cost",
+   "options": "currency"
+  },
+  {
+   "fieldname": "transport_total_cost",
+   "fieldtype": "Currency",
+   "label": "Transport Total Cost ",
+   "options": "currency"
+  },
+  {
+   "bold": 1,
+   "fieldname": "grand_total_cost",
+   "fieldtype": "Currency",
+   "label": "Grand Total Cost",
+   "options": "currency"
+  },
+  {
+   "fieldname": "trip_distance_km",
+   "fieldtype": "Float",
+   "label": "Trip Distance (Km)"
+  },
+  {
+   "fieldname": "immediate_tax_charges",
+   "fieldtype": "Currency",
+   "label": "Immediate Tax Charges",
+   "options": "currency"
+  },
+  {
+   "fieldname": "deferred_tax_charges",
+   "fieldtype": "Currency",
+   "label": "Deferred Tax Charges ",
+   "options": "currency"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2025-03-08 00:12:43.433819",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Fuel Loading Plan",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

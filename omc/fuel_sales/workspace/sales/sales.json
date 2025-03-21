@@ -1,0 +1,182 @@
+{
+ "app": "omc",
+ "charts": [],
+ "content": "[{\"id\":\"YFawAKYEmD\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Sales</span>\",\"col\":12}},{\"id\":\"dhwtgkQL4t\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Outlet Pump Sales\",\"col\":6}},{\"id\":\"qmrpL3ujZq\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Deposit Sales\",\"col\":6}},{\"id\":\"0MIS3XZm9N\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"eMugrf9Brx\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"8O-SM-ihBY\",\"type\":\"card\",\"data\":{\"card_name\":\"Processes\",\"col\":4}}]",
+ "creation": "2024-12-15 22:14:46.819486",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "sell",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Sales",
+ "link_type": "DocType",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Processes",
+   "link_count": 6,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Outlet Tank Reading Log",
+   "link_count": 0,
+   "link_to": "Outlet Daily Fuel Log",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Fuel Station Pricing",
+   "link_count": 0,
+   "link_to": "Outlet Pricing",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Outlet Credit Sales Log",
+   "link_count": 0,
+   "link_to": "Outlet Credit Sales Log",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Deposit Sales",
+   "link_count": 0,
+   "link_to": "Deposit Sales",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Outlet Pump Sales",
+   "link_count": 0,
+   "link_to": "Outlet Pump Sales",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Competitor Pricing",
+   "link_count": 0,
+   "link_to": "Competitor Pricing",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Masters",
+   "link_count": 6,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Outlet",
+   "link_count": 0,
+   "link_to": "Outlet",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Product",
+   "link_count": 0,
+   "link_to": "Item",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Customer",
+   "link_count": 0,
+   "link_to": "Customer",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Competitor",
+   "link_count": 0,
+   "link_to": "Competitor",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Expense Claim",
+   "link_count": 0,
+   "link_to": "Expense Claim",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Outlet Fuel Tank",
+   "link_count": 0,
+   "link_to": "Outlet Fuel Tank",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2025-03-20 13:09:36.643023",
+ "modified_by": "Administrator",
+ "module": "Fuel Sales",
+ "name": "Sales",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [
+  {
+   "document_type": "Outlet Pump Sales",
+   "label": "Outlet Pump Sales",
+   "quick_list_filter": "[]"
+  },
+  {
+   "document_type": "Deposit Sales",
+   "label": "Deposit Sales",
+   "quick_list_filter": "[]"
+  }
+ ],
+ "roles": [],
+ "sequence_id": 43.0,
+ "shortcuts": [],
+ "title": "Sales",
+ "type": "Workspace"
+}

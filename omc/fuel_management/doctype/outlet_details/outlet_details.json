@@ -1,0 +1,49 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-03-07 07:42:20.820462",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "outlet",
+  "capacity",
+  "distance"
+ ],
+ "fields": [
+  {
+   "fieldname": "outlet",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Outlet",
+   "options": "Outlet"
+  },
+  {
+   "fieldname": "capacity",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Capacity (L)",
+   "options": "Outlet"
+  },
+  {
+   "fieldname": "distance",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Distance (Km)",
+   "non_negative": 1,
+   "options": "Outlet"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-03-07 07:44:33.480449",
+ "modified_by": "Administrator",
+ "module": "Fuel Management",
+ "name": "Outlet Details",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

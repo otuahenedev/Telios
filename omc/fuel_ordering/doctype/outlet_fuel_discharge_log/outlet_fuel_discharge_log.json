@@ -13,6 +13,7 @@
   "fuel_quantity_supplied",
   "product",
   "fuel_received_l",
+  "current_outlet_tank_volume_l",
   "section_break_uwjg",
   "pump_activity",
   "total_sales_during_discharge_l",
@@ -65,6 +66,7 @@
   },
   {
    "bold": 1,
+   "default": "0",
    "fieldname": "total_sales_during_discharge_l",
    "fieldtype": "Float",
    "label": "Total Sales During Discharge (L)",
@@ -88,9 +90,10 @@
   },
   {
    "bold": 1,
+   "default": "0",
    "fieldname": "total_tanks_net_volume_l",
    "fieldtype": "Float",
-   "label": "Total Tanks Net Volume (L)",
+   "label": "Total Tank Net Volume (L)",
    "read_only": 1
   },
   {
@@ -103,6 +106,7 @@
   },
   {
    "bold": 1,
+   "default": "0",
    "fieldname": "fuel_received_l",
    "fieldtype": "Float",
    "label": "Fuel Received (L)",
@@ -113,6 +117,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Safety Cap Seal Status",
+   "options": "\nSealed\nBroken\nUnsealed",
    "reqd": 1
   },
   {
@@ -121,12 +126,20 @@
    "fieldtype": "Table",
    "label": "Evidence Attachments",
    "options": "Video Evidence"
+  },
+  {
+   "bold": 1,
+   "default": "0",
+   "fieldname": "current_outlet_tank_volume_l",
+   "fieldtype": "Float",
+   "label": "Current Outlet Tank Volume (L)",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-12-26 23:18:13.776853",
+ "modified": "2025-03-13 16:41:03.288011",
  "modified_by": "Administrator",
  "module": "Fuel Ordering",
  "name": "Outlet Fuel Discharge Log",

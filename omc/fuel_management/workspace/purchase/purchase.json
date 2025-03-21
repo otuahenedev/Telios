@@ -226,7 +226,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-12-18 15:42:46.555964",
+ "modified": "2025-03-04 10:24:09.906514",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Purchase",
@@ -251,7 +251,11 @@
    "quick_list_filter": "[[\"Fuel Lifting Request\",\"workflow_state\",\"=\",\"Vetted\",false]]"
   }
  ],
- "roles": [],
+ "roles": [
+  {
+   "role": "Internal"
+  }
+ ],
  "sequence_id": 42.0,
  "shortcuts": [],
  "title": "Purchase",

@@ -9,8 +9,10 @@
   "tank_id",
   "oft",
   "product",
+  "section_break_shhs",
   "current_tank_level",
-  "capture_tank_reading"
+  "capture_tank_reading",
+  "column_break_evzj"
  ],
  "fields": [
   {
@@ -36,8 +38,7 @@
    "columns": 3,
    "fieldname": "capture_tank_reading",
    "fieldtype": "Attach Image",
-   "label": "Capture Tank Reading",
-   "reqd": 1
+   "label": "Capture Tank Reading"
   },
   {
    "columns": 2,
@@ -51,18 +52,27 @@
   {
    "bold": 1,
    "columns": 3,
+   "default": "0",
    "fetch_from": "tank_reading.fuel_reading",
    "fieldname": "current_tank_level",
    "fieldtype": "Float",
    "in_list_view": 1,
-   "label": "Current Tank Level (L)",
+   "label": "Tank Level (L)",
    "reqd": 1
+  },
+  {
+   "fieldname": "section_break_shhs",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_evzj",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-12-23 09:37:36.365694",
+ "modified": "2025-03-20 14:14:14.936284",
  "modified_by": "Administrator",
  "module": "Fuel Stock",
  "name": "Tank Reading",

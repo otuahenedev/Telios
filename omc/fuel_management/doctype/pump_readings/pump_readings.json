@@ -39,8 +39,7 @@
    "default": "0",
    "fieldname": "last_reading",
    "fieldtype": "Float",
-   "label": "Last Reading",
-   "read_only": 1
+   "label": "Last Reading"
   },
   {
    "description": "Attach Image of reading",
@@ -101,7 +100,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-12-24 09:34:17.164317",
+ "modified": "2025-03-20 13:06:58.282353",
  "modified_by": "Administrator",
  "module": "Fuel Management",
  "name": "Pump Readings",

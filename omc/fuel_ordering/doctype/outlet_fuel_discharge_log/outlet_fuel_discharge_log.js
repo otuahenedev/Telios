@@ -96,7 +96,7 @@ frappe.ui.form.on("Outlet Fuel Discharge Log", {
         }
 
         // Validate unique pump IDs in pumps
-        let pump_ids = frm.doc.pump_activity.map(row => row.pump_id);
+        let pump_ids = frm.doc.pump_activity.map(row => row.dispenser);
         if (new Set(pump_ids).size !== pump_ids.length) {
             frappe.msgprint(__('Duplicate Pump IDs detected in the Pumps table. Please fix the entries.'));
             frappe.validated = false;
@@ -194,6 +194,8 @@ function update_tank_net_volume(frm, cdt, cdn) {
     // Calculate net_sales
     let net_sales = row.tank_volume_after_delivery - row.tank_volume_before_delivery;
     frappe.model.set_value(cdt, cdn, 'net_volume', net_sales);
+    let total_vol = row.tank_volume_after_delivery + row.tank_volume_before_delivery;
+    frappe.model.set_value(cdt, cdn, 'total_volume', total_vol);
 
     // Recalculate totals on the parent
     calculate_net_volume_and_totals(frm);
@@ -210,10 +212,23 @@ function calculate_net_volume_and_totals(frm) {
             }
         });
     }
+    let totalvolume = 0;
+
+    if (frm.doc.tank_activity) {
+        frm.doc.tank_activity.forEach(row => {
+            if (row.total_volume) {
+                totalvolume += row.total_volume;
+            }
+        });
+    }
 
     // Set the total in the parent field
     frm.set_value('total_tanks_net_volume_l', total_net_volume);
-    console.log(total_net_volume)
+
+    //set current fuel lvl 
+    let total_cur_volume = totalvolume - frm.doc.total_sales_during_discharge_l || 0
+    frm.set_value('current_outlet_tank_volume_l', total_cur_volume);
+    //console.log(total_net_volume)
 }
 
 function calculate_actual_levels(frm) {
@@ -225,6 +240,6 @@ function calculate_actual_levels(frm) {
      }
      else {
         // Handle cases where values are missing
-        frappe.msgprint(__('Please ensure both Pump Activity  and Tank Activity tables are filled.'));
+       // frappe.msgprint(__('Please ensure both Pump Activity  and Tank Activity tables are filled.'));
     }
 }

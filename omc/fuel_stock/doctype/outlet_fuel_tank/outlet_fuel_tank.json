@@ -75,13 +75,11 @@
   },
   {
    "bold": 1,
-   "default": "0",
    "fieldname": "current_level_l",
    "fieldtype": "Float",
    "in_list_view": 1,
    "in_preview": 1,
-   "label": "Current Level (L)",
-   "read_only": 1
+   "label": "Current Level (L)"
   },
   {
    "fieldname": "column_break_qcgl",
@@ -111,13 +109,12 @@
    "fieldname": "current_level_",
    "fieldtype": "Percent",
    "in_list_view": 1,
-   "label": "Current Level (%)",
-   "read_only": 1
+   "label": "Current Level (%)"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-14 13:14:14.393194",
+ "modified": "2025-03-21 01:49:13.619633",
  "modified_by": "Administrator",
  "module": "Fuel Stock",
  "name": "Outlet Fuel Tank",
@@ -133,6 +130,30 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Operations Manager",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Operations Officer",
    "share": 1,
    "write": 1
   }
