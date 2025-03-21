@@ -1,14 +1,9 @@
-// Ensure we have a dictionary to add our custom settings
 const map_settings = frappe.provide("frappe.utils.map_defaults");
 
-// Center and zoom level can be copied from the URL of
-// the map view at openstreetmap.org.
+// Center the map on Ghana
+map_settings.center = [7.9465, -1.0232];  // Latitude, Longitude for Ghana
+map_settings.zoom = 7;
 
-// New default location (centered on Accra, Ghana)
-map_settings.center = [5.6037, -0.1870]; // Latitude and Longitude for Accra
-map_settings.zoom = 12; // Adjust the zoom level for a city view
-
-// Use a different map: satellite instead of streets
-// Examples can be found at https://leaflet-extras.github.io/leaflet-providers/preview/
+// Use an alternate map tile (optional, clean look)
 map_settings.tiles = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
-map_settings.attribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+map_settings.attribution = "© OpenStreetMap contributors";
